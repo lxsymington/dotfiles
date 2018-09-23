@@ -1,0 +1,1 @@
+/home/lxs/.config/fisherman/spacefish/fish_prompt.fish

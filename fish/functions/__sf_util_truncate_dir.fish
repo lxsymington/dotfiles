@@ -1,0 +1,1 @@
+/home/lxs/.config/fisherman/spacefish/functions/__sf_util_truncate_dir.fish

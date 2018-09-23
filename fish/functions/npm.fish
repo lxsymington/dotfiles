@@ -1,0 +1,1 @@
+/home/lxs/.config/fisherman/fnm/functions/npm.fish

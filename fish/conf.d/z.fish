@@ -1,0 +1,1 @@
+/home/lxs/.config/fisherman/z/conf.d/z.fish

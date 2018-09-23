@@ -1,0 +1,1 @@
+/home/lxs/.config/fisherman/bass/functions/bass.fish
