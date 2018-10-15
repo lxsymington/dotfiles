@@ -2,10 +2,10 @@
 "======= THEME ========================================================================================================"
 "======================================================================================================================"
 "Enable the Palenight variation of the Material theme
-let g:material_style='palenight'
+" let g:material_style='palenight'
 
 "Sets the background to be dark
-set background=dark
+set background=light
 
 "Sets the theme to be the Material theme
 colorscheme vim-material

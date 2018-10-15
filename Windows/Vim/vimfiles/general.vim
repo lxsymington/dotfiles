@@ -12,6 +12,9 @@ set termguicolors
 "Sets encoding to UTF-8
 set encoding=utf-8
 
+"Sets encoding of written file to UTF-8
+set fileencoding=utf-8
+
 "Enables syntax highlighting
 syntax enable
 
@@ -51,3 +54,15 @@ set noshowmode
 "Enable the mouse
 set mouse=a
 
+"Hopefully fixes file encodings, see http://vim.wikia.com/wiki/Working_with_Unicode
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  setglobal nobomb
+  setlocal nobomb
+  set nobomb
+  set fileencodings=utf-8
+endif

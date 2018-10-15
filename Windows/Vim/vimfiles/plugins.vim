@@ -4,7 +4,7 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/Vim/vimfiles/plugged')
 Plug 'w0rp/ale',
 Plug 'Shougo/deoplete.nvim',
 Plug 'Shougo/denite.nvim',
