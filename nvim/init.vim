@@ -1,5 +1,5 @@
 "======================================================================================================================"
-"======== General ====================================================================================================="
+"======== GENERAL ====================================================================================================="
 "======================================================================================================================"
 "Used the latest options/settings (If available)
 if &compatible
@@ -43,7 +43,7 @@ set colorcolumn=+1
 set list
 
 "Sets characters to display for invisible characters
-set listchars=space:⋅,tab:⇥\ ,eol:¬
+set listchars=space:·,tab:↦\ ,eol:¬
 
 "Always show status line
 set laststatus=2
@@ -117,14 +117,14 @@ set history=50
 "======================================================================================================================"
 "======= VISUALS ======================================================================================================"
 "======================================================================================================================"
-"Enable the Palenight variation of the Material theme
-let g:material_style='palenight'
-
 "Sets the background to be dark
 set background=dark
 
 "Sets the theme to be the Material theme
 colorscheme vim-material
+
+"Enable the Palenight variation of the Material theme
+let g:material_style='palenight'
 
 "======================================================================================================================"
 "======= SEARCH ======================================================================================================="
@@ -186,6 +186,7 @@ let g:ale_linters = {
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
 \   'sass': ['stylelint'],
+\   'rust': ['cargo', 'rls', 'rustfmt'],
 \}
 
 " Configures Ale file fixers
@@ -194,6 +195,7 @@ let g:ale_fixers = {
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
 \   'sass': ['stylelint'],
+\   'rust': ['rustfmt'],
 \}
 
 " Set Ale to fix files automatically on save.
@@ -206,6 +208,34 @@ let g:ale_open_list = 1
 
 " Show 5 lines of errors (default: 10)
 let g:ale_list_window_size = 5
+
+" Enable completion
+" let g:ale_completion_enabled = 1
+" let g:ale_completion_delay = 100
+
+"set completeopt=menu,menuone,preview,noselect,noinsert
+
+" Set ALE error sign
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+
+"~~~~~~~ LanguageClient-neovim ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089']
+    \ }
+
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 "~~~~~~~ Deoplete ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Enables Deoplete at nvim startup
@@ -231,3 +261,9 @@ endfunction
 
 "Map leader leader to toggle line numbers
 nnoremap <leader><leader> :call NumberToggle()<cr>
+
+"======================================================================================================================"
+"======= LANGUAGE SPECIFIC ============================================================================================"
+"======================================================================================================================"
+" Register rust files as rust files.
+autocmd BufReadPost *.rs setlocal filetype=rust
