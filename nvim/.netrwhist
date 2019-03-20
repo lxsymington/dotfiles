@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/lxs/.config'
 let g:netrw_dirhist_2='/home/lxs/.config/fish'
 let g:netrw_dirhist_3='/home/lxs/Development/jjr-architecture'
+let g:netrw_dirhist_4='/home/lxs/Development/Rust'
+let g:netrw_dirhist_5='/home/lxs/Development/Rust/guessing_game'
+let g:netrw_dirhist_6='/home/lxs/Development/Rust/guessing_game/src'

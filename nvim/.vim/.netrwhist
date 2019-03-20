@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/lxs/.dotfiles/nvim'
+let g:netrw_dirhist_2='/home/lxs/.dotfiles/nvim/.vim'
+let g:netrw_dirhist_3='/home/lxs/Development'
+let g:netrw_dirhist_4='/home/lxs/Development/typescript'
+let g:netrw_dirhist_5='/home/lxs/Development'
+let g:netrw_dirhist_6='/home/lxs/Development/Learn-Redux-Starter-Files'
+let g:netrw_dirhist_7='/home/lxs/Development/Learn-Redux-Starter-Files/learn-redux'
