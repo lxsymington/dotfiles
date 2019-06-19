@@ -38,6 +38,6 @@ let g:ale_completion_delay = 100
 set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Set ALE error sign
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = 'x'
+let g:ale_sign_warning = '!'
 
