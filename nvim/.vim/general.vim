@@ -6,9 +6,6 @@ if &compatible
  set nocompatible
 endif
 
-"Use 256 Colors. This is useful for terminal Vim
-set termguicolors
-
 "Sets encoding to UTF-8
 set encoding=utf-8
 
@@ -25,16 +22,13 @@ set backspace=indent,eol,start
 let mapleader = ','
 
 "Enables line numbers
-set relativenumber
-
-"Sets GUI Vim line height
-set linespace=2
+set number relativenumber
 
 "Force the cursor onto a new line after 120 characters
 set textwidth=120
 
 "Creates a visual boundary
-set colorcolumn=+1
+set colorcolumn=81,+1
 
 "Displays invisibles
 set list

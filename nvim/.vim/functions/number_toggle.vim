@@ -4,11 +4,9 @@
 "Check if relativenumber is set, if not set it
 function! NumberToggle()
     if(&nu == 1)
-        set nu!
-        set rnu
+        set nu rnu
     else
-        set nornu
-        set nu
+        set nu nornu
     endif
 endfunction
 

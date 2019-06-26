@@ -10,10 +10,8 @@ set autoindent
 "copy the previous indentation on autoindenting
 set copyindent
 
-" ? Fixes bad indenting
+"Syntax aware indent correction
 set cindent
-
-" ? Fixes bad indenting
 set smartindent
 
 "Highlight matching parens
@@ -37,3 +35,8 @@ set ttyfast
 "Keep 50 lines of command line history
 set history=50
 
+"Always show the sign column
+set signcolumn=yes
+
+"Make splits remain equal
+set equalalways

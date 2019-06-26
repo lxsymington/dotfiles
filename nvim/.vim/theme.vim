@@ -25,6 +25,3 @@ colorscheme one
 "Enable Italics for the Vim One theme
 let g:one_allow_italics = 1
 
-"Enable the Palenight variation of the Material theme
-" let g:material_style='palenight'
-
