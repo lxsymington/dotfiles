@@ -2,26 +2,16 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~\.vim
+cd C:\WINDOWS\system32
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +26 theme.vim
-badd +18 ui.vim
-badd +19 tabs.vim
-badd +13 splits.vim
-badd +1 search.vim
-badd +6 nvim_compatibility.vim
-badd +26 mappings.vim
-badd +1 languages.vim
-badd +31 general.vim
-badd +1 plugin_settings/airline.vim
-badd +1 plugin_settings/Defx.vim
-badd +1 plugin_settings/fzf.vim
+badd +0 ~\Downloads\drive-download-20190712T112750Z-001\Fox\ News\ Cat\ Menu\ Icons-01.svg
 argglobal
 silent! argdel *
-edit plugin_settings/Defx.vim
+$argadd ~\Downloads\drive-download-20190712T112750Z-001\Fox\ News\ Cat\ Menu\ Icons-01.svg
+edit ~\Downloads\drive-download-20190712T112750Z-001\Fox\ News\ Cat\ Menu\ Icons-01.svg
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -38,7 +28,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt

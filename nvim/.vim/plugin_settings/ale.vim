@@ -32,10 +32,12 @@ let g:ale_set_balloons = 1
 " Set Ale to highlight problems
 let g:ale_set_highlights = 1
 
-" Shows a list of errors when they exist in the file.
+" Shows a list of errors when they exist in the file (if set to `1`).
+let g:ale_open_list = 0
+
+" Sets Ale to use the loclist instead of the quickfix list
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
-let g:ale_open_list = 1
 
 " Show 5 lines of errors (default: 10)
 let g:ale_list_window_size = 5

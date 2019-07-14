@@ -21,6 +21,8 @@ Plug 'mxw/vim-jsx'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
 Plug 'liuchengxu/vista.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 if has('nvim')
     Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 else

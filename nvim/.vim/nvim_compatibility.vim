@@ -3,7 +3,7 @@
 "======================================================================================================================"
 if has('nvim')
     set shell=pwsh.exe
-    tnoremap <Esc><Esc> <C-\><C-n>
+    tnoremap <Leader><Esc> <C-\><C-n>
 else
     set ttymouse=xterm2
 endif

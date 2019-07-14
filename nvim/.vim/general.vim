@@ -45,3 +45,7 @@ set noshowmode
 "Enable the mouse
 set mouse=a
 
+"Enable auto-saving
+set awa
+
+"Look into using an auto-command and `FocusLost` to auto save when leaving nvim
