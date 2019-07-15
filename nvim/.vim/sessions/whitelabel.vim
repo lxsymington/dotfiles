@@ -100,14 +100,14 @@ badd +1 C:\Windows\System32\drivers\etc\hosts
 badd +28 Views\Shared\Partials\_ThemedRichContent.cshtml
 badd +15 Content\src\style\template\sections\verticaltabs.scss
 badd +7 Content\src\style\themes\foxnews\sections\verticaltabs.scss
-badd +12 Content\src\style\themes\foxnews\variables.scss
+badd +73 Content\src\style\themes\foxnews\variables.scss
 badd +1 Content\src\style\themes\foxnews\sections\tablist.scss
 badd +18 Content\src\style\template\sections\tablist.scss
 badd +3 Content\src\style\template\tiles\base.scss
 badd +10 Content\src\style\themes\foxnews\tiles\base.scss
 badd +1 Content\src\style\themes\foxnews\tiles\list.scss
 badd +21 Content\src\style\template\tiles\list.scss
-badd +30 Content\src\style\themes\foxnews\theme.scss
+badd +38 Content\src\style\themes\foxnews\theme.scss
 badd +43 Views\Shared\Partials\_HomeCategoryOffers.cshtml
 badd +1 Views\ThemedPages\ThemedPageOffers.cshtml
 badd +6 Views\Shared\Partials\_CategoryOfferTileList.cshtml
@@ -133,15 +133,15 @@ badd +29 Views\Shared\Themes\FoxNews\_OfferCategoryTileList.cshtml
 badd +7 Views\Shared\Themes\Today\_TopOfferTile.cshtml
 badd +18 Views\Shared\Themes\HuffPost\_OfferTile.cshtml
 badd +1 Views\Category\CategoryOffers.cshtml
-badd +42 Views\Shared\Themes\HuffPost\_HomeCategoryOffers.cshtml
+badd +52 Views\Shared\Themes\HuffPost\_HomeCategoryOffers.cshtml
 badd +1 Views\Shared\Themes\FoxNews\_HomeCategoryOffers.cshtml
 badd +1 Content\src\style\themes\foxnews\tiles\block.scss
 badd +20 Views\Shared\Partials\_TopOfferTile.cshtml
 badd +14 Views\Shared\Themes\FoxNews\_TopOfferTile.cshtml
-badd +1564 IDL.Web.WhiteLabel.csproj
+badd +1627 IDL.Web.WhiteLabel.csproj
 badd +16 term://.//23996:pwsh.exe
 badd +16 Views\Shared\Themes\HuffPost\_TopOfferTile.cshtml
-badd +1 Views\Shared\Themes\FoxNews\_Index.cshtml
+badd +8 Views\Shared\Themes\FoxNews\_Index.cshtml
 badd +12 Views\Shared\Themes\FoxNews\_HomePopularMerchants.cshtml
 badd +5 Views\Shared\Partials\_Index.cshtml
 badd +20 Views\Shared\Partials\_HomeTopOffers.cshtml
@@ -152,12 +152,29 @@ badd +1 ~\.vim\plugin_settings\vista.vim
 badd +5 Content\src\style\themes\foxnews\tiles\ticket.scss
 badd +1 Content\src\style\themes\foxnews\sections\topoffers.scss
 badd +1 Content\src\style\themes\foxnews\sections\popular.scss
-badd +4 ~/.vim/plugin_settings/OmniSharp.vim
-badd +1 ~/.vim/plugin_settings/airline.vim
+badd +4 ~\.vim\plugin_settings\OmniSharp.vim
+badd +1 ~\.vim\plugin_settings\airline.vim
 badd +19 Constants.cs
+badd +1 Content\src\style\themes\guardian\document\fonts.scss
+badd +30 Content\src\style\themes\guardian\document\icons.scss
+badd +1 Content\src\style\template\document\typography.scss
+badd +1 Content\src\style\themes\guardian\document\global.scss
+badd +38 Content\src\style\themes\guardian\variables.scss
+badd +1 Content\src\style\themes\foxnews\document\icons.scss
+badd +49 Views\Shared\Themes\Guardian\_HomeCategoryOffers.cshtml
+badd +17 Views\Shared\Themes\FoxNews\_MerchantQuickLinks.cshtml
+badd +22 Content\src\style\themes\foxnews\document\layout.scss
+badd +67 Views\Shared\Themes\FoxNews\_MerchantSidebar.cshtml
+badd +7 Content\src\style\themes\foxnews\widgets\base.scss
+badd +30 Content\src\style\themes\foxnews\widgets\.\linklist.scss
+badd +1 Content\src\style\themes\foxnews\widgets\tagcloud.scss
+badd +1 Content\src\style\themes\foxnews\pages\merchant.scss
+badd +3 Content\src\style\themes\foxnews\pages\home.scss
+badd +8 Content\src\style\themes\foxnews\pages\base.scss
+badd +1 Content/src/style/themes/foxnews/document/base.scss
 argglobal
 silent! argdel *
-edit Content\src\style\themes\foxnews\sections\tablist.scss
+edit IDL.Web.WhiteLabel.csproj
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -174,12 +191,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 33) / 66)
+let s:l = 60 - ((58 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+60
+normal! 075|
 lcd C:\git\vouchercloud-idl\IDL.Web.WhiteLabel
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

@@ -7,11 +7,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ~\Downloads\drive-download-20190712T112750Z-001\Fox\ News\ Cat\ Menu\ Icons-01.svg
+badd +1 ~\dotfiles\fish\config.fish
+badd +1 ~/dotfiles/fish/conf.d/fnm.fish
+badd +1 ~/dotfiles/fish/conf.d/fzf.fish
+badd +7 ~/dotfiles/.gitignore
+badd +1 ~/dotfiles/fish/completions/fisher.fish
+badd +1 ~/dotfiles/fish/completions/fnm.fish
+badd +1 ~/dotfiles/fish/conf.d/z.fish
 argglobal
 silent! argdel *
-$argadd ~\Downloads\drive-download-20190712T112750Z-001\Fox\ News\ Cat\ Menu\ Icons-01.svg
-edit ~\Downloads\drive-download-20190712T112750Z-001\Fox\ News\ Cat\ Menu\ Icons-01.svg
+$argadd ~\dotfiles\fish\config.fish
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -19,6 +24,8 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
+enew
+file [defx]\ default-0
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -26,14 +33,7 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
+setlocal nofen
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
