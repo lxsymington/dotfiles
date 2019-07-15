@@ -1,1 +1,0 @@
-/home/lxs/.config/fisherman/fnm/completions/fnm.fish

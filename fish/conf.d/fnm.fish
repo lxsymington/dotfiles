@@ -1,1 +1,0 @@
-/home/lxs/.config/fisherman/fnm/conf.d/fnm.fish
