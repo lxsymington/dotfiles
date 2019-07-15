@@ -3,3 +3,5 @@ fnm
 node_modules
 plugged
 .netrwhist
+fish/fishd.mobile
+fish/functions

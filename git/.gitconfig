@@ -1,0 +1,74 @@
+[user]
+	name = Luke Xavier Symington
+	email = lsymington@groupon.com
+[winUpdater]
+	recentlySeenVersion = 2.18.0.windows.1
+[core]
+	autocrlf = true
+	trustctime = false
+	editor = nvim
+	filemode = false
+[alias]
+	ls = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cgreen [%an]'
+	lsd = log --pretty=format:'%C(yellow)%h (%ar)%Cred%d %Creset%s %Cgreen[%an]'
+	lg = log --color --graph --pretty=format:'%C(yellow)%h (%ar)%Cred%d %Creset%s %Cgreen[%an]' --abbrev-commit
+	sc = diff-tree --name-status -r -v
+	scm = diff-tree --name-status -r -v -m
+	lc = diff-tree --name-status -r -v HEAD
+	lcd = diff --cached HEAD^
+	pr = pull --rebase
+	u = remote update --prune
+	s = status
+	ab = branch -a
+	co = checkout
+	la = !git config -l | grep alias | cut -c 7-
+	pause = update-index --assume-unchanged
+	unpause = update-index --no-assume-unchanged
+	showpaused = !git ls-files -v | grep '^[hsmrck?]' | cut -c 3-
+	cleanbin = clean -xdf */bin/* */obj/*f
+	last = log -1 --stat
+	cp = cherry-pick
+	ci = commit
+	st = status -sb
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
+	conflicts = diff --name-only --diff-filter=U
+[push]
+	default = upstream
+[color]
+	ui = true
+[credential]
+	helper = manager
+[diff]
+	tool = bc
+	algorithm = patience
+	indentHeuristic = true
+	compactionHeuristic = true
+[merge]
+	tool = bc
+	conflictstyle = diff3
+	algorithm = patience
+	indentHeuristic = true
+	compactionHeuristic = true
+[difftool]
+	rompt = false
+[mergetool]
+	keeptemporaries = false
+	keepbackups = false
+	prompt = false
+	trustexitcode = false
+	keepBackup = false
+[mergetool "bc"]
+	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
+	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[difftool "bc"]
+	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
+	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
+[commit]
+	template = C:\\Users\\lsymington\\.git-commit-template
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

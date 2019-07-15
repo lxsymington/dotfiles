@@ -1,1 +1,0 @@
-/home/lxs/.config/fisherman/z/functions/zclean.awk

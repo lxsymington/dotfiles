@@ -1,1 +1,0 @@
-/home/lxs/.config/fisherman/bass/functions/__bass.py
