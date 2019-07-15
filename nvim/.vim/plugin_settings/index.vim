@@ -1,20 +1,23 @@
 "~~~~~~~ Airline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Airline plugin's settings
-so ~/.vim/plugin_settings/airline.vim
+runtime plugin_settings/airline.vim
 
 "~~~~~~~ Ale ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Ale plugin's settings
-so ~/.vim/plugin_settings/ale.vim
-
-"~~~~~~~ Deoplete ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Deoplete plugin's settings
-so ~/.vim/plugin_settings/deoplete.vim
-
-"~~~~~~~ LanguageClient ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the LanguageClient plugin's settings
-so ~/.vim/plugin_settings/LanguageClient.vim
+runtime plugin_settings/ale.vim
 
 "~~~~~~~ NerdTree ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the NerdTree plugin's settings
-so ~/.vim/plugin_settings/NerdTree.vim
+runtime plugin_settings/Defx.vim
 
+"~~~~~~~ FZF ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the NerdTree plugin's settings
+runtime plugin_settings/fzf.vim
+
+"~~~~~~~ Vista ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Vista plugin's settings
+runtime plugin_settings/vista.vim
+
+"~~~~~~~ Goyo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Goyo plugin's settings
+runtime plugin_settings/Goyo.vim
