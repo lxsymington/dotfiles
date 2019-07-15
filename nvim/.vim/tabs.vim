@@ -16,6 +16,6 @@ set shiftround
 "Insert spaces when pressing tab
 set expandtab
 
-"Insert tabs on the start of a lin according to shiftwidth not tabstop
+"Insert tabs on the start of a line according to shiftwidth not tabstop
 set smarttab
 
