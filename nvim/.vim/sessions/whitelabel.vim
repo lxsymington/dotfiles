@@ -16,7 +16,7 @@ badd +217 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\services\
 badd +6 term://.//28912:pwsh.exe
 badd +6 term://.//44024:pwsh.exe
 badd +283 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\directives\datePicker.directive.js
-badd +25 ~\.vim\plugins.vim
+badd +8 ~\.vim\plugins.vim
 badd +1 C:\Users\LSYMIN~1\AppData\Local\Temp\coc-nvim-33748.log
 badd +2935 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\controllers\offerCreate.js
 badd +1 ~\.vim\functions\number_toggle.vim
@@ -93,21 +93,21 @@ badd +39 Content\src\style\placeholders\sections\_topoffers.scss
 badd +54 Content\src\style\themes\mumsnet\sections\_topoffers.scss
 badd +1 Content\src\style\placeholders\sections\_verticaltabs.scss
 badd +1 Content\src\style\themes\mumsnet\sections\_verticaltabs.scss
-badd +12 Content\src\style\themes\foxnews\sections\base.scss
+badd +8 Content\src\style\themes\foxnews\sections\base.scss
 badd +41 Content\src\style\themes\foxnews\sections\search.scss
 badd +13 Web.config
 badd +1 C:\Windows\System32\drivers\etc\hosts
 badd +28 Views\Shared\Partials\_ThemedRichContent.cshtml
 badd +15 Content\src\style\template\sections\verticaltabs.scss
 badd +7 Content\src\style\themes\foxnews\sections\verticaltabs.scss
-badd +73 Content\src\style\themes\foxnews\variables.scss
+badd +57 Content\src\style\themes\foxnews\variables.scss
 badd +1 Content\src\style\themes\foxnews\sections\tablist.scss
 badd +18 Content\src\style\template\sections\tablist.scss
 badd +3 Content\src\style\template\tiles\base.scss
 badd +10 Content\src\style\themes\foxnews\tiles\base.scss
 badd +1 Content\src\style\themes\foxnews\tiles\list.scss
 badd +21 Content\src\style\template\tiles\list.scss
-badd +38 Content\src\style\themes\foxnews\theme.scss
+badd +32 Content\src\style\themes\foxnews\theme.scss
 badd +43 Views\Shared\Partials\_HomeCategoryOffers.cshtml
 badd +1 Views\ThemedPages\ThemedPageOffers.cshtml
 badd +6 Views\Shared\Partials\_CategoryOfferTileList.cshtml
@@ -138,20 +138,20 @@ badd +1 Views\Shared\Themes\FoxNews\_HomeCategoryOffers.cshtml
 badd +1 Content\src\style\themes\foxnews\tiles\block.scss
 badd +20 Views\Shared\Partials\_TopOfferTile.cshtml
 badd +14 Views\Shared\Themes\FoxNews\_TopOfferTile.cshtml
-badd +1627 IDL.Web.WhiteLabel.csproj
+badd +1586 IDL.Web.WhiteLabel.csproj
 badd +16 term://.//23996:pwsh.exe
 badd +16 Views\Shared\Themes\HuffPost\_TopOfferTile.cshtml
-badd +8 Views\Shared\Themes\FoxNews\_Index.cshtml
-badd +12 Views\Shared\Themes\FoxNews\_HomePopularMerchants.cshtml
+badd +10 Views\Shared\Themes\FoxNews\_Index.cshtml
+badd +1 Views\Shared\Themes\FoxNews\_HomePopularMerchants.cshtml
 badd +5 Views\Shared\Partials\_Index.cshtml
 badd +20 Views\Shared\Partials\_HomeTopOffers.cshtml
-badd +1 Views\Shared\Themes\FoxNews\_HomeTopOffers.cshtml
+badd +21 Views\Shared\Themes\FoxNews\_HomeTopOffers.cshtml
 badd +1 ~\.vim\plugin_settings\Goyo.vim
 badd +23 ~\.vim\plugin_settings\index.vim
 badd +1 ~\.vim\plugin_settings\vista.vim
-badd +5 Content\src\style\themes\foxnews\tiles\ticket.scss
-badd +1 Content\src\style\themes\foxnews\sections\topoffers.scss
-badd +1 Content\src\style\themes\foxnews\sections\popular.scss
+badd +1 Content\src\style\themes\foxnews\tiles\ticket.scss
+badd +132 Content\src\style\themes\foxnews\sections\topoffers.scss
+badd +39 Content\src\style\themes\foxnews\sections\popular.scss
 badd +4 ~\.vim\plugin_settings\OmniSharp.vim
 badd +1 ~\.vim\plugin_settings\airline.vim
 badd +19 Constants.cs
@@ -166,21 +166,43 @@ badd +17 Views\Shared\Themes\FoxNews\_MerchantQuickLinks.cshtml
 badd +22 Content\src\style\themes\foxnews\document\layout.scss
 badd +67 Views\Shared\Themes\FoxNews\_MerchantSidebar.cshtml
 badd +7 Content\src\style\themes\foxnews\widgets\base.scss
-badd +30 Content\src\style\themes\foxnews\widgets\.\linklist.scss
+badd +30 Content\src\style\themes\foxnews\widgets\linklist.scss
 badd +1 Content\src\style\themes\foxnews\widgets\tagcloud.scss
 badd +1 Content\src\style\themes\foxnews\pages\merchant.scss
 badd +3 Content\src\style\themes\foxnews\pages\home.scss
 badd +8 Content\src\style\themes\foxnews\pages\base.scss
-badd +1 Content/src/style/themes/foxnews/document/base.scss
+badd +1 Content\src\style\themes\foxnews\document\base.scss
+badd +32 Views\Shared\Themes\FoxNews\_MerchantLogoHero.cshtml
+badd +7 Content\src\style\themes\foxnews\sections\carousel.scss
+badd +32 ~\.vim\theme.vim
+badd +7 Content\src\style\themes\foxnews\modals\base.scss
+badd +23 Content\src\style\themes\foxnews\modals\default.scss
+badd +51 Content\src\style\themes\foxnews\modals\.\default.scss
+badd +1 Views\Shared\Themes\FoxNews\_PopularOfferTile.cshtml
+badd +8 Views\Shared\Themes\FoxNews\_TopOffersLayout.cshtml
+badd +14 Content\src\style\themes\foxnews\sections\top25.scss
+badd +72 Content\src\style\themes\foxnews\pages\topoffers.scss
+badd +1 Views\Shared\Partials\_Top25OfferTileList.cshtml
+badd +1 Views\Shared\Themes\FoxNews\_Top25OfferTileList.cshtml
+badd +18 Views\Shared\Partials\_Top25OfferTile.cshtml
+badd +3 [defx]\ default-0
+badd +41 Views\Shared\Partials\_OfferDetailsModal.cshtml
+badd +0 Content/src/style/themes/foxnews/modals/default.scss
 argglobal
 silent! argdel *
-edit IDL.Web.WhiteLabel.csproj
+edit Content/src/style/themes/foxnews/modals/default.scss
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe 'vert 1resize ' . ((&columns * 142 + 142) / 285)
+exe 'vert 2resize ' . ((&columns * 142 + 142) / 285)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -191,13 +213,36 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 60 - ((58 * winheight(0) + 33) / 66)
+let s:l = 55 - ((54 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-60
-normal! 075|
+55
+normal! 025|
 lcd C:\git\vouchercloud-idl\IDL.Web.WhiteLabel
+wincmd w
+argglobal
+if bufexists('C:\git\vouchercloud-idl\IDL.Web.WhiteLabel\Content\src\style\themes\foxnews\variables.scss') | buffer C:\git\vouchercloud-idl\IDL.Web.WhiteLabel\Content\src\style\themes\foxnews\variables.scss | else | edit C:\git\vouchercloud-idl\IDL.Web.WhiteLabel\Content\src\style\themes\foxnews\variables.scss | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 57 - ((33 * winheight(0) + 33) / 66)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+57
+normal! 0
+lcd C:\git\vouchercloud-idl\IDL.Web.WhiteLabel
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 142 + 142) / 285)
+exe 'vert 2resize ' . ((&columns * 142 + 142) / 285)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

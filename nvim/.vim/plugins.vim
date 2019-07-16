@@ -1,28 +1,28 @@
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plug 'w0rp/ale'
-Plug 'rakr/vim-one'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'machakann/vim-sandwich'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
-Plug 'liuchengxu/vista.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'liuchengxu/vista.vim'
+Plug 'machakann/vim-sandwich'
+Plug 'mxw/vim-jsx'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale'
 if has('nvim')
     Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 else

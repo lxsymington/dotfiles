@@ -45,6 +45,9 @@ set noshowmode
 "Enable the mouse
 set mouse=a
 
+"Set the chord timeout length to 200ms
+set timeoutlen=200
+
 "Enable auto-saving
 set awa
 

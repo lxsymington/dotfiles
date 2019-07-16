@@ -19,9 +19,14 @@ endif
 set background=dark
 
 "Sets the theme to be the Material theme
-colorscheme one
 " colorscheme vim-material
+"Sets the theme to be the One theme
+" colorscheme one
+"Sets the theme to be the Seoul 256 theme
+colorscheme seoul256
 
 "Enable Italics for the Vim One theme
-let g:one_allow_italics = 1
+" let g:one_allow_italics = 1
 
+"Alter the background colour for Seoul 256
+let g:seoul256_background = 235
