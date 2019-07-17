@@ -2,12 +2,13 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~\dotfiles
+cd ~\scoop\apps\neovim\0.3.8\bin
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +54 ~/dotfiles/nvim/.vim/general.vim
+badd +1 ~\AppData\Local\nvim\init.vim
+badd +27 ~/dotfiles/nvim/.vim/theme.vim
 argglobal
 silent! argdel *
 set splitbelow splitright
@@ -18,7 +19,6 @@ set winminwidth=0
 set winwidth=1
 argglobal
 enew
-file [defx]\ default-0
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -26,7 +26,7 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
+setlocal fen
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
