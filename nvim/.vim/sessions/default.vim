@@ -2,13 +2,11 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~\scoop\apps\neovim\0.3.8\bin
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 ~\AppData\Local\nvim\init.vim
-badd +27 ~/dotfiles/nvim/.vim/theme.vim
 argglobal
 silent! argdel *
 set splitbelow splitright

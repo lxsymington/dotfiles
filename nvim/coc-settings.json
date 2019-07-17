@@ -3,9 +3,9 @@
     "diagnostic.virtualText": true,
     "diagnostic.checkCurrentLine": true,
     "git.addGlameToVirtualText": true,
+    "git.enableGutters": true,
     "snippets.extends": {
         "javascriptreact": ["javascript"],
         "typescript": ["javascript"]
-    },
-    "git.enableGutters": false
+    }
 }

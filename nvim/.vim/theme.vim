@@ -29,4 +29,4 @@ colorscheme seoul256
 set background=dark
 
 "Alter the background colour for Seoul 256
-let g:seoul256_background = 235
+let g:seoul256_background = 233

@@ -3,7 +3,7 @@
 "======================================================================================================================"
 "Used the latest options/settings (If available)
 if &compatible
- set nocompatible
+    set nocompatible
 endif
 
 "Sets encoding to UTF-8
