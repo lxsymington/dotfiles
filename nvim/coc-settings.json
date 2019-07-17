@@ -1,0 +1,11 @@
+{
+    "codeLens.enable": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.checkCurrentLine": true,
+    "git.addGlameToVirtualText": true,
+    "snippets.extends": {
+        "javascriptreact": ["javascript"],
+        "typescript": ["javascript"]
+    },
+    "git.enableGutters": false
+}
