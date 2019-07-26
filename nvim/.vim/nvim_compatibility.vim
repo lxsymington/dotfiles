@@ -8,6 +8,9 @@ if has('nvim')
         " set shellcmdflag=\ -NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
         " let &shellxquote=' '
     endif
+    if g:env =~ 'DARWIN'
+    	set shell=/usr/local/bin/fish
+    endif
     tnoremap <Leader><Esc> <C-\><C-n>
 else
     set ttymouse=xterm2

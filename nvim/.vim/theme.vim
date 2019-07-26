@@ -20,3 +20,4 @@ colorscheme seoul256
 
 "Sets the background to be dark
 set background=dark
+let g:seoul256_background = 235
