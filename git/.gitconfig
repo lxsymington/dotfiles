@@ -39,7 +39,7 @@
 [color]
 	ui = true
 [credential]
-	helper = manager
+	helper = !\"C:/ProgramData/scoop/apps/git/2.22.0.windows.1/mingw64/libexec/git-core/git-credential-manager.exe\"
 [diff]
 	tool = bc
 	algorithm = patience

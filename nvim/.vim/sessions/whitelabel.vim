@@ -7,9 +7,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +3 ~\AppData\Local\nvim\init.vim
+badd +36 ~\.vim\plugin_settings\ale.vim
+badd +5 ~\dotfiles\nvim\.vimrc
 badd +1 C:\git\vouchercloud-idl\IDL.Web.Vc\Web.Debug.config
 badd +46 C:\git\vouchercloud-idl\IDL.Web.Vc\Web.config
-badd +1 ~\AppData\Local\nvim\init.vim
 badd +6 ~\.vim\nvim_compatibility.vim
 badd +10 ~\AppData\Local\nvim\coc-settings.json
 badd +217 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\services\durationLimits.service.js
@@ -33,7 +35,6 @@ badd +26 ~\dotfiles\nvim\.vim\mappings.vim
 badd +1 ~\.vim\.netrwhist
 badd +42 ~\.vim\ui.vim
 badd +7 term://.//1860:pwsh.exe
-badd +38 ~\.vim\plugin_settings\ale.vim
 badd +81 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Shared\Partials\FeaturingBox.cshtml
 badd +65 term://.//28652:pwsh.exe
 badd +24 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\angular\less\modules\date-picker.less
@@ -47,7 +48,7 @@ badd +132 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\controlle
 badd +249 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Category\Partials\CategoryEdit.cshtml
 badd +371 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\controllers\categoryEdit.js
 badd +311 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Advert\Partials\AdvertEdit.cshtml
-badd +1 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\controllers\AdvertCreate.js
+badd +798 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\controllers\AdvertCreate.js
 badd +207 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\ThemedPage\Partials\ThemedPageEdit.cshtml
 badd +343 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\controllers\themedPageCreate.js
 badd +1 ~\.vim\plugin_settings\fzf.vim
@@ -104,10 +105,10 @@ badd +52 Content\src\style\themes\foxnews\variables.scss
 badd +1 Content\src\style\themes\foxnews\sections\tablist.scss
 badd +18 Content\src\style\template\sections\tablist.scss
 badd +3 Content\src\style\template\tiles\base.scss
-badd +10 Content\src\style\themes\foxnews\tiles\base.scss
+badd +7 Content\src\style\themes\foxnews\tiles\base.scss
 badd +1 Content\src\style\themes\foxnews\tiles\list.scss
 badd +21 Content\src\style\template\tiles\list.scss
-badd +32 Content\src\style\themes\foxnews\theme.scss
+badd +42 Content\src\style\themes\foxnews\theme.scss
 badd +43 Views\Shared\Partials\_HomeCategoryOffers.cshtml
 badd +1 Views\ThemedPages\ThemedPageOffers.cshtml
 badd +6 Views\Shared\Partials\_CategoryOfferTileList.cshtml
@@ -138,9 +139,11 @@ badd +1 Views\Shared\Themes\FoxNews\_HomeCategoryOffers.cshtml
 badd +1 Content\src\style\themes\foxnews\tiles\block.scss
 badd +20 Views\Shared\Partials\_TopOfferTile.cshtml
 badd +14 Views\Shared\Themes\FoxNews\_TopOfferTile.cshtml
-badd +1625 IDL.Web.WhiteLabel.csproj
+badd +1426 IDL.Web.WhiteLabel.csproj
 badd +16 term://.//23996:pwsh.exe
+badd +1 Content\src\style\themes\foxnews\tiles\block.scss
 badd +16 Views\Shared\Themes\HuffPost\_TopOfferTile.cshtml
+badd +10 Content\src\style\themes\foxnews\tiles\base.scss
 badd +10 Views\Shared\Themes\FoxNews\_Index.cshtml
 badd +1 Views\Shared\Themes\FoxNews\_HomePopularMerchants.cshtml
 badd +5 Views\Shared\Partials\_Index.cshtml
@@ -150,6 +153,44 @@ badd +1 ~\.vim\plugin_settings\Goyo.vim
 badd +23 ~\.vim\plugin_settings\index.vim
 badd +1 ~\.vim\plugin_settings\vista.vim
 badd +1 Content\src\style\themes\foxnews\tiles\ticket.scss
+badd +53 term://.//4680:pwsh.exe
+badd +38 term://.//16096:pwsh.exe
+badd +26 Content\src\style\placeholders\sections\_alpha.scss
+badd +1 Content\src\style\placeholders\sections\_alternativeoffers.scss
+badd +55 Content\src\style\placeholders\sections\_banner.scss
+badd +174 Content\src\style\placeholders\sections\_carousel.scss
+badd +1 Content\src\style\placeholders\pages\_merchant.scss
+badd +1 Content\src\style\placeholders\sections\_error.scss
+badd +1 Content\src\style\placeholders\sections\_interstitial.scss
+badd +1 Content\src\style\placeholders\sections\_logostrip.scss
+badd +115 Content\src\style\placeholders\sections\_richcontent.scss
+badd +1 Content\src\style\placeholders\sections\_search.scss
+badd +137 Content\src\style\placeholders\sections\_tablist.scss
+badd +1 Content\src\style\placeholders\sections\_terms.scss
+badd +73 Content\src\style\placeholders\sections\_textblock.scss
+badd +410 Content\src\style\placeholders\sections\_themedoffers.scss
+badd +1 Content\src\style\placeholders\sections\_tilegrid.scss
+badd +39 Content\src\style\placeholders\sections\_topoffers.scss
+badd +1 Content\src\style\placeholders\sections\_verticaltabs.scss
+badd +83 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\BootStrap\Configuration\ConfigureBundles.cs
+badd +1 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\services\confirmationModal.service.js
+badd +15 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\services\formValidationMessaging.service.js
+badd +42 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\scripts\services\formValidation.service.js
+badd +15 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Merchant\Edit.cshtml
+badd +13 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Category\Edit.cshtml
+badd +18 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Merchant\Create.cshtml
+badd +15 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Advert\Edit.cshtml
+badd +29 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Merchant\MerchantOffers.cshtml
+badd +16 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Shared\Partials\OfferBaseView.cshtml
+badd +20 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Views\Advert\Create.cshtml
+badd +480 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\Content\angular\less\modules\forms.less
+badd +2184 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\IDL.Web.ControlCloud.csproj
+badd +1 C:\git\vouchercloud-idl\IDL.Web.ControlCloud\_coc-rename
+badd +32 ~\.vim\theme.vim
+badd +4 ~\.vim\plugin_settings\fugitive.vim
+badd +15 ~\dotfiles\nvim\.vim\functions\which_env.vim
+badd +1 C:\git\vouchercloud-idl\.git\index
+badd +1 Content\src\style\themes\foxnews\tiles\list.scss
 badd +132 Content\src\style\themes\foxnews\sections\topoffers.scss
 badd +39 Content\src\style\themes\foxnews\sections\popular.scss
 badd +4 ~\.vim\plugin_settings\OmniSharp.vim
@@ -174,7 +215,6 @@ badd +8 Content\src\style\themes\foxnews\pages\base.scss
 badd +1 Content\src\style\themes\foxnews\document\base.scss
 badd +32 Views\Shared\Themes\FoxNews\_MerchantLogoHero.cshtml
 badd +7 Content\src\style\themes\foxnews\sections\carousel.scss
-badd +32 ~\.vim\theme.vim
 badd +7 Content\src\style\themes\foxnews\modals\base.scss
 badd +88 Content\src\style\themes\foxnews\modals\default.scss
 badd +1 Views\Shared\Themes\FoxNews\_PopularOfferTile.cshtml
@@ -192,9 +232,12 @@ badd +10 Content\src\style\themes\foxnews\elements\icon.scss
 badd +77 Content\src\style\themes\foxnews\elements\button.scss
 badd +7 Content\src\style\themes\foxnews\elements\lists\base.scss
 badd +1 Content\src\style\themes\foxnews\elements\lists\icon.scss
+badd +1 Content\src\style\themes\foxnews\tiles\category.scss
+badd +156 Content\src\style\themes\foxnews\document\footer.scss
+badd +28 Content/task/dotnet-build.js
 argglobal
 silent! argdel *
-edit Content\src\style\themes\foxnews\theme.scss
+edit ~\AppData\Local\nvim\coc-settings.json
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -211,12 +254,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 30 - ((29 * winheight(0) + 24) / 48)
+let s:l = 7 - ((6 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
-normal! 021|
+7
+normal! 032|
 lcd C:\git\vouchercloud-idl\IDL.Web.WhiteLabel
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

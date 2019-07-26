@@ -2,7 +2,12 @@
 "======= NEOVIM COMPATIBILITY ========================================================================================="
 "======================================================================================================================"
 if has('nvim')
-    set shell=pwsh.exe
+    if g:env =~ 'WINDOWS'
+        set shell=cmd.exe
+        " set shell=powershell.exe shellquote=\" shellpipe=\| shellredir=>
+        " set shellcmdflag=\ -NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
+        " let &shellxquote=' '
+    endif
     tnoremap <Leader><Esc> <C-\><C-n>
 else
     set ttymouse=xterm2

@@ -2,9 +2,6 @@
 " Sets the width of the Vista.vim sidebar
 let g:vista_sidebar_position = 60
 
-" Enables Vista.vim's FZF preview
-let g:vista_fzf_preview = ['bottom:50%']
-
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
 " e.g., more compact: ["▸ ", ""]
@@ -33,7 +30,7 @@ let g:vista_ctags_cmd = {
 " To enable fzf's preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
-let g:vista_fzf_preview = ['right:50%']
+let g:vista_fzf_preview = ['bottom:50%']
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1

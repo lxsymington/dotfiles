@@ -2,10 +2,14 @@
     "codeLens.enable": true,
     "diagnostic.virtualText": true,
     "diagnostic.checkCurrentLine": true,
+    "diagnostic.hintSign": "**",
+    "diagnostic.errorSign": "!!",
+    "diagnostic.warningSign": "!",
+    "diagnostic.displayByAle": true,
     "git.addGlameToVirtualText": true,
+    "git.enableGutters": true,
     "snippets.extends": {
         "javascriptreact": ["javascript"],
         "typescript": ["javascript"]
-    },
-    "git.enableGutters": false
+    }
 }

@@ -13,11 +13,11 @@ let g:lightline = {
     \   ]
     \ },
     \ 'component_function': {
-    \   'blame': 'LightineGitBlame',
+    \   'blame': 'LightlineGitBlame',
     \ }
 \ }
 
-function!LightineGitBlame() abort
+function!LightlineGitBlame() abort
     let blame = get(b:, 'coc_git_blame', '')
     return winwidth(0) > 120 ? blame : ''
 endfunction
