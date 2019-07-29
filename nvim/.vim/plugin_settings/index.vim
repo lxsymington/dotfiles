@@ -30,6 +30,10 @@ runtime plugin_settings/omnisharp.vim
 "Sources the Seoul256 plugin's settings
 runtime plugin_settings/seoul256.vim
 
+"~~~~~~~ Startify ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Startify plugin's settings
+runtime plugin_settings/startify.vim
+
 "~~~~~~~ Vista ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Vista plugin's settings
 runtime plugin_settings/vista.vim

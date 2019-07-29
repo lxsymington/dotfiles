@@ -16,6 +16,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'machakann/vim-sandwich'
+Plug 'mhinz/vim-startify'
 Plug 'mxw/vim-jsx'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'pangloss/vim-javascript'

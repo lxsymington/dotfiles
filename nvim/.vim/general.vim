@@ -39,6 +39,12 @@ endif
 "Sets encoding to UTF-8
 set encoding=utf-8
 
+"Do not add BOM marks
+set nobomb
+
+"Use host system format
+set fileformats=unix,dos,mac
+
 "Enables syntax highlighting
 syntax enable
 
@@ -79,7 +85,7 @@ set noshowmode
 set mouse=a
 
 "Set the chord timeout length to 500ms
-set timeoutlen=500
+set timeoutlen=1000 ttimeoutlen=100
 
 "Enable auto-saving
 set awa

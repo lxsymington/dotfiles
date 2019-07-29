@@ -10,6 +10,3 @@ function! NumberToggle()
     endif
 endfunction
 
-"Map leader leader to toggle line numbers
-nnoremap <leader><leader> :call NumberToggle()<cr>
-

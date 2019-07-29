@@ -4,4 +4,5 @@ plugged
 .netrwhist
 fish/fishd.mobile
 fish/functions
-.vim/sessions
+nvim/.vim/session
+nvim/.vim/sessions
