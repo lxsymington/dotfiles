@@ -3,7 +3,7 @@
 "======================================================================================================================"
 "Check if relativenumber is set, if not set it
 function! NumberToggle()
-    if(&nu == 1)
+    if(&rnu == 0)
         set nu rnu
     else
         set nu nornu

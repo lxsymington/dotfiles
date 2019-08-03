@@ -5,6 +5,7 @@ let g:lightline = {
     \ 'active': {
     \   'left': [
     \       ['mode', 'paste'],
+    \       ['gitbranch', 'readonly', 'filename', 'modified'],
     \       ['ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method']
     \   ],
     \   'right': [
@@ -14,6 +15,7 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \   'blame': 'LightlineGitBlame',
+    \   'gitbranch': 'fugitive#head'
     \ }
 \ }
 

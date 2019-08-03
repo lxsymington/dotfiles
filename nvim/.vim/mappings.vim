@@ -11,7 +11,7 @@ nmap <Leader><space> :nohlsearch<cr>
 nnoremap <leader># :call NumberToggle()<cr>
 
 "A shortcut for opening a Vista tag sidebar
-nmap <Leader>vt :Vista!!<CR>
+nmap <Leader>vt :Vista!!<cr>
 
 "A shortcut for opening a fuzzy find file window.
 nmap <Leader>ff :Files<cr>
@@ -27,3 +27,6 @@ nmap <Leader><Tab> :Defx -toggle -split=vertical -winwidth=50 -direction=topleft
 
 "A shortcut for exploring the current folder
 nmap <Leader><Leader> :Defx `expand('%:p:h')` -search=`expand('%:p')`<cr>
+
+"A shortcut for toggling Goyo
+nmap <Leader>g :Goyo<cr>

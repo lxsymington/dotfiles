@@ -5,6 +5,7 @@ let g:airline#extensions#ale#enabled = 1
 " Configures Ale file linters
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['tsserver', 'tslint', 'eslint', 'prettier'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
 \   'sass': ['stylelint'],
@@ -13,7 +14,9 @@ let g:ale_linters = {
 
 " Configures Ale file fixers
 let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['tslint', 'eslint', 'prettier'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
 \   'sass': ['stylelint'],
