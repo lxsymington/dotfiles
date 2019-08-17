@@ -13,6 +13,15 @@ nnoremap <leader># :call NumberToggle()<cr>
 "A shortcut for opening a Vista tag sidebar
 nmap <Leader>vt :Vista!!<cr>
 
+"A shortcut for viewing the ALEDetail
+nmap <Leader>d :ALEDetail<cr>
+
+"A shortcut for using ALE to go to the definition
+nmap <Leader>gd :ALEGoToDefinition<cr>
+
+"A shortcut for using ALE to go to the type definition
+nmap <Leader>gd :ALEGoToTypeDefinition<cr>
+
 "A shortcut for opening a fuzzy find file window.
 nmap <Leader>ff :Files<cr>
 
