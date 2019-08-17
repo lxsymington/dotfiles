@@ -6,7 +6,7 @@ let g:lightline = {
     \   'left': [
     \       ['mode', 'paste'],
     \       ['gitbranch', 'readonly', 'filename', 'modified'],
-    \       ['ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method']
+    \       ['ctrlpmark', 'git', 'diagnostic', 'cocstatus']
     \   ],
     \   'right': [
     \       ['filetype', 'fileencoding', 'lineinfo', 'percent'],

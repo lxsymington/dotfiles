@@ -87,6 +87,12 @@ set mouse=a
 "Set the chord timeout length to 500ms
 set timeoutlen=1000 ttimeoutlen=100
 
+"Set wrapped lines to continue visual indentation
+set bri
+
+"Set breakindent options
+set briopt=min:20,shift:0,sbr
+
 "Enable auto-saving
 set awa
 
