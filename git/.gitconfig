@@ -1,8 +1,6 @@
 [user]
 	name = Luke Xavier Symington
 	email = lsymington@groupon.com
-[winUpdater]
-	recentlySeenVersion = 2.18.0.windows.1
 [core]
 	autocrlf = true
 	trustctime = false
@@ -38,8 +36,6 @@
 	default = upstream
 [color]
 	ui = true
-[credential]
-	helper = !\"C:/ProgramData/scoop/apps/git/2.22.0.windows.1/mingw64/libexec/git-core/git-credential-manager.exe\"
 [diff]
 	tool = bc
 	algorithm = patience
@@ -66,11 +62,11 @@
 	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
 	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
 [commit]
-	template = C:\\Users\\lsymington\\.git-commit-template
+	template = ~/.git-commit-template
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential "helperselector"]
-	selected = manager
+[url "git@github.com:"]
+	insteadOf = https://github.com/
