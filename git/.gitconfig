@@ -1,10 +1,8 @@
 [user]
 	name = Luke Xavier Symington
 	email = lsymington@groupon.com
-[winUpdater]
-	recentlySeenVersion = 2.18.0.windows.1
 [core]
-	autocrlf = true
+	autocrlf = input
 	trustctime = false
 	editor = nvim
 	filemode = false
@@ -38,27 +36,31 @@
 	default = upstream
 [color]
 	ui = true
-[credential]
-	helper = !\"C:/ProgramData/scoop/apps/git/2.22.0.windows.1/mingw64/libexec/git-core/git-credential-manager.exe\"
 [diff]
-	tool = bc
+	tool = nvimdiff2
+	guitool = bc
 	algorithm = patience
 	indentHeuristic = true
 	compactionHeuristic = true
 [merge]
-	tool = bc
+	tool = nvimdiff4
+	guitool = bc
 	conflictstyle = diff3
 	algorithm = patience
 	indentHeuristic = true
 	compactionHeuristic = true
 [difftool]
-	rompt = false
-[mergetool]
-	keeptemporaries = false
-	keepbackups = false
 	prompt = false
-	trustexitcode = false
+	trustexitcode = true
+[mergetool]
+	prompt = false
+	trustexitcode = true
 	keepBackup = false
+	keepTemporaries = false
+[mergetool "nvimdiff4"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool "nvimdiff2"]
+	cmd = nvim -d $LOCAL $REMOTE
 [mergetool "bc"]
 	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
 	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
@@ -66,11 +68,12 @@
 	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
 	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
 [commit]
-	template = C:\\Users\\lsymington\\.git-commit-template
+	template = ~/.git-commit-template
+	verbose = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential "helperselector"]
-	selected = manager
+[url "git@github.com:"]
+	insteadOf = https://github.com/
