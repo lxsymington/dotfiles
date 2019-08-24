@@ -20,7 +20,7 @@ nmap <Leader>d :ALEDetail<cr>
 nmap <Leader>gd :ALEGoToDefinition<cr>
 
 "A shortcut for using ALE to go to the type definition
-nmap <Leader>gd :ALEGoToTypeDefinition<cr>
+nmap <Leader>gtd :ALEGoToTypeDefinition<cr>
 
 "A shortcut for opening a fuzzy find file window.
 nmap <Leader>ff :Files<cr>
@@ -38,4 +38,4 @@ nmap <Leader><Tab> :Defx -toggle -split=vertical -winwidth=50 -direction=topleft
 nmap <Leader><Leader> :Defx `expand('%:p:h')` -search=`expand('%:p')`<cr>
 
 "A shortcut for toggling Goyo
-nmap <Leader>g :Goyo<cr>
+nmap <Leader>G :Goyo<cr>
