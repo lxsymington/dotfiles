@@ -97,3 +97,11 @@ set briopt=min:20,shift:0,sbr
 set awa
 
 "Look into using an auto-command and `FocusLost` to auto save when leaving nvim
+
+"Do not keep a backup file, use versions instead
+set nobackup
+
+"Keep an undo file (undo changes after closing)
+if has('persistent_undo')
+    set undofile
+endif
