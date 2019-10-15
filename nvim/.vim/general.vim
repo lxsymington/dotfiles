@@ -93,6 +93,9 @@ set bri
 "Set breakindent options
 set briopt=min:20,shift:0,sbr
 
+"Preview effects of :%s as you type
+set inccommand=nosplit
+
 "Enable auto-saving
 set awa
 
