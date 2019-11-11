@@ -96,6 +96,9 @@ set briopt=min:20,shift:0,sbr
 "Preview effects of :%s as you type
 set inccommand=nosplit
 
+"Hide abandoned buffers instead of unloading them
+set hidden
+
 "Enable auto-saving
 set awa
 
@@ -103,6 +106,16 @@ set awa
 
 "Do not keep a backup file, use versions instead
 set nobackup
+set nowritebackup
+
+"Extra line for display command messages
+set cmdheight=2
+
+"Set a shorter time before the CursorHold event is triggered
+set updatetime=300
+
+"Don't show |ins-completion-menu| messages
+set shortmess+=c
 
 "Keep an undo file (undo changes after closing)
 if has('persistent_undo')
