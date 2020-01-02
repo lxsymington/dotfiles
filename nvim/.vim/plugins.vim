@@ -23,9 +23,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
-Plug 'mxw/vim-jsx'
 Plug 'rust-lang/rust.vim'
 Plug 'evanleck/vim-svelte'
+Plug 'TaDaa/vimade'
 if has('nvim')
     Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 else

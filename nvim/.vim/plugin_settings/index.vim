@@ -37,3 +37,7 @@ runtime plugin_settings/startify.vim
 "~~~~~~~ Vista ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Vista plugin's settings
 runtime plugin_settings/vista.vim
+
+"~~~~~~~ Vimade ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Vimade plugin's settings
+runtime plugin_settings/vimade.vim
