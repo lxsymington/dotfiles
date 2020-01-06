@@ -16,7 +16,7 @@ Plug 'junegunn/gv.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'

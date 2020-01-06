@@ -29,7 +29,7 @@ let g:fzf_colors = {
 \ 'header':  ['fg', 'Comment'] }
 
 let $FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:67%' --preview 'bat --color=always --style=full --line-range :300 {}'"
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -45,3 +45,24 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Using floating windows of Neovim to start fzf
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --border --margin=2,2'
+
+  function! FloatingFZF()
+    let width = float2nr(&columns * 0.75)
+    let height = float2nr(&lines * 0.75)
+    let opts = { 'relative': 'editor',
+               \ 'row': (&lines - height) / 2,
+               \ 'col': (&columns - width) / 2,
+               \ 'width': width,
+               \ 'height': height,
+               \ 'style': 'minimal' }
+
+    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+  endfunction
+
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
