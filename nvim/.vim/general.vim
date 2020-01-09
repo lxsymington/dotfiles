@@ -3,11 +3,11 @@
 "======================================================================================================================"
 " Establish which environment vim/neovim is running in.
 if !exists('g:env')
-	if has('win64') || has('win32') || has('win16')
-		let g:env = 'WINDOWS'
-	else
-		let g:env = toupper(substitute(system('uname'), '\n', '', ''))
-	endif
+    if has('win64') || has('win32') || has('win16')
+        let g:env = 'WINDOWS'
+    else
+        let g:env = toupper(substitute(system('uname'), '\n', '', ''))
+    endif
 endif
 
 "~~~~~~~ LATER USE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -109,7 +109,7 @@ set nobackup
 set nowritebackup
 
 "Extra line for display command messages
-set cmdheight=2
+set cmdheight=1
 
 "Set a shorter time before the CursorHold event is triggered
 set updatetime=300

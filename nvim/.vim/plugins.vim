@@ -1,5 +1,18 @@
+" Platform `plugged` directory
+function! s:pluggedDir()
+    if has('nvim')
+        if g:env =~ 'WINDOWS'
+            return '~/AppData/Local/nvim-data'
+        elseif g:env =~ 'DARWIN' || g:env =~ 'LINUX'
+            return '~/.local/share/nvim'
+        endif
+    else
+        return '~/.vim/plugged'
+    endif
+endfunction
+
 " Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
+call plug#begin(s:pluggedDir())
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'

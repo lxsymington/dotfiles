@@ -1,14 +1,15 @@
 "======================================================================================================================"
-"======= NEOVIM COMPATIBILITY ========================================================================================="
+"======= ENVIRONMENT =================================================================================================="
 "======================================================================================================================"
 if has('nvim')
     if g:env =~ 'WINDOWS'
         " set shell=cmd.exe
-        set shell=pwsh.exe
-        set shellcmdflag=\ -NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-    endif
-    if g:env =~ 'DARWIN'
-    	set shell=/usr/local/bin/fish
+        set shell=pwsh
+        set shellcmdflag=-c
+    elseif g:env =~ 'DARWIN'
+        set shell=/usr/local/bin/fish
+    elseif g:env =~ 'LINUX'
+        set shell=/usr/local/bin/fish
     endif
     tnoremap <Leader><Esc> <C-\><C-n>
 else
