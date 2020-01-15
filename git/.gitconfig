@@ -6,6 +6,7 @@
 	trustctime = false
 	editor = nvim
 	filemode = false
+	pager = delta --dark
 [alias]
 	ls = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cgreen [%an]'
 	lsd = log --pretty=format:'%C(yellow)%h (%ar)%Cred%d %Creset%s %Cgreen[%an]'

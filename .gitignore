@@ -6,4 +6,4 @@ fish/fishd.mobile
 fish/functions
 nvim/.vim/session
 nvim/.vim/sessions
-nvim/.vim/autoload/plug.vim
+nvim/autoload/plug.vim
