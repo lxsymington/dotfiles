@@ -10,18 +10,18 @@ let g:ale_linters = {
 \   'scss': ['stylelint'],
 \   'sass': ['stylelint'],
 \   'rust': ['cargo', 'rls', 'rustfmt'],
-\}
+\ }
 
 " Configures Ale file fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint', 'prettier'],
-\   'typescript': ['tslint', 'eslint', 'prettier'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'tslint', 'eslint'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
 \   'sass': ['stylelint'],
 \   'rust': ['rustfmt'],
-\}
+\ }
 
 " Set Ale to fix files automatically on save.
 let g:ale_fix_on_save = 1

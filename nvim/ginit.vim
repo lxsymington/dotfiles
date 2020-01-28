@@ -3,7 +3,7 @@
 "======================================================================================================================"
 set linespace=10
 "Set the GUI font
-set guifont=Fantasque\ Sans\ Mono:h10:cANSI:qDRAFT
+set guifont=JetBrains\ Mono:h10:cANSI:qDRAFT,Fantasque\ Sans\ Mono:h10:cANSI:qDRAFT
 "Don't use GUI tabs
 GuiTabline 0
 "Don't use GUI popups
