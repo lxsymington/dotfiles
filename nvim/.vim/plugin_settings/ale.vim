@@ -1,7 +1,4 @@
 "~~~~~~~ Ale ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-" Integrates Ale with vim-ariline
-let g:airline#extensions#ale#enabled = 1
-
 " Configures Ale file linters
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
@@ -35,13 +32,6 @@ let g:ale_set_balloons = 1
 " Set Ale not to set highlight styles
 let g:ale_set_highlights = 1
 
-" Shows a list of errors when they exist in the file (if set to `1`).
-let g:ale_open_list = 0
-
-" Sets Ale to use the loclist instead of the quickfix list
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-
 " Show 5 lines of errors (default: 10)
 let g:ale_list_window_size = 5
 
@@ -53,4 +43,8 @@ let g:ale_completion_delay = 100
 let g:ale_sign_error = '!!'
 let g:ale_sign_warning = '!'
 
+" Set ALE to enable autoimports for TypeScript files.
+let g:ale_completion_tsserver_autoimport = 1
+
 set completeopt=menu,menuone,preview,noselect,noinsert
+set omnifunc=ale#completion#OmniFunc

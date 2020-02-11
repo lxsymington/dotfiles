@@ -6,6 +6,10 @@ runtime plugin_settings/ale.vim
 "Sources the Defx plugin's settings
 runtime plugin_settings/defx.vim
 
+"~~~~~~~ Deoplete ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Deoplete plugin's settings
+runtime plugin_settings/deoplete.vim
+
 "~~~~~~~ Fugitive ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Fugitive plugin's settings
 runtime plugin_settings/fugitive.vim

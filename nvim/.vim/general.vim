@@ -43,7 +43,7 @@ set list
 set listchars=space:.,tab:~\ ,eol:¬
 
 "Sets ambiguous width characters to be double width
-set ambw=double
+set ambw=single
 
 "Always show status line
 set laststatus=2

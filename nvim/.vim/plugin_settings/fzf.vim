@@ -13,31 +13,32 @@ let g:fzf_action = {
             \ 'ctrl-v': 'vsplit' }
 
 " Customize fzf colors to match your color scheme
-" let g:fzf_colors = {
-" \ 'fg':      ['fg', 'Normal'],
-" \ 'bg':      ['bg', 'Normal'],
-" \ 'hl':      ['fg', 'Comment'],
-" \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-" \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-" \ 'hl+':     ['fg', 'Statement'],
-" \ 'info':    ['fg', 'PreProc'],
-" \ 'border':  ['fg', 'Ignore'],
-" \ 'prompt':  ['fg', 'Conditional'],
-" \ 'pointer': ['fg', 'Exception'],
-" \ 'marker':  ['fg', 'Keyword'],
-" \ 'spinner': ['fg', 'Label'],
-" \ 'header':  ['fg', 'Comment'] }
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 let $FZF_DEFAULT_COMMAND="fd --type=file --color=always --follow --hidden --exclude=.git"
 let $FZF_DEFAULT_OPTS="--ansi --preview-window='right:50%' --preview 'bat --color=always --style=full --line-range=:300 {}'"
 
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
-            \   'rg --column --pretty --smart-case '.shellescape(<q-args>), 1,
+            \   'rg --column --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
             \   fzf#vim#with_preview(), <bang>0)
 
 function! RipgrepFzf(query, fullscreen)
-    let command_fmt = 'rg --column --pretty --smart-case %s || true'
+    let command_fmt = 'rg --column --column --line-number --no-heading --color=always --smart-case %s || true'
     let initial_command = printf(command_fmt, shellescape(a:query))
     let reload_command = printf(command_fmt, '{q}')
     let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
@@ -55,9 +56,9 @@ if has('nvim')
         let left = (&columns - width) / 2
         let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
 
-        let top = "╭" . repeat("─", width - 2) . "╮"
-        let mid = "│" . repeat(" ", width - 2) . "│"
-        let bot = "╰" . repeat("─", width - 2) . "╯"
+        let top = "╔" . repeat("═", width - 2) . "╗"
+        let mid = "║" . repeat(" ", width - 2) . "║"
+        let bot = "╚" . repeat("═", width - 2) . "╝"
         let lines = [top] + repeat([mid], height - 2) + [bot]
         let s:buf = nvim_create_buf(v:false, v:true)
         call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)

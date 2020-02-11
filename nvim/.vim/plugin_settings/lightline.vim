@@ -6,7 +6,7 @@ let g:lightline = {
     \   'left': [
     \       ['mode', 'paste'],
     \       ['gitbranch', 'readonly', 'relativepath', 'modified'],
-    \       ['git', 'diagnostic', 'cocstatus']
+    \       ['git', 'diagnostic']
     \   ],
     \   'right': [
     \       ['filetype', 'fileencoding', 'lineinfo', 'percent'],
@@ -14,12 +14,6 @@ let g:lightline = {
     \   ]
     \ },
     \ 'component_function': {
-    \   'blame': 'LightlineGitBlame',
     \   'gitbranch': 'fugitive#head'
     \ }
 \ }
-
-function!LightlineGitBlame() abort
-    let blame = get(b:, 'coc_git_blame', '')
-    return winwidth(0) > 120 ? blame : ''
-endfunction
