@@ -33,9 +33,13 @@ endif
 "======================================================================================================================"
 if has('nvim')
     if g:env =~ 'WINDOWS'
-        " set shell=cmd.exe
-        set shell=pwsh.exe
-        set shellcmdflag=-c
+        behave mswin
+        set shell=powershell.exe
+        set shellcmdflag=\ -NoLogo\ -ExecutionPolicy\ RemoteSigned\ -Command
+        set shellquote= shellpipe=\| shellxquote=
+        set shellredir=\|\ Out-File\ -Encoding\ UTF8
+        let g:python_host_prog = 'C:\Users\lsymington\scoop\shims\python2.EXE'
+        let g:python3_host_prog = 'C:\Users\lsymington\scoop\shims\python3.EXE'
     elseif g:env =~ 'DARWIN'
         set shell=/usr/local/bin/fish
     elseif g:env =~ 'LINUX'

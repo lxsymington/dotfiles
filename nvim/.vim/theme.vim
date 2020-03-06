@@ -14,8 +14,9 @@ elseif
 endif
 
 "Sets the colorscheme to be Seoul 256
-colo seoul256-light
-colo seoul256
+colorscheme seoul256-light
+colorscheme seoul256
+colorscheme night-owl
 
 "Sets the background to be dark
 set background=dark

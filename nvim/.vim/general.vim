@@ -43,7 +43,7 @@ set list
 set listchars=space:.,tab:~\ ,eol:¬
 
 "Sets ambiguous width characters to be double width
-set ambw=single
+set ambiwidth=single
 
 "Always show status line
 set laststatus=2
@@ -58,10 +58,10 @@ set mouse=a
 set timeoutlen=1000 ttimeoutlen=100
 
 "Set wrapped lines to continue visual indentation
-set bri
+set breakindent
 
 "Set breakindent options
-set briopt=min:20,shift:0,sbr
+set breakindentopt=min:20,shift:0,sbr
 
 "Preview effects of :%s as you type
 set inccommand=nosplit
@@ -70,7 +70,10 @@ set inccommand=nosplit
 set hidden
 
 "Enable auto-saving
-set awa
+set autowriteall
+
+"Enable auto-reading
+set autoread
 
 "Look into using an auto-command and `FocusLost` to auto save when leaving nvim
 

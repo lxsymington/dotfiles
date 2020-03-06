@@ -19,34 +19,27 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
 Plug 'TaDaa/vimade'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'evanleck/vim-svelte'
+Plug 'haishanh/night-owl.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'lambdalisue/fern.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'mhinz/vim-startify'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmsvg/pear-tree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-
-if has('nvim')
-    Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/defx.nvim'
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

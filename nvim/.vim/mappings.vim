@@ -4,6 +4,18 @@
 "A shortcut for the escape key.
 imap jj <esc>
 
+"Maps ^J to changing to the split below
+nmap <C-J> <C-W><C-J>
+
+"Maps ^K to changing to the split above
+nmap <C-K> <C-W><C-K>
+
+"Maps ^H to changing to the split to the left
+nmap <C-H> <C-W><C-H>
+
+"Maps ^L to changing to the split to the right
+nmap <C-L> <C-W><C-L>
+
 "A shortcut for opening the ~/.vimrc in a new tab.
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
@@ -26,48 +38,37 @@ nmap <Leader>fgf :GFiles<cr>
 nmap <Leader>fgs :GFiles?<cr>
 
 "A shortcut for opening a file explorer
-nmap <Leader><Tab> :Defx -toggle -split=vertical -winwidth=50 -direction=topleft<cr>
+nmap <Leader><Tab> :Fern . -drawer -reveal=%<cr>
 
 "A shortcut for exploring the current folder
-nmap <Leader><Leader> :Defx `expand('%:p:h')` -search=`expand('%:p')`<cr>
+nmap <Leader><Leader> :Fern %:h -reveal=%<cr>
 
 "A shortcut for toggling Goyo
 nmap <Leader>G :Goyo<cr>
 
-"A shortcut for viewing the ALEDetail
-nnoremap <silent> K :ALEDocumentation<cr>
+"Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-"ALE GoTos
-nmap <silent> gd :ALEGoToDefinition<cr>
-nmap <silent> gt :ALEGoToTypeDefinition<cr>
+"Goto shortcuts
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gi <Plug>(coc-implementation)
 
-"ALE use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(ale_previous_wrap)
-nmap <silent> ]g <Plug>(ale_next_wrap)
-
-"ALE rename shortcut
+"Rename shortcut
 nmap <leader>rn <Plug>(coc-rename)
 
-"CoC Remap keys for gotos
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+"Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-"CoC use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
+"Applying codeAction to the selected region.
+"Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
+"Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
 
-"CoC Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"CoC Create mappings for function text object, requires document symbols feature of languageserver.
-" xmap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap if <Plug>(coc-funcobj-i)
-" omap af <Plug>(coc-funcobj-a)
+"Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)

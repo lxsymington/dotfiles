@@ -1,7 +1,22 @@
 "~~~~~~~ Lightine Vim ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Dev Icons utility function
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+"Dev Icons utility function
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+"Coc utility function
+function! CocCurrentFunction()
+  return get(b:, 'coc_current_function', '')
+endfunction
+
 "Lightine settings
 let g:lightline = {
-    \ 'colorscheme': 'seoul256',
+    \ 'colorscheme': 'nightowl',
     \ 'active': {
     \   'left': [
     \       ['mode', 'paste'],
@@ -9,11 +24,17 @@ let g:lightline = {
     \       ['git', 'diagnostic']
     \   ],
     \   'right': [
-    \       ['filetype', 'fileencoding', 'lineinfo', 'percent'],
-    \       ['blame']
+    \       ['lineinfo', 'percent'],
+    \       ['fileencoding', 'fileformat'],
+    \       ['filetype'],
+    \       ['cocstatus', 'currentfunction']
     \   ]
     \ },
     \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
+    \   'gitbranch': 'fugitive#head',
+    \   'filetype': 'MyFiletype',
+    \   'fileformat': 'MyFileformat',
+    \   'cocstatus': 'coc#status',
+    \   'currentfunction': 'CocCurrentFunction',
     \ }
 \ }
