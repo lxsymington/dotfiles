@@ -75,8 +75,6 @@ set autowriteall
 "Enable auto-reading
 set autoread
 
-"Look into using an auto-command and `FocusLost` to auto save when leaving nvim
-
 "Do not keep a backup file, use versions instead
 set nobackup
 set nowritebackup
@@ -94,3 +92,5 @@ set shortmess+=c
 if has('persistent_undo')
     set undofile
 endif
+
+"Look into using an auto-command and `FocusLost` to auto save when leaving nvim
