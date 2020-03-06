@@ -22,6 +22,10 @@ runtime plugin_settings/fzf.vim
 "Sources the Goyo plugin's settings
 runtime plugin_settings/goyo.vim
 
+"~~~~~~~ Lens ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Lens plugin's settings
+runtime plugin_settings/lens.vim
+
 "~~~~~~~ Lightline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Lightline plugin's settings
 runtime plugin_settings/lightline.vim
