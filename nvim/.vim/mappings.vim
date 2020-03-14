@@ -38,7 +38,7 @@ nmap <Leader>fgf :GFiles<cr>
 nmap <Leader>fgs :GFiles?<cr>
 
 "A shortcut for opening a file explorer
-nmap <Leader><Tab> :Fern . -drawer -reveal=%<cr>
+nmap <Leader><Tab> :Fern . -drawer -reveal=% -width=30 -toggle<cr>
 
 "A shortcut for exploring the current folder
 nmap <Leader><Leader> :Fern %:h -reveal=%<cr>
