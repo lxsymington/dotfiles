@@ -43,7 +43,7 @@ if has('nvim')
     elseif g:env =~ 'DARWIN'
         set shell=/usr/local/bin/fish
     elseif g:env =~ 'LINUX'
-        set shell=/usr/local/bin/fish
+        set shell=/usr/bin/fish
     endif
     tnoremap <Leader><Esc> <C-\><C-n>
 else
