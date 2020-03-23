@@ -50,3 +50,6 @@ runtime plugin_settings/vista.vim
 "Sources the Vimade plugin's settings
 runtime plugin_settings/vimade.vim
 
+"~~~~~~~ Vimspector ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Vimspector plugin's settings
+runtime plugin_settings/vimspector.vim
