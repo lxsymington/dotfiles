@@ -88,6 +88,9 @@ set updatetime=300
 "Don't show |ins-completion-menu| messages
 set shortmess+=c
 
+"Improve mergetool and diff experience by using git's built in diff
+set diffopt=filler,iblank,iwhite,indent-heuristic,algorithm:patience
+
 "Keep an undo file (undo changes after closing)
 if has('persistent_undo')
     set undofile
