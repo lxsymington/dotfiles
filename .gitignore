@@ -2,8 +2,8 @@ fisherman
 node_modules
 plugged
 .netrwhist
-fish/fishd.mobile
+fish/fishd.*
 fish/functions
 nvim/.vim/session
 nvim/.vim/sessions
-nvim/autoload/plug.vim
+nvim/.vim/autoload/plug.vim*
