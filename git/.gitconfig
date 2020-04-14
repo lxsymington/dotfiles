@@ -1,6 +1,6 @@
 [user]
 	name = Luke Xavier Symington
-	email = lsymington@groupon.com
+	email = lxsymington@gmail.com
 [core]
 	autocrlf = input
 	trustctime = false
@@ -79,5 +79,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential]
-	helper = manager
