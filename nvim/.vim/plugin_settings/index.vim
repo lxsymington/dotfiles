@@ -34,6 +34,10 @@ runtime plugin_settings/lightline.vim
 "Sources the OmniSharp plugin's settings
 runtime plugin_settings/omnisharp.vim
 
+"~~~~~~~ Rust ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"Sources the Rust plugin's settings
+runtime plugin_settings/rust.vim
+
 "~~~~~~~ Seoul256 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Seoul256 plugin's settings
 runtime plugin_settings/seoul256.vim
