@@ -16,6 +16,7 @@ call plug#begin(s:pluggedDir())
 
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'TaDaa/vimade'
+Plug 'amadeus/vim-convert-color-to'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'evanleck/vim-svelte'

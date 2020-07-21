@@ -19,3 +19,9 @@ colorscheme night-owl
 
 "Sets the background to be dark
 set background=dark
+
+"Enable background transparency
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+hi! EndOfBuffer ctermbg=NONE guibg=NONE
+hi! SignColumn ctermbg=NONE guibg=NONE
