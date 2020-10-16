@@ -2,10 +2,6 @@
 "Sources the CoC plugin's settings
 runtime plugin_settings/coc.vim
 
-"~~~~~~~ Dev Icons ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Dev Icons plugin's settings
-runtime plugin_settings/devicons.vim
-
 "~~~~~~~ Fern ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Fern plugin's settings
 runtime plugin_settings/fern.vim

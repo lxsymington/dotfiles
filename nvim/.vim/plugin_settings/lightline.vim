@@ -1,12 +1,12 @@
 "~~~~~~~ Lightine Vim ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Dev Icons utility function
 function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . nerdfont#find() : 'no ft') : ''
 endfunction
 
 "Dev Icons utility function
 function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  return winwidth(0) > 70 ? (&fileformat . ' ' . nerdfont#fileformat#find()) : ''
 endfunction
 
 "Coc utility function
@@ -16,7 +16,7 @@ endfunction
 
 "Lightine settings
 let g:lightline = {
-    \ 'colorscheme': 'nightowl',
+    \ 'colorscheme': 'powerline',
     \ 'active': {
     \   'left': [
     \       ['mode', 'paste'],

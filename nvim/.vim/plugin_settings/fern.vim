@@ -19,4 +19,4 @@ function! s:hijack_directory() abort
 endfunction
 
 "Use Dev Icons
-let g:fern#renderer = "devicons"
+let g:fern#renderer = "nerdfont"
