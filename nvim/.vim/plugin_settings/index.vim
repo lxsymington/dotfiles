@@ -14,22 +14,6 @@ runtime plugin_settings/fugitive.vim
 "Sources the NerdTree plugin's settings
 runtime plugin_settings/fzf.vim
 
-"~~~~~~~ Goyo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Goyo plugin's settings
-runtime plugin_settings/goyo.vim
-
-"~~~~~~~ Lens ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Lens plugin's settings
-runtime plugin_settings/lens.vim
-
-"~~~~~~~ Lightline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Lightline plugin's settings
-runtime plugin_settings/lightline.vim
-
-"~~~~~~~ OmniSharp ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the OmniSharp plugin's settings
-runtime plugin_settings/omnisharp.vim
-
 "~~~~~~~ Rust ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Rust plugin's settings
 runtime plugin_settings/rust.vim
@@ -41,10 +25,6 @@ runtime plugin_settings/seoul256.vim
 "~~~~~~~ Startify ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Startify plugin's settings
 runtime plugin_settings/startify.vim
-
-"~~~~~~~ Vista ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Vista plugin's settings
-runtime plugin_settings/vista.vim
 
 "~~~~~~~ Vimade ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Vimade plugin's settings

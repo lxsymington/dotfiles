@@ -45,9 +45,6 @@ set listchars=space:.,tab:~\ ,eol:¬
 "Sets ambiguous width characters to be double width
 set ambiwidth=single
 
-"Always show status line
-set laststatus=2
-
 "Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set noshowmode
 

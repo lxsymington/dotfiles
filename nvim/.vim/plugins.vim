@@ -22,7 +22,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'evanleck/vim-svelte'
 Plug 'franbach/miramare'
 Plug 'haishanh/night-owl.vim'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/seoul256.vim'

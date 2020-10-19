@@ -12,8 +12,9 @@ if not functions -q fisher
 end
 
 # Launch keychain on login
-if status --is-interactive
-    keychain --eval --quiet --agents ssh -Q id_rsa | source
+if status is-interactive
+    and status is-login
+    keychain --eval --clear --quiet --agents ssh id_rsa | source
 end
 
 # Source relevant keychain files
