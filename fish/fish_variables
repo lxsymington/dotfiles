@@ -9,8 +9,8 @@ SETUVAR FZF_PREVIEW_FILE_CMD:head\x20\x2dn\x2010
 SETUVAR FZF_TMUX_HEIGHT:40\x25
 SETUVAR --export GOBIN:/home/lxs/Development/go/bin
 SETUVAR --export --path GOPATH:/home/lxs/Development/go
-SETUVAR --export SSH_AGENT_PID:948
-SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dKstkTLaz4GPY/agent\x2e947
+SETUVAR --export SSH_AGENT_PID:16
+SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dx1nXT1am8yHs/agent\x2e14
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/lxs/\x2elocal/share/z/data
