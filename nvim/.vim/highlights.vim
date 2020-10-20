@@ -8,6 +8,6 @@ hi ALEWarning guibg=none guisp=yellow gui=undercurl,bold ctermfg=yellow ctermbg=
 hi ALEError guibg=none guisp=red gui=undercurl,bold ctermfg=red ctermbg=none cterm=undercurl,bold term=undercurl,bold
 
 " hi User1 cterm=bold,reverse ctermfg=Green ctermbg=None gui=bold,reverse guifg=Green guibg=None
-hi User2 cterm=bold,reverse ctermfg=Blue ctermbg=Yellow gui=bold,reverse guifg=Blue guibg=Yellow
+" hi User2 cterm=bold,reverse ctermfg=Blue ctermbg=Yellow gui=bold,reverse guifg=Blue guibg=Yellow
 
-exe "hi! User1" .' ctermfg=".g:terminal_color_0."'" .' guifg=".g:terminal_color_0."'"
+" exe "hi! User1" .' ctermfg=".g:terminal_color_0."'" .' guifg=".g:terminal_color_0."'"
