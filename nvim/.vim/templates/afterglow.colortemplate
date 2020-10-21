@@ -320,13 +320,13 @@ Cursor               brightmagenta     none              reverse
 CursorColumn         none              white
 CursorLine           none              white
 CursorLineNr         brightwhite       brightmagenta
-DiffAdd              green             none              reverse
-DiffChange           cyan              none              reverse
-DiffDelete           red               none              reverse
-DiffText             brightmagenta     none              bold,reverse
-Directory            black             none
-EndOfBuffer          black             none
-ErrorMsg             brightred         brightwhite       reverse
+DiffAdd              green             brightgreen       reverse
+DiffChange           fg                brightblack
+DiffDelete           red               brightred         reverse
+DiffText             blue              brightblue        reverse
+Directory            grey              none              bold
+EndOfBuffer          brightgrey        none
+ErrorMsg             red               brightwhite       reverse
 FoldColumn           black             none
 Folded               black             none              italic
 IncSearch            brightblue        brightwhite       t=reverse g=standout
@@ -383,6 +383,109 @@ ToolbarButton        black             white             bold
 
 ; Additional highlight groups {{{
 ; Add additional highlight groups here if you want
+Black                black             none
+BlackItalic          black             none              italic
+BlackBold            black             none              bold
+BlackBG              none              black
+LightBlack           brightblack       none
+LightBlackItalic     brightblack       none              italic
+LightBlackBold       brightblack       none              bold
+LightBlackBG         none              brightblack
+Blue                 blue              none
+BlueItalic           blue              none              italic
+BlueBold             blue              none              bold
+BlueBG               none              blue
+LightBlue            brightblue        none
+LightBlueItalic      brightblue        none              italic
+LightBlueBold        brightblue        none              bold
+LightBlueBG          none              brightblue
+Cyan                 cyan              none
+CyanItalic           cyan              none              italic
+CyanBold             cyan              none              bold
+CyanBG               none              cyan
+LightCyan            brightcyan        none
+LightCyanItalic      brightcyan        none              italic
+LightCyanBold        brightcyan        none              bold
+LightCyanBG          none              brightcyan
+Green                green             none
+GreenItalic          green             none              italic
+GreenBold            green             none              bold
+GreenBG              none              green
+LightGreen           brightgreen       none
+LightGreenItalic     brightgreen       none              italic
+LightGreenBold       brightgreen       none              bold
+LightGreenBG         none              brightgreen
+Grey                 grey              none
+GreyItalic           grey              none              italic
+GreyBold             grey              none              bold
+GreyBG               none              grey
+LightGray            brightgrey        none
+LightGrayItalic      brightgrey        none              italic
+LightGrayBold        brightgrey        none              bold
+LightGrayBG          none              brightgrey
+LightGrey            brightgrey        none
+LightGreyItalic      brightgrey        none              italic
+LightGreyBold        brightgrey        none              bold
+LightGreyBG          none              brightgrey
+Orange               orange            none
+OrangeItalic         orange            none              italic
+OrangeBold           orange            none              bold
+OrangeBG             none              orange
+LightOrange          brightorange      none
+LightOrangeItalic    brightorange      none              italic
+LightOrangeBold      brightorange      none              bold
+LightOrangeBG        none              brightorange
+Purple               magenta           none
+PurpleItalic         magenta           none              italic
+PurpleBold           magenta           none              bold
+PurpleBG             none              magenta
+LightPurple          brightmagenta     none
+LightPurpleItalic    brightmagenta     none              italic
+LightPurpleBold      brightmagenta     none              bold
+LightPurpleBG        none              brightmagenta
+Red                  red               none
+RedItalic            red               none              italic
+RedBold              red               none              bold
+RedBG                none              red
+LightRed             brightred         none
+LightRedItalic       brightred         none              italic
+LightRedBold         brightred         none              bold
+LightRedBG           none              brightred
+White                white             none
+WhiteItalic          white             none              italic
+WhiteBold            white             none              bold
+WhiteBG              none              white
+LightWhite           brightwhite       none
+LightWhiteItalic     brightwhite       none              italic
+LightWhiteBold       brightwhite       none              bold
+LightWhiteBG         none              brightwhite
+Yellow               yellow            none
+YellowItalic         yellow            none              italic
+YellowBold           yellow            none              bold
+YellowBG             none              yellow
+LightYellow          brightyellow      none
+LightYellowItalic    brightyellow      none              italic
+LightYellowBold      brightyellow      none              bold
+LightYellowBG        none              brightyellow
+; Other
+ALEError             brightred         none              s=red
+ALEInfo              brightblue        none              s=blue
+ALEWarning           brightyellow      none              s=yellow
+CocHighlightText     cyan              none              bold,reverse
+CocUnderline         cyan              none              underline
+Conditional          brightgreen       none
+Debug                red               none
+Delimiter            brightorange      none              bold
+Exception            brightwhite       red               underline
+Fg                   brightwhite       none
+Folded               darkmagenta       none              italic
+Function             red               none              bold,italic
+Include              brightgreen       none              bold
+Keyword              brightwhite       none              bold
+Label                brightblue        none              italic
+Operator             yellow            none              italic
+jsFuncParens         magenta           none              bold
+tomlTable            brightorange      none
 ; }}}
 
 ; Common linked groups {{{

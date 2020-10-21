@@ -48,7 +48,7 @@ endfunction
 
 function! StatuslineGit()
     let l:branchname = fugitive#head()
-    return strlen(l:branchname) > 0 ? '  '.l:branchname.' ':''
+    return strlen(l:branchname) > 0 ? ' '.l:branchname.' ':''
 endfunction
 
 function! Filetype()
@@ -85,11 +85,12 @@ set statusline+=%m
 set statusline+=%r
 set statusline+=%#LightGreen#
 set statusline+=\ 
-set statusline+=%#LightBlue#
+set statusline+=%#LightBlack#
 set statusline+=
-set statusline+=%#LightBlueBG#
+set statusline+=%#LightBlackBG#
+set statusline+=\ 
 set statusline+=%{StatuslineGit()}
-set statusline+=%#LightBlue#
+set statusline+=%#LightBlack#
 set statusline+= 
 set statusline+=%=
 set statusline+=%#Red#
@@ -115,24 +116,11 @@ set statusline+=%#LightBlack#
 set statusline+=
 set statusline+=%#LightBlackBG#
 set statusline+=%{&fileencoding?&fileencoding:&encoding}
-set statusline+=%#LightBlack#
-set statusline+=\ 
-set statusline+=%#Purple#
-set statusline+=
-set statusline+=%#PurpleBG#
+set statusline+=\ \|\ 
 set statusline+=%{Fileformat()}
-set statusline+=%#Purple#
-set statusline+=\ 
-set statusline+=%#LightPurple#
-set statusline+=
-set statusline+=%#LightPurpleBG#
-set statusline+=%l
-set statusline+=\ %c
-set statusline+=%#LightPurple#
-set statusline+=\ 
-set statusline+=%#LightCyan#
-set statusline+=
-set statusline+=%#LightCyanBG#
+set statusline+=\ \|\ 
+set statusline+=%l:%c
+set statusline+=\ \|\ 
 set statusline+=%p%%
-set statusline+=%#LightCyan#
+set statusline+=%#LightBlack#
 set statusline+=

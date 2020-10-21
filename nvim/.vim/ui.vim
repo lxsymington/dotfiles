@@ -40,3 +40,6 @@ set signcolumn=yes
 
 "Make splits remain equal
 set equalalways
+
+"Display the foldcolumn
+set foldcolumn=1
