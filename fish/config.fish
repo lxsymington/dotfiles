@@ -13,7 +13,6 @@ end
 
 # Launch keychain on login
 if status is-interactive
-    and status is-login
     keychain --eval --clear --quiet --agents ssh id_rsa | source
 end
 

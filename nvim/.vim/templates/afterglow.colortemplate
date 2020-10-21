@@ -21,19 +21,11 @@ Include: _help.colortemplate
 ; Global definitions - put at the top of the colorscheme {{{
 Boolean              -> Constant
 Character            -> Constant
-Conditional          -> Statement
-Debug                -> Special
 Define               -> PreProc
-Delimiter            -> Special
 Exception            -> Statement
 Float                -> Constant
-Function             -> Identifier
-Include              -> PreProc
-Keyword              -> Statement
-Label                -> Statement
 Macro                -> PreProc
 Number               -> Constant
-Operator             -> Statement
 PopupSelected        -> PmenuSel
 PreCondit            -> PreProc
 QuickFixLine         -> Search
@@ -59,19 +51,24 @@ Background: dark
 Color: black                #111224     ~        Black
 Color: red                  #a95062     ~        DarkRed
 Color: green                #354e39     ~        DarkGreen
-Color: yellow               #feb63e     ~        DarkYellow
+Color: yellow               #ffc346     ~        DarkYellow
 Color: blue                 #155199     ~        DarkBlue
-Color: magenta              #533861     ~        DarkMagenta
+Color: magenta              #673a5b     ~        DarkMagenta
 Color: cyan                 #6187ae     ~        DarkCyan
-Color: white                #fff5af     ~        LightGrey
+Color: white                #ebd3b9     ~        LightGrey
 Color: brightblack          #222035     ~        DarkGrey
 Color: brightred            #c5696e     ~        LightRed
 Color: brightgreen          #5e723f     ~        LightGreen
 Color: brightyellow         #ffd782     ~        LightYellow
 Color: brightblue           #356ea5     ~        LightBlue
-Color: brightmagenta        #7c6486     ~        LightMagenta
+Color: brightmagenta        #9f7195     ~        LightMagenta
 Color: brightcyan           #83a0c8     ~        LightCyan
 Color: brightwhite          #fcf9f0     ~        White
+Color: orange               #ec722f     ~        DarkYellow
+Color: brightorange         #fe882e     ~        DarkYellow
+Color: grey                 #786674     ~        DarkGrey
+Color: brightgrey           #9f8d9d     ~        LightGrey
+Color: darkmagenta          #4f2d52     ~        DarkMagenta
 ; }}}
 
 ; Terminal colors for dark variant {{{
@@ -87,31 +84,33 @@ Variant: 256 8
 #if get(g:, '@optionprefix_transp_bg', 0)
 Variant: gui 256 8
     Normal           white             none
+    NormalNC         brightgrey        none
     Terminal         white             none
 #else
     Normal           white             black
+    NormalNC         brightgrey        brightblack
     Terminal         white             black
 #endif
 
 ; Group              Foreground        Background        Attributes
 ColorColumn          fg                brightblack
 Conceal              none              none
-Cursor               brightwhite       none              reverse
+Cursor               brightwhite       none              bold,reverse
 CursorColumn         none              brightblack
 CursorLine           none              brightblack
-CursorLineNr         brightmagenta     magenta
-DiffAdd              green             none              reverse
-DiffChange           cyan              none              reverse
-DiffDelete           red               none              reverse
-DiffText             magenta           none              bold,reverse
-Directory            white             black
-EndOfBuffer          white             black
+CursorLineNr         brightmagenta     darkmagenta
+DiffAdd              green             brightgreen       reverse
+DiffChange           fg                brightblack
+DiffDelete           red               brightred         reverse
+DiffText             blue              brightblue        reverse
+Directory            brightmagenta     none              bold
+EndOfBuffer          brightmagenta     none
 ErrorMsg             red               brightwhite       reverse
 FoldColumn           white             black
-Folded               white             black             italic
+Folded               brightmagenta     none              italic
 IncSearch            blue              brightwhite       t=reverse g=standout
-LineNr               magenta           brightblack
-MatchParen           yellow            magenta
+LineNr               darkmagenta       brightblack
+MatchParen           yellow            darkmagenta
 ModeMsg              brightgreen       none
 MoreMsg              brightblue        none
 NonText              brightblack       none
@@ -119,32 +118,32 @@ Pmenu                white             brightblack
 PmenuSbar            brightcyan        black
 PmenuSel             brightgreen       brightwhite       reverse
 PmenuThumb           white             black
-Question             white             black
+Question             white             brightblack
 Search               brightblue        brightwhite       reverse
-SignColumn           brightwhite       none
+SignColumn           brightmagenta     none
 SpecialKey           brightblack       none
 SpellBad             brightred         none              s=red
 SpellCap             yellow            none              s=blue
-SpellLocal           brightwhite       none              s=magenta
+SpellLocal           brightwhite       none              s=darkmagenta
 SpellRare            brightyellow      none              s=cyan reverse
-StatusLine           brightwhite       none
-StatusLineNC         white             none
-TabLine              magenta           black
+StatusLine           brightwhite       black
+StatusLineNC         white             brightblack
+TabLine              darkmagenta       black
 TabLineFill          none              brightblack
 TabLineSel           brightwhite       brightgreen
 Title                none              red
-VertSplit            white             black
+VertSplit            none              brightblack
 Visual               none              brightcyan
 VisualNOS            none              cyan
 WarningMsg           yellow            black             reverse
-Whitespace           magenta           none
+Whitespace           brightblack       none
 WildMenu             brightgreen       brightwhite       reverse
 ; Other conventional group names (see `:help group-name`)
-Comment              magenta           none              italic
-Constant             yellow            none
-Error                brightred         black             reverse
+Comment              darkmagenta       none              italic
+Constant             brightyellow      none              bold
+Error                brightwhite       red               bold
 Identifier           brightgreen       none
-Ignore               magenta           none
+Ignore               darkmagenta       none
 PreProc              brightcyan        none
 Special              brightred         none
 Statement            blue              none
@@ -160,29 +159,139 @@ ToolbarButton        white             black             bold
 
 ; Additional highlight groups {{{
 ; Add additional highlight groups here if you want
+; Group              Foreground        Background        Attributes
+; Basic colours
+Black                black             none
+BlackItalic          black             none              italic
+BlackBold            black             none              bold
+BlackBG              none              black
+LightBlack           brightblack       none
+LightBlackItalic     brightblack       none              italic
+LightBlackBold       brightblack       none              bold
+LightBlackBG         none              brightblack
+Blue                 blue              none
+BlueItalic           blue              none              italic
+BlueBold             blue              none              bold
+BlueBG               none              blue
+LightBlue            brightblue        none
+LightBlueItalic      brightblue        none              italic
+LightBlueBold        brightblue        none              bold
+LightBlueBG          none              brightblue
+Cyan                 cyan              none
+CyanItalic           cyan              none              italic
+CyanBold             cyan              none              bold
+CyanBG               none              cyan
+LightCyan            brightcyan        none
+LightCyanItalic      brightcyan        none              italic
+LightCyanBold        brightcyan        none              bold
+LightCyanBG          none              brightcyan
+Green                green             none
+GreenItalic          green             none              italic
+GreenBold            green             none              bold
+GreenBG              none              green
+LightGreen           brightgreen       none
+LightGreenItalic     brightgreen       none              italic
+LightGreenBold       brightgreen       none              bold
+LightGreenBG         none              brightgreen
+Grey                 darkmagenta       none
+GreyItalic           darkmagenta       none              italic
+GreyBold             darkmagenta       none              bold
+GreyBG               none              darkmagenta
+LightGray            brightmagenta     none
+LightGrayItalic      brightmagenta     none              italic
+LightGrayBold        brightmagenta     none              bold
+LightGrayBG          none              brightmagenta
+LightGrey            brightmagenta     none
+LightGreyItalic      brightmagenta     none              italic
+LightGreyBold        brightmagenta     none              bold
+LightGreyBG          none              brightmagenta
+Orange               orange            none
+OrangeItalic         orange            none              italic
+OrangeBold           orange            none              bold
+OrangeBG             none              orange
+LightOrange          brightorange      none
+LightOrangeItalic    brightorange      none              italic
+LightOrangeBold      brightorange      none              bold
+LightOrangeBG        none              brightorange
+Purple               magenta           none
+PurpleItalic         magenta           none              italic
+PurpleBold           magenta           none              bold
+PurpleBG             none              magenta
+LightPurple          brightmagenta     none
+LightPurpleItalic    brightmagenta     none              italic
+LightPurpleBold      brightmagenta     none              bold
+LightPurpleBG        none              brightmagenta
+Red                  red               none
+RedItalic            red               none              italic
+RedBold              red               none              bold
+RedBG                none              red
+LightRed             brightred         none
+LightRedItalic       brightred         none              italic
+LightRedBold         brightred         none              bold
+LightRedBG           none              brightred
+White                white             none
+WhiteItalic          white             none              italic
+WhiteBold            white             none              bold
+WhiteBG              none              white
+LightWhite           brightwhite       none
+LightWhiteItalic     brightwhite       none              italic
+LightWhiteBold       brightwhite       none              bold
+LightWhiteBG         none              brightwhite
+Yellow               yellow            none
+YellowItalic         yellow            none              italic
+YellowBold           yellow            none              bold
+YellowBG             none              yellow
+LightYellow          brightyellow      none
+LightYellowItalic    brightyellow      none              italic
+LightYellowBold      brightyellow      none              bold
+LightYellowBG        none              brightyellow
+; Other
+ALEError             brightred         none              s=red
+ALEInfo              brightblue        none              s=blue
+ALEWarning           brightyellow      none              s=yellow
+CocHighlightText     cyan              none              bold,reverse
+CocUnderline         cyan              none              underline
+Conditional          brightgreen       none
+Debug                red               none
+Delimiter            brightorange      none              bold
+Exception            brightwhite       red               underline
+Fg                   brightwhite       none
+Folded               darkmagenta       none              italic
+Function             red               none              bold,italic
+Include              brightgreen       none              bold
+Keyword              brightwhite       none              bold
+Label                brightblue        none              italic
+Operator             yellow            none              italic
+jsFuncParens         magenta           none              bold
+tomlTable            brightorange      none
 ; }}}
 
 Background: light
 
 ; Color palette for light variant {{{
 ; You may use hexadecimal values, too, and you may provide an explicit base-256 color:
-; Color name                GUI                  Base256    Base16 (optional)
+; Color name                GUI         Base256  Base16 (optional)
 Color: black                #111224     ~        Black
 Color: red                  #a95062     ~        DarkRed
 Color: green                #354e39     ~        DarkGreen
-Color: yellow               #feb63e     ~        DarkYellow
+Color: yellow               #ffc346     ~        DarkYellow
 Color: blue                 #155199     ~        DarkBlue
-Color: magenta              #533861     ~        DarkMagenta
+Color: magenta              #673a5b     ~        DarkMagenta
 Color: cyan                 #6187ae     ~        DarkCyan
-Color: white                #fff5af     ~        LightGrey
+Color: white                #ebd3b9     ~        LightGrey
 Color: brightblack          #222035     ~        DarkGrey
 Color: brightred            #c5696e     ~        LightRed
 Color: brightgreen          #5e723f     ~        LightGreen
 Color: brightyellow         #ffd782     ~        LightYellow
 Color: brightblue           #356ea5     ~        LightBlue
-Color: brightmagenta        #7c6486     ~        LightMagenta
+Color: brightmagenta        #9f7195     ~        LightMagenta
 Color: brightcyan           #83a0c8     ~        LightCyan
 Color: brightwhite          #fcf9f0     ~        White
+Color: orange               #ec722f     ~        DarkYellow
+Color: brightorange         #fe882e     ~        DarkYellow
+Color: grey                 #786674     ~        DarkGrey
+Color: brightgrey           #9f8d9d     ~        LightGrey
+Color: darkmagenta          #4f2d52     ~        DarkMagenta
 ; }}}
 
 ; Terminal colors for light variant {{{
@@ -247,14 +356,12 @@ TabLineSel           white             green
 Title                none              brightred
 VertSplit            none              white
 Visual               black             white
-Visual               none              brightcyan
-VisualNOS            black             white
-VisualNOS            none              cyan
-WarningMsg           black             white
-WarningMsg           yellow            black             reverse
-Whitespace           magenta           none
+Visual               none              cyan
+VisualNOS            none              brightcyan
+WarningMsg           brightyellow      brightblack       reverse
+Whitespace           brightmagenta     none
 WildMenu             black             white
-WildMenu             brightgreen       brightwhite       reverse
+WildMenu             green             white       reverse
 ; Other conventional group names (see `:help group-name`)
 Comment              brightmagenta     none              italic
 Constant             brightyellow      none
@@ -1595,4 +1702,3 @@ zshVariableDef                          -> Blue
 
 Background: any
 Include: _bw.colortemplate
-

@@ -52,7 +52,7 @@ function! StatuslineGit()
 endfunction
 
 function! Filetype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . nerdfont#find() : 'no ft') : ''
+  return winwidth(0) > 70 ? (strlen(&filetype) ? ' ' . &filetype . ' ' . nerdfont#find() . ' ' : 'no ft') : ''
 endfunction
 
 function! Fileformat()
@@ -73,41 +73,66 @@ set laststatus=2
 set statusline=
 set statusline+=%#Grey#
 set statusline+=
-set statusline+=%1*
+set statusline+=%#GreyBG#
 set statusline+=%{CurrentMode()}
 set statusline+=%#Grey#
 set statusline+=\ 
-set statusline+=%#Green#
+set statusline+=%#LightGreen#
 set statusline+=
-set statusline+=%1*
+set statusline+=%#LightGreenBG#
 set statusline+=%{FilePath()}
 set statusline+=%m
 set statusline+=%r
-set statusline+=%#Green#
+set statusline+=%#LightGreen#
 set statusline+=\ 
-set statusline+=%#Blue#
+set statusline+=%#LightBlue#
 set statusline+=
-set statusline+=%2*
+set statusline+=%#LightBlueBG#
 set statusline+=%{StatuslineGit()}
-set statusline+=%#Blue#
+set statusline+=%#LightBlue#
 set statusline+= 
 set statusline+=%=
+set statusline+=%#Red#
 set statusline+=
+set statusline+=%#RedBG#
 set statusline+=%n
+set statusline+=%#Red#
 set statusline+=\ 
+set statusline+=%#LightBlack#
 set statusline+=
-set statusline+=%{coc#status()}
-set statusline+=\ 
-set statusline+=
+set statusline+=%#LightBlackBG#
 set statusline+=%{Filetype()}
+set statusline+=%#LightBlack#
+set statusline+=\ 
+set statusline+=%#Purple#
+set statusline+=
+set statusline+=%#PurpleBG#
+set statusline+=%{coc#status()}
+set statusline+=%#Purple#
 set statusline+=
 set statusline+=%=
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{Fileformat()}\]
+set statusline+=%#LightBlack#
 set statusline+=
+set statusline+=%#LightBlackBG#
+set statusline+=%{&fileencoding?&fileencoding:&encoding}
+set statusline+=%#LightBlack#
+set statusline+=\ 
+set statusline+=%#Purple#
+set statusline+=
+set statusline+=%#PurpleBG#
+set statusline+=%{Fileformat()}
+set statusline+=%#Purple#
+set statusline+=\ 
+set statusline+=%#LightPurple#
+set statusline+=
+set statusline+=%#LightPurpleBG#
 set statusline+=%l
 set statusline+=\ %c
+set statusline+=%#LightPurple#
 set statusline+=\ 
+set statusline+=%#LightCyan#
 set statusline+=
-set statusline+=\ %p%%
+set statusline+=%#LightCyanBG#
+set statusline+=%p%%
+set statusline+=%#LightCyan#
 set statusline+=
