@@ -48,7 +48,7 @@ endfunction
 
 function! StatuslineGit()
     let l:branchname = fugitive#head()
-    return strlen(l:branchname) > 0 ? ' '.l:branchname.' ':''
+    return strlen(l:branchname) > 0 ? '  '.l:branchname.' ':''
 endfunction
 
 function! Filetype()
@@ -104,6 +104,10 @@ set statusline+=
 set statusline+=%=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{Fileformat()}\]
-set statusline+=\ %l:%c
+set statusline+=
+set statusline+=%l
+set statusline+=\ %c
+set statusline+=\ 
+set statusline+=
 set statusline+=\ %p%%
-set statusline+=\ 
+set statusline+=
