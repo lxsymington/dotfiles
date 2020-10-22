@@ -43,3 +43,9 @@ set equalalways
 
 "Display the foldcolumn
 set foldcolumn=1
+
+"Enable pseudo-transparency for popup menus
+set pumblend=10
+
+"Enable pseudo-transparency for floating windows
+set winblend=10
