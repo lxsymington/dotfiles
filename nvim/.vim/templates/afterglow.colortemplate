@@ -127,7 +127,7 @@ SpellBad             brightred         none              s=red
 SpellCap             yellow            none              s=blue
 SpellLocal           brightwhite       none              s=darkmagenta
 SpellRare            brightyellow      none              s=cyan reverse
-StatusLine           brightwhite       black
+StatusLine           brightwhite       black             strikethrough
 StatusLineNC         white             brightblack
 TabLine              grey              black
 TabLineFill          none              brightblack
@@ -349,7 +349,7 @@ SpellBad             red               none              s=red
 SpellCap             yellow            none              s=blue
 SpellLocal           white             none              s=magenta
 SpellRare            yellow            none              s=cyan reverse
-StatusLine           black             none
+StatusLine           black             none              strikethrough
 StatusLineNC         brightblack       none
 TabLine              white             brightmagenta
 TabLineFill          none              white
