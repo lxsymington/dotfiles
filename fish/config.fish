@@ -2,7 +2,9 @@
 fish_vi_key_bindings
 
 # Enable use of nix package manager
-bass source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
+if test -d ~/.nix-profile
+    bass source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
+end
 
 # Bootstrap `fisher` and install listed plugins
 if not functions -q fisher
@@ -12,7 +14,7 @@ if not functions -q fisher
 end
 
 # Launch keychain on login
-if status is-interactive
+if type -q keychain && status is-interactive
     keychain --eval --clear --quiet --agents ssh id_rsa | source
 end
 

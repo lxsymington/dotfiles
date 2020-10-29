@@ -45,7 +45,14 @@ set equalalways
 set foldcolumn=1
 
 "Enable pseudo-transparency for popup menus
-set pumblend=10
+if has('nvim')
+    set pumblend=10
+endif
 
 "Enable pseudo-transparency for floating windows
-set winblend=10
+if has('nvim')
+    set winblend=10
+endif
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect

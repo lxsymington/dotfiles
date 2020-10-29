@@ -61,7 +61,9 @@ set breakindent
 set breakindentopt=min:20,shift:0,sbr
 
 "Preview effects of :%s as you type
-set inccommand=nosplit
+if has('nvim')
+    set inccommand=nosplit
+endif
 
 "Hide abandoned buffers instead of unloading them
 set hidden

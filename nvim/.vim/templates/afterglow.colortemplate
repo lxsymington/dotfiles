@@ -97,7 +97,7 @@ ColorColumn          none              brightblack
 Conceal              none              none
 Cursor               brightwhite       none              bold,reverse
 CursorColumn         none              brightblack
-CursorLine           none              brightblack
+CursorLine           none              grey
 CursorLineNr         white             darkmagenta
 DiffAdd              green             brightgreen       reverse
 DiffChange           none              brightblack
