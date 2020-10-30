@@ -17,7 +17,7 @@ if not packer_exists then
   ))
 
   print(out)
-  print("Downloading packer.nvim")
+  print('Downloading packer.nvim')
 
   return
 end
@@ -44,10 +44,10 @@ return require('packer').startup {
     use {'nvim-lua/telescope.nvim', opt = true, requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
 
     -- Highlighting
-    use {'nvim-treesitter/nvim-treesitter', config = 'require("treesitter")'}
+    use {'nvim-treesitter/nvim-treesitter', config = [[require('treesitter')]]}
 
     -- Completion
-    use {'nvim-lua/completion-nvim', event = 'InsertEnter *', config = 'require("lsp")'}
+    use {'nvim-lua/completion-nvim', event = 'InsertEnter *', config = [[require('lsp')]]}
     use {'nvim-treesitter/completion-treesitter', opt = true}
 
     -- Diagnostics
@@ -112,6 +112,9 @@ return require('packer').startup {
 
     -- Test runner
     use 'vim-test/vim-test'
+
+    -- Config
+    use 'svermeulen/vimpeccable'
   end,
   _config = {
     display = {
