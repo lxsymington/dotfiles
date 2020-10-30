@@ -4,6 +4,7 @@ plugged
 .netrwhist
 fish/fishd.*
 fish/functions
+fish/fish_variables
 nvim/.vim/session
 nvim/.vim/sessions
 nvim/.vim/autoload/plug.vim*
