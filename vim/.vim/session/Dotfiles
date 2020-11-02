@@ -1,0 +1,176 @@
+let SessionLoad = 1
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/dotfiles
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +118 nvim/.vim/statusline.vim
+badd +45 nvim/.vimrc
+badd +1 Highlight\ test
+badd +54 ~/.local/share/nvim/plugged/fern-renderer-nerdfont.vim/doc/fern-renderer-nerdfont.txt
+badd +1 nvim/.vim/templates/afterglow.colortemplate
+badd +14 nvim/.vim/templates/miramare.colortemplate
+badd +1 nvim/.vim/templates/dark_and_light.colortemplate
+badd +362 nvim/.vim/templates/default_clone.colortemplate
+badd +1 nvim/dark_and_light.colortemplate
+badd +1 nvim/.vim/templates/.afterglow.colortemplate.un~
+badd +1 nvim/.vim/colors/afterglow.vim
+badd +1 nvim/.vim/doc/afterglow.txt
+badd +1 nvim/.vim/templates/dark.colortemplate
+badd +23 nvim/.vim/ui.vim
+badd +0 /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/options.txt
+badd +0 /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/syntax.txt
+badd +247 /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/fold.txt
+argglobal
+%argdel
+set stal=2
+edit nvim/.vim/statusline.vim
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 133 + 133) / 266)
+exe 'vert 2resize ' . ((&columns * 132 + 133) / 266)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+72,126fold
+72
+normal! zo
+let s:l = 24 - ((23 * winheight(0) + 30) / 61)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+24
+normal! 029|
+wincmd w
+argglobal
+if bufexists("/nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/options.txt") | buffer /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/options.txt | else | edit /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/options.txt | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let s:l = 5933 - ((36 * winheight(0) + 30) / 61)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+5933
+normal! 031|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 133 + 133) / 266)
+exe 'vert 2resize ' . ((&columns * 132 + 133) / 266)
+tabedit nvim/.vim/templates/afterglow.colortemplate
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 88 + 133) / 266)
+exe 'vert 2resize ' . ((&columns * 88 + 133) / 266)
+exe 'vert 3resize ' . ((&columns * 88 + 133) / 266)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+317,382fold
+317
+normal! zo
+let s:l = 490 - ((30 * winheight(0) + 30) / 61)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+490
+normal! 0
+lcd ~/dotfiles/nvim/.vim/templates
+wincmd w
+argglobal
+if bufexists("/nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/syntax.txt") | buffer /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/syntax.txt | else | edit /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/syntax.txt | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let s:l = 4970 - ((24 * winheight(0) + 30) / 61)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+4970
+normal! 037|
+lcd ~/dotfiles/nvim/.vim/templates
+wincmd w
+argglobal
+if bufexists("/nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/fold.txt") | buffer /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/fold.txt | else | edit /nix/store/9wi2c41zj9imyj3jwpyiv8q80gd1cz7j-neovim-unwrapped-0.4.4/share/nvim/runtime/doc/fold.txt | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let s:l = 247 - ((6 * winheight(0) + 30) / 61)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+247
+normal! 059|
+lcd ~/dotfiles/nvim/.vim/templates
+wincmd w
+exe 'vert 1resize ' . ((&columns * 88 + 133) / 266)
+exe 'vert 2resize ' . ((&columns * 88 + 133) / 266)
+exe 'vert 3resize ' . ((&columns * 88 + 133) / 266)
+tabnext 1
+set stal=1
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOFIc
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

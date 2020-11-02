@@ -55,4 +55,4 @@ if has('nvim')
 endif
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,preview,noinsert,noselect
