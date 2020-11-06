@@ -24,32 +24,6 @@ local plugins = {
     only_setup = false,
     path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
-  ["plenary.nvim"] = {
-    load_after = {
-      ["telescope.nvim"] = true
-    },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    load_after = {
-      ["telescope.nvim"] = true
-    },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/popup.nvim"
-  },
-  ["telescope.nvim"] = {
-    after = { "popup.nvim", "plenary.nvim" },
-    config = { "\27LJ\2\2)\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\14telescope\frequire\0" },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
-  },
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
     loaded = false,
@@ -120,7 +94,6 @@ _packer_load = function(names, cause)
   for _, name in ipairs(names) do
     if not plugins[name].loaded then
       vim.cmd('packadd ' .. name)
-      vim._update_package_paths()
       if plugins[name].config then
         for _i, config_line in ipairs(plugins[name].config) do
           loadstring(config_line)()
@@ -183,13 +156,14 @@ end
 -- Post-load configuration
 -- Config for: nvim-treesitter
 loadstring("\27LJ\2\2*\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\15treesitter\frequire\0")()
--- Config for: nvim-tree.lua
-loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.lua_tree\frequire\0")()
+-- Config for: telescope.nvim
+loadstring("\27LJ\2\2e\0\0\2\0\4\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\1\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\30plugin_settings.telescope\nsetup\14telescope\frequire\0")()
 -- Config for: nvim-colorizer.lua
 loadstring("\27LJ\2\2l\0\0\3\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0=\2\5\0015\2\6\0=\2\a\1B\0\2\1K\0\1\0\thtml\1\0\1\nnames\1\bcss\1\0\1\bcss\2\1\2\0\0\6*\nsetup\14colorizer\frequire\0")()
+-- Config for: nvim-tree.lua
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.lua_tree\frequire\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
-vim._update_package_paths()
 END
 
 function! s:load(names, cause) abort

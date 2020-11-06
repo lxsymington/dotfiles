@@ -64,12 +64,14 @@ return require('packer').startup {
     -- Search
     use {
         'nvim-lua/telescope.nvim',
-        opt = true,
         requires = {
             'nvim-lua/popup.nvim',
-            'nvim-lua/plenary.nvim'
+            'nvim-lua/plenary.nvim',
         },
-        config = function() require('plugin_settings.telescope') end,
+        config = function()
+            require('telescope').setup()
+            require('plugin_settings.telescope').setup()
+        end,
     }
 
     -- Highlighting
@@ -120,10 +122,6 @@ return require('packer').startup {
     use 'editorconfig/editorconfig-vim'
 
     -- File explorer
-    use 'lambdalisue/fern-git-status.vim'
-    use 'lambdalisue/fern-renderer-nerdfont.vim'
-    use 'lambdalisue/fern.vim'
-    use 'lambdalisue/glyph-palette.vim'
     use 'lambdalisue/nerdfont.vim'
 
     -- Colorscheme builder
