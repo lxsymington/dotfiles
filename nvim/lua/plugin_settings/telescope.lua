@@ -1,4 +1,3 @@
-local vimp = require('vimp')
 local should_reload = true
 local reloader = function()
   if should_reload then
@@ -16,7 +15,6 @@ local themes = require('telescope.themes')
 
 require('telescope').setup {
   defaults = {
-    prompt = true,
     prompt_prefix = '➜',
 
     winblend = 10,
@@ -41,15 +39,6 @@ require('telescope').setup {
     prompt_position = "bottom",
     color_devicons = true,
 
-    mappings = {
-      i = {
-        ["<c-x>"] = false,
-        ["<c-s>"] = actions.goto_file_selection_split,
-      },
-    },
-
-    border = true,
-
     -- for the top/right/bottom/left border.  Optionally
     -- followed by the character to use for the
     -- topleft/topright/botright/botleft corner.
@@ -64,25 +53,26 @@ require('telescope').setup {
 
 local M = {}
 
-function M.fd()
-    require('telescope.builtin').fd()
-end
+-- function M.fd()
+--     require('telescope.builtin').fd()
+-- end
 
 function M.builtin()
     require('telescope.builtin').builtin()
+    vimp.nnoremap('<Leader>fd', require('telescope.builtin').fd())
 end
 
-function M.git_files()
-    require('telescope.builtin').git_files()
-end
+-- function M.git_files()
+--     require('telescope.builtin').git_files()
+-- end
 
-function M.live_grep()
-    require('telescope.builtin').live_grep()
-end
+-- function M.live_grep()
+--     require('telescope.builtin').live_grep()
+-- end
 
-function M.oldfiles()
-    require('telescope.builtin').oldfiles()
-end
+-- function M.oldfiles()
+--     require('telescope.builtin').oldfiles()
+-- end
 
 function M.project_search()
     require('telescope.builtin').find_files {
@@ -92,28 +82,28 @@ function M.project_search()
     }
 end
 
-function M.buffers()
-    require('telescope.builtin').buffers {
-        shorten_path = false,
-    }
-end
+-- function M.buffers()
+--     require('telescope.builtin').buffers {
+--         shorten_path = false,
+--     }
+-- end
 
-function M.curbuf()
-    local opts = themes.get_dropdown {
-        winblend = 10,
-        border = true,
-        previewer = false,
-        shorten_path = false,
-    }
+-- function M.curbuf()
+--     local opts = themes.get_dropdown {
+--         winblend = 10,
+--         border = true,
+--         previewer = false,
+--         shorten_path = false,
+--     }
 
-    require('telescope.builtin').current_buffer_fuzzy_find(opts)
-end
+--     require('telescope.builtin').current_buffer_fuzzy_find(opts)
+-- end
 
-function M.help_tags()
-    require('telescope.builtin').help_tags {
-        show_version = true,
-    }
-end
+-- function M.help_tags()
+--     require('telescope.builtin').help_tags {
+--         show_version = true,
+--     }
+-- end
 
 return setmetatable({}, {
     __index = function(_, k)

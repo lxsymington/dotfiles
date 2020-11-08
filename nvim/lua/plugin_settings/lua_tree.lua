@@ -51,11 +51,11 @@ function M.setup()
     next_git_item =   ']c',
   }
 
-  vimp.nnoremap({'silent'}, '<leader><Tab>', function()
+  vimp.nnoremap({'silent'}, '<Leader><Tab>', function()
     vim.cmd('LuaTreeToggle')
   end)
 
-  vimp.nnoremap({'silent'}, '<leader>ltr', function()
+  vimp.nnoremap({'silent'}, '<Leader>ltr', function()
     vim.cmd('LuaTreeRefresh')
   end)
 

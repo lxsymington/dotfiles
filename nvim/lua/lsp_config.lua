@@ -1,13 +1,7 @@
 local nvim_lsp = require('nvim_lsp')
-local nvim_status = require('lsp-status')
+local lsp_status = require('lsp-status')
 local completion = require('completion')
 local diagnostic = require('diagnostic')
-
---local status = require('tj.lsp_status')
-
--- Can set this lower if needed.
-require('vim.lsp.log').set_level("debug")
-require('vim.lsp.log').set_level("trace")
 
 local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
@@ -36,12 +30,12 @@ end
 -- end
 
 -- Turn on status.
-status.activate()
+lsp_status.register_progress()
 
 local custom_attach = function(client)
     completion.on_attach(client)
     diagnostic.on_attach(client)
-    status    .on_attach(client)
+    lsp_status    .on_attach(client)
 
     -- if false then
     --     pcall(setup_custom_diagnostics)
@@ -75,16 +69,32 @@ local custom_attach = function(client)
     vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 
-nvim_lsp.cssls.setup {on_attach=custom_attach}
+nvim_lsp.cssls.setup({
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})
 
-nvim_lsp.html.setup {on_attach=custom_attach}
+nvim_lsp.html.setup({
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})
 
-nvim_lsp.jsonls.setup {on_attach=custom_attach}
+nvim_lsp.jsonls.setup({
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})
 
 nvim_lsp.rust_analyzer.setup({
     cmd = {"rust-analyzer"},
     filetypes = {"rust"},
     on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})
+
+nvim_lsp.sumneko_lua.setup({
+    cmd = { "/home/lxs/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua" },
+    on_attach=on_attach_vim,
+    capabilities = lsp_status.capabilities,
 })
 
 nvim_lsp.tsserver.setup({
@@ -97,22 +107,16 @@ nvim_lsp.tsserver.setup({
         "typescriptreact",
         "typescript.tsx"
     },
-    on_attach = custom_attach
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.vimls.setup({ on_attach = custom_attach, })
+nvim_lsp.vimls.setup({
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})
 
--- local nvim_lsp = require'nvim_lsp'
--- local on_attach_vim = function(client)
---     require'completion'.on_attach(client)
---     require'diagnostic'.on_attach(client)
--- end
-
--- nvim_lsp.rust_analyzer.setup {on_attach=on_attach_vim}
--- nvim_lsp.sumneko_lua.setup {
---         cmd = { "/home/lxs/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua" },
---         on_attach=on_attach_vim
---     }
--- nvim_lsp.tsserver.setup {on_attach=on_attach_vim}
--- nvim_lsp.vimls.setup {on_attach=on_attach_vim}
--- nvim_lsp.yamlls.setup {on_attach=on_attach_vim}
+nvim_lsp.yamlls.setup({
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})

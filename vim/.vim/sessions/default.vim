@@ -4,14 +4,15 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Development
+cd ~/neovim
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-edit boatracker-frontend/packages/web-app/pages/_app.tsx
+$argadd ~/.tmux.conf
+edit ~/.tmux.conf
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -35,7 +36,7 @@ normal! zt
 1
 normal! 0
 tabnext 1
-badd +0 boatracker-frontend/packages/web-app/pages/_app.tsx
+badd +0 ~/.tmux.conf
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

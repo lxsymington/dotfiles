@@ -6,18 +6,6 @@ endif
 
 lua << END
 local plugins = {
-  ["completion-nvim"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/completion-nvim"
-  },
-  ["completion-treesitter"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/completion-treesitter"
-  },
   ["packer.nvim"] = {
     loaded = false,
     only_sequence = false,
@@ -154,12 +142,12 @@ end
 
 -- Pre-load configuration
 -- Post-load configuration
--- Config for: nvim-treesitter
-loadstring("\27LJ\2\2*\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\15treesitter\frequire\0")()
--- Config for: telescope.nvim
-loadstring("\27LJ\2\2e\0\0\2\0\4\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\1\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\30plugin_settings.telescope\nsetup\14telescope\frequire\0")()
 -- Config for: nvim-colorizer.lua
 loadstring("\27LJ\2\2l\0\0\3\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0=\2\5\0015\2\6\0=\2\a\1B\0\2\1K\0\1\0\thtml\1\0\1\nnames\1\bcss\1\0\1\bcss\2\1\2\0\0\6*\nsetup\14colorizer\frequire\0")()
+-- Config for: nvim-treesitter
+loadstring("\27LJ\2\2*\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\15treesitter\frequire\0")()
+-- Config for: nvim-lsp
+loadstring("\27LJ\2\0028\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15lsp_config\frequire\0")()
 -- Config for: nvim-tree.lua
 loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.lua_tree\frequire\0")()
 -- Conditional loads
@@ -183,5 +171,4 @@ augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
   " Event lazy-loads
-  au InsertEnter * ++once call s:load(['completion-nvim'], { "event": "InsertEnter *" })
 augroup END

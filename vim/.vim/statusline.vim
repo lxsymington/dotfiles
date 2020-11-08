@@ -91,8 +91,8 @@ function! StatusLineString()
     let l:statusleft = [CurrentMode(), CreatePill([['LightBlack', '%<', FilePath(), '%m', '%r'], ['Blue', StatuslineGit()]])]
     let l:statuscentre = [CreatePill([['Red','%n'], ['LightBlack', FileType()]])] ", ['Purple', coc#status()]
     let l:statusright = [CreatePill([['White', FileEncoding()], ['LightGrey', FileFormat()], ['Grey', '%l:%c'], ['LightBlack', '%p%%']])]
-    let l:statusline = [join(l:statusleft), join(l:statuscentre), join(l:statusright)]
-    return join(l:statusline, '%=')
+    let l:statusline = [join(l:statusleft, '%#StatusLine# '), join(l:statuscentre, '%#StatusLine# '), join(l:statusright, '%#StatusLine# ')]
+    return join(l:statusline, '%#StatusLine#%=')
 endfunction
 
 "Always show status line

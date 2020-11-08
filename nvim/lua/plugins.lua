@@ -32,6 +32,37 @@ return require('packer').startup {
     -- Config
     use 'svermeulen/vimpeccable'
 
+    -- Highlighting
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        config = function()
+            require('treesitter')
+        end,
+    }
+
+    -- File Explorer
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+        config = function()
+            require('plugin_settings.lua_tree').setup()
+        end,
+    }
+
+    -- LSP configurations
+    use {
+        'neovim/nvim-lsp',
+        requires = {
+            'nvim-lua/completion-nvim',
+            'nvim-lua/diagnostic-nvim',
+            'nvim-lua/lsp-status.nvim',
+            'nvim-treesitter/completion-treesitter',
+        },
+        config = function()
+            require'lsp_config'
+        end,
+    }
+
     -- Lazy loading:
     -- Load on specific commands
     use {
@@ -44,9 +75,6 @@ return require('packer').startup {
             'Start',
         },
     }
-
-    -- LSP configurations
-    use 'neovim/nvim-lspconfig'
 
     -- Highlight colours
     use {
@@ -62,46 +90,14 @@ return require('packer').startup {
     use 'junegunn/vim-peekaboo'
 
     -- Search
-    use {
-        'nvim-lua/telescope.nvim',
-        requires = {
-            'nvim-lua/popup.nvim',
-            'nvim-lua/plenary.nvim',
-        },
-        config = function()
-            require('telescope').setup()
-            require('plugin_settings.telescope').setup()
-        end,
-    }
-
-    -- Highlighting
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        config = function() require('treesitter') end,
-    }
-
-    -- Completion
-    use {
-        'nvim-lua/completion-nvim',
-        event = 'InsertEnter *',
-    }
-    use {
-        'nvim-treesitter/completion-treesitter',
-        opt = true,
-    }
-
-    -- Diagnostics
-    use 'nvim-lua/diagnostic-nvim'
-
-    -- Status
-    use 'nvim-lua/lsp-status.nvim'
-
-    -- Icons
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function() require('plugin_settings.lua_tree').setup() end,
-    }
+    -- use {
+    --     'nvim-lua/telescope.nvim',
+    --     requires = {
+    --         'nvim-lua/popup.nvim',
+    --         'nvim-lua/plenary.nvim',
+    --     },
+    --     config = require('plugin_settings.telescope').setup,
+    -- }
 
     -- Languages
     use 'sheerun/vim-polyglot'

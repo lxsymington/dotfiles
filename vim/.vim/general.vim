@@ -24,7 +24,7 @@ set modelines=0
 "Sets the backspace behaviour to conventional
 set backspace=indent,eol,start
 
-"Change the default leader ('/') character for custom mappings
+"Change the default leader ('\') character for custom mappings
 let mapleader = ','
 
 "Enables line numbers

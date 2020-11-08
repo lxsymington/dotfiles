@@ -1,23 +1,20 @@
 let SessionLoad = 1
+if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
+silent tabonly
 cd ~/Development/boatracker-frontend
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 packages/stencil-components/src/components/boatracker-navigation/boatracker-navigation.tsx
-badd +1 packages/stencil-components/src/components/boatracker-navigation/boatracker-navigation.scss
-badd +21 packages/stencil-components/src/components/boatracker-modal/boatracker-modal.tsx
-badd +63 packages/stencil-components/src/components/boatracker-modal/boatracker-modal.scss
-badd +1 packages/stencil-components/src/components/boatracker-register/boatracker-register.tsx
-badd +15 packages/stencil-components/src/components/boatracker-input/boatracker-input.tsx
-badd +18 packages/stencil-components/src/components/boatracker-input/boatracker-input.scss
-badd +29 packages/stencil-components/src/components/boatracker-register/boatracker-register.scss
 argglobal
 %argdel
 set stal=2
+tabnew
+tabnew
+tabrewind
 edit packages/stencil-components/src/components/boatracker-navigation/boatracker-navigation.tsx
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -68,7 +65,8 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 133 + 133) / 266)
 exe 'vert 2resize ' . ((&columns * 132 + 133) / 266)
-tabedit packages/stencil-components/src/components/boatracker-register/boatracker-register.tsx
+tabnext
+edit packages/stencil-components/src/components/boatracker-register/boatracker-register.tsx
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -118,19 +116,36 @@ normal! 03|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 133 + 133) / 266)
 exe 'vert 2resize ' . ((&columns * 132 + 133) / 266)
-tabedit packages/stencil-components/src/components/boatracker-modal/boatracker-modal.tsx
+tabnext
+edit packages/stencil-components/src/components/boatracker-modal/boatracker-modal.tsx
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 133 + 133) / 266)
-exe 'vert 2resize ' . ((&columns * 132 + 133) / 266)
+exe 'vert 1resize ' . ((&columns * 45 + 133) / 266)
+exe 'vert 2resize ' . ((&columns * 131 + 133) / 266)
+exe 'vert 3resize ' . ((&columns * 88 + 133) / 266)
+argglobal
+enew
+file fern://drawer:3/file:///home/lxs/Development/boatracker-frontend;width=45\$
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -141,12 +156,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 46 - ((39 * winheight(0) + 30) / 60)
+let s:l = 18 - ((5 * winheight(0) + 30) / 60)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-46
-normal! 0122|
+18
+normal! 024|
 wincmd w
 argglobal
 if bufexists("packages/stencil-components/src/components/boatracker-modal/boatracker-modal.scss") | buffer packages/stencil-components/src/components/boatracker-modal/boatracker-modal.scss | else | edit packages/stencil-components/src/components/boatracker-modal/boatracker-modal.scss | endif
@@ -166,15 +181,26 @@ normal! zt
 18
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 133 + 133) / 266)
-exe 'vert 2resize ' . ((&columns * 132 + 133) / 266)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 45 + 133) / 266)
+exe 'vert 2resize ' . ((&columns * 131 + 133) / 266)
+exe 'vert 3resize ' . ((&columns * 88 + 133) / 266)
 tabnext 3
 set stal=1
-if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+badd +1 packages/stencil-components/src/components/boatracker-navigation/boatracker-navigation.tsx
+badd +1 packages/stencil-components/src/components/boatracker-navigation/boatracker-navigation.scss
+badd +1 packages/stencil-components/src/components/boatracker-modal/boatracker-modal.tsx
+badd +1 packages/stencil-components/src/components/boatracker-modal/boatracker-modal.scss
+badd +1 packages/stencil-components/src/components/boatracker-register/boatracker-register.tsx
+badd +15 packages/stencil-components/src/components/boatracker-input/boatracker-input.tsx
+badd +18 packages/stencil-components/src/components/boatracker-input/boatracker-input.scss
+badd +1 packages/stencil-components/src/components/boatracker-register/boatracker-register.scss
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOFcI
+set winheight=1 winwidth=20 shortmess=filnxtToOFcI
+set winminheight=1 winminwidth=1
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
