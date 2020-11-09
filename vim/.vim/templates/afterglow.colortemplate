@@ -68,7 +68,8 @@ Color: orange               #ec722f     ~        DarkYellow
 Color: brightorange         #fe882e     ~        DarkYellow
 Color: grey                 #786674     ~        DarkGrey
 Color: brightgrey           #9f8d9d     ~        LightGrey
-Color: darkmagenta          #4f2d52     ~        DarkMagenta
+Color: darkmagenta          #534155     ~        DarkMagenta
+Color: darkgrey             #261723     ~        DarkGrey
 ; }}}
 
 ; Terminal colors for dark variant {{{
@@ -97,7 +98,7 @@ ColorColumn          none              brightblack
 Conceal              none              none
 Cursor               brightwhite       none              bold,reverse
 CursorColumn         none              brightblack
-CursorLine           none              grey
+CursorLine           none              darkgrey
 CursorLineNr         white             darkmagenta
 DiffAdd              green             brightgreen       reverse
 DiffChange           none              brightblack

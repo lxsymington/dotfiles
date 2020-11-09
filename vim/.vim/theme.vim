@@ -36,7 +36,7 @@ endif
 " colorscheme miramare
 
 "Afterglow configuration
-let g:afterglow_transp_bg = 0
+let g:afterglow_transp_bg = 1
 
 "Sets the colorscheme to be Afterglow
 colorscheme afterglow
