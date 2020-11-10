@@ -1,4 +1,4 @@
-*afterglow.txt*	For Vim version 8.0	Last change: 2020 Nov 05
+*afterglow.txt*	For Vim version 8.0	Last change: 2020 Nov 10
 
 
 		  Afterglow color scheme    by Luke
