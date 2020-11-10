@@ -90,14 +90,16 @@ return require('packer').startup {
     use 'junegunn/vim-peekaboo'
 
     -- Search
-    -- use {
-    --     'nvim-lua/telescope.nvim',
-    --     requires = {
-    --         'nvim-lua/popup.nvim',
-    --         'nvim-lua/plenary.nvim',
-    --     },
-    --     config = require('plugin_settings.telescope').setup,
-    -- }
+    use {
+        'nvim-lua/telescope.nvim',
+        requires = {
+            'nvim-lua/popup.nvim',
+            'nvim-lua/plenary.nvim',
+        },
+        config = function()
+          require('plugin_settings.telescope').setup()
+        end,
+    }
 
     -- Languages
     use 'sheerun/vim-polyglot'
