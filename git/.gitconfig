@@ -38,6 +38,8 @@
 	fco = "!git short-recent | fzf --print0 --preview-window top:50% --preview 'git show {}| delta' | xargs -0 -t git checkout"
 [push]
 	default = upstream
+[pull]
+	ff = only
 [color]
 	ui = true
 [diff]
@@ -65,12 +67,6 @@
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [difftool "nvimdiff2"]
 	cmd = nvim -d $LOCAL $REMOTE
-[mergetool "bc"]
-	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
-	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
-[difftool "bc"]
-	path = C:\\Program Files\\Beyond Compare 4\\bcomp.exe
-	cmd = \"C:\\Program Files\\Beyond Compare 4\\bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
 [commit]
 	template = ~/.git-commit-template
 	verbose = true

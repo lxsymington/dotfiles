@@ -6,6 +6,11 @@ if test -d ~/.nix-profile
     bass source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
 end
 
+# Seccl specific
+if test -d ~/.seccl
+    bass source ~/.seccl/env.sh
+end
+
 # Bootstrap `fisher` and install listed plugins
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
