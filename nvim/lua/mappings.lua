@@ -1,3 +1,5 @@
+local vimp = require('vimp')
+
 -- Convenient normal mode
 vimp.imap('jj', '<esc>')
 

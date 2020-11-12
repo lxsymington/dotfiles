@@ -147,6 +147,7 @@ return require('packer').startup {
 
     -- Version Control
     use 'tpope/vim-fugitive'
+    use 'mhinz/vim-signify'
 
     -- Test runner
     use 'vim-test/vim-test'
