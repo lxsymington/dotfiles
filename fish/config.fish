@@ -1,14 +1,19 @@
 # Enable Vi keybindings
 fish_vi_key_bindings
 
+# Use starship as a prompt when it is available
+if type -q starship
+    starship init fish | source
+end
+
 # Enable use of nix package manager
-if test -d ~/.nix-profile
-    bass source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
+if type -q bax && test -d ~/.nix-profile
+    bax source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
 end
 
 # Seccl specific
-if test -d ~/.seccl
-    bass source ~/.seccl/env.sh
+if type -q bax && test -d ~/.seccl
+    bax source ~/.seccl/env.sh
 end
 
 # Bootstrap `fisher` and install listed plugins
@@ -37,3 +42,7 @@ end
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /Users/lukexaviersymington/.nvm/versions/node/v12.19.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish ]; and . /Users/lukexaviersymington/.nvm/versions/node/v12.19.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /Users/lukexaviersymington/Development/cash-processor/node_modules/tabtab/.completions/slss.fish ]; and . /Users/lukexaviersymington/Development/cash-processor/node_modules/tabtab/.completions/slss.fish
