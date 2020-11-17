@@ -11,6 +11,11 @@ if type -q bax && test -d ~/.nix-profile
     bax source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
 end
 
+# Enable use of nix package manager
+if test -d ~/.nvm && type -q nvm
+    load_nvm
+end
+
 # Seccl specific
 if type -q bax && test -d ~/.seccl
     bax source ~/.seccl/env.sh
