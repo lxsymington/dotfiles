@@ -11,7 +11,7 @@ end
 
 reloader()
 
--- local actions = require('telescope.actions')
+local actions = require('telescope.actions')
 local sorters = require('telescope.sorters')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
@@ -20,81 +20,81 @@ local M = {}
 
 function M.setup()
     require('telescope').setup {
-            defaults = {
-                prompt_prefix = '➜',
-
-                winblend = 10,
-                preview_cutoff = 120,
-
-                scroll_strategy = 'cycle',
-                layout_strategy = "horizontal",
-                layout_defaults = {
-                    horizontal = {
-                        width_padding = 0.1,
-                        height_padding = 0.1,
-                        preview_width = 0.6,
-                    },
-                    vertical = {
-                        width_padding = 0.05,
-                        height_padding = 1,
-                        preview_height = 0.5,
-                    }
+        defaults = {
+            -- for the top/right/bottom/left border.  Optionally
+            -- followed by the character to use for the
+            -- topleft/topright/botright/botleft corner.
+            borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+            color_devicons = true,
+            file_sorter = sorters.get_fzy_sorter,
+            layout_strategy = "flex",
+            layout_defaults = {
+                horizontal = {
+                    width_padding = 0.1,
+                    height_padding = 0.1,
+                    preview_width = 0.6,
                 },
-
-                sorting_strategy = "descending",
-                prompt_position = "bottom",
-                color_devicons = true,
-
-                -- for the top/right/bottom/left border.  Optionally
-                -- followed by the character to use for the
-                -- topleft/topright/botright/botleft corner.
-                borderchars = {
-                    { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
-                    preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+                vertical = {
+                    width_padding = 0.05,
+                    height_padding = 1,
+                    preview_height = 0.5,
+                }
+            },
+            mappings = {
+                i = {
+                    ["<CR>"] = actions.goto_file_selection_edit + actions.center,
                 },
-
-                file_sorter = sorters.get_fzy_sorter,
-            }
+                n = {
+                    ["<esc>"] = actions.close,
+                }
+            },
+            preview_cutoff = 120,
+            prompt_position = 'bottom',
+            prompt_prefix = '🔭 ➜',
+            scroll_strategy = 'cycle',
+            sorting_strategy = "descending",
+            winblend = 10,
         }
+    }
 
     vimp.nnoremap('<Leader>fd', function()
-            builtin.fd()
-        end)
+        builtin.fd()
+    end)
 
     vimp.nnoremap('<Leader>fgf', function()
-            builtin.git_files()
-        end)
+        builtin.git_files()
+    end)
 
     vimp.nnoremap('<Leader>fpf', function()
-            builtin.find_files {
-                    previewer = false,
-                    layout_strategy = "vertical",
-                    cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p")),
-                }
-        end)
+        builtin.find_files {
+            previewer = false,
+            layout_strategy = "vertical",
+            cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p")),
+        }
+    end)
 
     vimp.nnoremap('<Leader>fht', function()
-            builtin.help_tags()
-        end)
+        builtin.help_tags()
+    end)
 
     vimp.nnoremap('<Leader>fb', function()
-            builtin.buffers()
-        end)
+        builtin.buffers()
+    end)
 
     vimp.nnoremap('<Leader>lg', function()
-            builtin.live_grep()
-        end)
+        builtin.live_grep()
+    end)
 
     vimp.nnoremap('<Leader>lbg', function()
-            local opts = themes.get_dropdown {
-                    winblend = 10,
-                    border = true,
-                    previewer = false,
-                    shorten_path = false,
-                }
+        local opts = themes.get_dropdown {
+            winblend = 10,
+            border = true,
+            previewer = false,
+            shorten_path = false,
+        }
 
-            builtin.current_buffer_fuzzy_find(opts)
-        end)
+        builtin.current_buffer_fuzzy_find(opts)
+    end)
 end
 
 function M.fd()
@@ -119,10 +119,10 @@ end
 
 function M.project_search()
     builtin.find_files {
-            previewer = false,
-            layout_strategy = "vertical",
-            cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p")),
-        }
+        previewer = false,
+        layout_strategy = "vertical",
+        cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p")),
+    }
 end
 
 function M.buffers()
@@ -149,13 +149,13 @@ function M.help_tags()
 end
 
 return setmetatable({}, {
-        __index = function(_, k)
-            reloader()
+    __index = function(_, k)
+        reloader()
 
-            if M[k] then
-                return M[k]
-            else
-                return builtin[k]
-            end
+        if M[k] then
+            return M[k]
+        else
+            return builtin[k]
         end
-    })
+    end
+})

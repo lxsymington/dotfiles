@@ -90,6 +90,11 @@ lspconfig.cssls.setup({
     capabilities = lsp_status.capabilities,
 })
 
+lspconfig.efm.setup({
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities,
+})
+
 lspconfig.html.setup({
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
@@ -109,7 +114,10 @@ lspconfig.rust_analyzer.setup({
 
 lspconfig.sumneko_lua.setup({
     cmd = { "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua" },
-    on_attach=on_attach_vim,
+    diagnostics = {
+        globals = {'vim'},
+    },
+    on_attach=custom_attach,
     capabilities = lsp_status.capabilities,
 })
 

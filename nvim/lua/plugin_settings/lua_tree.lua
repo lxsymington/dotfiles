@@ -8,7 +8,7 @@ function M.setup()
   vim.g.lua_tree_auto_close = 1
   vim.g.lua_tree_follow = 1
   vim.g.lua_tree_indent_markers = 1
-  vim.g.lua_tree_hide_dotfiles = 1
+  vim.g.lua_tree_hide_dotfiles = 0
   vim.g.lua_tree_tab_open = 1
   vim.g.lua_tree_show_icons = {
     git = 1,

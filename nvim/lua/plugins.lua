@@ -90,7 +90,7 @@ return require('packer').startup {
 
     -- Search
     use {
-        'nvim-lua/telescope.nvim',
+        'nvim-telescope/telescope.nvim',
         requires = {
             'nvim-lua/popup.nvim',
             'nvim-lua/plenary.nvim',
