@@ -12,7 +12,7 @@ if not packer_exists then
   local out = vim.fn.system(string.format(
     'git clone %s %s',
     'https://github.com/wbthomason/packer.nvim',
-    directory .. '/packer.nvim'
+    directory .. 'packer.nvim'
   ))
 
   print(out)
@@ -36,7 +36,7 @@ return require('packer').startup {
     use {
         'nvim-treesitter/nvim-treesitter',
         config = function()
-            require('treesitter')
+            require('plugin_settings.treesitter')
         end,
     }
 
@@ -51,10 +51,9 @@ return require('packer').startup {
 
     -- LSP configurations
     use {
-        'neovim/nvim-lsp',
+        'neovim/nvim-lspconfig',
         requires = {
             'nvim-lua/completion-nvim',
-            'nvim-lua/diagnostic-nvim',
             'nvim-lua/lsp-status.nvim',
             'nvim-treesitter/completion-treesitter',
         },

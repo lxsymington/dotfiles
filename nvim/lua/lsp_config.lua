@@ -1,16 +1,26 @@
 local vimp = require('vimp')
-local nvim_lsp = require('nvim_lsp')
+local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
-local diagnostic = require('diagnostic')
 
 -- Turn on status.
 lsp_status.register_progress()
 
 local custom_attach = function(client)
     completion.on_attach(client)
-    diagnostic.on_attach(client)
     lsp_status.on_attach(client)
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+            -- Enable underline, use default values
+            underline = true,
+            -- Enable virtual text, override spacing to 4
+            virtual_text = {
+                spacing = 4,
+                prefix = '🔎',
+            },
+        }
+    )
 
     -- Go to definition
     vimp.nnoremap({'silent'}, '<Leader>gd', function()
@@ -47,9 +57,9 @@ local custom_attach = function(client)
         vim.lsp.buf.hover()
     end)
 
-    -- Show line diagnostics
+    -- Open diagnostics
     vimp.nnoremap({'silent'}, '<Leader>-', function()
-        vim.lsp.util.show_line_diagnostics()
+        vim.lsp.diagnostic.set_loclist()
     end)
 
     -- Signature help
@@ -59,12 +69,12 @@ local custom_attach = function(client)
 
     -- Go to next diagnostic
     vimp.nnoremap({'silent'}, ']d', function()
-        vim.lsp.structures.Diagnostic.buf_move_next_diagnostic()
+        vim.lsp.diagnostic.goto_next()
     end)
 
     -- Go to previous diagnostic
     vimp.nnoremap({'silent'}, '[d', function()
-        vim.lsp.structures.Diagnostic.buf_move_prev_diagnostic()
+        vim.lsp.diagnostic.goto_prev()
     end)
 
     -- Rust is currently the only thing w/ inlay hints
@@ -75,35 +85,35 @@ local custom_attach = function(client)
     vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 
-nvim_lsp.cssls.setup({
+lspconfig.cssls.setup({
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.html.setup({
+lspconfig.html.setup({
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.jsonls.setup({
+lspconfig.jsonls.setup({
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.rust_analyzer.setup({
+lspconfig.rust_analyzer.setup({
     cmd = {"rust-analyzer"},
     filetypes = {"rust"},
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.sumneko_lua.setup({
-    cmd = { "/home/lxs/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua" },
+lspconfig.sumneko_lua.setup({
+    cmd = { "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua" },
     on_attach=on_attach_vim,
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.tsserver.setup({
+lspconfig.tsserver.setup({
     cmd = {"typescript-language-server", "--stdio"},
     filetypes = {
         "javascript",
@@ -117,12 +127,12 @@ nvim_lsp.tsserver.setup({
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.vimls.setup({
+lspconfig.vimls.setup({
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.yamlls.setup({
+lspconfig.yamlls.setup({
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities,
 })
