@@ -35,6 +35,7 @@ return require('packer').startup {
     -- Highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
+        requires = { 'nvim-treesitter/nvim-treesitter-textobjects' },
         config = function()
             require('plugin_settings.treesitter')
         end,
@@ -107,7 +108,12 @@ return require('packer').startup {
     use 'HerringtonDarkholme/yats.vim'
 
     -- Focus
-    use 'TaDaa/vimade'
+    use {
+        'TaDaa/vimade',
+        config = function()
+            require('plugin_settings.vimade').setup()
+        end,
+    }
 
     -- Colors
     use 'amadeus/vim-convert-color-to'
@@ -133,7 +139,12 @@ return require('packer').startup {
     use 'machakann/vim-sandwich'
 
     -- Landing page + sessions
-    use 'mhinz/vim-startify'
+    use {
+        'mhinz/vim-startify',
+        config = function()
+            require('plugin_settings.startify').setup()
+        end,
+    }
 
     -- Debugger
     use 'puremourning/vimspector'
@@ -145,10 +156,20 @@ return require('packer').startup {
     use 'tpope/vim-commentary'
 
     -- Version Control
-    use 'tpope/vim-fugitive'
+    use {
+        'tpope/vim-fugitive',
+        config = function()
+            require('plugin_settings.fugitive').setup()
+        end,
+    }
     use 'mhinz/vim-signify'
 
     -- Test runner
-    use 'vim-test/vim-test'
-  end
+    use {
+        'vim-test/vim-test',
+        config = function ()
+            require('plugin_settings.vim-test').setup()
+        end,
+    }
+  end,
 }

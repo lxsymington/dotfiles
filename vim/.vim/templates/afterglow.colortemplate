@@ -48,28 +48,28 @@ Background: dark
 ; Color palette for dark variant {{{
 ; You may use hexadecimal values, too, and you may provide an explicit base-256 color:
 ; Color name                GUI         Base256  Base16 (optional)
-Color: black                #111224     ~        Black
-Color: red                  #a95062     ~        DarkRed
-Color: green                #354e39     ~        DarkGreen
-Color: yellow               #ffc346     ~        DarkYellow
-Color: blue                 #155199     ~        DarkBlue
-Color: magenta              #673a5b     ~        DarkMagenta
-Color: cyan                 #6187ae     ~        DarkCyan
-Color: white                #ebd3b9     ~        LightGrey
-Color: brightblack          #222035     ~        DarkGrey
-Color: brightred            #c5696e     ~        LightRed
-Color: brightgreen          #5e723f     ~        LightGreen
-Color: brightyellow         #ffd782     ~        LightYellow
-Color: brightblue           #356ea5     ~        LightBlue
-Color: brightmagenta        #9f7195     ~        LightMagenta
-Color: brightcyan           #83a0c8     ~        LightCyan
-Color: brightwhite          #fcf9f0     ~        White
-Color: orange               #ec722f     ~        DarkYellow
-Color: brightorange         #fe882e     ~        DarkYellow
-Color: grey                 #786674     ~        DarkGrey
-Color: brightgrey           #9f8d9d     ~        LightGrey
-Color: darkmagenta          #534155     ~        DarkMagenta
-Color: darkgrey             #1B1824     ~        DarkGrey
+Color: black                #111224     233        Black
+Color: red                  #a95062     131        DarkRed
+Color: green                #354e39     23         DarkGreen
+Color: yellow               #ffc346     214        DarkYellow
+Color: blue                 #155199     25         DarkBlue
+Color: magenta              #673a5b     89         DarkMagenta
+Color: cyan                 #6187ae     67         DarkCyan
+Color: white                #ebd3b9     223        LightGrey
+Color: brightblack          #222035     235        DarkGrey
+Color: brightred            #c5696e     167        LightRed
+Color: brightgreen          #5e723f     65         LightGreen
+Color: brightyellow         #ffd782     222        LightYellow
+Color: brightblue           #356ea5     25         LightBlue
+Color: brightmagenta        #9f7195     132        LightMagenta
+Color: brightcyan           #83a0c8     110        LightCyan
+Color: brightwhite          #fcf9f0     231        White
+Color: orange               #ec722f     202        DarkYellow
+Color: brightorange         #fe882e     208        DarkYellow
+Color: grey                 #786674     95         DarkGrey
+Color: brightgrey           #9f8d9d     139        LightGrey
+Color: darkmagenta          #534155     60         DarkMagenta
+Color: darkgrey             #1B1824     234        DarkGrey
 ; }}}
 
 ; Terminal colors for dark variant {{{
@@ -98,7 +98,7 @@ ColorColumn          none              brightblack
 Conceal              none              none
 Cursor               brightwhite       none              bold,reverse
 CursorColumn         none              brightblack
-CursorLine           none              brightblack
+CursorLine           none              darkgrey
 CursorLineNr         white             darkmagenta
 DiffAdd              green             brightgreen       reverse
 DiffChange           none              brightblack
@@ -138,7 +138,7 @@ VertSplit            none              brightblack
 Visual               none              brightcyan
 VisualNOS            none              cyan
 WarningMsg           yellow            black             reverse
-Whitespace           darkgrey          none              strikethrough
+Whitespace           brightblack       none              strikethrough
 WildMenu             brightgreen       brightwhite       reverse
 ; Other conventional group names (see `:help group-name`)
 Comment              darkmagenta       none              italic
@@ -273,27 +273,27 @@ Background: light
 ; Color palette for light variant {{{
 ; You may use hexadecimal values, too, and you may provide an explicit base-256 color:
 ; Color name                GUI         Base256  Base16 (optional)
-Color: black                #111224     ~        Black
-Color: red                  #a95062     ~        DarkRed
-Color: green                #354e39     ~        DarkGreen
-Color: yellow               #ffc346     ~        DarkYellow
-Color: blue                 #155199     ~        DarkBlue
-Color: magenta              #673a5b     ~        DarkMagenta
-Color: cyan                 #6187ae     ~        DarkCyan
-Color: white                #ebd3b9     ~        LightGrey
-Color: brightblack          #222035     ~        DarkGrey
-Color: brightred            #c5696e     ~        LightRed
-Color: brightgreen          #5e723f     ~        LightGreen
-Color: brightyellow         #ffd782     ~        LightYellow
-Color: brightblue           #356ea5     ~        LightBlue
-Color: brightmagenta        #9f7195     ~        LightMagenta
-Color: brightcyan           #83a0c8     ~        LightCyan
-Color: brightwhite          #fcf9f0     ~        White
-Color: orange               #ec722f     ~        DarkYellow
-Color: brightorange         #fe882e     ~        DarkYellow
-Color: grey                 #786674     ~        DarkGrey
-Color: brightgrey           #9f8d9d     ~        LightGrey
-Color: darkmagenta          #4f2d52     ~        DarkMagenta
+Color: black                #111224     233        Black
+Color: red                  #a95062     131        DarkRed
+Color: green                #354e39     23         DarkGreen
+Color: yellow               #ffc346     214        DarkYellow
+Color: blue                 #155199     25         DarkBlue
+Color: magenta              #673a5b     89         DarkMagenta
+Color: cyan                 #6187ae     67         DarkCyan
+Color: white                #ebd3b9     223        LightGrey
+Color: brightblack          #222035     235        DarkGrey
+Color: brightred            #c5696e     167        LightRed
+Color: brightgreen          #5e723f     65         LightGreen
+Color: brightyellow         #ffd782     222        LightYellow
+Color: brightblue           #356ea5     25         LightBlue
+Color: brightmagenta        #9f7195     132        LightMagenta
+Color: brightcyan           #83a0c8     110        LightCyan
+Color: brightwhite          #fcf9f0     231        White
+Color: orange               #ec722f     202        DarkYellow
+Color: brightorange         #fe882e     208        DarkYellow
+Color: grey                 #786674     95         DarkGrey
+Color: brightgrey           #9f8d9d     139        LightGrey
+Color: darkmagenta          #4f2d52     53         DarkMagenta
 ; }}}
 
 ; Terminal colors for light variant {{{

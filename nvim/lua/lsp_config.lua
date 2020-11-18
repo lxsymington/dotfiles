@@ -114,8 +114,26 @@ lspconfig.rust_analyzer.setup({
 
 lspconfig.sumneko_lua.setup({
     cmd = { "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua" },
-    diagnostics = {
-        globals = {'vim'},
+    settings = {
+        Lua = {
+            runtime = {
+                version = "LuaJIT",
+                path = vim.split(package.path, ';'),
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                },
+            },
+            diagnostics = {
+                globals = {"vim"},
+                disable = {"lowercase-global", "unused-function"}
+            },
+            completion = {
+                keywordSnippet = "Disable",
+            },
+        },
     },
     on_attach=custom_attach,
     capabilities = lsp_status.capabilities,
