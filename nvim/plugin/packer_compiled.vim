@@ -144,14 +144,22 @@ end
 -- Post-load configuration
 -- Config for: telescope.nvim
 loadstring("\27LJ\2\2G\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\30plugin_settings.telescope\frequire\0")()
--- Config for: nvim-lsp
-loadstring("\27LJ\2\2*\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\15lsp_config\frequire\0")()
+-- Config for: vim-test
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.vim-test\frequire\0")()
 -- Config for: nvim-colorizer.lua
 loadstring("\27LJ\2\2l\0\0\3\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0=\2\5\0015\2\6\0=\2\a\1B\0\2\1K\0\1\0\thtml\1\0\1\nnames\1\bcss\1\0\1\bcss\2\1\2\0\0\6*\nsetup\14colorizer\frequire\0")()
+-- Config for: vim-fugitive
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.fugitive\frequire\0")()
 -- Config for: nvim-tree.lua
 loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.lua_tree\frequire\0")()
 -- Config for: nvim-treesitter
-loadstring("\27LJ\2\2*\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\15treesitter\frequire\0")()
+loadstring("\27LJ\2\2:\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\31plugin_settings.treesitter\frequire\0")()
+-- Config for: nvim-lspconfig
+loadstring("\27LJ\2\2*\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\15lsp_config\frequire\0")()
+-- Config for: vim-startify
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.startify\frequire\0")()
+-- Config for: vimade
+loadstring("\27LJ\2\2D\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\27plugin_settings.vimade\frequire\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
 END
