@@ -1,7 +1,6 @@
-
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-lua require('init')
+luafile ~/.config/nvim/lua/init.lua
 
 "------- FUNCTIONS -----------------------------------------------------------"
 "Sources the functions index file
@@ -13,7 +12,7 @@ runtime! functions/index.vim
 
 "------- GENERAL -------------------------------------------------------------"
 "Sources the general settings file
-runtime! general.vim
+" runtime! general.vim
 
 "------- PLUGIN SETTINGS -----------------------------------------------------"
 "Sources the plugin settings index file
