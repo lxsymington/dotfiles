@@ -4,11 +4,11 @@ luafile ~/.config/nvim/lua/init.lua
 
 "------- FUNCTIONS -----------------------------------------------------------"
 "Sources the functions index file
-runtime! functions/index.vim
+" runtime! functions/index.vim
 
 "------- ENVIRONMENT ---------------------------------------------------------"
 "Sources the environment settings file
-"runtime! environment.vim
+" runtime! environment.vim
 
 "------- GENERAL -------------------------------------------------------------"
 "Sources the general settings file
@@ -16,7 +16,7 @@ runtime! functions/index.vim
 
 "------- PLUGIN SETTINGS -----------------------------------------------------"
 "Sources the plugin settings index file
-"runtime! plugin_settings/index.vim
+" runtime! plugin_settings/index.vim
 
 "------- UI ------------------------------------------------------------------"
 "Sources the UI settings file

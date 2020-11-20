@@ -12,14 +12,13 @@ function M.setup()
     vim.o.fileformats = [[unix,dos,mac]]
 
     -- Enables syntax highlighting
-    -- syntax enable
+    vim.g.syntax = 'enable'
 
     -- Security
     vim.o.modelines = 0
 
     -- Sets the backspace behaviour to conventional
     vim.o.backspace = [[indent,eol,start]]
-    
 
     -- Change the default leader ('\') character for custom mappings
     vim.g.mapleader = ','
