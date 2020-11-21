@@ -23,6 +23,12 @@ function M.setup()
     -- Change the default leader ('\') character for custom mappings
     vim.g.mapleader = ','
 
+    -- When a new horizontal split is opened it is opened below
+    vim.o.splitbelow = true
+
+    -- When a new vertical split is opened it is opened to the right
+    vim.o.splitright = true
+
     -- Enables line numbers
     vim.wo.number = true
     vim.wo.relativenumber = true
@@ -58,9 +64,6 @@ function M.setup()
     -- Set breakindent options
     vim.wo.breakindentopt = [[min:20,shift:0,sbr]]
 
-    -- Preview effects of :s as you type
-    vim.o.inccommand = 'nosplit'
-
     -- Hide abandoned buffers instead of unloading them
     vim.o.hidden = true
 
@@ -90,6 +93,24 @@ function M.setup()
     if vim.fn.has 'persistent_undo' then
         vim.o.undofile = true
     end
+
+    -- Visual spaces per tab
+    vim.bo.tabstop = 4
+
+    -- Size of a <TAB> character
+    vim.bo.shiftwidth = 4
+
+    -- Number of spaces per tab
+    vim.bo.softtabstop = 4
+
+    -- Use multiples of shiftwidth when indenting with '<' and '>'
+    vim.o.shiftround = true
+
+    -- Insert spaces when pressing tab
+    vim.bo.expandtab = true
+
+    -- Insert tabs on the start of a line according to shiftwidth not tabstop
+    vim.o.smarttab = true
 end
 
 return M

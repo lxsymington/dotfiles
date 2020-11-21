@@ -1,6 +1,3 @@
--- Plugins
+-- Plugins -----------------------------
+require('config.index').setup()
 require('plugins')
-require('environment').setup()
-require('utils').setup()
-require('mappings').setup()
-require('base').setup()
