@@ -107,6 +107,23 @@ return require('packer').startup {
     -- Syntax
     use 'HerringtonDarkholme/yats.vim'
 
+    -- Version Control
+    use {
+        'tpope/vim-fugitive',
+        config = function()
+            require('plugin_settings.fugitive').setup()
+        end,
+    }
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+
     -- Focus
     use {
         'TaDaa/vimade',
@@ -123,6 +140,16 @@ return require('packer').startup {
 
     -- Editor config
     use 'editorconfig/editorconfig-vim'
+
+    use {
+        'tjdevries/express_line.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('plugin_settings.expressline').setup()
+        end
+    }
 
     -- File explorer
     use 'lambdalisue/nerdfont.vim'
@@ -154,15 +181,6 @@ return require('packer').startup {
 
     -- Commenting
     use 'tpope/vim-commentary'
-
-    -- Version Control
-    use {
-        'tpope/vim-fugitive',
-        config = function()
-            require('plugin_settings.fugitive').setup()
-        end,
-    }
-    use 'mhinz/vim-signify'
 
     -- Test runner
     use {

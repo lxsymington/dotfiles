@@ -4,7 +4,7 @@ luafile ~/.config/nvim/lua/init.lua
 
 "------- STATUSLINE ----------------------------------------------------------"
 "Sources the statusline settings file
-runtime! statusline.vim
+" runtime! statusline.vim
 
 "------- MATCHIT -------------------------------------------------------------"
 "Sources the Matchit Macro
