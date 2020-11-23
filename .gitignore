@@ -3,7 +3,8 @@ node_modules
 plugged
 .netrwhist
 fish/fishd.*
-fish/functions
+fish/functions/*
+!fish/functions/lxs
 fish/fish_variables
 nvim/.vim/session
 nvim/.vim/sessions
