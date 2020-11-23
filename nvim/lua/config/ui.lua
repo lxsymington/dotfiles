@@ -6,13 +6,17 @@ function M.setup()
     vim.o.scrolloff = 5
 
     -- Enabel auto indent
+    vim.o.autoindent = true
     vim.bo.autoindent = true
 
     -- Copy the previous indentation on autoindenting
+    vim.o.copyindent = true
     vim.bo.copyindent = true
 
     -- Syntax aware indent correction
+    vim.o.cindent = true
     vim.bo.cindent = true
+    vim.o.smartindent = true
     vim.bo.smartindent = true
 
     -- Highlight matching parens

@@ -2,9 +2,7 @@ local vimp = require('vimp')
 local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
-
--- Turn on status.
-lsp_status.register_progress()
+local M = {}
 
 local custom_attach = function(client)
     completion.on_attach(client)
@@ -82,83 +80,90 @@ local custom_attach = function(client)
         vim.cmd [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { aligned = true, prefix = " » " }]]
     end
 
-    vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
+    vim.bo.omnifunc = vim.lsp.omnifunc
 end
 
-lspconfig.cssls.setup({
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+function M.setup()
+    -- Turn on status.
+    lsp_status.register_progress()
 
-lspconfig.efm.setup({
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.cssls.setup({
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.html.setup({
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.efm.setup({
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.jsonls.setup({
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.html.setup({
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.rust_analyzer.setup({
-    cmd = {"rust-analyzer"},
-    filetypes = {"rust"},
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.jsonls.setup({
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.sumneko_lua.setup({
-    cmd = { "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua" },
-    settings = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-                path = vim.split(package.path, ';'),
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+    lspconfig.rust_analyzer.setup({
+        cmd = {"rust-analyzer"},
+        filetypes = {"rust"},
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
+
+    lspconfig.sumneko_lua.setup({
+        cmd = { "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua" },
+        settings = {
+            Lua = {
+                runtime = {
+                    version = "LuaJIT",
+                    path = vim.split(package.path, ';'),
+                },
+                workspace = {
+                    library = {
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    },
+                },
+                diagnostics = {
+                    globals = {"vim"},
+                    disable = {"lowercase-global", "unused-function"}
+                },
+                completion = {
+                    keywordSnippet = "Disable",
                 },
             },
-            diagnostics = {
-                globals = {"vim"},
-                disable = {"lowercase-global", "unused-function"}
-            },
-            completion = {
-                keywordSnippet = "Disable",
-            },
         },
-    },
-    on_attach=custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+        on_attach=custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.tsserver.setup({
-    cmd = {"typescript-language-server", "--stdio"},
-    filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx"
-    },
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.tsserver.setup({
+        cmd = {"typescript-language-server", "--stdio"},
+        filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx"
+        },
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.vimls.setup({
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.vimls.setup({
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
 
-lspconfig.yamlls.setup({
-    on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+    lspconfig.yamlls.setup({
+        on_attach = custom_attach,
+        capabilities = lsp_status.capabilities,
+    })
+end
+
+return M

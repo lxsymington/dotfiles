@@ -3,9 +3,11 @@ local M = {}
 
 function M.setup()
     -- Sets encoding to UTF-8
+    vim.o.fileencoding = 'utf-8'
     vim.bo.fileencoding = 'utf-8'
 
     -- Do not add BOM marks
+    vim.o.bomb = false
     vim.bo.bomb = false
 
     -- Use host system format
@@ -34,6 +36,7 @@ function M.setup()
     vim.wo.relativenumber = true
 
     -- Force the cursor onto a new line after 120 characters
+    vim.o.textwidth = 120
     vim.bo.textwidth = 120
 
     -- Creates a visual boundary
@@ -95,18 +98,22 @@ function M.setup()
     end
 
     -- Visual spaces per tab
+    vim.o.tabstop = 4
     vim.bo.tabstop = 4
 
     -- Size of a <TAB> character
+    vim.o.shiftwidth = 4
     vim.bo.shiftwidth = 4
 
     -- Number of spaces per tab
+    vim.o.softtabstop = 4
     vim.bo.softtabstop = 4
 
     -- Use multiples of shiftwidth when indenting with '<' and '>'
     vim.o.shiftround = true
 
     -- Insert spaces when pressing tab
+    vim.o.expandtab = true
     vim.bo.expandtab = true
 
     -- Insert tabs on the start of a line according to shiftwidth not tabstop

@@ -59,7 +59,7 @@ return require('packer').startup {
             'nvim-treesitter/completion-treesitter',
         },
         config = function()
-            require'lsp_config'
+            require('lsp_config').setup()
         end,
     }
 
