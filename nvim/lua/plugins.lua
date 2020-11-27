@@ -174,7 +174,12 @@ return require('packer').startup {
     }
 
     -- Debugger
-    use 'puremourning/vimspector'
+    use {
+      'puremourning/vimspector',
+      config = function()
+        require('plugin_settings.vimspector').setup()
+      end
+    }
 
     -- Pairing
     use 'tmsvg/pear-tree'

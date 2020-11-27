@@ -20,6 +20,31 @@ function M.setup()
         '   ██║░╚███║███████╗╚█████╔╝░░╚██╔╝░░██║██║░╚═╝░██║   ',
         '   ╚═╝░░╚══╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝   ',
     }
+
+    -- Skip List
+    vim.g.startify_skiplist = {
+        [[LuaTree]]
+    }
+
+    -- Start lists
+    vim.g.startify_lists = {
+        {
+            type = 'sessions',
+            header = {'   Sessions'}
+        },
+        {
+            type = 'dir',
+            header = {'   MRU ' .. vim.fn.getcwd()}
+        },
+        {
+            type = 'files',
+            header = {'   MRU'}
+        },
+        {
+            type = 'commands',
+            header = {'   Commands'}
+        },
+    }
 end
 
 return M

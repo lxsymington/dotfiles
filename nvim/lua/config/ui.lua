@@ -35,10 +35,10 @@ function M.setup()
     vim.o.inccommand = 'nosplit'
 
     -- Visual autocomplete of command menu
-    vim.o.wildmenu = true
+    -- vim.o.wildmenu = true
 
     -- Wildmode settings
-    vim.o.wildmode = [[list:lastused,list:longest,full]]
+    -- vim.o.wildmode = [[list:lastused,list:longest,full]]
 
     -- Highlights the current line
     vim.wo.cursorline = true
