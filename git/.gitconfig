@@ -6,8 +6,8 @@
 	trustctime = false
 	editor = nvim
 	filemode = false
-	pager = delta --dark --theme="'Monokai Extended Origin'"
-	excludesfile = /home/lxs/.gitignore
+	pager = delta
+	excludesfile = ~/.gitignore
 [alias]
 	ls = "log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cgreen [%an]'"
 	lsd = "log --pretty=format:'%C(yellow)%h (%ar)%Cred%d %Creset%s %Cgreen[%an]'"
@@ -48,6 +48,7 @@
 	algorithm = patience
 	indentHeuristic = true
 	compactionHeuristic = true
+	colorMoved = default
 [merge]
 	tool = nvimdiff4
 	guitool = bc
@@ -75,3 +76,20 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[delta]
+	features = side-by-side line-numbers decorations
+	syntax-theme = OneHalfDark
+	plus-style = syntax "#003800"
+	minus-style = syntax "#3f0001"
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+	hunk-header-decoration-style = black box ul
+
+[delta "line-numbers"]
+	line-numbers-left-style = black
+	line-numbers-right-style = black
+	line-numbers-minus-style = 124
+	line-numbers-plus-style = 28
