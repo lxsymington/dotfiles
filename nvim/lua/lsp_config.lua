@@ -2,6 +2,11 @@ local vimp = require('vimp')
 local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
+local vint = require('plugin_settings.efm.vint')
+local luafmt = require('plugin_settings.efm.luafmt')
+local prettier = require('plugin_settings.efm.prettier')
+local eslint = require('plugin_settings.efm.eslint')
+local tslint = require('plugin_settings.efm.tslint')
 local M = {}
 
 local custom_attach = function(client)
@@ -93,6 +98,26 @@ function M.setup()
     })
 
     lspconfig.efm.setup({
+        init_options = {documentFormatting = true},
+        settings = {
+            rootMarkers = {".git/"},
+            languages = {
+                languages = {
+                    vim = {vint},
+                    lua = {luafmt},
+                    typescript = {prettier, eslint, tslint},
+                    javascript = {prettier, eslint},
+                    typescriptreact = {prettier, eslint, tslint},
+                    javascriptreact = {prettier, eslint},
+                    yaml = {prettier},
+                    json = {prettier},
+                    html = {prettier},
+                    scss = {prettier},
+                    css = {prettier},
+                    markdown = {prettier},
+                }
+            }
+        },
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities,
     })
