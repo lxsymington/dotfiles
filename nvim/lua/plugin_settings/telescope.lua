@@ -18,6 +18,7 @@ local builtin = require('telescope.builtin')
 
 local M = {}
 
+-- TELESCOPE ---------------------------
 function M.setup()
     require('telescope').setup {
         defaults = {

@@ -1,5 +1,6 @@
 local ts_configs = require('nvim-treesitter.configs')
 
+-- TREESITTER --------------------------
 return ts_configs.setup {
     ensure_installed = {
         'css',
@@ -72,8 +73,8 @@ return ts_configs.setup {
         lsp_interop = {
             enable = true,
             peek_definition_code = {
-                ["df"] = "@function.outer",
-                ["dF"] = "@class.outer",
+                ["<Leader>df"] = "@function.outer",
+                ["<Leader>dF"] = "@class.outer",
             },
         },
     }

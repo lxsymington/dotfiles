@@ -58,6 +58,7 @@ local generator = function(_window, buffer)
     return segments
 end
 
+-- EXPRESSLINE -------------------------
 function M.setup()
     require('el').setup({ generator = generator })
 end

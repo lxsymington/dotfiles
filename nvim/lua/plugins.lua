@@ -39,6 +39,9 @@ return require('packer').startup {
         config = function()
             require('plugin_settings.treesitter')
         end,
+        run = function()
+            vim.cmd('TSUpdate')
+        end,
     }
 
     -- File Explorer
@@ -175,11 +178,18 @@ return require('packer').startup {
 
     -- Debugger
     use {
-      'puremourning/vimspector',
-      config = function()
-        require('plugin_settings.vimspector').setup()
-      end
+        'mfussenegger/nvim-dap',
+        requires = 'theHamsta/nvim-dap-virtual-text',
+        config = function()
+            require('plugin_settings.nvim-dap').setup()
+        end,
     }
+    -- use {
+    --   'puremourning/vimspector',
+    --   config = function()
+    --     require('plugin_settings.vimspector').setup()
+    --   end
+    -- }
 
     -- Pairing
     use 'tmsvg/pear-tree'

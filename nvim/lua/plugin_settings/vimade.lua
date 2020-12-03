@@ -1,6 +1,6 @@
 local M = {}
 
--- Vimade ------------------------------
+-- VIMADE ------------------------------
 function M.setup()
     vim.g.vimade = {
         fadelevel = 0.6,

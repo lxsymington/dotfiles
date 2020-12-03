@@ -2,6 +2,7 @@ local vimp = require('vimp')
 
 local M = {}
 
+-- LUA TREE ----------------------------
 function M.setup()
   vim.g.lua_tree_width = 45
   vim.g.lua_tree_ignore = { '.git', 'node_modules' }

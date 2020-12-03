@@ -1,6 +1,6 @@
 local M = {}
 
--- VIM TEST ----------------------------
+-- FUGITIVE ----------------------------
 function M.setup()
     if vim.g.env == 'WINDOWS' then
         vim.g.fugitive_git_executable = 'C:\\ProgramData\\scoop\\shims\\git'

@@ -44,14 +44,12 @@
 	ui = true
 [diff]
 	tool = nvimdiff2
-	guitool = bc
 	algorithm = patience
 	indentHeuristic = true
 	compactionHeuristic = true
 	colorMoved = default
 [merge]
 	tool = nvimdiff4
-	guitool = bc
 	conflictstyle = diff3
 	algorithm = patience
 	indentHeuristic = true
@@ -81,13 +79,11 @@
 	syntax-theme = OneHalfDark
 	plus-style = syntax "#003800"
 	minus-style = syntax "#3f0001"
-
 [delta "decorations"]
 	commit-decoration-style = bold yellow box ul
 	file-style = bold yellow ul
 	file-decoration-style = none
 	hunk-header-decoration-style = black box ul
-
 [delta "line-numbers"]
 	line-numbers-left-style = black
 	line-numbers-right-style = black
