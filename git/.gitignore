@@ -1,2 +1,3 @@
 *.swp
 .vimspector.json
+.idea
