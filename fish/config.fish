@@ -30,14 +30,14 @@ end
 
 # Launch keychain on login
 if type -q keychain && status is-interactive
-    keychain --eval --clear --quiet --agents ssh id_rsa | source
-end
+    keychain --eval --quiet -Q --inherit local --agents ssh id_rsa | source
 
-# Source relevant keychain files
-begin
-    set -l HOSTNAME (hostname)
-    if test -f ~/.keychain/$HOSTNAME-fish
-        source ~/.keychain/$HOSTNAME-fish
+    # Source relevant keychain files
+    begin
+        set -l HOSTNAME (hostname)
+        if test -f ~/.keychain/$HOSTNAME-fish
+            source ~/.keychain/$HOSTNAME-fish
+        end
     end
 end
 

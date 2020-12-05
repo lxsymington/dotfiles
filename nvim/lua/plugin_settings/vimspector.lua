@@ -1,5 +1,6 @@
 local M = {}
 
+-- DEPRECATED - USING NVIM-DAP ---------
 -- VIMSPECTOR --------------------------
 function M.setup()
     vim.g.vimspector_install_gadgets = {'vscode-node-debug2'}
