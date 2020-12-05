@@ -74,10 +74,10 @@ return require('packer').startup {
         use {
             'norcalli/nvim-colorizer.lua',
             config = function() require'colorizer'.setup({
-                        '*'; -- Highlight all files, but customize some others.
-                        css = { css = true; }; -- Enable parsing rgb(...) functions in css.
-                        html = { names = false; } -- Disable parsing "names" like Blue or Gray
-                }) end,
+                '*'; -- Highlight all files, but customize some others.
+                css = { css = true; }; -- Enable parsing rgb(...) functions in css.
+                html = { names = false; } -- Disable parsing "names" like Blue or Gray
+            }) end,
         }
 
         -- Registers
@@ -87,8 +87,8 @@ return require('packer').startup {
         use {
             'nvim-telescope/telescope.nvim',
             after = {
-                'nvim-lua/popup.nvim',
-                'nvim-lua/plenary.nvim',
+                'popup.nvim',
+                'plenary.nvim',
             },
             config = function()
                 require('plugin_settings.telescope').setup()
@@ -111,7 +111,7 @@ return require('packer').startup {
         use {
             'lewis6991/gitsigns.nvim',
             after = {
-                'nvim-lua/plenary.nvim'
+                'plenary.nvim',
             },
             config = function()
                 require('gitsigns').setup()
@@ -135,10 +135,11 @@ return require('packer').startup {
         -- Editor config
         use 'editorconfig/editorconfig-vim'
 
+        -- Statusline
         use {
             'tjdevries/express_line.nvim',
             after = {
-                'nvim-lua/plenary.nvim'
+                'plenary.nvim'
             },
             config = function()
                 require('plugin_settings.expressline').setup()
@@ -168,7 +169,7 @@ return require('packer').startup {
         use {
             'mfussenegger/nvim-dap',
             after = {
-                'nvim-telescope/telescope.nvim'
+                'telescope.nvim',
             },
             requires = {
                 'theHamsta/nvim-dap-virtual-text',
@@ -180,8 +181,8 @@ return require('packer').startup {
         use {
             'nvim-telescope/telescope-dap.nvim',
             after = {
-                'nvim-telescope/telescope.nvim',
-                'mfussenegger/nvim-dap',
+                'telescope.nvim',
+                'nvim-dap',
             },
             config = function()
                 require('plugin_settings.nvim-dap.telescope_integration').setup()
@@ -211,7 +212,7 @@ return require('packer').startup {
         use {
             'vim-test/vim-test',
             after = {
-                'tpope/vim-dispatch'
+                'vim-dispatch'
             },
             config = function ()
                 require('plugin_settings.vim-test').setup()
