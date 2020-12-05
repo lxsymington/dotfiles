@@ -140,7 +140,11 @@ function M.setup()
     })
 
     lspconfig.sumneko_lua.setup({
-        cmd = { "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/lxs/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua" },
+        cmd = {
+            os.getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
+            "-E",
+            os.getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
+        },
         settings = {
             Lua = {
                 runtime = {
@@ -154,15 +158,16 @@ function M.setup()
                     },
                 },
                 diagnostics = {
-                    globals = {"vim"},
-                    disable = {"lowercase-global", "unused-function"}
+                    enable = true,
+                    globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
+                    disable = { "lowercase-global" }
                 },
                 completion = {
                     keywordSnippet = "Disable",
                 },
             },
         },
-        on_attach=custom_attach,
+        on_attach = custom_attach,
         capabilities = lsp_status.capabilities,
     })
 
