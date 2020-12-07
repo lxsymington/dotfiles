@@ -12,39 +12,39 @@ function M.setup()
 
     -- Set up mappings for `nvim-dap`
     -- CONTINUE
-    vimp.nnoremap({silent}, [[<F5>]], function()
+    vimp.nnoremap({'silent'}, [[<F5>]], function()
         dap.continue()
     end)
     -- STEP OVER
-    vimp.nnoremap({silent}, [[<F10>]], function()
+    vimp.nnoremap({'silent'}, [[<F10>]], function()
         dap.step_over()
     end)
     -- STEP INTO
-    vimp.nnoremap({silent}, [[<F11>]], function()
+    vimp.nnoremap({'silent'}, [[<F11>]], function()
         dap.step_into()
     end)
     -- STEP OUT
-    vimp.nnoremap({silent}, [[<F12>]], function()
+    vimp.nnoremap({'silent'}, [[<F12>]], function()
         dap.step_out()
     end)
     -- TOGGLE BREAKPOINT
-    vimp.nnoremap({silent}, [[<Leader>b]], function()
+    vimp.nnoremap({'silent'}, [[<Leader>b]], function()
         dap.toggle_breakpoint()
     end)
     -- SET CONDITIONAL BREAKPOINT
-    vimp.nnoremap({silent}, [[<Leader>B]], function()
+    vimp.nnoremap({'silent'}, [[<Leader>B]], function()
         dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
     end)
     -- SET LOGPOINT
-    vimp.nnoremap({silent}, [[<Leader>lp]], function()
+    vimp.nnoremap({'silent'}, [[<Leader>lp]], function()
         dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
     end)
     -- OPEN DEBUGGER CONSOLE
-    vimp.nnoremap({silent}, [[<Leader>dr]], function()
+    vimp.nnoremap({'silent'}, [[<Leader>dr]], function()
         dap.repl.open()
     end)
     -- RE-RUN LAST DEBUGGING SESSION
-    vimp.nnoremap({silent}, [[<Leader>dl]], function()
+    vimp.nnoremap({'silent'}, [[<Leader>dl]], function()
         dap.repl.run_last()
     end)
 
