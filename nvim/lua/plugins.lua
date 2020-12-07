@@ -168,9 +168,6 @@ return require('packer').startup {
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
-            after = {
-                'telescope.nvim',
-            },
             requires = {
                 'theHamsta/nvim-dap-virtual-text',
             },
@@ -178,16 +175,16 @@ return require('packer').startup {
                 require('plugin_settings.nvim-dap').setup()
             end,
         }
-        use {
-            'nvim-telescope/telescope-dap.nvim',
-            after = {
-                'telescope.nvim',
-                'nvim-dap',
-            },
-            config = function()
-                require('plugin_settings.nvim-dap.telescope_integration').setup()
-            end,
-        }
+        -- use {
+        --     'nvim-telescope/telescope-dap.nvim',
+        --     after = {
+        --         'telescope.nvim',
+        --         'nvim-dap',
+        --     },
+        --     config = function()
+        --         require('plugin_settings.nvim-dap.telescope_integration').setup()
+        --     end,
+        -- }
 
         -- Pairing
         use 'tmsvg/pear-tree'
