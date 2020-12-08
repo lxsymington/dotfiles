@@ -86,7 +86,7 @@ return require('packer').startup {
         -- Search
         use {
             'nvim-telescope/telescope.nvim',
-            after = {
+            requires = {
                 'popup.nvim',
                 'plenary.nvim',
             },
@@ -110,7 +110,7 @@ return require('packer').startup {
         }
         use {
             'lewis6991/gitsigns.nvim',
-            after = {
+            requires = {
                 'plenary.nvim',
             },
             config = function()
@@ -138,7 +138,7 @@ return require('packer').startup {
         -- Statusline
         use {
             'tjdevries/express_line.nvim',
-            after = {
+            requires = {
                 'plenary.nvim'
             },
             config = function()
@@ -175,16 +175,16 @@ return require('packer').startup {
                 require('plugin_settings.nvim-dap').setup()
             end,
         }
-        -- use {
-        --     'nvim-telescope/telescope-dap.nvim',
-        --     after = {
-        --         'telescope.nvim',
-        --         'nvim-dap',
-        --     },
-        --     config = function()
-        --         require('plugin_settings.nvim-dap.telescope_integration').setup()
-        --     end,
-        -- }
+        use {
+            'nvim-telescope/telescope-dap.nvim',
+            requires = {
+                'telescope.nvim',
+                'nvim-dap',
+            },
+            config = function()
+                require('plugin_settings.nvim-dap.telescope_integration').setup()
+            end,
+        }
 
         -- Pairing
         use 'tmsvg/pear-tree'
@@ -208,7 +208,7 @@ return require('packer').startup {
         -- Test runner
         use {
             'vim-test/vim-test',
-            after = {
+            requires = {
                 'vim-dispatch'
             },
             config = function ()
