@@ -1,3 +1,3 @@
 function nvm
-    bax source ~/.nvm/nvm.sh ';' nvm $argv
+    replay source ~/.nvm/nvm.sh ';' nvm $argv
 end

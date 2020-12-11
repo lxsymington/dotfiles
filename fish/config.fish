@@ -7,8 +7,8 @@ if type -q starship
 end
 
 # Enable use of nix package manager
-if type -q bax && test -d ~/.nix-profile
-    bax source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
+if type -q replay && test -d ~/.nix-profile
+    replay source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
 end
 
 # Enable use of nix package manager
@@ -17,8 +17,8 @@ if test -d ~/.nvm && type -q nvm
 end
 
 # Seccl specific
-if type -q bax && test -d ~/.seccl
-    bax source ~/.seccl/env.sh
+if type -q replay && test -d ~/.seccl
+    replay source ~/.seccl/env.sh
 end
 
 # Bootstrap `fisher` and install listed plugins
