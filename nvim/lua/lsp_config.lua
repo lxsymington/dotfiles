@@ -110,7 +110,7 @@ function M.setup()
         },
         init_options = {documentFormatting = true},
         settings = {
-            rootMarkers = {lspconfig.util.find_git_root()},
+            rootMarkers = {".git/"},
             languages = {
                 lua = {lua_format},
                 vim = {vint},
