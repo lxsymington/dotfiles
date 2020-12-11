@@ -3,7 +3,7 @@ local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
 local vint = require('plugin_settings.efm.vint')
-local luafmt = require('plugin_settings.efm.luafmt')
+local lua_format = require('plugin_settings.efm.lua-format')
 -- local prettier = require('plugin_settings.efm.prettier')
 local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
@@ -110,10 +110,10 @@ function M.setup()
         },
         init_options = {documentFormatting = true},
         settings = {
-            rootMarkers = {".git/"},
+            rootMarkers = {lspconfig.util.find_git_root()},
             languages = {
+                lua = {lua_format},
                 vim = {vint},
-                lua = {luafmt},
                 typescript = {eslint, tslint},
                 javascript = {eslint},
                 typescriptreact = {eslint, tslint},
@@ -122,6 +122,8 @@ function M.setup()
         },
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities,
+        log_level = vim.lsp.protocol.MessageType.Log,
+        message_level = vim.lsp.protocol.MessageType.Log,
     })
 
     lspconfig.html.setup({
