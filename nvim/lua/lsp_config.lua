@@ -89,6 +89,9 @@ local custom_attach = function(client)
 end
 
 function M.setup()
+    -- Set LSP client's log level. Server's log level is not affected.
+    vim.lsp.set_log_level("warn")
+
     -- Turn on status.
     lsp_status.register_progress()
 
@@ -98,6 +101,13 @@ function M.setup()
     })
 
     lspconfig.efm.setup({
+        cmd = {
+            "efm-langserver",
+            "-loglevel",
+            "2",
+            "-logfile",
+            os.getenv('HOME') .. "/.config/efm-langserver/efm.log"
+        },
         init_options = {documentFormatting = true},
         settings = {
             rootMarkers = {".git/"},

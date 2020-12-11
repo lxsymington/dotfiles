@@ -12,17 +12,17 @@ function M.setup()
     vimp.nnoremap('<C-L>', '<C-w><C-L>')
 
     -- Open init.vim in a tab
-    vimp.nnoremap('<leader>ev', function()
+    vimp.nnoremap('<Leader>ev', function()
         vim.cmd('tabedit $MYVIMRC')
     end)
 
     -- CLear highlighting
-    vimp.nnoremap('<leader><space>', function()
+    vimp.nnoremap('<Leader><space>', function()
         vim.cmd('nohlsearch')
     end)
 
     -- Toggle relative numbers
-    vimp.nnoremap('<leader>#', function()
+    vimp.nnoremap('<Leader>#', function()
         vim.cmd('call NumberToggle()')
     end)
 
