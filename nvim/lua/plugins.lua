@@ -147,7 +147,8 @@ return require('packer').startup {
         }
 
         -- Colorscheme builder
-        use 'lifepillar/vim-colortemplate'
+        -- use 'lifepillar/vim-colortemplate'
+        use 'rktjmp/lush.nvim'
 
         -- Colorschemes
         use 'franbach/miramare'

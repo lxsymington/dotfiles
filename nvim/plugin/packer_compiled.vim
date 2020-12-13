@@ -13,14 +13,14 @@ local plugins = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
-    path = "/Users/lukexaviersymington/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
-    path = "/Users/lukexaviersymington/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
+    path = "/home/lxs/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
   }
 }
 
@@ -146,31 +146,31 @@ end
 -- Pre-load configuration
 -- Post-load configuration
 -- Config for: nvim-lspconfig
-loadstring("\27LJ\1\0028\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\15lsp_config\frequire\0")()
+loadstring("\27LJ\2\0028\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15lsp_config\frequire\0")()
 -- Config for: vim-startify
-loadstring("\27LJ\1\2F\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\29plugin_settings.startify\frequire\0")()
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.startify\frequire\0")()
 -- Config for: nvim-colorizer.lua
-loadstring("\27LJ\1\2l\0\0\3\0\b\0\v4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\0013\2\6\0:\2\a\1>\0\2\1G\0\1\0\thtml\1\0\1\nnames\1\bcss\1\0\1\bcss\2\1\2\0\0\6*\nsetup\14colorizer\frequire\0")()
+loadstring("\27LJ\2\2l\0\0\3\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0=\2\5\0015\2\6\0=\2\a\1B\0\2\1K\0\1\0\thtml\1\0\1\nnames\1\bcss\1\0\1\bcss\2\1\2\0\0\6*\nsetup\14colorizer\frequire\0")()
 -- Config for: express_line.nvim
-loadstring("\27LJ\1\2I\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup plugin_settings.expressline\frequire\0")()
+loadstring("\27LJ\2\2I\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup plugin_settings.expressline\frequire\0")()
 -- Config for: gitsigns.nvim
-loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0")()
+loadstring("\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0")()
 -- Config for: nvim-tree.lua
-loadstring("\27LJ\1\2F\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\29plugin_settings.lua_tree\frequire\0")()
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.lua_tree\frequire\0")()
 -- Config for: vim-fugitive
-loadstring("\27LJ\1\2F\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\29plugin_settings.fugitive\frequire\0")()
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.fugitive\frequire\0")()
 -- Config for: nvim-dap
-loadstring("\27LJ\1\2F\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\29plugin_settings.nvim-dap\frequire\0")()
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.nvim-dap\frequire\0")()
 -- Config for: telescope.nvim
-loadstring("\27LJ\1\2G\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\30plugin_settings.telescope\frequire\0")()
+loadstring("\27LJ\2\2G\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\30plugin_settings.telescope\frequire\0")()
 -- Config for: telescope-dap.nvim
-loadstring("\27LJ\1\2\\\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup3plugin_settings.nvim-dap.telescope_integration\frequire\0")()
+loadstring("\27LJ\2\2\\\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup3plugin_settings.nvim-dap.telescope_integration\frequire\0")()
 -- Config for: vim-test
-loadstring("\27LJ\1\2F\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\29plugin_settings.vim-test\frequire\0")()
+loadstring("\27LJ\2\2F\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin_settings.vim-test\frequire\0")()
 -- Config for: nvim-treesitter
-loadstring("\27LJ\1\2:\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\31plugin_settings.treesitter\frequire\0")()
+loadstring("\27LJ\2\2:\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\31plugin_settings.treesitter\frequire\0")()
 -- Config for: vimade
-loadstring("\27LJ\1\2D\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\27plugin_settings.vimade\frequire\0")()
+loadstring("\27LJ\2\2D\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\27plugin_settings.vimade\frequire\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
 END
