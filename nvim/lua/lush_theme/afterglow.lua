@@ -15,7 +15,7 @@ local red = hsl(350, 40, 40) -- original "#a95062"
 local white = hsl(30, 60, 80) -- original "#ebd3b9"
 local yellow = hsl(40, 100, 60) -- original "#ffc346"
 
-local lightBlack = hsl(245, 25, 15) -- original "#222035"
+local lightBlack = hsl(275, 25, 15) -- original "#222035"
 local lightBlue = hsl(210, 50, 45) -- original "#356ea5"
 local lightCyan = hsl(215, 40, 65) -- original "#83a0c8"
 local lightGreen = hsl(85, 30, 35) -- original "#5e723f"
@@ -34,34 +34,35 @@ local lightYellow = hsl(40, 100, 75) -- original "#ffd782"
 local theme = lush(function()
   return {
     ColorColumn  { bg = black.darken(20) },
-    -- Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+    Comment      { fg = black.lighten(15), gui="italic" },
+    Conceal      { bg = grey, fg = lightGrey },
     Cursor       { gui = "reverse" },
-    -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
-    CursorLine { bg = black.darken(20) },
+    CursorIM     { gui = "reverse" },
+    CursorLine   { bg = black.darken(20) },
     CursorLineNr { bg = black, fg = yellow, gui = "bold" },
-    -- DiffAdd      { }, -- diff mode: Added line |diff.txt|
-    -- DiffChange   { }, -- diff mode: Changed line |diff.txt|
-    -- DiffDelete   { }, -- diff mode: Deleted line |diff.txt|
-    -- DiffText     { }, -- diff mode: Changed text within a changed line |diff.txt|
-    Directory    { fg = lightBlue, gui = "bold" }, -- directory names (and other special names in listings)
-    -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
-    -- ErrorMsg     { }, -- error messages on the command line
-    -- FoldColumn   { }, -- 'foldcolumn'
-    -- Folded       { }, -- line used for closed folds
+    DiffAdd      { fg = lightGreen, gui = "bold" },
+    DiffChange   { fg = lightBlue, gui = "bold" },
+    DiffDelete   { fg = lightRed, gui = "bold" },
+    DiffText     { fg = lightPurple, gui = "undercurl" },
+    Directory    { fg = lightBlue, gui = "bold" },
+    EndOfBuffer  { fg = lightGrey },
+    ErrorMsg     { bg = red, fg = lightWhite },
+    FoldColumn   { fg = lightGrey },
+    Folded       { gui = "italic" },
     LineNr       { bg = black.lighten(5), fg = black.lighten(40), gui = "bold" },
-    -- MatchParen   { }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
-    -- MoreMsg      { }, -- |more-prompt|
-    -- MsgArea      { }, -- Area for messages and cmdline
-    -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
+    MatchParen   { bg = purple, fg = yellow },
+    ModeMsg      { fg = lightGrey },
+    MoreMsg      { fg = lightPurple, gui = "bold" },
+    MsgArea      { fg = lightGreen, gui = "italic" },
+    MsgSeparator { fg = yellow },
     NonText      { fg = grey },
-    Normal { fg = white, bg = black },
-    -- NormalFloat  { }, -- Normal text in floating windows.
-    -- NormalNC     { }, -- normal text in non-current windows
-    -- Pmenu        { }, -- Popup menu: normal item.
-    -- PmenuSbar    { }, -- Popup menu: scrollbar.
-    -- PmenuSel     { }, -- Popup menu: selected item.
-    -- PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
+    Normal       { bg = black, fg = white },
+    NormalFloat  { bg = grey },
+    NormalNC     { bg = lightBlack, fg = white },
+    Pmenu        { bg = black.darken(20), fg = white },
+    PmenuSbar    { bg = black.darken(40) },
+    PmenuSel     { bg = purple, fg = yellow, gui = "bold" },
+    PmenuThumb   { bg = lightYellow },
     -- Question     { }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
     SignColumn   { bg = black, gui = "italic"  },
