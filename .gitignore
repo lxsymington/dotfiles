@@ -9,3 +9,4 @@ fish/functions/*
 !fish/functions/nvm_find_nvmrc.fish
 fish/fish_variables
 nvim/.vim/autoload/plug.vim*
+packer_compiled.vim

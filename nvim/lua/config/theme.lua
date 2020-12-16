@@ -26,17 +26,17 @@ function M.setup()
 
     -- Miramare configuration
     -- let g:miramare_transparent_background = 1
-    -- let g:miramare_enable_italic = 1
-    -- let g:miramare_enable_bold = 1
+    vim.g.miramare_enable_italic = 1
+    vim.g.miramare_enable_bold = 1
 
     -- Sets the colorscheme to be Miramare
-    -- colorscheme miramare
+    vim.g.colors_name = 'miramare'
 
     -- Afterglow configuration
-    vim.g.afterglow_transp_bg = 0
+    -- vim.g.afterglow_transp_bg = 0
 
     -- Sets the colorscheme to be Afterglow
-    vim.g.colors_name = 'afterglow'
+    -- vim.g.colors_name = 'afterglow'
 
     -- Sets the background to be dark
     vim.o.background = 'dark'

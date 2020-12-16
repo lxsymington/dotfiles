@@ -1,5 +1,5 @@
 return {
-    lintCommand = "eslint -f unix --stdin",
+    lintCommand = "./node_module/bin/eslint -c ./package.json --fix -f unix --stdin",
     lintIgnoreExitCode = true,
     lintStdin = true,
 }
