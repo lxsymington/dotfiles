@@ -11,7 +11,7 @@ local green = hsl(130, 25, 25) -- original "#354e39"
 local grey = hsl(315, 5, 30) -- original "#786674"
 local orange = hsl(20, 75, 40) -- original "#ec722f"
 local purple = hsl(300, 45, 25) -- original "#673a5b"
-local red = hsl(350, 40, 40) -- original "#a95062"
+local red = hsl(350, 60, 40) -- original "#a95062"
 local white = hsl(30, 60, 80) -- original "#ebd3b9"
 local yellow = hsl(40, 100, 60) -- original "#ffc346"
 
@@ -62,28 +62,76 @@ local theme = lush(function()
     Pmenu        { bg = black.darken(20), fg = white },
     PmenuSbar    { bg = black.darken(40) },
     PmenuSel     { bg = purple, fg = yellow, gui = "bold" },
-    PmenuThumb   { bg = lightYellow },
-    -- Question     { }, -- |hit-enter| prompt and yes/no questions
-    -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    PmenuThumb   { bg = lightYellow, fg = blue },
+    Question     { fg = lightOrange },
+    QuickFixLine { bg = purple, fg = yellow },
     SignColumn   { bg = black, gui = "italic"  },
     SpecialKey   { fg = purple },
-    SpellRare    { fg = lightBlue, gui = "undercurl" }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
+    SpellRare    { fg = lightBlue, gui = "undercurl" },
     StatusLine   { bg = black.darken(20) },
     StatusLineNC { bg = black },
-    -- Substitute   { }, -- |:substitute| replacement text highlighting
-    -- TabLine      { }, -- tab pages line, not active tab page label
-    -- TabLineFill  { }, -- tab pages line, where there are no labels
-    -- TabLineSel   { }, -- tab pages line, active tab page label
-    -- TermCursor   { }, -- cursor in a focused terminal
-    -- TermCursorNC { }, -- cursor in an unfocused terminal
-    -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-    VertSplit    { fg = yellow }, -- the column separating vertically split windows
-    Visual { bg = blue },
-    -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    -- WarningMsg   { }, -- warning messages
+    Substitute   { bg = lightPurple, fg = lightYellow },
+    TabLine      { bg = blue, fg = lightWhite },
+    TabLineFill  { bg = grey, fg = black },
+    TabLineSel   { Normal },
+    TermCursor   { Cursor },
+    TermCursorNC { bg = white, fg = black },
+    Title        { fg = orange },
+    VertSplit    { fg = yellow },
+    Visual       { bg = blue },
+    VisualNOS    { bg = lightCyan },
+    WarningMsg   { bg = lightYellow, fg = red },
     Whitespace   { fg = black.lighten(15) },
-    -- WildMenu     { }, -- current match in 'wildmenu' completion
-    -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+    WildMenu     { bg = green, gui = "bold" },
+    lCursor      { gui = "reverse, bold" },
+
+    Constant       { fg = lightCyan, gui = "bold" }, -- (preferred) any constant
+    String         { fg = lightWhite, gui = "italic" }, --   a string constant: "this is a string"
+    Character      { fg = lightGreen }, --  a character constant: 'c', '\n'
+    Number         { fg = lightRed }, --   a number constant: 234, 0xff
+    Boolean        { fg = yellow }, --  a boolean constant: TRUE, false
+    Float          { Number }, --    a floating point constant: 2.3e10
+
+    Identifier     { fg = lightYellow }, -- (preferred) any variable name
+    Function       { fg = cyan, gui = "bold" }, -- function name (also: methods for classes)
+
+    Statement      { fg = green }, -- (preferred) any statement
+    Conditional    { fg = orange }, --  if, then, else, endif, switch, etc.
+    Repeat         { fg = lightPurple }, --   for, do, while, etc.
+    Label          { fg = red }, --    case, default, etc.
+    Operator       { fg = lightOrange }, -- "sizeof", "+", "*", etc.
+    Keyword        { fg = blue }, --  any other keyword
+    Exception      { fg = red, gui = "bold, undercurl"}, --  try, catch, throw
+
+    PreProc        { fg = lightOrange }, -- (preferred) generic Preprocessor
+    Include        { fg = blue }, --  preprocessor #include
+    Define         { }, --   preprocessor #define
+    -- Macro          { }, --    same as Define
+    -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
+
+    -- Type           { }, -- (preferred) int, long, char, etc.
+    -- StorageClass   { }, -- static, register, volatile, etc.
+    -- Structure      { }, --  struct, union, enum, etc.
+    -- Typedef        { }, --  A typedef
+
+    -- Special        { }, -- (preferred) any special symbol
+    -- SpecialChar    { }, --  special character in a constant
+    -- Tag            { }, --    you can use CTRL-] on this
+    -- Delimiter      { }, --  character that needs attention
+    -- SpecialComment { }, -- special things inside a comment
+    -- Debug          { }, --    debugging statements
+
+    -- Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
+    -- Bold       { gui = "bold" },
+    -- Italic     { gui = "italic" },
+
+    -- ("Ignore", below, may be invisible...)
+    -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
+
+    -- Error          { }, -- (preferred) any erroneous construct
+
+    -- Todo           { }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+
   }
 end)
 
