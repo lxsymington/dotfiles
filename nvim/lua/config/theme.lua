@@ -9,6 +9,9 @@ function M.setup()
 
     vim.o.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 
+    -- Sets the background to be dark
+    vim.o.background = 'dark'
+
     -- Sets the colorscheme to be Seoul 256 Light
     -- colorscheme seoul256-light
 
@@ -26,20 +29,14 @@ function M.setup()
 
     -- Miramare configuration
     -- let g:miramare_transparent_background = 1
-    vim.g.miramare_enable_italic = 1
-    vim.g.miramare_enable_bold = 1
+    -- vim.g.miramare_enable_italic = 1
+    -- vim.g.miramare_enable_bold = 1
 
     -- Sets the colorscheme to be Miramare
-    vim.g.colors_name = 'miramare'
-
-    -- Afterglow configuration
-    -- vim.g.afterglow_transp_bg = 0
+    -- vim.g.colors_name = 'miramare'
 
     -- Sets the colorscheme to be Afterglow
-    -- vim.g.colors_name = 'afterglow'
-
-    -- Sets the background to be dark
-    vim.o.background = 'dark'
+    vim.g.colors_name = 'crepuscular'
 end
 
 return M
