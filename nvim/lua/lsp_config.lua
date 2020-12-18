@@ -4,7 +4,7 @@ local lsp_status = require('lsp-status')
 local completion = require('completion')
 local vint = require('plugin_settings.efm.vint')
 local lua_format = require('plugin_settings.efm.lua-format')
--- local prettier = require('plugin_settings.efm.prettier')
+local prettier = require('plugin_settings.efm.prettier')
 local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
 local M = {}
@@ -25,67 +25,10 @@ local custom_attach = function(client)
         }
     )
 
-    -- Go to definition
-    vimp.nnoremap({'silent'}, '<Leader>gd', function()
-        vim.lsp.buf.definition()
-    end)
-
-    -- Go to implementation
-    vimp.nnoremap({'silent'}, '<Leader>gi', function()
-        vim.lsp.buf.implementation()
-    end)
-
-    -- Go to type definition
-    vimp.nnoremap({'silent'}, '<Leader>gtd', function()
-        vim.lsp.buf.type_definition()
-    end)
-
-    -- Go to references
-    vimp.nnoremap({'silent'}, '<Leader>gr', function()
-        vim.lsp.buf.references()
-    end)
-
-    -- Code action
-    vimp.nnoremap({'silent'}, '<Leader>ca', function()
-        vim.lsp.buf.code_action()
-    end)
-
-    -- Rename
-    vimp.nnoremap({'silent'}, '<Leader>r', function()
-        vim.lsp.buf.rename()
-    end)
-
-    -- Hover
-    vimp.nnoremap({'silent'}, 'K', function()
-        vim.lsp.buf.hover()
-    end)
-
-    -- Open diagnostics
-    vimp.nnoremap({'silent'}, '<Leader>-', function()
-        vim.lsp.diagnostic.set_loclist()
-    end)
-
-    -- Signature help
-    vimp.nnoremap({'silent'}, '<Leader>sh', function()
-        vim.lsp.buf.signature_help()
-    end)
-
-    -- Go to next diagnostic
-    vimp.nnoremap({'silent'}, ']d', function()
-        vim.lsp.diagnostic.goto_next()
-    end)
-
-    -- Go to previous diagnostic
-    vimp.nnoremap({'silent'}, '[d', function()
-        vim.lsp.diagnostic.goto_prev()
-    end)
-
     -- Rust is currently the only thing w/ inlay hints
     if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
         vim.cmd [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { aligned = true, prefix = " » " }]]
     end
-
-    vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 
 function M.setup()
@@ -110,14 +53,14 @@ function M.setup()
         },
         init_options = {documentFormatting = true},
         settings = {
-            rootMarkers = {".git/"},
+            rootMarkers = {".git"},
             languages = {
                 lua = {lua_format},
                 vim = {vint},
                 typescript = {eslint, tslint},
                 javascript = {eslint},
-                typescriptreact = {eslint, tslint},
-                javascriptreact = {eslint},
+                typescriptreact = {prettier, eslint, tslint},
+                javascriptreact = {prettier, eslint},
             }
         },
         on_attach = custom_attach,
@@ -198,6 +141,63 @@ function M.setup()
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities,
     })
+
+    -- Go to definition
+    vimp.nnoremap({'silent'}, '<Leader>gd', function()
+        vim.lsp.buf.definition()
+    end)
+
+    -- Go to implementation
+    vimp.nnoremap({'silent'}, '<Leader>gi', function()
+        vim.lsp.buf.implementation()
+    end)
+
+    -- Go to type definition
+    vimp.nnoremap({'silent'}, '<Leader>gtd', function()
+        vim.lsp.buf.type_definition()
+    end)
+
+    -- Go to references
+    vimp.nnoremap({'silent'}, '<Leader>gr', function()
+        vim.lsp.buf.references()
+    end)
+
+    -- Code action
+    vimp.nnoremap({'silent'}, '<Leader>ca', function()
+        vim.lsp.buf.code_action()
+    end)
+
+    -- Rename
+    vimp.nnoremap({'silent'}, '<Leader>r', function()
+        vim.lsp.buf.rename()
+    end)
+
+    -- Hover
+    vimp.nnoremap({'silent'}, 'K', function()
+        vim.lsp.buf.hover()
+    end)
+
+    -- Open diagnostics
+    vimp.nnoremap({'silent'}, '<Leader>-', function()
+        vim.lsp.diagnostic.set_loclist()
+    end)
+
+    -- Signature help
+    vimp.nnoremap({'silent'}, '<Leader>sh', function()
+        vim.lsp.buf.signature_help()
+    end)
+
+    -- Go to next diagnostic
+    vimp.nnoremap({'silent'}, ']d', function()
+        vim.lsp.diagnostic.goto_next()
+    end)
+
+    -- Go to previous diagnostic
+    vimp.nnoremap({'silent'}, '[d', function()
+        vim.lsp.diagnostic.goto_prev()
+    end)
+
+    vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 
 return M
