@@ -13,17 +13,13 @@ local custom_attach = function(client)
     completion.on_attach(client)
     lsp_status.on_attach(client)
 
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, {
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             -- Enable underline, use default values
             underline = true,
             -- Enable virtual text, override spacing to 4
-            virtual_text = {
-                spacing = 4,
-                prefix = '🔎',
-            },
-        }
-    )
+            virtual_text = {spacing = 4, prefix = '🔎'}
+        })
 
     -- Rust is currently the only thing w/ inlay hints
     if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
@@ -40,162 +36,150 @@ function M.setup()
 
     lspconfig.cssls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.efm.setup({
-        cmd = {
-            "efm-langserver",
-            "-loglevel",
-            "2",
-            "-logfile",
-            os.getenv('HOME') .. "/.config/efm-langserver/efm.log"
+        init_options = {
+            documentFormatting = true,
+            hover = true,
+            documentSymbol = true,
+            codeAction = true,
+            completion = true
         },
-        init_options = {documentFormatting = true},
         settings = {
-            rootMarkers = {".git"},
+            rootMarkers = {".git/"},
             languages = {
                 lua = {lua_format},
                 vim = {vint},
                 typescript = {eslint, tslint},
                 javascript = {eslint},
                 typescriptreact = {prettier, eslint, tslint},
-                javascriptreact = {prettier, eslint},
+                javascriptreact = {prettier, eslint}
             }
+        },
+        filetypes = {
+            "lua", "vim", "javascript", "javascriptreact", "javascript.jsx",
+            "typescript", "typescriptreact", "typescript.tsx"
         },
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities,
         log_level = vim.lsp.protocol.MessageType.Log,
-        message_level = vim.lsp.protocol.MessageType.Log,
+        message_level = vim.lsp.protocol.MessageType.Log
     })
 
     lspconfig.html.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.jsonls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.rust_analyzer.setup({
         cmd = {"rust-analyzer"},
         filetypes = {"rust"},
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.sumneko_lua.setup({
         cmd = {
-            os.getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
-            "-E",
-            os.getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
+            os.getenv('HOME') ..
+                "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
+            "-E", os.getenv('HOME') ..
+                "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
         },
         settings = {
             Lua = {
                 runtime = {
                     version = "LuaJIT",
-                    path = vim.split(package.path, ';'),
+                    path = vim.split(package.path, ';')
                 },
                 workspace = {
                     library = {
                         [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    },
+                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+                    }
                 },
                 diagnostics = {
                     enable = true,
-                    globals = { "hs", "vim", "it", "describe", "before_each", "after_each" },
-                    disable = { "lowercase-global" }
+                    globals = {
+                        "hs", "vim", "it", "describe", "before_each",
+                        "after_each"
+                    },
+                    disable = {"lowercase-global"}
                 },
-                completion = {
-                    keywordSnippet = "Disable",
-                },
-            },
+                completion = {keywordSnippet = "Disable"}
+            }
         },
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.tsserver.setup({
         cmd = {"typescript-language-server", "--stdio"},
         filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx"
+            "javascript", "javascriptreact", "javascript.jsx", "typescript",
+            "typescriptreact", "typescript.tsx"
         },
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.vimls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     lspconfig.yamlls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = lsp_status.capabilities
     })
 
     -- Go to definition
-    vimp.nnoremap({'silent'}, '<Leader>gd', function()
-        vim.lsp.buf.definition()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>gd',
+                  function() vim.lsp.buf.definition() end)
 
     -- Go to implementation
-    vimp.nnoremap({'silent'}, '<Leader>gi', function()
-        vim.lsp.buf.implementation()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>gi',
+                  function() vim.lsp.buf.implementation() end)
 
     -- Go to type definition
-    vimp.nnoremap({'silent'}, '<Leader>gtd', function()
-        vim.lsp.buf.type_definition()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>gtd',
+                  function() vim.lsp.buf.type_definition() end)
 
     -- Go to references
-    vimp.nnoremap({'silent'}, '<Leader>gr', function()
-        vim.lsp.buf.references()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>gr',
+                  function() vim.lsp.buf.references() end)
 
     -- Code action
-    vimp.nnoremap({'silent'}, '<Leader>ca', function()
-        vim.lsp.buf.code_action()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>ca',
+                  function() vim.lsp.buf.code_action() end)
 
     -- Rename
-    vimp.nnoremap({'silent'}, '<Leader>r', function()
-        vim.lsp.buf.rename()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>r', function() vim.lsp.buf.rename() end)
 
     -- Hover
-    vimp.nnoremap({'silent'}, 'K', function()
-        vim.lsp.buf.hover()
-    end)
+    vimp.nnoremap({'silent'}, 'K', function() vim.lsp.buf.hover() end)
 
     -- Open diagnostics
-    vimp.nnoremap({'silent'}, '<Leader>-', function()
-        vim.lsp.diagnostic.set_loclist()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>-',
+                  function() vim.lsp.diagnostic.set_loclist() end)
 
     -- Signature help
-    vimp.nnoremap({'silent'}, '<Leader>sh', function()
-        vim.lsp.buf.signature_help()
-    end)
+    vimp.nnoremap({'silent'}, '<Leader>sh',
+                  function() vim.lsp.buf.signature_help() end)
 
     -- Go to next diagnostic
-    vimp.nnoremap({'silent'}, ']d', function()
-        vim.lsp.diagnostic.goto_next()
-    end)
+    vimp.nnoremap({'silent'}, ']d',
+                  function() vim.lsp.diagnostic.goto_next() end)
 
     -- Go to previous diagnostic
-    vimp.nnoremap({'silent'}, '[d', function()
-        vim.lsp.diagnostic.goto_prev()
-    end)
+    vimp.nnoremap({'silent'}, '[d',
+                  function() vim.lsp.diagnostic.goto_prev() end)
 
     vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end

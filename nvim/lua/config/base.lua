@@ -46,7 +46,8 @@ function M.setup()
     vim.wo.list = true
 
     -- Sets characters to display for invisible characters
-    vim.o.listchars = [[space:―,tab:» ,eol:␤,nbsp:⨝,extends:↩,precedes:↪]]
+    vim.o.listchars =
+        [[space:―,tab:» ,eol:␤,nbsp:⨝,extends:↩,precedes:↪]]
 
     -- Sets ambiguous width characters to be double width
     vim.o.ambiwidth = 'single'
@@ -93,9 +94,7 @@ function M.setup()
     vim.o.diffopt = [[filler,iblank,iwhite,indent-heuristic,algorithm:patience]]
 
     -- Keep an undo file (undo changes after closing)
-    if vim.fn.has 'persistent_undo' then
-        vim.o.undofile = true
-    end
+    if vim.fn.has 'persistent_undo' then vim.o.undofile = true end
 
     -- Visual spaces per tab
     vim.o.tabstop = 4

@@ -22,36 +22,33 @@ local generator = function(_window, buffer)
     table.insert(segments, sections.highlight('LightBlackBG', file_namer))
     table.insert(segments, sections.highlight('LightBlackBG', '%m%r '))
     table.insert(segments, sections.highlight('LightBlackBG',
-        subscribe.buf_autocmd(
-            "el_file_icon",
-            "BufRead",
-            function(_, buffer)
-                return extensions.file_icon(_, buffer)
-            end
-        )
-    ))
+                                              subscribe.buf_autocmd(
+                                                  "el_file_icon", "BufRead",
+                                                  function(_, buffer)
+            return extensions.file_icon(_, buffer)
+        end)))
     table.insert(segments, sections.highlight('LightBlackBG', ' '))
     table.insert(segments, sections.highlight('BlueBG', ' '))
-    table.insert(segments, sections.highlight('BlueBG',
-        subscribe.buf_autocmd(
-            "el_git_branch",
-            "BufEnter",
-            git_branch
-        )
-    ))
+    table.insert(segments,
+                 sections.highlight('BlueBG', subscribe.buf_autocmd(
+                                        "el_git_branch", "BufEnter", git_branch)))
     table.insert(segments, sections.highlight('Blue', ''))
 
     table.insert(segments, '%=')
     table.insert(segments, sections.highlight('Red', ''))
     table.insert(segments, sections.highlight('RedBG', '%n '))
-    table.insert(segments, sections.highlight('LightBlackBG', ' ' .. vim.bo.filetype .. ' '))
-    table.insert(segments, sections.highlight('PurpleBG', lsp_statusline.segment))
+    table.insert(segments, sections.highlight('LightBlackBG',
+                                              ' ' .. vim.bo.filetype .. ' '))
+    table.insert(segments,
+                 sections.highlight('PurpleBG', lsp_statusline.segment))
     table.insert(segments, sections.highlight('Purple', ''))
 
     table.insert(segments, '%=')
     table.insert(segments, sections.highlight('LightBlack', ''))
-    table.insert(segments, sections.highlight('LightBlackBG', vim.bo.fileencoding .. ' '))
-    table.insert(segments, sections.highlight('GreyBG', ' ' .. vim.bo.fileformat .. ' '))
+    table.insert(segments,
+                 sections.highlight('LightBlackBG', vim.bo.fileencoding .. ' '))
+    table.insert(segments,
+                 sections.highlight('GreyBG', ' ' .. vim.bo.fileformat .. ' '))
     table.insert(segments, sections.highlight('LightGreyBG', ' %l:%c '))
     table.insert(segments, sections.highlight('WhiteBG', ' %p%%'))
     table.insert(segments, sections.highlight('White', ''))
@@ -59,8 +56,6 @@ local generator = function(_window, buffer)
 end
 
 -- EXPRESSLINE -------------------------
-function M.setup()
-    require('el').setup({ generator = generator })
-end
+function M.setup() require('el').setup({generator = generator}) end
 
 return M

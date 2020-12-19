@@ -25,7 +25,9 @@ function M.setup()
             -- for the top/right/bottom/left border.  Optionally
             -- followed by the character to use for the
             -- topleft/topright/botright/botleft corner.
-            borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+            borderchars = {
+                '─', '│', '─', '│', '╭', '╮', '╯', '╰'
+            },
             color_devicons = true,
             file_sorter = sorters.get_fzy_sorter,
             layout_strategy = "flex",
@@ -33,121 +35,92 @@ function M.setup()
                 horizontal = {
                     width_padding = 0.1,
                     height_padding = 0.1,
-                    preview_width = 0.6,
+                    preview_width = 0.6
                 },
                 vertical = {
                     width_padding = 0.05,
                     height_padding = 1,
-                    preview_height = 0.5,
+                    preview_height = 0.5
                 }
             },
             mappings = {
                 i = {
-                    ["<CR>"] = actions.goto_file_selection_edit + actions.center,
+                    ["<CR>"] = actions.goto_file_selection_edit + actions.center
                 },
-                n = {
-                    ["<esc>"] = actions.close,
-                }
+                n = {["<esc>"] = actions.close}
             },
             preview_cutoff = 120,
             prompt_position = 'bottom',
             prompt_prefix = '🔭 ➜',
             scroll_strategy = 'cycle',
             sorting_strategy = "descending",
-            winblend = 10,
+            winblend = 10
         }
     }
 
-    vimp.nnoremap('<Leader>fd', function()
-        builtin.fd()
-    end)
+    vimp.nnoremap('<Leader>fd', function() builtin.fd() end)
 
-    vimp.nnoremap('<Leader>fgf', function()
-        builtin.git_files()
-    end)
+    vimp.nnoremap('<Leader>fgf', function() builtin.git_files() end)
 
     vimp.nnoremap('<Leader>fpf', function()
         builtin.find_files {
             previewer = false,
             layout_strategy = "vertical",
-            cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p")),
+            cwd = require('nvim_lsp.util').root_pattern(".git")(
+                vim.fn.expand("%:p"))
         }
     end)
 
-    vimp.nnoremap('<Leader>fht', function()
-        builtin.help_tags()
-    end)
+    vimp.nnoremap('<Leader>fht', function() builtin.help_tags() end)
 
-    vimp.nnoremap('<Leader>fb', function()
-        builtin.buffers()
-    end)
+    vimp.nnoremap('<Leader>fb', function() builtin.buffers() end)
 
-    vimp.nnoremap('<Leader>lg', function()
-        builtin.live_grep()
-    end)
+    vimp.nnoremap('<Leader>lg', function() builtin.live_grep() end)
 
     vimp.nnoremap('<Leader>lbg', function()
         local opts = themes.get_dropdown {
             winblend = 10,
             border = true,
             previewer = false,
-            shorten_path = false,
+            shorten_path = false
         }
 
         builtin.current_buffer_fuzzy_find(opts)
     end)
 end
 
-function M.fd()
-    builtin.fd()
-end
+function M.fd() builtin.fd() end
 
-function M.builtin()
-    builtin.builtin()
-end
+function M.builtin() builtin.builtin() end
 
-function M.git_files()
-    builtin.git_files()
-end
+function M.git_files() builtin.git_files() end
 
-function M.live_grep()
-    builtin.live_grep()
-end
+function M.live_grep() builtin.live_grep() end
 
-function M.oldfiles()
-    builtin.oldfiles()
-end
+function M.oldfiles() builtin.oldfiles() end
 
 function M.project_search()
     builtin.find_files {
         previewer = false,
         layout_strategy = "vertical",
-        cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p")),
+        cwd = require('nvim_lsp.util').root_pattern(".git")(vim.fn.expand("%:p"))
     }
 end
 
-function M.buffers()
-    builtin.buffers {
-        shorten_path = false,
-    }
-end
+function M.buffers() builtin.buffers {shorten_path = false} end
 
 function M.curbuf()
     local opts = themes.get_dropdown {
         winblend = 10,
         border = true,
         previewer = false,
-        shorten_path = false,
+        shorten_path = false
     }
 
     builtin.current_buffer_fuzzy_find(opts)
 end
 
-function M.help_tags()
-    builtin.help_tags {
-        show_version = true,
-    }
-end
+function M.help_tags() builtin.help_tags {show_version = true} end
 
 return setmetatable({}, {
     __index = function(_, k)

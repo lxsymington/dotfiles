@@ -3,11 +3,10 @@ local M = {}
 -- THEME -------------------------------
 function M.setup()
     -- Set terminal to use true color
-    if vim.fn.exists('+termguicolors') then
-        vim.o.termguicolors = true
-    end
+    if vim.fn.exists('+termguicolors') then vim.o.termguicolors = true end
 
-    vim.o.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
+    vim.o.guicursor =
+        [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 
     -- Sets the background to be dark
     vim.o.background = 'dark'

@@ -2,18 +2,14 @@
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
-    local directory = string.format(
-        '%s/site/pack/packer/opt/',
-        vim.fn.stdpath('data')
-        )
+    local directory = string.format('%s/site/pack/packer/opt/',
+                                    vim.fn.stdpath('data'))
 
     vim.fn.mkdir(directory, 'p')
 
-    local out = vim.fn.system(string.format(
-            'git clone %s %s',
-            'https://github.com/wbthomason/packer.nvim',
-            directory .. 'packer.nvim'
-        ))
+    local out = vim.fn.system(string.format('git clone %s %s',
+                                            'https://github.com/wbthomason/packer.nvim',
+                                            directory .. 'packer.nvim'))
 
     print(out)
     print('Downloading packer.nvim')
@@ -24,10 +20,7 @@ end
 return require('packer').startup {
     function(use)
         -- Packer can manage itself as an optional plugin
-        use {
-            'wbthomason/packer.nvim',
-            opt = true,
-        }
+        use {'wbthomason/packer.nvim', opt = true}
 
         -- Config
         use 'svermeulen/vimpeccable'
@@ -39,45 +32,41 @@ return require('packer').startup {
         -- Highlighting
         use {
             'nvim-treesitter/nvim-treesitter',
-            requires = { 'nvim-treesitter/nvim-treesitter-textobjects' },
-            config = function()
-                require('plugin_settings.treesitter')
-            end,
-            run = function()
-                vim.cmd('TSUpdate')
-            end,
+            requires = {'nvim-treesitter/nvim-treesitter-textobjects'},
+            config = function() require('plugin_settings.treesitter') end,
+            run = function() vim.cmd('TSUpdate') end
         }
 
         -- File Explorer
         use {
             'kyazdani42/nvim-tree.lua',
-            requires = { 'kyazdani42/nvim-web-devicons' },
+            requires = {'kyazdani42/nvim-web-devicons'},
             config = function()
                 require('plugin_settings.lua_tree').setup()
-            end,
+            end
         }
 
         -- LSP configurations
         use {
             'neovim/nvim-lspconfig',
             requires = {
-                'nvim-lua/completion-nvim',
-                'nvim-lua/lsp-status.nvim',
-                'nvim-treesitter/completion-treesitter',
+                'nvim-lua/completion-nvim', 'nvim-lua/lsp-status.nvim',
+                'nvim-treesitter/completion-treesitter'
             },
-            config = function()
-                require('lsp_config').setup()
-            end,
+            config = function() require('lsp_config').setup() end
         }
 
         -- Highlight colours
         use {
             'norcalli/nvim-colorizer.lua',
-            config = function() require'colorizer'.setup({
-                '*'; -- Highlight all files, but customize some others.
-                css = { css = true; }; -- Enable parsing rgb(...) functions in css.
-                html = { names = false; } -- Disable parsing "names" like Blue or Gray
-            }) end,
+            config = function()
+                require'colorizer'.setup(
+                    {
+                        '*', -- Highlight all files, but customize some others.
+                        css = {css = true}, -- Enable parsing rgb(...) functions in css.
+                        html = {names = false} -- Disable parsing "names" like Blue or Gray
+                    })
+            end
         }
 
         -- Registers
@@ -86,13 +75,10 @@ return require('packer').startup {
         -- Search
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {
-                'popup.nvim',
-                'plenary.nvim',
-            },
+            requires = {'popup.nvim', 'plenary.nvim'},
             config = function()
                 require('plugin_settings.telescope').setup()
-            end,
+            end
         }
 
         -- Languages
@@ -106,16 +92,12 @@ return require('packer').startup {
             'tpope/vim-fugitive',
             config = function()
                 require('plugin_settings.fugitive').setup()
-            end,
+            end
         }
         use {
             'lewis6991/gitsigns.nvim',
-            requires = {
-                'plenary.nvim',
-            },
-            config = function()
-                require('gitsigns').setup()
-            end
+            requires = {'plenary.nvim'},
+            config = function() require('gitsigns').setup() end
         }
 
         -- Focus
@@ -123,7 +105,7 @@ return require('packer').startup {
             'TaDaa/vimade',
             config = function()
                 require('plugin_settings.vimade').setup()
-            end,
+            end
         }
 
         -- Colors
@@ -138,9 +120,7 @@ return require('packer').startup {
         -- Statusline
         use {
             'tjdevries/express_line.nvim',
-            requires = {
-                'plenary.nvim'
-            },
+            requires = {'plenary.nvim'},
             config = function()
                 require('plugin_settings.expressline').setup()
             end
@@ -163,28 +143,23 @@ return require('packer').startup {
             'mhinz/vim-startify',
             config = function()
                 require('plugin_settings.startify').setup()
-            end,
+            end
         }
 
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
-            requires = {
-                'theHamsta/nvim-dap-virtual-text',
-            },
+            requires = {'theHamsta/nvim-dap-virtual-text'},
             config = function()
                 require('plugin_settings.nvim-dap').setup()
-            end,
+            end
         }
         use {
             'nvim-telescope/telescope-dap.nvim',
-            requires = {
-                'telescope.nvim',
-                'nvim-dap',
-            },
+            requires = {'telescope.nvim', 'nvim-dap'},
             config = function()
                 require('plugin_settings.nvim-dap.telescope_integration').setup()
-            end,
+            end
         }
 
         -- Pairing
@@ -198,23 +173,16 @@ return require('packer').startup {
         use {
             'tpope/vim-dispatch',
             opt = true,
-            cmd = {
-                'Dispatch',
-                'Make',
-                'Focus',
-                'Start',
-            },
+            cmd = {'Dispatch', 'Make', 'Focus', 'Start'}
         }
 
         -- Test runner
         use {
             'vim-test/vim-test',
-            requires = {
-                'vim-dispatch'
-            },
-            config = function ()
+            requires = {'vim-dispatch'},
+            config = function()
                 require('plugin_settings.vim-test').setup()
-            end,
+            end
         }
-    end,
+    end
 }

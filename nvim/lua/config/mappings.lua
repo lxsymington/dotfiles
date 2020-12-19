@@ -12,19 +12,13 @@ function M.setup()
     vimp.nnoremap('<C-L>', '<C-w><C-L>')
 
     -- Open init.vim in a tab
-    vimp.nnoremap('<Leader>ev', function()
-        vim.cmd('tabedit $MYVIMRC')
-    end)
+    vimp.nnoremap('<Leader>ev', function() vim.cmd('tabedit $MYVIMRC') end)
 
     -- CLear highlighting
-    vimp.nnoremap('<Leader><space>', function()
-        vim.cmd('nohlsearch')
-    end)
+    vimp.nnoremap('<Leader><space>', function() vim.cmd('nohlsearch') end)
 
     -- Toggle relative numbers
-    vimp.nnoremap('<Leader>#', function()
-        vim.cmd('call NumberToggle()')
-    end)
+    vimp.nnoremap('<Leader>#', function() vim.cmd('call NumberToggle()') end)
 
     vimp.tnoremap('<Leader><Esc>', '<C-\\><C-n>')
 end

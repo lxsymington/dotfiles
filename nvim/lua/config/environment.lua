@@ -11,7 +11,8 @@ function M.setup()
         elseif vim.fn.has('unix') then
             vim.g.env = 'UNX'
         else
-            vim.g.env = vim.cmd([[toupper(substitute(system('uname'), '\n', '', ''))]])
+            vim.g.env = vim.cmd(
+                            [[toupper(substitute(system('uname'), '\n', '', ''))]])
         end
     end
 
@@ -38,9 +39,11 @@ function M.setup()
         vim.o.shell = 'powershell.exe'
         vim.o.shellcmdflag = [[ -NoLogo -ExecutionPolicy RemoteSigned -Command]]
         vim.o.shellquote = [[shellpipe=| shellxquote=]]
-        vim.o.shellredir= [[| Out-File -Encoding UTF8]]
-        vim.g.python_host_prog = 'C:\\Users\\lsymington\\scoop\\shims\\python2.EXE'
-        vim.g.python3_host_prog = 'C:\\Users\\lsymington\\scoop\\shims\\python3.EXE'
+        vim.o.shellredir = [[| Out-File -Encoding UTF8]]
+        vim.g.python_host_prog =
+            'C:\\Users\\lsymington\\scoop\\shims\\python2.EXE'
+        vim.g.python3_host_prog =
+            'C:\\Users\\lsymington\\scoop\\shims\\python3.EXE'
     elseif vim.g.env == 'DARWIN' then
         vim.o.shell = [[/usr/local/bin/fish]]
     elseif vim.g.env == 'LINUX' then
