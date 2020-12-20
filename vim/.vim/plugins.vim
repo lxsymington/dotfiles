@@ -1,12 +1,8 @@
 " Platform `plugged` directory
 function! s:pluggedDir()
-    if has('nvim')
-        if g:env =~ 'WINDOWS'
-            return '~/AppData/Local/nvim-data/plugged'
-        elseif g:env =~ 'DARWIN' || g:env =~ 'LINUX'
-            return '~/.local/share/nvim/plugged'
-        endif
-    else
+    if g:env =~ 'WINDOWS'
+        return '$HOME/vimfiles/plugged'
+    elseif g:env =~ 'DARWIN' || g:env =~ 'LINUX'
         return '~/.vim/plugged'
     endif
 endfunction
@@ -22,7 +18,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'evanleck/vim-svelte'
 Plug 'franbach/miramare'
 Plug 'haishanh/night-owl.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'lambdalisue/fern-git-status.vim'

@@ -1,6 +1,4 @@
-"======================================================================================================================"
-"======= WHICH ENV ===================================================================================================="
-"======================================================================================================================"
+"======= WHICH ENV ============================================================"
 " Establish which environment vim/neovim is running in.
 if !exists('g:env')
     if has('win64') || has('win32') || has('win16')
@@ -10,7 +8,7 @@ if !exists('g:env')
     endif
 endif
 
-"~~~~~~~ LATER USE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"======= LATER USE ============================================================"
 " Example usage
 " if g:env =~ 'WINDOWS'
     " Enable Windows specific settings/plugins
@@ -28,24 +26,17 @@ endif
     " Enable MinGW specific settings/plugins (Git Bash, mainly)
 " endif
 
-"======================================================================================================================"
-"======= ENVIRONMENT =================================================================================================="
-"======================================================================================================================"
-if has('nvim')
-    if g:env =~ 'WINDOWS'
-        behave mswin
-        set shell=powershell.exe
-        set shellcmdflag=\ -NoLogo\ -ExecutionPolicy\ RemoteSigned\ -Command
-        set shellquote= shellpipe=\| shellxquote=
-        set shellredir=\|\ Out-File\ -Encoding\ UTF8
-        let g:python_host_prog = 'C:\Users\lsymington\scoop\shims\python2.EXE'
-        let g:python3_host_prog = 'C:\Users\lsymington\scoop\shims\python3.EXE'
-    elseif g:env =~ 'DARWIN'
-        set shell=/usr/local/bin/fish
-    elseif g:env =~ 'LINUX'
-        set shell=/usr/bin/fish
-    endif
-    tnoremap <Leader><Esc> <C-\><C-n>
-else
-    set ttymouse=xterm2
+"======= ENVIRONMENT =========================================================="
+if g:env =~ 'WINDOWS'
+    behave mswin
+    set shell=powershell.exe
+    set shellcmdflag=\ -NoLogo\ -ExecutionPolicy\ RemoteSigned\ -Command
+    set shellquote= shellpipe=\| shellxquote=
+    set shellredir=\|\ Out-File\ -Encoding\ UTF8
+    let g:python_host_prog = 'C:\Users\lsymington\scoop\shims\python2.EXE'
+    let g:python3_host_prog = 'C:\Users\lsymington\scoop\shims\python3.EXE'
+elseif g:env =~ 'DARWIN'
+    set shell=/usr/local/bin/fish
+elseif g:env =~ 'LINUX'
+    set shell=fish
 endif

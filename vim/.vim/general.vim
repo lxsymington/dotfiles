@@ -40,7 +40,7 @@ set colorcolumn=81,+1
 set list
 
 "Sets characters to display for invisible characters
-set listchars=space:.,tab:~\ ,eol:¬
+set listchars=space:―,tab:»\ ,eol:␤,nbsp:␣,extends:↩,precedes:↪
 
 "Sets ambiguous width characters to be double width
 set ambiwidth=single
@@ -59,11 +59,6 @@ set breakindent
 
 "Set breakindent options
 set breakindentopt=min:20,shift:0,sbr
-
-"Preview effects of :%s as you type
-if has('nvim')
-    set inccommand=nosplit
-endif
 
 "Hide abandoned buffers instead of unloading them
 set hidden
@@ -90,9 +85,5 @@ set shortmess+=c
 "Improve mergetool and diff experience by using git's built in diff
 set diffopt=filler,iblank,iwhite,indent-heuristic,algorithm:patience
 
-"Keep an undo file (undo changes after closing)
-if has('persistent_undo')
-    set undofile
-endif
-
-"Look into using an auto-command and `FocusLost` to auto save when leaving nvim
+"Improve mouse handling
+set ttymouse=xterm2

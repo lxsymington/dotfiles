@@ -14,10 +14,6 @@ runtime plugin_settings/fugitive.vim
 "Sources the NerdTree plugin's settings
 runtime plugin_settings/fzf.vim
 
-"~~~~~~~ Rust ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-"Sources the Rust plugin's settings
-runtime plugin_settings/rust.vim
-
 "~~~~~~~ Seoul256 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "Sources the Seoul256 plugin's settings
 runtime plugin_settings/seoul256.vim

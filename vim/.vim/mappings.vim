@@ -1,6 +1,4 @@
-"======================================================================================================================"
-"======= MAPPINGS ====================================================================================================="
-"======================================================================================================================"
+"======= MAPPINGS ============================================================="
 "A shortcut for the escape key.
 imap jj <esc>
 
@@ -24,65 +22,3 @@ nmap <Leader><space> :nohlsearch<cr>
 
 "Map leader leader to toggle line numbers
 nnoremap <leader># :call NumberToggle()<cr>
-
-"A shortcut for opening a Vista tag sidebar
-nmap <Leader>vt :Vista!!<cr>
-
-"A shortcut for opening a fuzzy find file window.
-nmap <Leader>ff :Files<cr>
-
-"A shortcut for opening a fuzzy find file window.
-nmap <Leader>fgf :GFiles<cr>
-
-"A shortcut for opening a fuzzy find file window.
-nmap <Leader>fgs :GFiles?<cr>
-
-"A shortcut for opening a file explorer
-nmap <Leader><Tab> :Fern . -drawer -reveal=% -width=45 -toggle<cr>
-
-"A shortcut for exploring the current folder
-nmap <Leader><Leader> :Fern %:h -reveal=%<cr>
-
-"A shortcut for toggling Goyo
-nmap <Leader>G :Goyo<cr>
-
-"Show documentation
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction.
-
-"Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-"Goto shortcuts
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gi <Plug>(coc-implementation)
-
-"Rename shortcut
-nmap <leader>rn <Plug>(coc-rename)
-
-"Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-"Applying codeAction to the selected region.
-"Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-"Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-
-"Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-"Map F12 to echo the syntax highlight group under the cursor
-map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

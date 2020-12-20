@@ -6,7 +6,7 @@ function M.setup()
     vim.g.startify_session_persistence = 1
 
     -- Sort sessions by modification time
-    vim.g.startify_session_sort = 0
+    vim.g.startify_session_sort = 1
 
     -- Set the session directory
     vim.g.startify_session_dir = '~/.local/share/nvim/sessions'
@@ -21,15 +21,18 @@ function M.setup()
         '   ╚═╝░░╚══╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝   '
     }
 
-    -- Skip List
-    vim.g.startify_skiplist = {[[LuaTree]]}
-
     -- Start lists
     vim.g.startify_lists = {
         {type = 'sessions', header = {'   Sessions'}},
         {type = 'dir', header = {'   MRU ' .. vim.fn.getcwd()}},
         {type = 'files', header = {'   MRU'}},
         {type = 'commands', header = {'   Commands'}}
+    }
+
+    -- Close LuaTree
+    vim.g.startify_session_before_save = {
+        'echo "Cleaning up before saving.."',
+        'silent! LuaTreeClose'
     }
 end
 

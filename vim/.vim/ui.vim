@@ -44,15 +44,5 @@ set equalalways
 "Display the foldcolumn
 set foldcolumn=1
 
-"Enable pseudo-transparency for popup menus
-if has('nvim')
-    set pumblend=10
-endif
-
-"Enable pseudo-transparency for floating windows
-if has('nvim')
-    set winblend=10
-endif
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,preview,noinsert,noselect

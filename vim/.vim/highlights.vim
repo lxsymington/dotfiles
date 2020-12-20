@@ -1,8 +1,4 @@
-"======================================================================================================================"
-"======= HIGHLIGHTS ==================================================================================================="
-"======================================================================================================================"
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
+"======= HIGHLIGHTS ==========================================================="
 "Configure ALE highlights
 hi ALEWarning guibg=NONE guisp=yellow gui=undercurl,bold ctermfg=yellow ctermbg=NONE cterm=undercurl,bold term=undercurl,bold
 hi ALEError guibg=NONE guisp=red gui=undercurl,bold ctermfg=red ctermbg=NONE cterm=undercurl,bold term=undercurl,bold

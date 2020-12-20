@@ -15,22 +15,13 @@ tools:
   tslint: &tslint
     lint-command: 'tslint -p ./tsconfig.json'
     lint-ignore-exit-code: true
-    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c - %m'
   prettier: &prettier
     format-command: 'prettier'
-  terraform: &terraform
-    format-command: 'terraform fmt -'
+  luafmt: &lua-format
+    format-command: 'lua-format -i'
     format-stdin: true
-  luafmt: &luafmt
-    format-command: 'luafmt --stdin'
-    format-stdin: true
-  shellcheck: &shellcheck
-    lint-command: 'shellcheck -f gcc -x -'
-    lint-stdin: true
-    lint-formats:
-      - '%f:%l:%c: %trror: %m'
-      - '%f:%l:%c: %tarning: %m'
-      - '%f:%l:%c: %tote: %m'
 
 languages:
   vim:
@@ -45,9 +36,5 @@ languages:
   typescriptreact:
     - <<: *eslint
     - <<: *tslint
-  tf:
-    - <<: *terraform
   lua:
     - <<: *luafmt
-  sh:
-    - <<: *shellcheck

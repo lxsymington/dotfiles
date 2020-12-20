@@ -47,7 +47,7 @@ function M.setup()
 
     -- Sets characters to display for invisible characters
     vim.o.listchars =
-        [[space:―,tab:» ,eol:␤,nbsp:⨝,extends:↩,precedes:↪]]
+        [[space:―,tab:» ,eol:␤,nbsp:␣,extends:↩,precedes:↪]]
 
     -- Sets ambiguous width characters to be double width
     vim.o.ambiwidth = 'single'

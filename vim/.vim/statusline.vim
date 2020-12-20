@@ -34,7 +34,7 @@ function! CurrentMode()
         \ 'r?': ['Confirm', 'LightBlack'],
         \ '!': ['Shell', 'LightCyan'],
         \ 't': ['Terminal', 'LightCyan'],
-        \}
+        \ }
 
   let l:currentMode = l:modes[mode()]
 
@@ -88,10 +88,15 @@ function! CreatePill(sections)
 endfunction
 
 function! StatusLineString()
-    let l:statusleft = [CurrentMode(), CreatePill([['LightBlack', '%<', FilePath(), '%m', '%r'], ['Blue', StatuslineGit()]])]
-    let l:statuscentre = [CreatePill([['Red','%n'], ['LightBlack', FileType()]])] ", ['Purple', coc#status()]
-    let l:statusright = [CreatePill([['White', FileEncoding()], ['LightGrey', FileFormat()], ['Grey', '%l:%c'], ['LightBlack', '%p%%']])]
-    let l:statusline = [join(l:statusleft, '%#StatusLine# '), join(l:statuscentre, '%#StatusLine# '), join(l:statusright, '%#StatusLine# ')]
+    let l:statusleft = [
+        \ CurrentMode(),
+        \ CreatePill([['LightBlack', '%<', FilePath(), '%m', '%r'], ['Blue', StatuslineGit()]])
+        \ ]
+    let l:statusright = [
+        \ CreatePill([['Red','%n'], ['LightBlack', FileType()], ['Purple', coc#status()]]),
+        \ CreatePill([['White', FileEncoding()], ['LightGrey', FileFormat()], ['Grey', '%l:%c'], ['LightBlack', '%p%%']]),
+        \ ]
+    let l:statusline = [join(l:statusleft, '%#StatusLine# '), join(l:statusright, '%#StatusLine# ')]
     return join(l:statusline, '%#StatusLine#%=')
 endfunction
 
