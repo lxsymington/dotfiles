@@ -19,6 +19,10 @@
   "languageserver": {
       "efm": {
           "command": "efm-langserver",
+          "args": [
+              "-c",
+              "~/.config/efm-langserver/config.yaml"
+          ],
           "filetypes": [
               "vim",
               "lua",

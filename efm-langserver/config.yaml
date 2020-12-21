@@ -1,4 +1,6 @@
 version: 2
+log-file: ~/.config/efm-langserver/efm.log
+log-level: 2
 root-markers:
   - .git/
 
@@ -19,7 +21,7 @@ tools:
       - '%f:%l:%c - %m'
   prettier: &prettier
     format-command: 'prettier'
-  luafmt: &lua-format
+  lua-format: &lua-format
     format-command: 'lua-format -i'
     format-stdin: true
 
@@ -37,4 +39,4 @@ languages:
     - <<: *eslint
     - <<: *tslint
   lua:
-    - <<: *luafmt
+    - <<: *lua-format
