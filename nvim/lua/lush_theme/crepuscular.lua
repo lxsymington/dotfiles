@@ -36,8 +36,8 @@ return lush(function()
         ColorColumn {bg = black.darken(20), gui = "nocombine"},
         Comment {fg = black.lighten(15), gui = "nocombine,italic"},
         Conceal {bg = grey, fg = lightGrey, gui = "nocombine"},
-        Cursor {gui = "reverse", gui = "nocombine"},
-        CursorIM {gui = "reverse", gui = "nocombine"},
+        Cursor {gui = "nocombine,reverse"},
+        CursorIM {gui = "nocombine,reverse" },
         CursorLine {bg = black.darken(20), gui = "nocombine"},
         CursorLineNr {bg = black, fg = yellow, gui = "nocombine,bold"},
         DiffAdd {fg = lightGreen, gui = "nocombine,bold"},
@@ -132,16 +132,16 @@ return lush(function()
         Error {bg = red, fg = lightWhite, gui = "nocombine,bold,italic"}, -- (preferred) any erroneous construct
         Todo {bg = blue, fg = lightWhite, gui = "nocombine,bold,italic"}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-        LspDiagnosticsError {fg = red.desaturate(60), gui = "nocombine,italic"}, -- used for "Error" diagnostic virtual text
+        LspDiagnosticsVirtualTextError {fg = red.desaturate(60), gui = "nocombine,italic"}, -- used for "Error" diagnostic virtual text
         LspDiagnosticsErrorSign {fg = red, gui = "nocombine,bold"}, -- used for "Error" diagnostic signs in sign column
         LspDiagnosticsErrorFloating {Error}, -- used for "Error" diagnostic messages in the diagnostics float
-        LspDiagnosticsWarning {
+        LspDiagnosticsVirtualTextWarning {
             fg = yellow.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Warning" diagnostic virtual text
         LspDiagnosticsWarningSign {fg = yellow, gui = "nocombine,bold"}, -- used for "Warning" diagnostic signs in sign column
         LspDiagnosticsWarningFloating {WarningMsg}, -- used for "Warning" diagnostic messages in the diagnostics float
-        LspDiagnosticsInformation {
+        LspDiagnosticsVirtualTextInformation {
             fg = lightBlue.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Information" diagnostic virtual text
@@ -151,7 +151,7 @@ return lush(function()
             fg = white,
             gui = "nocombine,bold,italic"
         }, -- used for "Information" diagnostic messages in the diagnostics float
-        LspDiagnosticsHint {
+        LspDiagnosticsVirtualTextHint {
             fg = lightGreen.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Hint" diagnostic virtual text
