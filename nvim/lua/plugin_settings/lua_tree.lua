@@ -14,15 +14,20 @@ function M.setup()
     vim.g.lua_tree_show_icons = {git = 1, folders = 1, files = 1}
 
     vim.g.lua_tree_icons = {
-        default = '',
+        default = '',
+        symlink = '',
         git = {
-            unstaged = "✗",
+            renamed = "➜",
             staged = "✓",
             unmerged = "",
-            renamed = "➜",
+            unstaged = "✗",
             untracked = "★"
         },
-        folder = {default = "", open = ""}
+        folder = {
+            default = "",
+            open = "",
+            symlink = "",
+        }
     }
 
     vim.g.lua_tree_bindings = {
@@ -34,6 +39,7 @@ function M.setup()
         toggle_dotfiles = 'H',
         refresh = 'R',
         preview = '<Tab>',
+        close_node = {'h', '<s-cr>', '<bs>'},
         cd = '<C-]>',
         create = 'a',
         remove = 'd',

@@ -29,7 +29,7 @@ end
 
 function M.setup()
     -- Set LSP client's log level. Server's log level is not affected.
-    vim.lsp.set_log_level("warn")
+    vim.lsp.set_log_level('info')
 
     -- Turn on status.
     lsp_status.register_progress()
@@ -40,6 +40,14 @@ function M.setup()
     })
 
     lspconfig.efm.setup({
+        cmd = {
+            'efm-langserver',
+            '-logfile',
+            os.getenv('HOME') .. '/efm.log',
+            '-loglevel',
+            '2'
+        },
+        root_dir = lspconfig.util.root_pattern("package.json", ".git/"),
         init_options = {
             documentFormatting = true,
             hover = true,
@@ -48,7 +56,7 @@ function M.setup()
             completion = true
         },
         settings = {
-            rootMarkers = {".git/"},
+            rootMarkers = {"package.json", ".git/"},
             languages = {
                 lua = {lua_format},
                 vim = {vint},

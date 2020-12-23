@@ -1,3 +1,4 @@
 *.swp
+efm.log
 .vimspector.json
 .idea
