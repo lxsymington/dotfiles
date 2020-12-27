@@ -4,16 +4,16 @@ local M = {}
 
 -- LUA TREE ----------------------------
 function M.setup()
-    vim.g.lua_tree_width = 45
-    vim.g.lua_tree_ignore = {'.git', 'node_modules'}
-    vim.g.lua_tree_auto_close = 1
-    vim.g.lua_tree_follow = 1
-    vim.g.lua_tree_indent_markers = 1
-    vim.g.lua_tree_hide_dotfiles = 0
-    vim.g.lua_tree_tab_open = 1
-    vim.g.lua_tree_show_icons = {git = 1, folders = 1, files = 1}
+    vim.g.nvim_tree_width = 45
+    vim.g.nvim_tree_ignore = {'.git', 'node_modules'}
+    vim.g.nvim_tree_auto_close = 1
+    vim.g.nvim_tree_follow = 1
+    vim.g.nvim_tree_indent_markers = 1
+    vim.g.nvim_tree_hide_dotfiles = 0
+    vim.g.nvim_tree_tab_open = 1
+    vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1}
 
-    vim.g.lua_tree_icons = {
+    vim.g.nvim_tree_icons = {
         default = '',
         symlink = '',
         git = {
@@ -30,7 +30,7 @@ function M.setup()
         }
     }
 
-    vim.g.lua_tree_bindings = {
+    vim.g.nvim_tree_bindings = {
         edit = {'<CR>', 'o', 'l'},
         edit_vsplit = '<C-v>',
         edit_split = '<C-x>',
@@ -52,15 +52,15 @@ function M.setup()
     }
 
     vimp.nnoremap({'silent'}, '<Leader><Tab>',
-                  function() vim.cmd('LuaTreeToggle') end)
+                  function() vim.cmd('NvimTreeToggle') end)
 
     vimp.nnoremap({'silent'}, '<Leader>ltr',
-                  function() vim.cmd('LuaTreeRefresh') end)
+                  function() vim.cmd('NvimTreeRefresh') end)
 
     vim.api.nvim_exec([[
-  augroup LuaTreeOverride
+  augroup NvimTreeOverride
     au!
-    au FileType LuaTree setlocal nowrap
+    au FileType NvimTree setlocal nowrap
   augroup END
   ]], '')
 end

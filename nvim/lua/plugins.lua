@@ -42,7 +42,7 @@ return require('packer').startup {
             'kyazdani42/nvim-tree.lua',
             requires = {'kyazdani42/nvim-web-devicons'},
             config = function()
-                require('plugin_settings.lua_tree').setup()
+                require('plugin_settings.nvim_tree').setup()
             end
         }
 
@@ -160,6 +160,12 @@ return require('packer').startup {
             config = function()
                 require('plugin_settings.nvim-dap.telescope_integration').setup()
             end
+        }
+
+        -- Github
+        use {
+            'pwntester/octo.nvim',
+            requires = {'popup.nvim', 'plenary.nvim', 'telescope.nvim'}
         }
 
         -- Pairing
