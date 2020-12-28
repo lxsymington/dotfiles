@@ -15,6 +15,8 @@ tools:
     lint-command: 'eslint -f unix --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: true
     lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m'
   tslint: &tslint
     lint-command: 'tslint -p ./tsconfig.json'
     lint-ignore-exit-code: true
