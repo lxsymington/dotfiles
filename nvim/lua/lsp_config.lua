@@ -82,6 +82,7 @@ function M.setup()
     })
 
     lspconfig.jsonls.setup({
+        cmd = { 'json-languageserver' },
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities
     })
@@ -95,10 +96,9 @@ function M.setup()
 
     lspconfig.sumneko_lua.setup({
         cmd = {
-            os.getenv('HOME') ..
-                "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
-            "-E", os.getenv('HOME') ..
-                "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
+            'lua-language-server',
+            "-E",
+            os.getenv('HOME') ..  '/Tools/lua-language-server/main.lua'
         },
         settings = {
             Lua = {
