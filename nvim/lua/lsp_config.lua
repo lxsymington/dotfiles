@@ -9,22 +9,45 @@ local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
 local M = {}
 
+vim.lsp.handlers["textDocument/formatting"] =
+    function(err, _, result, _, bufnr)
+        if err ~= nil or result == nil then return end
+        if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+            local view = vim.fn.winsaveview()
+            vim.lsp.util.apply_text_edits(result, bufnr)
+            vim.fn.winrestview(view)
+            if bufnr == vim.api.nvim_get_current_buf() then
+                vim.api.nvim_command("noautocmd :update")
+            end
+        end
+    end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        -- Enable underline, use default values
+        underline = true,
+        -- Enable virtual text, override spacing to 4
+        virtual_text = {spacing = 4, prefix = '🔎'}
+    })
+
 local custom_attach = function(client)
     completion.on_attach(client)
     lsp_status.on_attach(client)
 
-    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            -- Enable underline, use default values
-            underline = true,
-            -- Enable virtual text, override spacing to 4
-            virtual_text = {spacing = 4, prefix = '🔎'}
-        })
+    if client.resolved_capabilities.document_formatting then
+        vim.api.nvim_command [[augroup Format]]
+        vim.api.nvim_command [[autocmd! * <buffer>]]
+        vim.api
+            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        vim.api.nvim_command [[augroup END]]
+    end
 
     -- Rust is currently the only thing w/ inlay hints
     if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
         vim.cmd [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { aligned = true, prefix = " » " }]]
     end
+
+    vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 
 function M.setup()
@@ -41,11 +64,8 @@ function M.setup()
 
     lspconfig.efm.setup({
         cmd = {
-            'efm-langserver',
-            '-logfile',
-            os.getenv('HOME') .. '/efm.log',
-            '-loglevel',
-            '2'
+            'efm-langserver', '-logfile', os.getenv('HOME') .. '/efm.log',
+            '-loglevel', '2'
         },
         root_dir = lspconfig.util.root_pattern("package.json", ".git/"),
         init_options = {
@@ -82,7 +102,7 @@ function M.setup()
     })
 
     lspconfig.jsonls.setup({
-        cmd = { 'json-languageserver' },
+        cmd = {'json-languageserver'},
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities
     })
@@ -96,9 +116,8 @@ function M.setup()
 
     lspconfig.sumneko_lua.setup({
         cmd = {
-            'lua-language-server',
-            "-E",
-            os.getenv('HOME') ..  '/Tools/lua-language-server/main.lua'
+            'lua-language-server', "-E",
+            os.getenv('HOME') .. '/Tools/lua-language-server/main.lua'
         },
         settings = {
             Lua = {
@@ -188,8 +207,6 @@ function M.setup()
     -- Go to previous diagnostic
     vimp.nnoremap({'silent'}, '[d',
                   function() vim.lsp.diagnostic.goto_prev() end)
-
-    vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 
 return M

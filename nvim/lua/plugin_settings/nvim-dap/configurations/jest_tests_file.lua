@@ -1,13 +1,10 @@
 return {
     type = "node",
     request = "launch",
-    name = "Mocha Tests",
+    name = "Jest File Tests",
     protocol = "auto",
-    program = "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-    args = {
-        "-u", "tdd", "--timeout", "60000", "--colors",
-        "${workspaceFolder}/test/**/*.test.js"
-    },
+    program = "${workspaceFolder}/node_modules/.bin/jest",
+    args = {"${file}"},
     skipFiles = {"<node_internals>/**"},
     console = "integratedTerminal",
     internalConsoleOptions = "openOnSessionStart",
