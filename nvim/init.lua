@@ -7,3 +7,6 @@ require('config.index').setup()
 
 -- Plugins -----------------------------
 require('plugins')
+
+-- Autocommands ------------------------
+require('autocommands.index').setup()

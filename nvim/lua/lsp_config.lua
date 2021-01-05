@@ -11,43 +11,6 @@ local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
 local M = {}
 
-vim.lsp.handlers["textDocument/formatting"] =
-    function(err, _, result, _, bufnr)
-        if err ~= nil or result == nil then return end
-        if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-            local view = vim.fn.winsaveview()
-            vim.lsp.util.apply_text_edits(result, bufnr)
-            vim.fn.winrestview(view)
-            if bufnr == vim.api.nvim_get_current_buf() then
-                vim.api.nvim_command("noautocmd :update")
-            end
-        end
-    end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- Enable underline, use default values
-        underline = true,
-        -- Enable virtual text, override spacing to 4
-        virtual_text = {spacing = 4, prefix = '🔎'}
-    })
-
--- -- Alloyed Lua Language Server
--- if not lspconfig.alloyed then
---     configs.alloyed = {
---         default_config = {
---             cmd = { 'lua-lsp' },
---             filetypes = { 'lua' },
---             root_dir = function(fname)
---                 return util.root_pattern('.luacheckrc', '.luacompleterc', '.git')
---                     or util.path.dirname(fname)
---                     or vim.loop.os_homedir()
---             end,
---             settings = {}
---         },
---     }
--- end
-
 local custom_attach = function(client)
     completion.on_attach(client)
     lsp_status.on_attach(client)
@@ -71,6 +34,43 @@ end
 function M.setup()
     -- Set LSP client's log level. Server's log level is not affected.
     vim.lsp.set_log_level('info')
+
+    vim.lsp.handlers["textDocument/formatting"] =
+        function(err, _, result, _, bufnr)
+            if err ~= nil or result == nil then return end
+            if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+                local view = vim.fn.winsaveview()
+                vim.lsp.util.apply_text_edits(result, bufnr)
+                vim.fn.winrestview(view)
+                if bufnr == vim.api.nvim_get_current_buf() then
+                    vim.api.nvim_command("noautocmd :update")
+                end
+            end
+        end
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            -- Enable underline, use default values
+            underline = true,
+            -- Enable virtual text, override spacing to 4
+            virtual_text = {spacing = 4, prefix = '🔎'}
+        })
+
+--     -- Alloyed Lua Language Server
+--     if not lspconfig.alloyed then
+--         configs.alloyed = {
+--             default_config = {
+--                 cmd = { 'lua-lsp' },
+--                 filetypes = { 'lua' },
+--                 root_dir = function(fname)
+--                     return util.root_pattern('.luacheckrc', '.luacompleterc', '.git')
+--                         or util.path.dirname(fname)
+--                         or vim.loop.os_homedir()
+--                 end,
+--                 settings = {}
+--             },
+--         }
+--     end
 
     -- Turn on status.
     lsp_status.register_progress()
@@ -184,10 +184,10 @@ function M.setup()
         capabilities = lsp_status.capabilities
     })
 
-    -- lspconfig.alloyed.setup({
-    --     on_attach = custom_attach,
-    --     capabilities = lsp_status.capabilities
-    -- })
+--     lspconfig.alloyed.setup({
+--         on_attach = custom_attach,
+--         capabilities = lsp_status.capabilities
+--     })
 
     -- Go to definition
     vimp.nnoremap({'silent'}, '<Leader>gd',
