@@ -1,5 +1,7 @@
 local vimp = require('vimp')
 local lspconfig = require('lspconfig')
+-- local configs = require('lspconfig.configs')
+local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
 local vint = require('plugin_settings.efm.vint')
@@ -29,6 +31,22 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         -- Enable virtual text, override spacing to 4
         virtual_text = {spacing = 4, prefix = '🔎'}
     })
+
+-- -- Alloyed Lua Language Server
+-- if not lspconfig.alloyed then
+--     configs.alloyed = {
+--         default_config = {
+--             cmd = { 'lua-lsp' },
+--             filetypes = { 'lua' },
+--             root_dir = function(fname)
+--                 return util.root_pattern('.luacheckrc', '.luacompleterc', '.git')
+--                     or util.path.dirname(fname)
+--                     or vim.loop.os_homedir()
+--             end,
+--             settings = {}
+--         },
+--     }
+-- end
 
 local custom_attach = function(client)
     completion.on_attach(client)
@@ -67,7 +85,7 @@ function M.setup()
             'efm-langserver', '-logfile', os.getenv('HOME') .. '/efm.log',
             '-loglevel', '2'
         },
-        root_dir = lspconfig.util.root_pattern("package.json", ".git/"),
+        root_dir = util.root_pattern("package.json", ".git/"),
         init_options = {
             documentFormatting = true,
             hover = true,
@@ -165,6 +183,11 @@ function M.setup()
         on_attach = custom_attach,
         capabilities = lsp_status.capabilities
     })
+
+    -- lspconfig.alloyed.setup({
+    --     on_attach = custom_attach,
+    --     capabilities = lsp_status.capabilities
+    -- })
 
     -- Go to definition
     vimp.nnoremap({'silent'}, '<Leader>gd',

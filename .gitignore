@@ -7,6 +7,7 @@ fish/functions/*
 !fish/functions/nvm.fish
 !fish/functions/load_nvm.fish
 !fish/functions/nvm_find_nvmrc.fish
+!fish/functions/ls.fish
 fish/fish_variables
 vim/.vim/autoload/plug.vim*
 vim/.vim/session
