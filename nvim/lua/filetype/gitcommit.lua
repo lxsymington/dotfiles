@@ -6,7 +6,7 @@ function M.setup()
     vim.bo.textwidth = 72
 
     -- Creates a visual boundary
-    vim.bo.colorcolumn = [[53,+1]]
+    vim.wo.colorcolumn = [[53,+1]]
 end
 
 return M

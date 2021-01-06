@@ -1,7 +1,9 @@
 -- TERMINAL
 local M = {}
 
-local function term_config()
+if not _G.autocommand then _G.autocommand = {} end
+
+function _G.autocommand.terminal()
     -- Disables line numbers
     vim.wo.number = false
     vim.wo.relativenumber = false
@@ -14,10 +16,12 @@ local function term_config()
 end
 
 function M.setup()
-    vim.api.nvim_command [[augroup Terminal]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd TermOpen <buffer> lua term_config() ]]
-    vim.api.nvim_command [[augroup END]]
+    vim.api.nvim_command([[
+        augroup Terminal
+        autocmd! * <buffer>
+        autocmd TermEnter * call v:lua.autocommand.terminal() 
+        augroup END
+    ]])
 end
 
 return M

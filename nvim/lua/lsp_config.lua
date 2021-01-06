@@ -56,21 +56,21 @@ function M.setup()
             virtual_text = {spacing = 4, prefix = '🔎'}
         })
 
---     -- Alloyed Lua Language Server
---     if not lspconfig.alloyed then
---         configs.alloyed = {
---             default_config = {
---                 cmd = { 'lua-lsp' },
---                 filetypes = { 'lua' },
---                 root_dir = function(fname)
---                     return util.root_pattern('.luacheckrc', '.luacompleterc', '.git')
---                         or util.path.dirname(fname)
---                         or vim.loop.os_homedir()
---                 end,
---                 settings = {}
---             },
---         }
---     end
+    --     -- Alloyed Lua Language Server
+    --     if not lspconfig.alloyed then
+    --         configs.alloyed = {
+    --             default_config = {
+    --                 cmd = { 'lua-lsp' },
+    --                 filetypes = { 'lua' },
+    --                 root_dir = function(fname)
+    --                     return util.root_pattern('.luacheckrc', '.luacompleterc', '.git')
+    --                         or util.path.dirname(fname)
+    --                         or vim.loop.os_homedir()
+    --                 end,
+    --                 settings = {}
+    --             },
+    --         }
+    --     end
 
     -- Turn on status.
     lsp_status.register_progress()
@@ -184,10 +184,10 @@ function M.setup()
         capabilities = lsp_status.capabilities
     })
 
---     lspconfig.alloyed.setup({
---         on_attach = custom_attach,
---         capabilities = lsp_status.capabilities
---     })
+    --     lspconfig.alloyed.setup({
+    --         on_attach = custom_attach,
+    --         capabilities = lsp_status.capabilities
+    --     })
 
     -- Go to definition
     vimp.nnoremap({'silent'}, '<Leader>gd',
@@ -230,6 +230,14 @@ function M.setup()
     -- Go to previous diagnostic
     vimp.nnoremap({'silent'}, '[d',
                   function() vim.lsp.diagnostic.goto_prev() end)
+
+    -- Highlight the current symbol in the document
+    vim.api
+        .nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.api
+        .nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.api
+        .nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
 end
 
 return M

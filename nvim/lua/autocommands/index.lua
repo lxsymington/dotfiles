@@ -1,6 +1,6 @@
 local M = {}
 
--- Config Index ------------------------
+-- Autocommands Index ------------------
 function M.setup() require('autocommands.terminal').setup() end
 
 return M

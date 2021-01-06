@@ -1,1 +1,1 @@
-lua require(filetype.gitcommit).setup()
+lua require('filetype.gitcommit').setup()
