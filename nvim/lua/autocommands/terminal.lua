@@ -19,7 +19,7 @@ function M.setup()
     vim.api.nvim_command([[
         augroup Terminal
         autocmd! * <buffer>
-        autocmd TermEnter * call v:lua.autocommand.terminal() 
+        autocmd TermOpen * v:lua.autocommand.terminal() 
         augroup END
     ]])
 end
