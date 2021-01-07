@@ -63,7 +63,7 @@
 	keepBackup = false
 	keepTemporaries = false
 [mergetool "nvim"]
-	cmd = nvim -d $LOCAL $MERGED $BASE $REMOTE -c 'wincmd w' -c 'wincmd J'
+	cmd = nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J'
 [difftool "nvimdiff2"]
 	cmd = nvim -d $LOCAL $REMOTE
 [commit]
