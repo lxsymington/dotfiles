@@ -5,23 +5,23 @@ local hsl = lush.hsl
 
 -- Colours
 local black = hsl(275, 20, 10) -- original "#111224"
-local blue = hsl(215, 75, 30) -- original "#155199"
-local cyan = hsl(190, 30, 50) -- original "#6187ae"
-local green = hsl(130, 25, 25) -- original "#354e39"
+local blue = hsl(215, 75, 45) -- original "#155199"
+local cyan = hsl(190, 45, 45) -- original "#6187ae"
+local green = hsl(130, 30, 30) -- original "#354e39"
 local grey = hsl(315, 5, 30) -- original "#786674"
 local orange = hsl(20, 75, 40) -- original "#ec722f"
-local purple = hsl(300, 45, 25) -- original "#673a5b"
+local purple = hsl(260, 60, 45) -- original "#673a5b"
 local red = hsl(350, 60, 40) -- original "#a95062"
 local white = hsl(30, 60, 80) -- original "#ebd3b9"
 local yellow = hsl(40, 100, 60) -- original "#ffc346"
 
 local lightBlack = hsl(275, 25, 15) -- original "#222035"
-local lightBlue = hsl(210, 50, 45) -- original "#356ea5"
+local lightBlue = hsl(215, 75, 60) -- original "#356ea5"
 local lightCyan = hsl(190, 60, 75) -- original "#83a0c8"
 local lightGreen = hsl(85, 30, 45) -- original "#5e723f"
 local lightGrey = hsl(310, 10, 60) -- original "#9f8d9d"
 local lightOrange = hsl(25, 100, 60) -- original "#fe882e"
-local lightPurple = hsl(300, 30, 40) -- original "#9f7195"
+local lightPurple = hsl(260, 45, 60) -- original "#9f7195"
 local lightRed = hsl(0, 45, 60) -- original "#c5696e"
 local lightWhite = hsl(45, 70, 95) -- original "#fcf9f0"
 local lightYellow = hsl(40, 100, 75) -- original "#ffd782"
@@ -37,7 +37,7 @@ return lush(function()
         Comment {fg = black.lighten(15), gui = "nocombine,italic"},
         Conceal {bg = grey, fg = lightGrey, gui = "nocombine"},
         Cursor {gui = "nocombine,reverse"},
-        CursorIM {gui = "nocombine,reverse" },
+        CursorIM {gui = "nocombine,reverse"},
         CursorLine {bg = black.darken(20), gui = "nocombine"},
         CursorLineNr {bg = black, fg = yellow, gui = "nocombine,bold"},
         DiffAdd {fg = lightGreen, gui = "nocombine,bold"},
@@ -57,8 +57,8 @@ return lush(function()
         }, MatchParen {bg = purple, fg = yellow, gui = "nocombine"},
         ModeMsg {fg = lightGrey, gui = "nocombine"},
         MoreMsg {fg = lightPurple, gui = "nocombine,bold"},
-        MsgArea {fg = lightGreen, gui = "nocombine,italic"},
-        MsgSeparator {fg = yellow, gui = "nocombine"},
+        MsgArea {fg = lightYellow, gui = "nocombine,italic"},
+        MsgSeparator {fg = lightGreen, gui = "nocombine"},
         NonText {fg = grey, gui = "nocombine"},
         Normal {bg = black, fg = white, gui = "nocombine"},
         NormalFloat {bg = grey, gui = "nocombine"},
@@ -132,7 +132,10 @@ return lush(function()
         Error {bg = red, fg = lightWhite, gui = "nocombine,bold,italic"}, -- (preferred) any erroneous construct
         Todo {bg = blue, fg = lightWhite, gui = "nocombine,bold,italic"}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-        LspDiagnosticsVirtualTextError {fg = red.desaturate(60), gui = "nocombine,italic"}, -- used for "Error" diagnostic virtual text
+        LspDiagnosticsVirtualTextError {
+            fg = red.desaturate(60),
+            gui = "nocombine,italic"
+        }, -- used for "Error" diagnostic virtual text
         LspDiagnosticsErrorSign {fg = red, gui = "nocombine,bold"}, -- used for "Error" diagnostic signs in sign column
         LspDiagnosticsErrorFloating {Error}, -- used for "Error" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextWarning {
