@@ -166,16 +166,16 @@ font:
 colors:
   # Default colors
   primary:
-    background: '#1d1f21'
-    foreground: '#c5c8c6'
+    background: '#1a141f'
+    foreground: '#ebccad'
 
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not present.
     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
     # is `false`, the normal foreground color will be used.
-    dim_foreground: '#828482'
-    bright_foreground: '#eaeaea'
+    dim_foreground: '#42334d'
+    bright_foreground: '#fbf7e9'
 
   # Cursor colors
   #
@@ -218,44 +218,44 @@ colors:
       background: '#ffffff'
 
     bar:
-      background: '#c5c8c6'
-      foreground: '#1d1f21'
+      background: '#ebccad'
+      foreground: '#1a141f'
 
   # Normal colors
   normal:
-    black:   '#1d1f21'
-    red:     '#cc6666'
-    green:   '#b5bd68'
-    yellow:  '#f0c674'
-    blue:    '#81a2be'
-    magenta: '#b294bb'
-    cyan:    '#8abeb7'
-    white:   '#c5c8c6'
+    black:   '#1a141f'
+    red:     '#a3293d'
+    green:   '#36633d'
+    yellow:  '#ffbb33'
+    blue:    '#1d64c9'
+    magenta: '#5c2eb8'
+    cyan:    '#3f95a6'
+    white:   '#ebccad'
 
   # Bright colors
   bright:
-    black:   '#666666'
-    red:     '#d54e53'
-    green:   '#b9ca4a'
-    yellow:  '#e7c547'
-    blue:    '#7aa6da'
-    magenta: '#c397d8'
-    cyan:    '#70c0b1'
-    white:   '#eaeaea'
+    black:   '#281d30'
+    red:     '#c76b6b'
+    green:   '#789550'
+    yellow:  '#ffd480'
+    blue:    '#4c8ce6'
+    magenta: '#8a6bc7'
+    cyan:    '#99d9e6'
+    white:   '#fbf7e9'
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  dim:
-    black:   '#131415'
-    red:     '#864343'
-    green:   '#777c44'
-    yellow:  '#9e824c'
-    blue:    '#556a7d'
-    magenta: '#75617b'
-    cyan:    '#5b7d78'
-    white:   '#828482'
+  # dim:
+    # black:   '#131415'
+    # red:     '#864343'
+    # green:   '#777c44'
+    # yellow:  '#9e824c'
+    # blue:    '#556a7d'
+    # magenta: '#75617b'
+    # cyan:    '#5b7d78'
+    # white:   '#828482'
 
   # Indexed Colors
   #
@@ -335,7 +335,7 @@ cursor:
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  vi_mode_style: Block
+  vi_mode_style: None
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
@@ -369,7 +369,7 @@ shell:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: "~/"
+working_directory: "~/"
 
 # WinPTY backend (Windows only)
 #
@@ -394,7 +394,7 @@ mouse:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: false
 
   url:
     # URL launcher
