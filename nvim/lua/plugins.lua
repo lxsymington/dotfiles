@@ -69,9 +69,6 @@ return require('packer').startup {
             end
         }
 
-        -- Registers
-        use 'junegunn/vim-peekaboo'
-
         -- Search
         use {
             'nvim-telescope/telescope.nvim',
@@ -85,7 +82,11 @@ return require('packer').startup {
         use 'sheerun/vim-polyglot'
 
         -- Syntax
-        use 'HerringtonDarkholme/yats.vim'
+        use {
+            'HerringtonDarkholme/yats.vim',
+            opt = true,
+            ft = {'typescript', 'typescriptreact'}
+        }
 
         -- Version Control
         use {
@@ -109,7 +110,11 @@ return require('packer').startup {
         }
 
         -- Colors
-        use 'amadeus/vim-convert-color-to'
+        use {
+            'amadeus/vim-convert-color-to',
+            opt = true,
+            cmd = {'ConvertColorTo'}
+        }
 
         -- Tmux
         use 'christoomey/vim-tmux-navigator'
@@ -127,13 +132,10 @@ return require('packer').startup {
         }
 
         -- Colorscheme builder
-        -- use 'lifepillar/vim-colortemplate'
         use 'rktjmp/lush.nvim'
 
         -- Colorschemes
-        use 'franbach/miramare'
-        use 'haishanh/night-owl.vim'
-        use 'junegunn/seoul256.vim'
+        use {'junegunn/seoul256.vim', opt = true}
 
         -- Surround
         use 'machakann/vim-sandwich'
@@ -149,6 +151,12 @@ return require('packer').startup {
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
+            opt = true,
+            cmd = {
+                'DebugCommands', 'DebugConfigurations', 'DebugListBreakpoints',
+                'DebugLoadLaunchJS', 'DebugVariables'
+            },
+            keys = {'<F5>'},
             requires = {'theHamsta/nvim-dap-virtual-text'},
             config = function()
                 require('plugin_settings.nvim-dap').setup()
@@ -156,6 +164,7 @@ return require('packer').startup {
         }
         use {
             'nvim-telescope/telescope-dap.nvim',
+            after = {'nvim-dap'},
             requires = {'telescope.nvim', 'nvim-dap'},
             config = function()
                 require('plugin_settings.nvim-dap.telescope_integration').setup()
@@ -165,7 +174,9 @@ return require('packer').startup {
         -- Github
         use {
             'pwntester/octo.nvim',
-            requires = {'popup.nvim', 'plenary.nvim', 'telescope.nvim'}
+            requires = {'popup.nvim', 'plenary.nvim', 'telescope.nvim'},
+            opt = true,
+            cmd = {'Octo'}
         }
 
         -- Pairing
@@ -180,15 +191,6 @@ return require('packer').startup {
             'tpope/vim-dispatch',
             opt = true,
             cmd = {'Dispatch', 'Make', 'Focus', 'Start'}
-        }
-
-        -- Test runner
-        use {
-            'vim-test/vim-test',
-            requires = {'vim-dispatch'},
-            config = function()
-                require('plugin_settings.vim-test').setup()
-            end
         }
     end
 }
