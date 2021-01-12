@@ -98,10 +98,16 @@ function M.setup()
             languages = {
                 lua = {lua_format},
                 vim = {vint},
-                typescript = {eslint, tslint},
-                javascript = {eslint},
-                typescriptreact = {prettier, eslint, tslint},
-                javascriptreact = {prettier, eslint}
+                typescript = {prettier, tslint, eslint},
+                javascript = {prettier, eslint},
+                typescriptreact = {prettier, tslint, eslint},
+                javascriptreact = {prettier, eslint},
+                yaml = {prettier},
+                json = {prettier},
+                html = {prettier},
+                scss = {prettier},
+                css = {prettier},
+                markdown = {prettier}
             }
         },
         filetypes = {
