@@ -40,11 +40,14 @@ return lush(function()
         CursorIM {gui = "nocombine,reverse"},
         CursorLine {bg = black.darken(20), gui = "nocombine"},
         CursorLineNr {bg = black, fg = yellow, gui = "nocombine,bold"},
-        DiffAdd {fg = lightGreen, gui = "nocombine,bold"},
-        DiffChange {fg = lightBlue, gui = "nocombine,bold"},
-        DiffDelete {fg = lightRed, gui = "nocombine,bold"},
-        DiffText {fg = lightPurple, gui = "nocombine,undercurl"},
-        Directory {fg = lightBlue, gui = "nocombine,bold"},
+        DiffAdd {bg = green, fg = lightGreen, gui = "nocombine,bold"},
+        DiffChange {bg = blue, fg = lightBlue, gui = "nocombine,bold"},
+        DiffDelete {bg = red, fg = lightRed, gui = "nocombine,bold"},
+        DiffText {
+            bg = purple,
+            fg = lightPurple,
+            gui = "nocombine,bold,undercurl"
+        }, Directory {fg = lightBlue, gui = "nocombine,bold"},
         EndOfBuffer {fg = lightGrey, gui = "nocombine"},
         ErrorMsg {bg = lightWhite, fg = red, gui = "nocombine"},
         FoldColumn {fg = lightGrey, gui = "nocombine"},
@@ -253,6 +256,10 @@ return lush(function()
         LightWhiteItalic {LightWhite, gui = "nocombine,italic"},
         LightWhiteBG {bg = lightWhite}, LightYellow {fg = lightYellow},
         LightYellowItalic {LightYellow, gui = "nocombine,italic"},
-        LightYellowBG {bg = lightYellow}
+        LightYellowBG {bg = lightYellow},
+
+        GitSignsAddNr {fg = lightGreen, gui = "nocombine"},
+        GitSignsChangeNr {fg = lightBlue, gui = "nocombine"},
+        GitSignsDeleteNr {fg = lightRed, gui = "nocombine"}
     }
 end)
