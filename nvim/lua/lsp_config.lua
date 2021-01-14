@@ -11,6 +11,36 @@ local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
 local M = {}
 
+local format_options_prettier = {
+    tabWidth = 4,
+    singleQuote = true,
+    trailingComma = "all",
+    configPrecedence = "prefer-file"
+}
+vim.g.format_options_typescript = format_options_prettier
+vim.g.format_options_javascript = format_options_prettier
+vim.g.format_options_typescriptreact = format_options_prettier
+vim.g.format_options_javascriptreact = format_options_prettier
+vim.g.format_options_css = format_options_prettier
+vim.g.format_options_scss = format_options_prettier
+vim.g.format_options_html = format_options_prettier
+vim.g.format_options_yaml = format_options_prettier
+vim.g.format_options_markdown = format_options_prettier
+
+FormatToggle = function(value)
+    vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
+end
+
+vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
+vim.cmd [[command! FormatEndable lua FormatToggle(false)]]
+
+_G.formatting = function()
+    if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
+        vim.lsp.buf.formatting(vim.g[string.format("format_options_%s",
+                                                   vim.bo.filetype)] or {})
+    end
+end
+
 local custom_attach = function(client)
     completion.on_attach(client)
     lsp_status.on_attach(client)
@@ -18,8 +48,7 @@ local custom_attach = function(client)
     if client.resolved_capabilities.document_formatting then
         vim.api.nvim_command [[augroup Format]]
         vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api
-            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua formatting()]]
         vim.api.nvim_command [[augroup END]]
     end
 
