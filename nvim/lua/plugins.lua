@@ -78,9 +78,6 @@ return require('packer').startup {
             end
         }
 
-        -- Languages
-        use 'sheerun/vim-polyglot'
-
         -- Syntax
         use {
             'HerringtonDarkholme/yats.vim',

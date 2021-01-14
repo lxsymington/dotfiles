@@ -2,18 +2,15 @@ local ts_configs = require('nvim-treesitter.configs')
 
 -- TREESITTER --------------------------
 return ts_configs.setup {
-    ensure_installed = {
-        'css', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'regex', 'rust',
-        'toml', 'tsx', 'typescript', 'yaml'
-    },
+    ensure_installed = "maintained",
     highlight = {enable = true},
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grm'
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm"
         }
     },
     refactor = {
