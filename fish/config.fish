@@ -6,12 +6,17 @@ if type -q starship
     starship init fish | source
 end
 
+# Use zoxide as a navigator when it is available
+if type -q zoxide
+    zoxide init fish | source
+end
+
 # Enable use of nix package manager
 if type -q replay && test -d ~/.nix-profile
     replay source ~/.nix-profile/etc/profile.d/nix{,-daemon}.sh
 end
 
-# Enable use of nix package manager
+# Enable use of node version manager
 if test -d ~/.nvm && type -q nvm
     load_nvm
 end
