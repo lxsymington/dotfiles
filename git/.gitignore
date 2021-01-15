@@ -1,4 +1,6 @@
 *.swp
 efm.log
 .vimspector.json
-.idea
+.idea/
+.prettier_d
+.DS_Store
