@@ -98,14 +98,6 @@ return require('packer').startup {
             config = function() require('gitsigns').setup() end
         }
 
-        -- Focus
-        use {
-            'TaDaa/vimade',
-            config = function()
-                require('plugin_settings.vimade').setup()
-            end
-        }
-
         -- Colors
         use {
             'amadeus/vim-convert-color-to',
@@ -181,13 +173,5 @@ return require('packer').startup {
 
         -- Commenting
         use 'tpope/vim-commentary'
-
-        -- Lazy loading:
-        -- Load on specific commands
-        use {
-            'tpope/vim-dispatch',
-            opt = true,
-            cmd = {'Dispatch', 'Make', 'Focus', 'Start'}
-        }
     end
 }
