@@ -168,6 +168,9 @@ return require('packer').startup {
             cmd = {'Octo'}
         }
 
+        -- Highlighting
+        use 'sheerun/vim-polyglot'
+
         -- Pairing
         use 'tmsvg/pear-tree'
 
