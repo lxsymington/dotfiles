@@ -2,11 +2,11 @@
 -- vim.g.packpath = vim.o.runtimepath
 vim.cmd([[runtime macros/matchit.vim]])
 
--- Config ------------------------------
-require('config.index').setup()
-
 -- Plugins -----------------------------
 require('plugins')
+
+-- Config ------------------------------
+require('config.index').setup()
 
 -- Autocommands ------------------------
 require('autocommands.index').setup()
