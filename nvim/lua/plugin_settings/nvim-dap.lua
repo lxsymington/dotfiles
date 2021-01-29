@@ -7,10 +7,16 @@ function M.setup()
     -- Node debugger
     dap.adapters.node = require('plugin_settings.nvim-dap.adapters.node')
     dap.configurations.node = {
-        require('plugin_settings.nvim-dap.configurations.mocha_tests')
+        require('plugin_settings.nvim-dap.configurations.mocha_tests_workspace'),
+        require('plugin_settings.nvim-dap.configurations.mocha_tests_file'),
+        require('plugin_settings.nvim-dap.configurations.jest_tests_workspace'),
+        require('plugin_settings.nvim-dap.configurations.jest_tests_file')
     }
     dap.configurations.typescript = {
-        require('plugin_settings.nvim-dap.configurations.typescript_mocha_tests'),
+        require(
+            'plugin_settings.nvim-dap.configurations.mocha_typescript_tests_workspace'),
+        require(
+            'plugin_settings.nvim-dap.configurations.mocha_typescript_tests_file'),
         require('plugin_settings.nvim-dap.configurations.jest_tests_workspace'),
         require('plugin_settings.nvim-dap.configurations.jest_tests_file')
     }

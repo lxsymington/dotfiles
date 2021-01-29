@@ -1,12 +1,12 @@
 return {
     type = "node",
     request = "launch",
-    name = "Mocha Tests",
+    name = "Mocha TypeScript File Tests",
     protocol = "auto",
     program = "${workspaceFolder}/node_modules/mocha/bin/_mocha",
     args = {
-        "-u", "tdd", "--timeout", "60000", "--colors",
-        "${workspaceFolder}/test/**/*.test.js"
+        "-u", "bdd", "--require", "ts-node/register", "--require",
+        "./test/testEnvironment.ts", "--timeout", "3000", "--colors", "${file}"
     },
     skipFiles = {"<node_internals>/**"},
     console = "integratedTerminal",

@@ -34,8 +34,11 @@
 	unstage = "reset HEAD --"
 	dc = "diff --cached"
 	conflicts = "diff --name-only --diff-filter=U"
-	short-recent = "for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
-	fco = "!git short-recent | fzf --print0 --preview-window top:50% --preview 'git show {}| delta' | xargs -0 -t git checkout"
+	branches = "for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes"
+	mru = "for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+	; fco = "!git branches | fzf --print0 --preview-window right:50% --preview 'xargs cut -d \\t -f3 | git show | delta' | xargs -0 -t git checkout"
+	; branch-changes = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $@..$(git rev-parse --abbrev-ref HEAD)"
+	; base-branch-changes = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $(git rev-parse --abbrev-ref HEAD)..$@"
 [push]
 	default = upstream
 [pull]
