@@ -3,4 +3,5 @@ efm.log
 .vimspector.json
 .idea/
 .prettier_d
+.eslintcache
 .DS_Store
