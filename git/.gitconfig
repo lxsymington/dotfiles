@@ -21,7 +21,7 @@
 	s = "status"
 	ab = "branch -a"
 	co = "checkout"
-	la = "!git config -l | grep alias | cut -c 7-"
+	list-aliases = "config -l | grep alias | cut -c 7-"
 	pause = "update-index --assume-unchanged"
 	unpause = "update-index --no-assume-unchanged"
 	showpaused = "!git ls-files -v | grep '^[hsmrck?]' | cut -c 3-"
@@ -34,11 +34,13 @@
 	unstage = "reset HEAD --"
 	dc = "diff --cached"
 	conflicts = "diff --name-only --diff-filter=U"
-	branches = "for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes"
+	record = "! sh -c '(git add -p -- $argv && git commit) || git reset' --"
+	branches = "for-each-ref --sort=-committerdate --format='%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)' refs/remotes"
 	mru = "for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
-	; fco = "!git branches | fzf --print0 --preview-window right:50% --preview 'xargs cut -d \\t -f3 | git show | delta' | xargs -0 -t git checkout"
-	; branch-changes = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $@..$(git rev-parse --abbrev-ref HEAD)"
-	; base-branch-changes = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $(git rev-parse --abbrev-ref HEAD)..$@"
+	; fco = "!git branches | fzf --ansi --preview-window right:50% --preview 'echo {} | cut -f3 | xargs -t git show | delta' | cut -f3 | xargs -t git checkout"
+	; fh = "!git log --color=always --date=short --graph --format='%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)' | fzf --ansi --preview='read {} | sed s/^..// | cut -d\" \" -f1'"
+	branch-changes = "!git rev-parse --abbrev-ref HEAD | awk '{print $argv\"..\"$1}' | xargs git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+	base-branch-changes = "!git rev-parse --abbrev-ref HEAD | awk '{print $1\"..\"$argv}' | xargs git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 [push]
 	default = upstream
 [pull]
