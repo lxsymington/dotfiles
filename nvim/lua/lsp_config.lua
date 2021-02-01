@@ -32,7 +32,7 @@ FormatToggle = function(value)
 end
 
 vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
-vim.cmd [[command! FormatEndable lua FormatToggle(false)]]
+vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
 
 _G.formatting = function()
     if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
@@ -46,15 +46,25 @@ local custom_attach = function(client)
     lsp_status.on_attach(client)
 
     if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua formatting()]]
-        vim.api.nvim_command [[augroup END]]
+        vim.api.nvim_command [[
+            augroup Format
+            autocmd! * <buffer>
+            autocmd BufWritePost <buffer> lua formatting()
+            augroup END
+        ]]
     end
 
     -- Rust is currently the only thing w/ inlay hints
     if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
-        vim.cmd [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { aligned = true, prefix = " » " }]]
+        vim.api.nvim_command [[
+            augroup InlayHints
+            autocmd! * <buffer>
+            autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request {
+                aligned = true,
+                prefix = " » "
+            }
+            augroup END
+        ]]
     end
 
     vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
@@ -240,6 +250,10 @@ function M.setup()
     vimp.nnoremap({'silent'}, '<Leader>gr',
                   function() vim.lsp.buf.references() end)
 
+    -- Code action
+    vimp.nnoremap({'silent'}, '<Leader>ca',
+                  function() vim.lsp.buf.code_action() end)
+
     -- Rename
     vimp.nnoremap({'silent'}, '<Leader>r', function() vim.lsp.buf.rename() end)
 
@@ -263,12 +277,18 @@ function M.setup()
                   function() vim.lsp.diagnostic.goto_prev() end)
 
     -- Highlight the current symbol in the document
-    vim.api
-        .nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
-    vim.api
-        .nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
-    vim.api
-        .nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+    vim.api.nvim_command [[
+        augroup DocumentHighlight
+        autocmd! * <buffer>
+        autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+        augroup END
+    ]]
+    vim.api.nvim_command [[
+        augroup ClearReferences
+        autocmd! * <buffer>
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+    ]]
 end
 
 return M

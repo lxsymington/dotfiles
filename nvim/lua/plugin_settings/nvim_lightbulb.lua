@@ -1,9 +1,13 @@
-local lightbulb = require('nvim-lightbulb')
 local M = {}
 
 -- LIGHTBULB ---------------------------
 function M.setup()
-    vim.cmd [[autocmd CursorHold,CursorHoldI * lua lightbulb.update_lightbulb()]]
+    vim.cmd [[
+        augroup LightBulb
+        autocmd! * <buffer>
+        autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+        augroup END
+    ]]
 end
 
 return M

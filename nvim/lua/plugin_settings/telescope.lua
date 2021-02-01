@@ -84,13 +84,17 @@ function M.setup()
         builtin.current_buffer_fuzzy_find(opts)
     end)
 
-    vimp.nnoremap({'silent'}, '<Leader>sr', function() builtin.lsp_references() end)
+    vimp.nnoremap({'silent'}, '<Leader>sr',
+                  function() builtin.lsp_references() end)
 
-    vimp.nnoremap({'silent'}, '<Leader>ca', function() builtin.lsp_code_action() end)
+    vimp.nnoremap({'silent'}, '<Leader>sca',
+                  function() builtin.lsp_code_actions() end)
 
-    vimp.nnoremap({'silent'}, '<Leader>cr', function() builtin.lsp_range_code_action() end)
+    vimp.nnoremap({'silent'}, '<Leader>srca',
+                  function() builtin.lsp_range_code_actions() end)
 
-    vimp.nnoremap({'silent'}, '<Leader>gb', function() builtin.git_branches() end)
+    vimp.nnoremap({'silent'}, '<Leader>gb',
+                  function() builtin.git_branches() end)
 
     vimp.nnoremap({'silent'}, '<Leader>gs', function() builtin.git_status() end)
 end

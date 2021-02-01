@@ -8,6 +8,8 @@
 	filemode = false
 	pager = delta
 	excludesfile = ~/.gitignore
+[interactive]
+	diffFilter = delta --color-only
 [alias]
 	co = "checkout"
 	lc = "diff-tree --name-status -r -v HEAD"
