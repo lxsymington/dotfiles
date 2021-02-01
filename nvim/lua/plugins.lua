@@ -137,6 +137,14 @@ return require('packer').startup {
             end
         }
 
+        -- Code Action Discoverability
+        use {
+            'kosayoda/nvim-lightbulb',
+            config = function()
+                require('plugin_settings.nvim_lightbulb').setup()
+            end
+        }
+
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
@@ -148,22 +156,21 @@ return require('packer').startup {
             keys = {'<F5>'},
             requires = {'theHamsta/nvim-dap-virtual-text'},
             config = function()
-                require('plugin_settings.nvim-dap').setup()
+                require('plugin_settings.nvim_dap').setup()
             end
         }
         use {
             'nvim-telescope/telescope-dap.nvim',
-            after = {'nvim-dap'},
-            requires = {'telescope.nvim', 'nvim-dap'},
+            after = {'telescope.nvim', 'nvim-dap'},
             config = function()
-                require('plugin_settings.nvim-dap.telescope_integration').setup()
+                require('plugin_settings.nvim_dap.telescope_integration').setup()
             end
         }
 
         -- Github
         use {
             'pwntester/octo.nvim',
-            requires = {'popup.nvim', 'plenary.nvim', 'telescope.nvim'},
+            after = {'telescope.nvim'},
             opt = true,
             cmd = {'Octo'}
         }

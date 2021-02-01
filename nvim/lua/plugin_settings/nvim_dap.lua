@@ -5,20 +5,20 @@ local M = {}
 -- DAP ---------------------------------
 function M.setup()
     -- Node debugger
-    dap.adapters.node = require('plugin_settings.nvim-dap.adapters.node')
+    dap.adapters.node = require('plugin_settings.nvim_dap.adapters.node')
     dap.configurations.node = {
-        require('plugin_settings.nvim-dap.configurations.mocha_tests_workspace'),
-        require('plugin_settings.nvim-dap.configurations.mocha_tests_file'),
-        require('plugin_settings.nvim-dap.configurations.jest_tests_workspace'),
-        require('plugin_settings.nvim-dap.configurations.jest_tests_file')
+        require('plugin_settings.nvim_dap.configurations.mocha_tests_workspace'),
+        require('plugin_settings.nvim_dap.configurations.mocha_tests_file'),
+        require('plugin_settings.nvim_dap.configurations.jest_tests_workspace'),
+        require('plugin_settings.nvim_dap.configurations.jest_tests_file')
     }
     dap.configurations.typescript = {
         require(
-            'plugin_settings.nvim-dap.configurations.mocha_typescript_tests_workspace'),
+            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_workspace'),
         require(
-            'plugin_settings.nvim-dap.configurations.mocha_typescript_tests_file'),
-        require('plugin_settings.nvim-dap.configurations.jest_tests_workspace'),
-        require('plugin_settings.nvim-dap.configurations.jest_tests_file')
+            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_file'),
+        require('plugin_settings.nvim_dap.configurations.jest_tests_workspace'),
+        require('plugin_settings.nvim_dap.configurations.jest_tests_file')
     }
 
     -- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json

@@ -240,10 +240,6 @@ function M.setup()
     vimp.nnoremap({'silent'}, '<Leader>gr',
                   function() vim.lsp.buf.references() end)
 
-    -- Code action
-    vimp.nnoremap({'silent'}, '<Leader>ca',
-                  function() vim.lsp.buf.code_action() end)
-
     -- Rename
     vimp.nnoremap({'silent'}, '<Leader>r', function() vim.lsp.buf.rename() end)
 

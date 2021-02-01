@@ -15,6 +15,7 @@ local actions = require('telescope.actions')
 local sorters = require('telescope.sorters')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
+local previewers = require('telescope.previewers')
 
 local M = {}
 
@@ -25,11 +26,6 @@ function M.setup()
             -- for the top/right/bottom/left border.  Optionally
             -- followed by the character to use for the
             -- topleft/topright/botright/botleft corner.
-            borderchars = {
-                '─', '│', '─', '│', '╭', '╮', '╯', '╰'
-            },
-            color_devicons = true,
-            file_sorter = sorters.get_fzy_sorter,
             layout_strategy = "flex",
             layout_defaults = {
                 horizontal = {
@@ -49,20 +45,20 @@ function M.setup()
                 },
                 n = {["<esc>"] = actions.close}
             },
-            preview_cutoff = 120,
-            prompt_position = 'bottom',
             prompt_prefix = '🔭 ➜',
             scroll_strategy = 'cycle',
-            sorting_strategy = "descending",
-            winblend = 10
+            winblend = 10,
+            file_previewer = previewers.vim_buffer_cat.new,
+            grep_previewer = previewers.vim_buffer_vimgrep.new,
+            qflist_previewer = previewers.vim_buffer_qflist.new
         }
     }
 
-    vimp.nnoremap('<Leader>fd', function() builtin.fd() end)
+    vimp.nnoremap({'silent'}, '<Leader>fd', function() builtin.fd() end)
 
-    vimp.nnoremap('<Leader>fgf', function() builtin.git_files() end)
+    vimp.nnoremap({'silent'}, '<Leader>fgf', function() builtin.git_files() end)
 
-    vimp.nnoremap('<Leader>fpf', function()
+    vimp.nnoremap({'silent'}, '<Leader>fpf', function()
         builtin.find_files {
             previewer = false,
             layout_strategy = "vertical",
@@ -71,13 +67,13 @@ function M.setup()
         }
     end)
 
-    vimp.nnoremap('<Leader>fht', function() builtin.help_tags() end)
+    vimp.nnoremap({'silent'}, '<Leader>fht', function() builtin.help_tags() end)
 
-    vimp.nnoremap('<Leader>fb', function() builtin.buffers() end)
+    vimp.nnoremap({'silent'}, '<Leader>fb', function() builtin.buffers() end)
 
-    vimp.nnoremap('<Leader>lg', function() builtin.live_grep() end)
+    vimp.nnoremap({'silent'}, '<Leader>lg', function() builtin.live_grep() end)
 
-    vimp.nnoremap('<Leader>lbg', function()
+    vimp.nnoremap({'silent'}, '<Leader>lbg', function()
         local opts = themes.get_dropdown {
             winblend = 10,
             border = true,
@@ -87,6 +83,16 @@ function M.setup()
 
         builtin.current_buffer_fuzzy_find(opts)
     end)
+
+    vimp.nnoremap({'silent'}, '<Leader>sr', function() builtin.lsp_references() end)
+
+    vimp.nnoremap({'silent'}, '<Leader>ca', function() builtin.lsp_code_action() end)
+
+    vimp.nnoremap({'silent'}, '<Leader>cr', function() builtin.lsp_range_code_action() end)
+
+    vimp.nnoremap({'silent'}, '<Leader>gb', function() builtin.git_branches() end)
+
+    vimp.nnoremap({'silent'}, '<Leader>gs', function() builtin.git_status() end)
 end
 
 function M.fd() builtin.fd() end
