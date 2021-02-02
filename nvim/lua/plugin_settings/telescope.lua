@@ -90,7 +90,7 @@ function M.setup()
     vimp.nnoremap({'silent'}, '<Leader><space>',
                   function() builtin.lsp_code_actions() end)
 
-    vimp.nnoremap({'silent'}, '<Leader><space>r',
+    vimp.nnoremap({'silent'}, '<Leader>?',
                   function() builtin.lsp_range_code_actions() end)
 
     vimp.nnoremap({'silent'}, '<Leader>gb',

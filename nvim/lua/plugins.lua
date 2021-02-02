@@ -183,5 +183,8 @@ return require('packer').startup {
 
         -- Commenting
         use 'b3nj5m1n/kommentary'
+
+        -- Git Author
+        use 'f-person/git-blame.nvim'
     end
 }
