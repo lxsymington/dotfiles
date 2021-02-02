@@ -182,6 +182,6 @@ return require('packer').startup {
         use 'tmsvg/pear-tree'
 
         -- Commenting
-        use 'tpope/vim-commentary'
+        use 'b3nj5m1n/kommentary'
     end
 }

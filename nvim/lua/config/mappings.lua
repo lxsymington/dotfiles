@@ -9,7 +9,7 @@ function M.setup()
     vimp.nnoremap('<Leader>ev', function() vim.cmd('tabedit $MYVIMRC') end)
 
     -- CLear highlighting
-    vimp.nnoremap('<Leader><space>', function() vim.cmd('nohlsearch') end)
+    vimp.nnoremap('<Leader>_', function() vim.cmd('nohlsearch') end)
 
     -- Toggle relative numbers
     vimp.nnoremap('<Leader>#', function() vim.cmd('call NumberToggle()') end)
