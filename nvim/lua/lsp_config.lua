@@ -283,10 +283,20 @@ function M.setup()
         autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
         augroup END
     ]]
+
+    -- Clear highlight when leaving the current symbol in the document
     vim.api.nvim_command [[
         augroup ClearReferences
         autocmd! * <buffer>
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+    ]]
+
+    -- Highlight the current symbol in the document
+    vim.api.nvim_command [[
+        augroup Completion
+        autocmd! * <buffer>
+        autocmd BufEnter * lua require'completion'.on_attach()
         augroup END
     ]]
 end
