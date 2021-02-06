@@ -139,30 +139,30 @@ return lush(function()
             fg = red.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Error" diagnostic virtual text
-        LspDiagnosticsErrorSign {fg = red, gui = "nocombine,bold"}, -- used for "Error" diagnostic signs in sign column
-        LspDiagnosticsErrorFloating {Error}, -- used for "Error" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextWarning {
             fg = yellow.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Warning" diagnostic virtual text
-        LspDiagnosticsWarningSign {fg = yellow, gui = "nocombine,bold"}, -- used for "Warning" diagnostic signs in sign column
-        LspDiagnosticsWarningFloating {WarningMsg}, -- used for "Warning" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextInformation {
             fg = lightBlue.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Information" diagnostic virtual text
-        LspDiagnosticsInformationSign {fg = lightBlue, gui = "nocombine,bold"}, -- used for "Information" signs in sign column
-        LspDiagnosticsInformationFloating {
-            bg = blue,
-            fg = white,
-            gui = "nocombine,bold,italic"
-        }, -- used for "Information" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextHint {
             fg = lightGreen.desaturate(60),
             gui = "nocombine,italic"
         }, -- used for "Hint" diagnostic virtual text
-        LspDiagnosticsHintSign {fg = lightGreen, gui = "nocombine,bold"}, -- used for "Hint" diagnostic signs in sign column
-        LspDiagnosticsHintFloating {
+        LspDiagnosticsSignError {fg = red, gui = "nocombine,bold"}, -- used for "Error" diagnostic signs in sign column
+        LspDiagnosticsSignWarning {fg = yellow, gui = "nocombine,bold"}, -- used for "Warning" diagnostic signs in sign column
+        LspDiagnosticsSignInformation {fg = lightBlue, gui = "nocombine,bold"}, -- used for "Information" signs in sign column
+        LspDiagnosticsSignHint {fg = lightGreen, gui = "nocombine,bold"}, -- used for "Hint" diagnostic signs in sign column
+        LspDiagnosticsFloatingError {Error}, -- used for "Error" diagnostic messages in the diagnostics float
+        LspDiagnosticsFloatingWarning {WarningMsg}, -- used for "Warning" diagnostic messages in the diagnostics float
+        LspDiagnosticsFloatingInformation {
+            bg = blue,
+            fg = white,
+            gui = "nocombine,bold,italic"
+        }, -- used for "Information" diagnostic messages in the diagnostics float
+        LspDiagnosticsFloatingHint {
             bg = lightGreen,
             fg = black.darken(40),
             gui = "nocombine,bold,italic"
@@ -170,6 +170,10 @@ return lush(function()
         LspReferenceText {fg = lightPurple, gui = "nocombine,italic"}, -- used for highlighting "text" references
         LspReferenceRead {fg = lightGrey, gui = "nocombine,italic"}, -- used for highlighting "read" references
         LspReferenceWrite {fg = purple, gui = "nocombine,italic"}, -- used for highlighting "write" references
+        LspDiagnosticsUnderlineError {Underlined, guisp = red},
+        LspDiagnosticsUnderlineWarning {Underlined, guisp = yellow},
+        LspDiagnosticsUnderlineInformation {Underlined, guisp = lightBlue},
+        LspDiagnosticsUnderlineHint {Underlined, guisp = lightGreen},
 
         TSError {ErrorMsg}, -- For syntax/parser errors.
         TSPunctDelimiter {Delimiter}, -- For delimiters ie: `.`
