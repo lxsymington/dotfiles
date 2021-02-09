@@ -17,6 +17,7 @@ local format_options_prettier = {
     trailingComma = "all",
     configPrecedence = "prefer-file"
 }
+
 vim.g.format_options_typescript = format_options_prettier
 vim.g.format_options_javascript = format_options_prettier
 vim.g.format_options_typescriptreact = format_options_prettier
@@ -27,7 +28,7 @@ vim.g.format_options_html = format_options_prettier
 vim.g.format_options_yaml = format_options_prettier
 vim.g.format_options_markdown = format_options_prettier
 
-FormatToggle = function(value)
+function FormatToggle(value)
     vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
 end
 
@@ -40,6 +41,20 @@ _G.formatting = function()
                                                    vim.bo.filetype)] or {})
     end
 end
+
+local function preview_location_callback(_, _, result)
+    if result == nil or vim.tbl_isempty(result) then
+        return nil
+    end
+    vim.lsp.util.preview_location(result[1])
+end
+
+function PeekDefinition()
+  local params = vim.lsp.util.make_position_params()
+  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+end
+
+vim.cmd [[command! PeekDefinition lua PeekDefinition()]]
 
 local custom_attach = function(client)
     completion.on_attach(client)
@@ -242,6 +257,10 @@ function M.setup()
     -- Go to definition
     vimp.nnoremap({'silent'}, '<Leader>gd',
                   function() vim.lsp.buf.definition() end)
+
+    -- Peek definition
+    vimp.nnoremap({'silent'}, '<Leader>pd',
+                  function() vim.cmd('PeekDefinition') end)
 
     -- Go to implementation
     vimp.nnoremap({'silent'}, '<Leader>gi',
