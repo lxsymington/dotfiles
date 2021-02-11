@@ -78,6 +78,14 @@ return require('packer').startup {
             end
         }
 
+        -- Snippets
+        use {
+            'norcalli/snippets.nvim',
+            config = function()
+                require('plugin_settings.snippets').setup()
+            end
+        }
+
         -- Syntax
         use {
             'HerringtonDarkholme/yats.vim',

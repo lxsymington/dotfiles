@@ -18,6 +18,34 @@ local format_options_prettier = {
     configPrecedence = "prefer-file"
 }
 
+vim.lsp.protocol.CompletionItemKind = {
+    " [text]",
+    " [method]",
+    " [function]",
+    " [constructor]",
+    "ﰠ [field]",
+    " [variable]",
+    " [class]",
+    " [interface]",
+    " [module]",
+    " [property]",
+    " [unit]",
+    " [value]",
+    " [enum]",
+    " [key]",
+    "﬌ [snippet]",
+    " [color]",
+    " [file]",
+    " [reference]",
+    " [folder]",
+    " [enum member]",
+    " [constant]",
+    " [struct]",
+    "⌘ [event]",
+    " [operator]",
+    "♛ [type]"
+}
+
 vim.g.format_options_typescript = format_options_prettier
 vim.g.format_options_javascript = format_options_prettier
 vim.g.format_options_typescriptreact = format_options_prettier
@@ -142,10 +170,10 @@ function M.setup()
         root_dir = util.root_pattern("package.json", ".git/"),
         init_options = {
             documentFormatting = true,
-            hover = true,
+            hover = false,
             documentSymbol = true,
             codeAction = true,
-            completion = true
+            completion = false
         },
         settings = {
             rootMarkers = {"package.json", ".git/"},
