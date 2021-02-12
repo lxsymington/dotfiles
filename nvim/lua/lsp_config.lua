@@ -1,6 +1,5 @@
 local vimp = require('vimp')
 local lspconfig = require('lspconfig')
--- local configs = require('lspconfig.configs')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
@@ -11,13 +10,12 @@ local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
 local M = {}
 
-local format_options_prettier = {
-    tabWidth = 4,
-    singleQuote = true,
-    trailingComma = "all",
-    configPrecedence = "prefer-file"
-}
+-- Enable snippet support
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true;
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
+-- Pretty icons
 vim.lsp.protocol.CompletionItemKind = {
     " [text]",
     " [method]",
@@ -46,6 +44,14 @@ vim.lsp.protocol.CompletionItemKind = {
     "♛ [type]"
 }
 
+-- Formatting
+local format_options_prettier = {
+    tabWidth = 4,
+    singleQuote = true,
+    trailingComma = "all",
+    configPrecedence = "prefer-file"
+}
+
 vim.g.format_options_typescript = format_options_prettier
 vim.g.format_options_javascript = format_options_prettier
 vim.g.format_options_typescriptreact = format_options_prettier
@@ -70,6 +76,7 @@ _G.formatting = function()
     end
 end
 
+-- Preview definition
 local function preview_location_callback(_, _, result)
     if result == nil or vim.tbl_isempty(result) then
         return nil
@@ -84,6 +91,10 @@ end
 
 vim.cmd [[command! PeekDefinition lua PeekDefinition()]]
 
+-- Turn on status.
+lsp_status.register_progress()
+
+-- Attach
 local custom_attach = function(client)
     completion.on_attach(client)
     lsp_status.on_attach(client)
@@ -154,12 +165,9 @@ function M.setup()
     --         }
     --     end
 
-    -- Turn on status.
-    lsp_status.register_progress()
-
     lspconfig.cssls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.efm.setup({
@@ -197,27 +205,27 @@ function M.setup()
             "typescript", "typescriptreact", "typescript.tsx"
         },
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         log_level = vim.lsp.protocol.MessageType.Log,
         message_level = vim.lsp.protocol.MessageType.Log
     })
 
     lspconfig.html.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.jsonls.setup({
         cmd = {'json-languageserver'},
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.rust_analyzer.setup({
         cmd = {"rust-analyzer"},
         filetypes = {"rust"},
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.sumneko_lua.setup({
@@ -249,7 +257,7 @@ function M.setup()
             }
         },
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.tsserver.setup({
@@ -259,22 +267,22 @@ function M.setup()
             "typescriptreact", "typescript.tsx"
         },
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.vimls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     lspconfig.yamlls.setup({
         on_attach = custom_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = capabilities
     })
 
     --     lspconfig.alloyed.setup({
     --         on_attach = custom_attach,
-    --         capabilities = lsp_status.capabilities
+    --         capabilities = capabilities
     --     })
 
     vim.fn.sign_define("LspDiagnosticsSignError", {text = "❌", texthl = "LspDiagnosticsSignError"})

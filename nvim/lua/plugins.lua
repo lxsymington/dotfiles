@@ -46,6 +46,14 @@ return require('packer').startup {
             end
         }
 
+        -- Snippets
+        use {
+            'norcalli/snippets.nvim',
+            config = function()
+                require('plugin_settings.snippets').setup()
+            end
+        }
+
         -- LSP configurations
         use {
             'neovim/nvim-lspconfig',
@@ -75,14 +83,6 @@ return require('packer').startup {
             requires = {'popup.nvim', 'plenary.nvim'},
             config = function()
                 require('plugin_settings.telescope').setup()
-            end
-        }
-
-        -- Snippets
-        use {
-            'norcalli/snippets.nvim',
-            config = function()
-                require('plugin_settings.snippets').setup()
             end
         }
 
