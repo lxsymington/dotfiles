@@ -32,13 +32,13 @@ function M.setup()
     vim.o.incsearch = true
 
     -- Preview effects of :s as you type
-    vim.o.inccommand = 'nosplit'
+    vim.o.inccommand = 'split'
 
     -- Visual autocomplete of command menu
-    -- vim.o.wildmenu = true
+    vim.o.wildmenu = true
 
     -- Wildmode settings
-    -- vim.o.wildmode = [[list:lastused,list:longest,full]]
+    vim.o.wildmode = [[list:lastused,full]]
 
     -- Highlights the current line
     vim.wo.cursorline = true
