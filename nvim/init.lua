@@ -2,6 +2,7 @@
 -- vim.g.packpath = vim.o.runtimepath
 vim.cmd([[runtime ftplugin/man.vim]])
 vim.cmd([[runtime macros/matchit.vim]])
+vim.cmd([[runtime plugin/astronauta.vim]])
 
 -- Plugins -----------------------------
 require('plugins')

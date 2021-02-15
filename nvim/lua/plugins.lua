@@ -24,6 +24,7 @@ return require('packer').startup {
 
         -- Config
         use 'svermeulen/vimpeccable'
+        use 'tjdevries/astronauta.nvim'
 
         -- Utilities
         use 'nvim-lua/popup.nvim'
@@ -103,7 +104,7 @@ return require('packer').startup {
         use {
             'lewis6991/gitsigns.nvim',
             requires = {'plenary.nvim'},
-            config = function() require('gitsigns').setup() end
+            config = function() require('plugin_settings.gitsigns').setup() end
         }
 
         -- Colors

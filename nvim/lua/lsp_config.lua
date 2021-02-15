@@ -295,7 +295,7 @@ function M.setup()
                   function() vim.lsp.buf.definition() end)
 
     -- Peek definition
-    vimp.nnoremap({'silent'}, '<Leader>pd',
+    vimp.nnoremap({'silent'}, '<Leader>@',
                   function() vim.cmd('PeekDefinition') end)
 
     -- Go to implementation
