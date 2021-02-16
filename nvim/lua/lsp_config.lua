@@ -285,10 +285,10 @@ function M.setup()
     --         capabilities = capabilities
     --     })
 
-    vim.fn.sign_define("LspDiagnosticsSignError", {text = "❌", texthl = "LspDiagnosticsSignError"})
-    vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "⚠️", texthl = "LspDiagnosticsSignWarning"})
-    vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "ℹ️", texthl = "LspDiagnosticsSignInformation"})
-    vim.fn.sign_define("LspDiagnosticsSignHint", {text = "💡", texthl = "LspDiagnosticsSignHint"})
+    vim.fn.sign_define("LspDiagnosticsSignError", {text = "✗", texthl = "LspDiagnosticsSignError"})
+    vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "‼", texthl = "LspDiagnosticsSignWarning"})
+    vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "𝒊", texthl = "LspDiagnosticsSignInformation"})
+    vim.fn.sign_define("LspDiagnosticsSignHint", {text = "▶", texthl = "LspDiagnosticsSignHint"})
 
     -- Go to definition
     vimp.nnoremap({'silent'}, '<Leader>gd',
