@@ -1,5 +1,5 @@
 local dap = require('dap')
-local vimp = require('vimp')
+local nnoremap = vim.keymap.nnoremap
 local M = {}
 
 -- DAP ---------------------------------
@@ -22,33 +22,31 @@ function M.setup()
     }
 
     -- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json
-    vimp.map_command('DebugLoadLaunchJS',
-                     function() require('dap.ext.vscode').load_launchjs() end)
+    vim.cmd [[command! DebugLoadLaunchJS lua require('dap.ext.vscode').load_launchjs()]]
 
     -- Set up mappings for `nvim-dap`
     -- CONTINUE
-    vimp.nnoremap({'silent'}, [[<F5>]], function() dap.continue() end)
+    nnoremap({'<F5>', dap.continue})
     -- STEP OVER
-    vimp.nnoremap({'silent'}, [[<F10>]], function() dap.step_over() end)
+    nnoremap({'<F10>', dap.step_over})
     -- STEP INTO
-    vimp.nnoremap({'silent'}, [[<F11>]], function() dap.step_into() end)
+    nnoremap({'<F11>', dap.step_into})
     -- STEP OUT
-    vimp.nnoremap({'silent'}, [[<F12>]], function() dap.step_out() end)
+    nnoremap({'<F12>', dap.step_out})
     -- TOGGLE BREAKPOINT
-    vimp.nnoremap({'silent'}, [[<Leader>b]],
-                  function() dap.toggle_breakpoint() end)
+    nnoremap({'<Leader>b', dap.toggle_breakpoint})
     -- SET CONDITIONAL BREAKPOINT
-    vimp.nnoremap({'silent'}, [[<Leader>B]], function()
+    nnoremap({'<Leader>B', function()
         dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
-    end)
+    end})
     -- SET LOGPOINT
-    vimp.nnoremap({'silent'}, [[<Leader>lp]], function()
+    nnoremap({'<Leader>lp', function()
         dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
-    end)
+    end})
     -- OPEN DEBUGGER CONSOLE
-    vimp.nnoremap({'silent'}, [[<Leader>dr]], function() dap.repl.open() end)
+    nnoremap({'<Leader>dr', dap.repl.open})
     -- RE-RUN LAST DEBUGGING SESSION
-    vimp.nnoremap({'silent'}, [[<Leader>dl]], function() dap.repl.run_last() end)
+    nnoremap({'<Leader>dl', dap.repl.run_last})
 
     -- Show virtual text for current frame
     vim.g.dap_virtual_text = true

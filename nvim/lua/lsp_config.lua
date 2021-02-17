@@ -1,4 +1,3 @@
-local vimp = require('vimp')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
@@ -8,6 +7,7 @@ local lua_format = require('plugin_settings.efm.lua-format')
 local prettier = require('plugin_settings.efm.prettier')
 local eslint = require('plugin_settings.efm.eslint')
 local tslint = require('plugin_settings.efm.tslint')
+local nnoremap = vim.keymap.nnoremap
 local M = {}
 
 -- Enable snippet support
@@ -291,50 +291,40 @@ function M.setup()
     vim.fn.sign_define("LspDiagnosticsSignHint", {text = "▶", texthl = "LspDiagnosticsSignHint"})
 
     -- Go to definition
-    vimp.nnoremap({'silent'}, '<Leader>gd',
-                  function() vim.lsp.buf.definition() end)
+    nnoremap({'<Leader>gd', vim.lsp.buf.definition})
 
     -- Peek definition
-    vimp.nnoremap({'silent'}, '<Leader>@',
-                  function() vim.cmd('PeekDefinition') end)
+    nnoremap({'<Leader>@', function() vim.cmd('PeekDefinition') end})
 
     -- Go to implementation
-    vimp.nnoremap({'silent'}, '<Leader>gi',
-                  function() vim.lsp.buf.implementation() end)
+    nnoremap({'<Leader>gi', vim.lsp.buf.implementation})
 
     -- Go to type definition
-    vimp.nnoremap({'silent'}, '<Leader>gtd',
-                  function() vim.lsp.buf.type_definition() end)
+    nnoremap({'<Leader>gtd', vim.lsp.buf.type_definition})
 
     -- Go to references
-    vimp.nnoremap({'silent'}, '<Leader>gr',
-                  function() vim.lsp.buf.references() end)
+    nnoremap({'<Leader>gr', vim.lsp.buf.references})
 
     -- Code action
-    vimp.nnoremap({'silent'}, '<Leader>ca',
-                  function() vim.lsp.buf.code_action() end)
+    nnoremap({'<Leader>ca', vim.lsp.buf.code_action})
 
     -- Rename
-    vimp.nnoremap({'silent'}, '<Leader>r', function() vim.lsp.buf.rename() end)
+    nnoremap({'<Leader>r', vim.lsp.buf.rename})
 
     -- Hover
-    vimp.nnoremap({'silent'}, 'K', function() vim.lsp.buf.hover() end)
+    nnoremap({'K', vim.lsp.buf.hover})
 
     -- Open diagnostics
-    vimp.nnoremap({'silent'}, '<Leader>-',
-                  function() vim.lsp.diagnostic.set_loclist() end)
+    nnoremap({'<Leader>-', vim.lsp.diagnostic.set_loclist})
 
     -- Signature help
-    vimp.nnoremap({'silent'}, '<Leader>sh',
-                  function() vim.lsp.buf.signature_help() end)
+    nnoremap({'<Leader>sh', vim.lsp.buf.signature_help})
 
     -- Go to next diagnostic
-    vimp.nnoremap({'silent'}, ']d',
-                  function() vim.lsp.diagnostic.goto_next() end)
+    nnoremap({']d', vim.lsp.diagnostic.goto_next})
 
     -- Go to previous diagnostic
-    vimp.nnoremap({'silent'}, '[d',
-                  function() vim.lsp.diagnostic.goto_prev() end)
+    nnoremap({'[d', vim.lsp.diagnostic.goto_prev})
 
     -- Highlight the current symbol in the document
     vim.api.nvim_command [[

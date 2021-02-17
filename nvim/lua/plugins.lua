@@ -23,7 +23,6 @@ return require('packer').startup {
         use {'wbthomason/packer.nvim', opt = true}
 
         -- Config
-        use 'svermeulen/vimpeccable'
         use 'tjdevries/astronauta.nvim'
 
         -- Utilities

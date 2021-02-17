@@ -1,4 +1,4 @@
-local vimp = require('vimp')
+local nnoremap = vim.keymap.nnoremap
 
 local should_reload = true
 local reloader = function()
@@ -54,26 +54,26 @@ function M.setup()
         }
     }
 
-    vimp.nnoremap({'silent'}, '<Leader>fd', function() builtin.fd() end)
+    nnoremap({'<Leader>fd', builtin.fd})
 
-    vimp.nnoremap({'silent'}, '<Leader>fgf', function() builtin.git_files() end)
+    nnoremap({'<Leader>fgf', builtin.git_files})
 
-    vimp.nnoremap({'silent'}, '<Leader>fpf', function()
+    nnoremap({'<Leader>fpf', function()
         builtin.find_files {
             previewer = false,
             layout_strategy = "vertical",
-            cwd = require('nvim_lsp.util').root_pattern(".git")(
+            cwd = require('lsp_config.util').root_pattern(".git")(
                 vim.fn.expand("%:p"))
         }
-    end)
+    end})
 
-    vimp.nnoremap({'silent'}, '<Leader>fht', function() builtin.help_tags() end)
+    nnoremap({'<Leader>fht', builtin.help_tags})
 
-    vimp.nnoremap({'silent'}, '<Leader>fb', function() builtin.buffers() end)
+    nnoremap({'<Leader>fb', builtin.buffers})
 
-    vimp.nnoremap({'silent'}, '<Leader>lg', function() builtin.live_grep() end)
+    nnoremap({'<Leader>lg', builtin.live_grep})
 
-    vimp.nnoremap({'silent'}, '<Leader>lbg', function()
+    nnoremap({'<Leader>lbg', function()
         local opts = themes.get_dropdown {
             winblend = 10,
             border = true,
@@ -82,21 +82,17 @@ function M.setup()
         }
 
         builtin.current_buffer_fuzzy_find(opts)
-    end)
+    end})
 
-    vimp.nnoremap({'silent'}, '<Leader>sr',
-                  function() builtin.lsp_references() end)
+    nnoremap({'<Leader>sr', builtin.lsp_references})
 
-    vimp.nnoremap({'silent'}, '<Leader><space>',
-                  function() builtin.lsp_code_actions() end)
+    nnoremap({'<Leader><space>', builtin.lsp_code_actions})
 
-    vimp.nnoremap({'silent'}, '<Leader>?',
-                  function() builtin.lsp_range_code_actions() end)
+    nnoremap({'<Leader>?', builtin.lsp_range_code_actions})
 
-    vimp.nnoremap({'silent'}, '<Leader>gb',
-                  function() builtin.git_branches() end)
+    nnoremap({'<Leader>gb', builtin.git_branches})
 
-    vimp.nnoremap({'silent'}, '<Leader>gs', function() builtin.git_status() end)
+    nnoremap({'<Leader>gs', builtin.git_status})
 end
 
 function M.fd() builtin.fd() end

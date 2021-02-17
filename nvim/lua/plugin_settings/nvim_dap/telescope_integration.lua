@@ -1,5 +1,3 @@
-local telescope = require('telescope')
-local vimp = require('vimp')
 local M = {}
 
 -- NVIM-DAP TELESCOPE INTEGRATION ------
@@ -7,20 +5,20 @@ function M.setup()
     telescope.load_extension('dap')
 
     -- Debug Commands
-    vimp.map_command('DebugCommands',
-                     function() telescope.extensions.dap.commands() end)
+    vim.cmd
+        [[command! DebugCommands lua require('telescope').extensions.dap.commands()]]
 
     -- Debug Configurations
-    vimp.map_command('DebugConfigurations',
-                     function() telescope.extensions.dap.configurations() end)
+    vim.cmd
+        [[command! DebugConfigurations lua require('telescope').extensions.dap.configurations()]]
 
     -- Debug List Breakpoints
-    vimp.map_command('DebugListBreakpoints',
-                     function() telescope.extensions.dap.list_breakpoints() end)
+    vim.cmd
+        [[command! DebugListBreakpoints lua require('telescope').extensions.dap.list_breakpoints()]]
 
     -- Debug Varaibles (Watch Variables?)
-    vimp.map_command('DebugVariables',
-                     function() telescope.extensions.dap.variables() end)
+    vim.cmd
+        [[command! DebugVariables lua require('telescope').extensions.dap.variables()]]
 end
 
 return M

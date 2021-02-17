@@ -1,4 +1,5 @@
-local vimp = require('vimp')
+local nnoremap = vim.keymap.nnoremap
+local cmd = vim.cmd
 
 local M = {}
 
@@ -23,11 +24,7 @@ function M.setup()
             unstaged = "✗",
             untracked = "★"
         },
-        folder = {
-            default = "",
-            open = "",
-            symlink = "",
-        }
+        folder = {default = "", open = "", symlink = ""}
     }
 
     vim.g.nvim_tree_bindings = {
@@ -51,18 +48,9 @@ function M.setup()
         next_git_item = ']c'
     }
 
-    vimp.nnoremap({'silent'}, '<Leader><Tab>',
-                  function() vim.cmd('NvimTreeToggle') end)
+    nnoremap({'<Leader><Tab>', function() cmd('NvimTreeToggle') end})
 
-    vimp.nnoremap({'silent'}, '<Leader>ltr',
-                  function() vim.cmd('NvimTreeRefresh') end)
-
-    vim.api.nvim_exec([[
-  augroup NvimTreeOverride
-    au!
-    au FileType NvimTree setlocal nowrap
-  augroup END
-  ]], '')
+    nnoremap({'<Leader>R', function() cmd('NvimTreeRefresh') end})
 end
 
 return M
