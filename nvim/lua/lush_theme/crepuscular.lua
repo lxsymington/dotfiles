@@ -305,7 +305,7 @@ return lush(function()
             NonText {fg = lightGrey, gui = "nocombine"},
             Normal {bg = lightWhite, fg = grey, gui = "nocombine"},
             NormalFloat {bg = white.abs_lighten(10), gui = "nocombine"},
-            NormalNC {bg = white.abs_lighten(5), fg = lightBlack, gui = "nocombine"},
+            NormalNC {bg = white.abs_lighten(10), fg = lightBlack, gui = "nocombine"},
             Pmenu {bg = lightWhite.abs_lighten(10), fg = grey, gui = "nocombine"},
             PmenuSbar {bg = white.abs_lighten(10), gui = "nocombine"},
             PmenuSel {bg = lightCyan, fg = black, gui = "nocombine,bold"},
