@@ -1,72 +1,75 @@
+local o = vim.o
+local bo = vim.bo
+local wo = vim.wo
 local M = {}
 
 -- UI ----------------------------------
 function M.setup()
     -- Keeps X lines visible when scrolling
-    vim.o.scrolloff = 5
+    o.scrolloff = 5
 
     -- Enabel auto indent
-    vim.o.autoindent = true
-    vim.bo.autoindent = true
+    o.autoindent = true
+    bo.autoindent = true
 
     -- Copy the previous indentation on autoindenting
-    vim.o.copyindent = true
-    vim.bo.copyindent = true
+    o.copyindent = true
+    bo.copyindent = true
 
     -- Syntax aware indent correction
-    vim.o.cindent = true
-    vim.bo.cindent = true
-    vim.o.smartindent = true
-    vim.bo.smartindent = true
+    o.cindent = true
+    bo.cindent = true
+    o.smartindent = true
+    bo.smartindent = true
 
     -- Highlight matching parens
-    vim.o.showmatch = true
+    o.showmatch = true
 
     -- Show command in bottom bar
-    vim.o.showcmd = true
+    o.showcmd = true
 
     -- Enables the highlighting of search results
-    vim.o.hlsearch = true
+    o.hlsearch = true
 
     -- Show search matches as you type
-    vim.o.incsearch = true
+    o.incsearch = true
 
     -- Preview effects of :s as you type
-    vim.o.inccommand = 'split'
+    o.inccommand = 'split'
 
     -- Visual autocomplete of command menu
-    vim.o.wildmenu = true
+    o.wildmenu = true
 
     -- Wildmode settings
-    vim.o.wildmode = [[list:lastused,full]]
+    o.wildmode = [[list:lastused,full]]
 
     -- Highlights the current line
-    vim.wo.cursorline = true
+    wo.cursorline = true
 
     -- Redraws only when needed
-    vim.o.lazyredraw = true
+    o.lazyredraw = true
 
     -- Keep 50 lines of command line history
-    vim.o.history = 50
+    o.history = 50
 
     -- Always show the sign column
-    vim.wo.signcolumn = [[yes:2]]
+    wo.signcolumn = [[yes:2]]
 
     -- Make splits remain equal
-    vim.o.equalalways = true
-    vim.o.eadirection = 'both'
+    o.equalalways = true
+    o.eadirection = 'both'
 
     -- Display the foldcolumn
-    vim.wo.foldcolumn = '1'
+    wo.foldcolumn = '1'
 
     -- Enable pseudo-transparency for popup menus
-    vim.o.pumblend = 10
+    o.pumblend = 10
 
     -- Enable pseudo-transparency for floating windows
-    vim.wo.winblend = 10
+    wo.winblend = 10
 
     -- Set completeopt to have a better completion experience
-    vim.o.completeopt = [[menuone,longest,noinsert,noselect]]
+    o.completeopt = [[menuone,longest,noinsert,noselect]]
 end
 
 return M

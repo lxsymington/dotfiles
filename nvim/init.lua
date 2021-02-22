@@ -1,8 +1,11 @@
--- vim.o.runtimepath = [[~/.vim]] .. vim.o.runtimepath .. [[~/.vim/after]]
--- vim.g.packpath = vim.o.runtimepath
-vim.cmd([[runtime ftplugin/man.vim]])
-vim.cmd([[runtime macros/matchit.vim]])
-vim.cmd([[runtime plugin/astronauta.vim]])
+local cmd = vim.cmd
+
+-- Builtin -----------------------------
+cmd([[runtime ftplugin/man.vim]])
+cmd([[runtime macros/matchit.vim]])
+
+-- Astronauta --------------------------
+cmd([[runtime plugin/astronauta.vim]])
 
 -- Plugins -----------------------------
 require('plugins')
