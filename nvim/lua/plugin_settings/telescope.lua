@@ -39,12 +39,6 @@ function M.setup()
                     preview_height = 0.5
                 }
             },
-            mappings = {
-                i = {
-                    ["<CR>"] = actions.goto_file_selection_edit + actions.center
-                },
-                n = {["<esc>"] = actions.close}
-            },
             prompt_prefix = '🔭 ➜',
             scroll_strategy = 'cycle',
             winblend = 10,
