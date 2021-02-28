@@ -1,3 +1,4 @@
+local nvim_tree = require('nvim-tree')
 local nnoremap = vim.keymap.nnoremap
 local cmd = vim.cmd
 
@@ -27,30 +28,17 @@ function M.setup()
         folder = {default = "", open = "", symlink = ""}
     }
 
+    local function bind(action)
+        return string.format(":lua require('nvim-tree').on_keypress('%s')<CR>", action)
+    end
+
     vim.g.nvim_tree_bindings = {
-        edit = {'<CR>', 'o', 'l'},
-        edit_vsplit = '<C-v>',
-        edit_split = '<C-x>',
-        edit_tab = '<C-t>',
-        toggle_ignored = 'I',
-        toggle_dotfiles = 'H',
-        refresh = 'R',
-        preview = '<Tab>',
-        close_node = {'h', '<s-cr>', '<bs>'},
-        cd = '<C-]>',
-        create = 'a',
-        remove = 'd',
-        rename = 'r',
-        cut = 'x',
-        copy = 'c',
-        paste = 'p',
-        prev_git_item = '[c',
-        next_git_item = ']c'
+        ["l"] = bind('edit'),
+        ["h"] = bind("close_node"),
+        ["-"] = bind("dir_up")
     }
 
     nnoremap({'<Leader><Tab>', function() cmd('NvimTreeToggle') end})
-
-    nnoremap({'<Leader>R', function() cmd('NvimTreeRefresh') end})
 end
 
 return M
