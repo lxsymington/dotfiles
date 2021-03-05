@@ -14,6 +14,10 @@ function M.setup()
     }
     dap.configurations.typescript = {
         require(
+            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_with_test_environment_workspace'),
+        require(
+            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_with_test_environment_file'),
+        require(
             'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_workspace'),
         require(
             'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_file'),

@@ -6,7 +6,7 @@ local M = {}
 
 -- LUA TREE ----------------------------
 function M.setup()
-    vim.g.nvim_tree_width = 45
+    vim.g.nvim_tree_width = 60
     vim.g.nvim_tree_ignore = {'.git', 'node_modules'}
     vim.g.nvim_tree_auto_close = 1
     vim.g.nvim_tree_follow = 1
@@ -14,6 +14,8 @@ function M.setup()
     vim.g.nvim_tree_hide_dotfiles = 0
     vim.g.nvim_tree_tab_open = 1
     vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1}
+    vim.g.nvim_tree_disable_netrw = 0
+    vim.g.nvim_tree_hijack_netrw = 0
 
     vim.g.nvim_tree_icons = {
         default = '',

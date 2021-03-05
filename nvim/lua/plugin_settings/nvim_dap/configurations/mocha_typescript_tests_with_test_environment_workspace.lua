@@ -1,7 +1,7 @@
 return {
     type = "node",
     request = "launch",
-    name = "Mocha TypeScript Workspace Tests",
+    name = "Mocha TypeScript With Test Environment Workspace Tests",
     protocol = "auto",
     program = "${workspaceFolder}/node_modules/mocha/bin/_mocha",
     args = {

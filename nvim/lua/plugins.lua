@@ -156,7 +156,6 @@ return require('packer').startup {
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
-            opt = true,
             cmd = {
                 'DebugCommands', 'DebugConfigurations', 'DebugListBreakpoints',
                 'DebugLoadLaunchJS', 'DebugVariables'
