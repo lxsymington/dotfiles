@@ -1,0 +1,41 @@
+session: Boatracker
+
+root: ~/Development
+
+windows:
+  - name: Boatracker Components Editor
+    root: boatracker-frontend/packages/boatracker-components
+    layout: main-horizontal
+    commands:
+      - nvim -c 'SLoad Boatracker Components'
+  - name: Boatracker Web App Editor
+    root: boatracker-frontend/packages/web-app
+    layout: main-horizontal
+    commands:
+      - nvim -c 'SLoad Boatracker App'
+  - name: Boatracker Frontend Tooling
+    root: boatracker-frontend
+    layout: main-horizontal
+    commands:
+      - yarn BC:build
+    panes:
+      - type: horizontal
+        root: .
+        commands:
+          - yarn WA:build
+          - yarn WA:start
+  - name: Boatracker API
+    root: boatracker-backend
+    layout: main-horizontal
+    commands:
+      - nvim -c 'SLoad Boatracker API'
+  - name: Boatracker API tooling
+    root: boatracker-backend
+    layout: main-horizontal
+    commands:
+      - yarn build:watch
+    panes:
+      - type: horizontal
+        root: .
+        commands:
+          - yarn start
