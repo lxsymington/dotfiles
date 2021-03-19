@@ -2,14 +2,21 @@
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
-    local directory = string.format('%s/site/pack/packer/opt/',
-                                    vim.fn.stdpath('data'))
+    local directory = string
+        .format(
+            '%s/site/pack/packer/opt/',
+            vim.fn.stdpath('data')
+        )
 
     vim.fn.mkdir(directory, 'p')
 
-    local out = vim.fn.system(string.format('git clone %s %s',
-                                            'https://github.com/wbthomason/packer.nvim',
-                                            directory .. 'packer.nvim'))
+    local out = vim.fn.system(
+        string.format(
+            'git clone %s %s',
+            'https://github.com/wbthomason/packer.nvim',
+            directory .. 'packer.nvim'
+        )
+    )
 
     print(out)
     print('Downloading packer.nvim')
@@ -53,6 +60,11 @@ return require('packer').startup {
                 require('plugin_settings.snippets').setup()
             end
         }
+
+        -- Neovim Lua Helper
+        use 'tjdevries/nlua.nvim'
+        use 'euclidianAce/BetterLua.vim'
+        use 'tjdevries/manillua.nvim'
 
         -- LSP configurations
         use {
@@ -103,7 +115,9 @@ return require('packer').startup {
         use {
             'lewis6991/gitsigns.nvim',
             requires = {'plenary.nvim'},
-            config = function() require('plugin_settings.gitsigns').setup() end
+            config = function()
+                require('plugin_settings.gitsigns').setup()
+            end
         }
 
         -- Colors
@@ -146,12 +160,7 @@ return require('packer').startup {
         }
 
         -- Code Action Discoverability
-        use {
-            'kosayoda/nvim-lightbulb',
-            config = function()
-                require('plugin_settings.nvim_lightbulb').setup()
-            end
-        }
+        use 'kosayoda/nvim-lightbulb'
 
         -- Debugger
         use {
@@ -160,7 +169,6 @@ return require('packer').startup {
                 'DebugCommands', 'DebugConfigurations', 'DebugListBreakpoints',
                 'DebugLoadLaunchJS', 'DebugVariables'
             },
-            keys = {'<F5>'},
             requires = {'theHamsta/nvim-dap-virtual-text'},
             config = function()
                 require('plugin_settings.nvim_dap').setup()

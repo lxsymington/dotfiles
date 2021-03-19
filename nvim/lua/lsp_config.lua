@@ -13,35 +13,17 @@ local M = {}
 -- Enable snippet support
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true;
-capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+capabilities = vim.tbl_extend('keep', capabilities or {},
+                              lsp_status.capabilities)
 
 -- Pretty icons
 vim.lsp.protocol.CompletionItemKind = {
-    " [text]",
-    " [method]",
-    " [function]",
-    " [constructor]",
-    "ﰠ [field]",
-    " [variable]",
-    " [class]",
-    " [interface]",
-    " [module]",
-    " [property]",
-    " [unit]",
-    " [value]",
-    " [enum]",
-    " [key]",
-    "﬌ [snippet]",
-    " [color]",
-    " [file]",
-    " [reference]",
-    " [folder]",
-    " [enum member]",
-    " [constant]",
-    " [struct]",
-    "⌘ [event]",
-    " [operator]",
-    "♛ [type]"
+    " [text]", " [method]", " [function]", " [constructor]",
+    "ﰠ [field]", " [variable]", " [class]", " [interface]",
+    " [module]", " [property]", " [unit]", " [value]", " [enum]",
+    " [key]", "﬌ [snippet]", " [color]", " [file]",
+    " [reference]", " [folder]", " [enum member]", " [constant]",
+    " [struct]", "⌘ [event]", " [operator]", "♛ [type]"
 }
 
 -- Formatting
@@ -78,15 +60,14 @@ end
 
 -- Preview definition
 local function preview_location_callback(_, _, result)
-    if result == nil or vim.tbl_isempty(result) then
-        return nil
-    end
+    if result == nil or vim.tbl_isempty(result) then return nil end
     vim.lsp.util.preview_location(result[1])
 end
 
 function PeekDefinition()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+    local params = vim.lsp.util.make_position_params()
+    return vim.lsp.buf_request(0, 'textDocument/definition', params,
+                               preview_location_callback)
 end
 
 vim.cmd [[command! PeekDefinition lua PeekDefinition()]]
@@ -104,6 +85,25 @@ local custom_attach = function(client)
             augroup Format
             autocmd! * <buffer>
             autocmd BufWritePost <buffer> lua formatting()
+            augroup END
+        ]]
+    end
+
+    if client.resolved_capabilities.code_action then
+        vim.cmd [[
+            augroup LightBulb
+            autocmd! * <buffer>
+            autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({
+                sign = {
+                    enabled = false,
+                    priority = 10,
+                },
+                float = {
+                    enabled = true,
+                    text = '💡',
+                    win_opts = { offset_x = 40 },
+                }
+            })
             augroup END
         ]]
     end
@@ -202,7 +202,8 @@ function M.setup()
         },
         filetypes = {
             "lua", "vim", "javascript", "javascriptreact", "javascript.jsx",
-            "typescript", "typescriptreact", "typescript.tsx"
+            "typescript", "typescriptreact", "typescript.tsx", "yaml", "json",
+            "html", "scss", "css", "markdown"
         },
         on_attach = custom_attach,
         capabilities = capabilities,
@@ -285,10 +286,16 @@ function M.setup()
     --         capabilities = capabilities
     --     })
 
-    vim.fn.sign_define("LspDiagnosticsSignError", {text = "✗", texthl = "LspDiagnosticsSignError"})
-    vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "‼", texthl = "LspDiagnosticsSignWarning"})
-    vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "𝒊", texthl = "LspDiagnosticsSignInformation"})
-    vim.fn.sign_define("LspDiagnosticsSignHint", {text = "▶", texthl = "LspDiagnosticsSignHint"})
+    vim.fn.sign_define("LspDiagnosticsSignError",
+                       {text = "✗", texthl = "LspDiagnosticsSignError"})
+    vim.fn.sign_define("LspDiagnosticsSignWarning",
+                       {text = "‼", texthl = "LspDiagnosticsSignWarning"})
+    vim.fn.sign_define("LspDiagnosticsSignInformation", {
+        text = "𝒊",
+        texthl = "LspDiagnosticsSignInformation"
+    })
+    vim.fn.sign_define("LspDiagnosticsSignHint",
+                       {text = "▶", texthl = "LspDiagnosticsSignHint"})
 
     -- Go to definition
     nnoremap({'<Leader>gd', vim.lsp.buf.definition})
