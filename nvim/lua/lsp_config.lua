@@ -10,12 +10,6 @@ local tslint = require('plugin_settings.efm.tslint')
 local nnoremap = vim.keymap.nnoremap
 local M = {}
 
--- Enable snippet support
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true;
-capabilities = vim.tbl_extend('keep', capabilities or {},
-                              lsp_status.capabilities)
-
 -- Pretty icons
 vim.lsp.protocol.CompletionItemKind = {
     " [text]", " [method]", " [function]", " [constructor]",
@@ -53,6 +47,7 @@ vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
 
 _G.formatting = function()
     if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
+        print('Formatting file...')
         vim.lsp.buf.formatting(vim.g[string.format("format_options_%s",
                                                    vim.bo.filetype)] or {})
     end
@@ -77,6 +72,12 @@ lsp_status.register_progress()
 
 -- Attach
 local custom_attach = function(client)
+    -- Enable snippet support
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true;
+    capabilities = vim.tbl_extend('keep', capabilities or {},
+                                  lsp_status.capabilities)
+
     completion.on_attach(client)
     lsp_status.on_attach(client)
 
@@ -108,12 +109,24 @@ local custom_attach = function(client)
         ]]
     end
 
+    if client.resolved_capabilities.document_highlight then
+        -- Highlight the current symbol in the document
+        -- Clear highlight when leaving the current symbol in the document
+        vim.api.nvim_exec([[
+            augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]], false)
+    end
+
     -- Rust is currently the only thing w/ inlay hints
     if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
         vim.api.nvim_command [[
             augroup InlayHints
             autocmd! * <buffer>
-            autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request {
+            autocmd BufEnter,BufWritePost <buffer> lua require('lsp_extensions.inlay_hints').request {
                 aligned = true,
                 prefix = " » "
             }
@@ -149,21 +162,13 @@ function M.setup()
             virtual_text = {spacing = 4, prefix = '🔎'}
         })
 
-    --     -- Alloyed Lua Language Server
-    --     if not lspconfig.alloyed then
-    --         configs.alloyed = {
-    --             default_config = {
-    --                 cmd = { 'lua-lsp' },
-    --                 filetypes = { 'lua' },
-    --                 root_dir = function(fname)
-    --                     return util.root_pattern('.luacheckrc', '.luacompleterc', '.git')
-    --                         or util.path.dirname(fname)
-    --                         or vim.loop.os_homedir()
-    --                 end,
-    --                 settings = {}
-    --             },
-    --         }
-    --     end
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        require('lsp_extensions.workspace.diagnostic').handler, {
+            signs = {
+                severity_limit = "Error",
+            }
+        }
+    )
 
     lspconfig.cssls.setup({
         on_attach = custom_attach,
@@ -229,36 +234,19 @@ function M.setup()
         capabilities = capabilities
     })
 
-    lspconfig.sumneko_lua.setup({
+    require('nlua.lsp.nvim').setup(lspconfig, {
+        on_attach = custom_attach,
+        capabilities = capabilities,
+
         cmd = {
             'lua-language-server', "-E",
             os.getenv('HOME') .. '/Tools/lua-language-server/main.lua'
         },
-        settings = {
-            Lua = {
-                runtime = {
-                    version = "LuaJIT",
-                    path = vim.split(package.path, ';')
-                },
-                workspace = {
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-                    }
-                },
-                diagnostics = {
-                    enable = true,
-                    globals = {
-                        "hs", "vim", "it", "describe", "before_each",
-                        "after_each"
-                    },
-                    disable = {"lowercase-global"}
-                },
-                completion = {keywordSnippet = "Disable"}
-            }
-        },
-        on_attach = custom_attach,
-        capabilities = capabilities
+
+        root_dir = function(fname)
+            return lspconfig_util.find_git_ancestor(fname)
+            or lspconfig_util.path.dirname(fname)
+        end
     })
 
     lspconfig.tsserver.setup({
@@ -333,21 +321,8 @@ function M.setup()
     -- Go to previous diagnostic
     nnoremap({'[d', vim.lsp.diagnostic.goto_prev})
 
-    -- Highlight the current symbol in the document
-    vim.api.nvim_command [[
-        augroup DocumentHighlight
-        autocmd! * <buffer>
-        autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-        augroup END
-    ]]
-
-    -- Clear highlight when leaving the current symbol in the document
-    vim.api.nvim_command [[
-        augroup ClearReferences
-        autocmd! * <buffer>
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-    ]]
+    -- View workspace diagnostics
+    nnoremap({'<Leader>wd', require('lsp_extensions.workspace.diagnostic').set_qf_list})
 
     -- Highlight the current symbol in the document
     vim.api.nvim_command [[

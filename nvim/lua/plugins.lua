@@ -2,21 +2,14 @@
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
-    local directory = string
-        .format(
-            '%s/site/pack/packer/opt/',
-            vim.fn.stdpath('data')
-        )
+    local directory = string.format('%s/site/pack/packer/opt/',
+                                    vim.fn.stdpath('data'))
 
     vim.fn.mkdir(directory, 'p')
 
-    local out = vim.fn.system(
-        string.format(
-            'git clone %s %s',
-            'https://github.com/wbthomason/packer.nvim',
-            directory .. 'packer.nvim'
-        )
-    )
+    local out = vim.fn.system(string.format('git clone %s %s',
+                                            'https://github.com/wbthomason/packer.nvim',
+                                            directory .. 'packer.nvim'))
 
     print(out)
     print('Downloading packer.nvim')
@@ -71,6 +64,7 @@ return require('packer').startup {
             'neovim/nvim-lspconfig',
             requires = {
                 'nvim-lua/completion-nvim', 'nvim-lua/lsp-status.nvim',
+                'nvim-lua/lsp_extensions.nvim',
                 'nvim-treesitter/completion-treesitter'
             },
             config = function() require('lsp_config').setup() end
@@ -168,22 +162,18 @@ return require('packer').startup {
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
-            cmd = {
-                'DebugCommands', 'DebugConfigurations', 'DebugListBreakpoints',
-                'DebugLoadLaunchJS', 'DebugVariables'
-            },
             requires = {'theHamsta/nvim-dap-virtual-text'},
             config = function()
                 require('plugin_settings.nvim_dap').setup()
             end
         }
-        use {
+        --[[ use {
             'nvim-telescope/telescope-dap.nvim',
             after = {'telescope.nvim', 'nvim-dap'},
             config = function()
                 require('plugin_settings.nvim_dap.telescope_integration').setup()
             end
-        }
+        } ]]
 
         -- Github
         use {

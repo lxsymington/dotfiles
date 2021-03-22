@@ -41,7 +41,14 @@ function M.setup()
     o.wildmenu = true
 
     -- Wildmode settings
-    o.wildmode = [[list:lastused,full]]
+    o.wildmode = table.concat({
+        'list:lastused',
+        'list:longest',
+        'full'
+    }, ',')
+
+    -- Wild options
+    o.wildoptions = 'pum'
 
     -- Highlights the current line
     wo.cursorline = true
@@ -53,7 +60,7 @@ function M.setup()
     o.history = 50
 
     -- Always show the sign column
-    wo.signcolumn = [[yes:2]]
+    wo.signcolumn = 'yes:2'
 
     -- Make splits remain equal
     o.equalalways = true
@@ -69,7 +76,12 @@ function M.setup()
     wo.winblend = 10
 
     -- Set completeopt to have a better completion experience
-    o.completeopt = [[menuone,longest,noinsert,noselect]]
+    o.completeopt = table.concat({
+        'menuone',
+        'longest',
+        'noinsert',
+        'noselect'
+    }, ',')
 end
 
 return M

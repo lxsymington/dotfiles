@@ -50,7 +50,7 @@ function M.setup()
     -- OPEN DEBUGGER CONSOLE
     nnoremap({'<Leader>dr', dap.repl.open})
     -- RE-RUN LAST DEBUGGING SESSION
-    nnoremap({'<Leader>dl', dap.repl.run_last})
+    nnoremap({'<Leader>dl', dap.run_last})
 
     -- Show virtual text for current frame
     vim.g.dap_virtual_text = true
