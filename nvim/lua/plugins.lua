@@ -120,6 +120,9 @@ return require('packer').startup {
             end
         }
 
+        -- Usability
+        use 'tpope/vim-abolish'
+
         -- Colors
         use {
             'amadeus/vim-convert-color-to',
