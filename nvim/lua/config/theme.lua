@@ -9,7 +9,7 @@ function M.setup()
         [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 
     -- Sets the background to be dark
-    vim.o.background = 'dark'
+    -- vim.o.background = 'dark'
 
     -- Sets the colorscheme to be Seoul 256 Light
     -- colorscheme seoul256-light
@@ -34,8 +34,8 @@ function M.setup()
     -- Sets the colorscheme to be Miramare
     -- vim.g.colors_name = 'miramare'
 
-    -- Sets the colorscheme to be Afterglow
-    vim.g.colors_name = 'crepuscular'
+    -- Sets the colorscheme to be Crepuscular
+    vim.g.colors_name = 'crepuscular-dusk'
 end
 
 return M

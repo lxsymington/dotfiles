@@ -2,6 +2,8 @@
 local M = {}
 
 function M.setup()
+    print('Applying terminal config...')
+
     -- Disables line numbers
     vim.o.number = false
     vim.wo.number = false
