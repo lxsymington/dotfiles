@@ -167,13 +167,13 @@ return require('packer').startup {
                 require('plugin_settings.nvim_dap').setup()
             end
         }
-        --[[ use {
+        use {
             'nvim-telescope/telescope-dap.nvim',
             after = {'telescope.nvim', 'nvim-dap'},
             config = function()
                 require('plugin_settings.nvim_dap.telescope_integration').setup()
             end
-        } ]]
+        }
 
         -- Github
         use {

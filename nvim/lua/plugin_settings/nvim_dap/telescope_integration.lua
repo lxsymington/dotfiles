@@ -2,7 +2,7 @@ local M = {}
 
 -- NVIM-DAP TELESCOPE INTEGRATION ------
 function M.setup()
-    telescope.load_extension('dap')
+    require('telescope').load_extension('dap')
 
     -- Debug Commands
     vim.cmd
