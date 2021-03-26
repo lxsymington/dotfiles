@@ -175,6 +175,14 @@ return require('packer').startup {
             end
         }
 
+        -- Markdown Preview
+        use {
+            'euclio/vim-markdown-composer',
+            run = 'cargo build --release',
+            opt = true,
+            ft = {'md'}
+        }
+
         -- Github
         use {
             'pwntester/octo.nvim',
