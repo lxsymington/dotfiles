@@ -1,6 +1,6 @@
 return {
     formatCommand = ([[
-        prettier_d
+        prettierme
         ${--config-precedence:configPrecedence}
         ${--tab-width:tabWidth}
         ${--single-quote:singleQuote}

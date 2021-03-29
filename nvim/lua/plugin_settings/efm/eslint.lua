@@ -1,7 +1,7 @@
 return {
-    formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}",
+    formatCommand = "eslintme --fix-to-stdout --stdin --stdin-filename ${INPUT}",
     formatStdin = true,
-    lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+    lintCommand = "eslintme -f unix --stdin --stdin-filename ${INPUT}",
     lintIgnoreExitCode = true,
     lintStdin = true,
     lintFormats = {'%f:%l:%c: %m'}
