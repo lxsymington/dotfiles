@@ -10,7 +10,7 @@ local theme = lush.merge({
     lush(function()
         return {
             ColorColumn {bg = colours.black.darken(20), gui = "nocombine"},
-            Comment {fg = colours.black.lighten(15), gui = "nocombine,italic"},
+            Comment {fg = colours.lightGrey, gui = "nocombine,italic"},
             CursorLine {bg = colours.black.darken(20), gui = "nocombine"},
             CursorLineNr {bg = colours.black, fg = colours.yellow, gui = "nocombine,bold"},
             DiffAdd {bg = colours.green, fg = colours.lightGreen, gui = "nocombine,bold"},
@@ -23,7 +23,7 @@ local theme = lush.merge({
             }, IncSearch {bg = colours.lightGreen, fg = colours.black, gui = "nocombine,bold"},
             LineNr {
                 bg = colours.black.lighten(5),
-                fg = colours.black.lighten(40),
+                fg = colours.grey.lighten(15),
                 gui = "nocombine"
             }, MatchParen {bg = colours.purple, fg = colours.yellow, gui = "nocombine"},
             ModeMsg {fg = colours.lightGrey, gui = "nocombine"},
@@ -43,9 +43,9 @@ local theme = lush.merge({
             StatusLine {bg = colours.black.darken(20), gui = "nocombine"},
             StatusLineNC {bg = colours.black, gui = "nocombine"},
             Substitute {bg = colours.blue, fg = colours.lightCyan, gui = "nocombine"},
-            TabLine {bg = colours.blue, fg = colours.lightWhite, gui = "nocombine"},
-            TabLineFill {bg = colours.grey, fg = colours.black, gui = "nocombine"},
-            TabLineSel {Normal},
+            TabLine {bg = colours.grey, fg = colours.lightGrey},
+            TabLineFill {bg = colours.lightGrey.darken(30), fg = colours.black, gui = "nocombine"},
+            TabLineSel {Normal, gui = "nocombine,bold"},
             TermCursorNC {bg = colours.white, fg = colours.black, gui = "nocombine"},
             VertSplit {fg = colours.yellow, gui = "nocombine"},
             Visual {bg = colours.blue, gui = "nocombine"},
@@ -64,11 +64,11 @@ local theme = lush.merge({
             Type {fg = colours.yellow, gui = "nocombine,bold"},
             Typedef {fg = colours.lightGreen, gui = "nocombine"},
 
-            TSPunctBracket {fg = colours.orange.lighten(20), gui = "nocombine"},
+            TSPunctBracket {fg = colours.orange, gui = "nocombine"},
             TSConstant {Constant},
             TSString {String},
             TSFunction {Function},
-            TSParameter {fg = colours.lightBlack.lighten(20), gui = "nocombine,bold"},
+            TSParameter {fg = colours.purple.abs_lighten(15), gui = "nocombine,bold"},
             TSParameterReference {
                 TSParameter,
                 gui = "nocombine,undercurl",
@@ -84,7 +84,7 @@ local theme = lush.merge({
             TSText {String},
             TSLiteral {String},
             LspDiagnosticsVirtualTextError {
-                fg = colours.red.desaturate(60),
+                fg = colours.red.desaturate(45),
                 gui = "nocombine,italic"
             }, LspDiagnosticsVirtualTextHint {
                 fg = colours.lightGreen.desaturate(60),
@@ -93,14 +93,14 @@ local theme = lush.merge({
                 fg = colours.lightBlue.desaturate(60),
                 gui = "nocombine,italic"
             }, LspDiagnosticsVirtualTextWarning {
-                fg = colours.yellow.desaturate(60),
+                fg = colours.yellow.desaturate(45),
                 gui = "nocombine,italic"
             }, GitSignsAddSign {SignColumn, fg = colours.lightGreen, gui = "nocombine"},
             GitSignsChangeSign {SignColumn, fg = colours.lightBlue, gui = "nocombine"},
-            GitSignsDeleteSign {SignColumn, fg = colours.lightRed, gui = "nocombine"},
+            GitSignsDeleteSign {SignColumn, fg = colours.lightRed.darken(15), gui = "nocombine"},
             GitSignsAddNr {LineNr, fg = colours.lightGreen, gui = "nocombine"},
             GitSignsChangeNr {LineNr, fg = colours.lightBlue, gui = "nocombine"},
-            GitSignsDeleteNr {LineNr, fg = colours.lightRed, gui = "nocombine"}
+            GitSignsDeleteNr {LineNr, fg = colours.lightRed.darken(15), gui = "nocombine"}
         }
     end)
 })
