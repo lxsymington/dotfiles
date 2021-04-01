@@ -1,28 +1,104 @@
 local dap = require('dap')
+local mochaConfigurator = require('plugin_settings.nvim_dap.configurations.mocha.configurator')
 local nnoremap = vim.keymap.nnoremap
 local M = {}
+local api = vim.api
+local keymap_restore = {}
+
+dap.listeners.after['event_initialized']['me'] = function()
+  for _, buf in pairs(api.nvim_list_bufs()) do
+    local keymaps = api.nvim_buf_get_keymap(buf, 'n')
+    for _, keymap in pairs(keymaps) do
+      if keymap.lhs == "K" then
+        table.insert(keymap_restore, keymap)
+        api.nvim_buf_del_keymap(buf, 'n', 'K')
+      end
+    end
+  end
+  api.nvim_set_keymap(
+    'n', 'K', '<Cmd>lua require("dap.ui.variables").hover()<CR>', { silent = true })
+end
+
+dap.listeners.after['event_terminated']['me'] = function()
+  for _, keymap in pairs(keymap_restore) do
+    api.nvim_buf_set_keymap(
+      keymap.buffer,
+      keymap.mode,
+      keymap.lhs,
+      keymap.rhs,
+      { silent = keymap.silent == 1 }
+    )
+  end
+  keymap_restore = {}
+end
 
 -- DAP ---------------------------------
 function M.setup()
     -- Node debugger
     dap.adapters.node = require('plugin_settings.nvim_dap.adapters.node')
     dap.configurations.node = {
-        require('plugin_settings.nvim_dap.configurations.mocha_tests_workspace'),
-        require('plugin_settings.nvim_dap.configurations.mocha_tests_file'),
-        require('plugin_settings.nvim_dap.configurations.jest_tests_workspace'),
-        require('plugin_settings.nvim_dap.configurations.jest_tests_file')
+        mochaConfigurator({
+            title = 'Mocha JS Test File',
+        }),
+        mochaConfigurator({
+            title = 'Mocha JS Test Workspace',
+            glob = 'src/**/*.test.js'
+        }),
+        mochaConfigurator({
+            title = 'Mocha JS Test File | Src Directory | Test Environment',
+            environment = './src/testEnvrironment.js',
+        }),
+        mochaConfigurator({
+            title = 'Mocha JS Test Workspace | Src Directory | Test Environment',
+            environment = './src/testEnvrironment.js',
+            glob = 'src/**/*.test.js',
+        }),
+        mochaConfigurator({
+            title = 'Mocha JS Test File | Test Directory | Test Environment',
+            environment = './test/testEnvrironment.js',
+        }),
+        mochaConfigurator({
+            title = 'Mocha JS Test Workspace | Test Directory | Test Environment',
+            environment = './test/testEnvrironment.js',
+            glob = 'test/**/*.test.js',
+        }),
+        require('plugin_settings.nvim_dap.configurations.jest.workspace'),
+        require('plugin_settings.nvim_dap.configurations.jest.file')
     }
     dap.configurations.typescript = {
-        require(
-            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_with_test_environment_workspace'),
-        require(
-            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_with_test_environment_file'),
-        require(
-            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_workspace'),
-        require(
-            'plugin_settings.nvim_dap.configurations.mocha_typescript_tests_file'),
-        require('plugin_settings.nvim_dap.configurations.jest_tests_workspace'),
-        require('plugin_settings.nvim_dap.configurations.jest_tests_file')
+        mochaConfigurator({
+            title = 'Mocha TS Test File',
+            typescript = true
+        }),
+        mochaConfigurator({
+            title = 'Mocha TS Test Workspace',
+            glob = '**/*.test.ts',
+            typescript = true
+        }),
+        mochaConfigurator({
+            title = 'Mocha TS Test File | Src Directory | Test Environment',
+            environment = './src/testEnvrironment.js',
+            typescript = true
+        }),
+        mochaConfigurator({
+            title = 'Mocha TS Test Workspace | Src Directory | Test Environment',
+            environment = './src/testEnvrironment.js',
+            glob = 'src/**/*.test.ts',
+            typescript = true
+        }),
+        mochaConfigurator({
+            title = 'Mocha TS Test File | Test Directory | Test Environment',
+            environment = './test/testEnvrironment.js',
+            typescript = true
+        }),
+        mochaConfigurator({
+            title = 'Mocha TS Test Workspace | Test Directory | Test Environment',
+            environment = './test/testEnvrironment.js',
+            glob = 'test/**/*.test.ts',
+            typescript = true
+        }),
+        require('plugin_settings.nvim_dap.configurations.jest.workspace'),
+        require('plugin_settings.nvim_dap.configurations.jest.file')
     }
 
     -- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json
