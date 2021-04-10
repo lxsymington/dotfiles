@@ -15,7 +15,7 @@ local colours = {
     red = hsl(350, 60, 40), -- original "#a95062"
     white = hsl(30, 60, 80), -- original "#ebd3b9"
     yellow = hsl(40, 100, 60), -- original "#ffc346"
-    
+
     lightBlack = hsl(275, 25, 15), -- original "#222035"
     lightBlue = hsl(215, 75, 60), -- original "#356ea5"
     lightCyan = hsl(190, 60, 75), -- original "#83a0c8"

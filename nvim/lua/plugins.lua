@@ -57,7 +57,6 @@ return require('packer').startup {
         -- Neovim Lua Helper
         use 'tjdevries/nlua.nvim'
         use 'euclidianAce/BetterLua.vim'
-        use 'tjdevries/manillua.nvim'
 
         -- LSP configurations
         use {
@@ -92,14 +91,13 @@ return require('packer').startup {
             end
         }
 
-        -- Syntax
-        use {
-            'HerringtonDarkholme/yats.vim',
-            opt = true,
-            ft = {'typescript', 'typescriptreact'}
-        }
-
         -- Version Control
+        use {
+            'TimUntersberger/neogit',
+            config = function()
+                require('plugin_settings.neogit').setup()
+            end
+        }
         use {
             'tpope/vim-fugitive',
             config = function()
@@ -156,9 +154,6 @@ return require('packer').startup {
             end
         }
 
-        -- Code Action Discoverability
-        use 'kosayoda/nvim-lightbulb'
-
         -- Debugger
         use {
             'mfussenegger/nvim-dap',
@@ -183,6 +178,12 @@ return require('packer').startup {
             ft = {'md'}
         }
 
+        -- Databases
+        use {
+            'kristijanhusak/vim-dadbod-ui',
+            requires = {'tpope/vim-dadbod'}
+        }
+
         -- Github
         use {
             'pwntester/octo.nvim',
@@ -190,9 +191,6 @@ return require('packer').startup {
             opt = true,
             cmd = {'Octo'}
         }
-
-        -- Highlighting
-        use 'sheerun/vim-polyglot'
 
         -- Pairing
         use 'tmsvg/pear-tree'
