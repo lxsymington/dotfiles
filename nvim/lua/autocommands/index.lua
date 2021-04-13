@@ -2,8 +2,6 @@ local M = {}
 
 -- Autocommands Index ------------------
 function M.setup()
-    print('Setting up autocommands...')
-
     vim.api.nvim_command [[
         augroup Terminal
         autocmd! * <buffer>

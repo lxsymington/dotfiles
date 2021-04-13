@@ -7,7 +7,7 @@ local hsl = lush.hsl
 local colours = {
     black = hsl(275, 20, 10), -- original "#111224"
     blue = hsl(215, 75, 45), -- original "#155199"
-    cyan = hsl(190, 45, 45), -- original "#6187ae"
+    cyan = hsl(175, 45, 60), -- original "#6187ae"
     green = hsl(130, 30, 30), -- original "#354e39"
     grey = hsl(315, 5, 30), -- original "#786674"
     orange = hsl(20, 75, 50), -- original "#ec722f"
@@ -18,7 +18,7 @@ local colours = {
 
     lightBlack = hsl(275, 25, 15), -- original "#222035"
     lightBlue = hsl(215, 75, 60), -- original "#356ea5"
-    lightCyan = hsl(190, 60, 75), -- original "#83a0c8"
+    lightCyan = hsl(175, 60, 90), -- original "#83a0c8"
     lightGreen = hsl(85, 30, 45), -- original "#5e723f"
     lightGrey = hsl(310, 10, 60), -- original "#9f8d9d"
     lightOrange = hsl(25, 100, 67), -- original "#fe882e"

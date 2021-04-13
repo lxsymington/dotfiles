@@ -35,7 +35,7 @@ function M.setup()
     -- vim.g.colors_name = 'miramare'
 
     -- Sets the colorscheme to be Crepuscular
-    vim.g.colors_name = 'crepuscular-dusk'
+    vim.g.colors_name = vim.o.background == 'dark' and 'crepuscular-dusk' or 'crepuscular-dawn'
 end
 
 return M

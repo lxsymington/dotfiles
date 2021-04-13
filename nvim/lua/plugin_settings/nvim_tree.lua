@@ -40,6 +40,8 @@ function M.setup()
         ["-"] = bind("dir_up")
     }
 
+    vim.cmd [[highlight link NvimTreeIndentMarker Comment]]
+
     nnoremap({'<Leader><Tab>', function() cmd('NvimTreeToggle') end})
 end
 

@@ -42,8 +42,7 @@ function M.setup()
 
     -- Wildmode settings
     o.wildmode = table.concat({
-        'list:lastused',
-        'list:longest',
+        'longest:full',
         'full'
     }, ',')
 

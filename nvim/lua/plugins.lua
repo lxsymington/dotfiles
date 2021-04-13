@@ -57,6 +57,7 @@ return require('packer').startup {
         -- Neovim Lua Helper
         use 'tjdevries/nlua.nvim'
         use 'euclidianAce/BetterLua.vim'
+        use 'bfredl/nvim-luadev'
 
         -- LSP configurations
         use {
@@ -130,12 +131,18 @@ return require('packer').startup {
 
         -- Statusline
         use {
+            'famiu/feline.nvim',
+            config = function()
+                require('plugin_settings.feline').setup()
+            end
+        }
+        --[[ use {
             'tjdevries/express_line.nvim',
             requires = {'plenary.nvim'},
             config = function()
                 require('plugin_settings.expressline').setup()
             end
-        }
+        } ]]
 
         -- Colorscheme builder
         use 'rktjmp/lush.nvim'

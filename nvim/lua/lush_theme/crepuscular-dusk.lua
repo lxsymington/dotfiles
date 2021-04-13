@@ -1,5 +1,4 @@
 local lush = require('lush')
-
 package.loaded['lush_theme.crepuscular-colours'] = nil
 
 local colours = require('lush_theme.crepuscular-colours')
@@ -48,7 +47,7 @@ local theme = lush.merge({
             TabLineSel {Normal, gui = "nocombine,bold"},
             TermCursorNC {bg = colours.white, fg = colours.black, gui = "nocombine"},
             VertSplit {fg = colours.yellow, gui = "nocombine"},
-            Visual {bg = colours.blue, gui = "nocombine"},
+            Visual {bg = colours.purple.abs_desaturate(50).abs_darken(15), gui = "nocombine"},
             VisualNOS {bg = colours.lightCyan, gui = "nocombine"},
             Whitespace {fg = colours.black.lighten(15), gui = "nocombine"},
             WildMenu {bg = colours.green, gui = "nocombine,bold"},
@@ -98,9 +97,9 @@ local theme = lush.merge({
             }, GitSignsAddSign {SignColumn, fg = colours.lightGreen, gui = "nocombine"},
             GitSignsChangeSign {SignColumn, fg = colours.lightBlue, gui = "nocombine"},
             GitSignsDeleteSign {SignColumn, fg = colours.lightRed.darken(15), gui = "nocombine"},
-            GitSignsAddNr {LineNr, fg = colours.lightGreen, gui = "nocombine"},
-            GitSignsChangeNr {LineNr, fg = colours.lightBlue, gui = "nocombine"},
-            GitSignsDeleteNr {LineNr, fg = colours.lightRed.darken(15), gui = "nocombine"}
+            GitSignsAddNr {bg = colours.lightGreen.abs_desaturate(30).abs_darken(30), fg = colours.lightGreen, gui = "nocombine"},
+            GitSignsChangeNr {bg = colours.lightBlue.abs_desaturate(30).abs_darken(45), fg = colours.lightBlue, gui = "nocombine"},
+            GitSignsDeleteNr {bg = colours.lightRed.abs_desaturate(60).abs_darken(60), fg = colours.lightRed.darken(15), gui = "nocombine"}
         }
     end)
 })

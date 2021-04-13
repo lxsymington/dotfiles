@@ -10,7 +10,7 @@ function M.setup()
     -- Open init.vim in a tab
     nnoremap({'<Leader>ev', function() vim.cmd('tabedit $MYVIMRC') end})
 
-    -- CLear highlighting
+    -- Clear highlighting
     nnoremap({'<Leader>_', function() vim.cmd('nohlsearch') end})
 
     -- Toggle relative numbers
