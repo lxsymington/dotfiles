@@ -27,11 +27,6 @@ end ]]
     return #file < 40 and file or vim.fn.pathshorten(file)
 end ]]
 
---[[ local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  return squeeze_width > 40
-end ]]
-
 local buffer_not_empty = function()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
@@ -169,7 +164,7 @@ function M.setup()
             bg = colours.blue.hex,
             style = 'bold'
         },
-        left_sep = '',
+        left_sep = ' ',
         right_sep = {'right_rounded'}
     }
 

@@ -86,7 +86,7 @@ return require('packer').startup {
         -- Search
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {'popup.nvim', 'plenary.nvim'},
+            requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
             config = function()
                 require('plugin_settings.telescope').setup()
             end
@@ -107,7 +107,7 @@ return require('packer').startup {
         }
         use {
             'lewis6991/gitsigns.nvim',
-            requires = {'plenary.nvim'},
+            requires = {'nvim-lua/plenary.nvim'},
             config = function()
                 require('plugin_settings.gitsigns').setup()
             end
@@ -132,6 +132,7 @@ return require('packer').startup {
         -- Statusline
         use {
             'famiu/feline.nvim',
+            requires = {'kyazdani42/nvim-web-devicons', 'lewis6991/gitsigns.nvim', 'neovim/nvim-lspconfig'},
             config = function()
                 require('plugin_settings.feline').setup()
             end
