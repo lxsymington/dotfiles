@@ -1,0 +1,37 @@
+~/.dotfiles/..
+ .git
+ alacritty
+ efm-langserver
+ fish
+ git
+ ✗ nvim
+   colors
+   ftplugin
+   ✗ lua
+     autocommands
+     config
+     lush_theme
+     ✗ plugin_settings
+       efm
+       nvim_dap
+      ✗ feline.lua
+      fugitive.lua
+      gitsigns.lua
+      neogit.lua
+      nvim_dap.lua
+      nvim_tree.lua
+      snippets.lua
+      startify.lua
+      telescope.lua
+      treesitter.lua
+    lsp_config.lua
+    plugins.lua
+   plugin
+  ginit.vim
+  init.legacy
+  init.lua
+ smug
+ tmux
+ vim
+ windows
+.gitignore

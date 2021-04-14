@@ -1,34 +1,96 @@
 local colours = require('lush_theme.crepuscular-colours')
 local feline = require('feline')
 local lsp = require('feline.providers.lsp')
-local vi_mode_utils = require('feline.providers.vi_mode')
+local devicons = require('nvim-web-devicons')
+local fn = vim.fn
+local bo = vim.bo
+local b = vim.b
 local M = {}
 
---[[ local Highlight = {
-    __tostring = function(highlight)
-        local s = {}
-        for k,v in pairs(highlight) do
-            table.insert(s, k .. '=' .. v)
-        end
-        return table.concat(s, ' ')
+local vi_mode_colors = {
+    NORMAL = colours.yellow.hex,
+    OP = colours.lightYellow.hex,
+    INSERT = colours.green.hex,
+    VISUAL = colours.cyan.hex,
+    BLOCK = colours.lightCyan.hex,
+    REPLACE = colours.red.hex,
+    ['V-REPLACE'] = colours.lightRed.hex,
+    ENTER = colours.lightPurple.hex,
+    MORE = colours.lightBlue.hex,
+    SELECT = colours.lightOrange.hex,
+    COMMAND = colours.orange.hex,
+    SHELL = colours.blue.hex,
+    TERM = colours.purple.hex,
+    NONE = colours.lightGreen.hex
+}
+
+local mode_alias_map = {
+    [''] = { name = 'SELECT-BLOCK', fg = colours.black.hex, bg = colours.lightPurple.hex },
+    [''] = { name = 'VISUAL-BLOCK', fg = colours.black.hex, bg = colours.lightCyan.hex },
+    ['!'] = { name = 'SHELL', fg = colours.black.hex, bg = colours.lightBlue.hex },
+    ['no'] = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    ['r?'] = { name = 'CONFIRM', fg = colours.black.hex, bg = colours.grey.hex },
+    c = { name = 'COMMAND-LINE', fg = colours.black.hex, bg = colours.orange.hex },
+    ce = { name = 'NORMAL-EX', fg = colours.black.hex, bg = colours.lightOrange.hex },
+    cv = { name = 'VIM-EX', fg = colours.black.hex, bg = colours.lightOrange.hex },
+    i = { name = 'INSERT', fg = colours.black.hex, bg = colours.green.hex },
+    ic = { name = 'INSERT-COMPLETION', fg = colours.black.hex, bg = colours.lightGreen.hex },
+    ix = { name = 'INSERT-COMPLETION', fg = colours.black.hex, bg = colours.lightGreen.hex },
+    n = { name = 'NORMAL', fg = colours.black.hex, bg = colours.yellow.hex },
+    niI = { name = 'NORMAL-INSERT', fg = colours.black.hex, bg = colours.lightYellow.hex },
+    niR = { name = 'NORMAL-REPLACE', fg = colours.black.hex, bg = colours.lightYellow.hex },
+    niV = { name = 'NORMAL-VIRTUAL-REPLAC', fg = colours.black.hex, bg = colours.lightYellow.hex },
+    no = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    noV = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    nov = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    r = { name = 'HIT-ENTER', fg = colours.black.hex, bg = colours.grey.hex },
+    R = { name = 'REPLACE', fg = colours.black.hex, bg = colours.red.hex },
+    Rc = { name = 'REPLACE-COMPLETION', fg = colours.black.hex, bg = colours.lightRed.hex },
+    rm = { name = '-- MORE --', fg = colours.black.hex, bg = colours.grey.hex },
+    Rv = { name = 'VIRTUAL-REPLACE', fg = colours.black.hex, bg = colours.lightRed.hex },
+    Rx = { name = 'REPLACE-COMPLETION', fg = colours.black.hex, bg = colours.lightRed.hex },
+    s = { name = 'SELECT', fg = colours.black.hex, bg = colours.purple.hex },
+    S = { name = 'SELECT-LINE', fg = colours.black.hex, bg = colours.lightPurple.hex },
+    t = { name = 'TERMINAL', fg = colours.black.hex, bg = colours.blue.hex },
+    v = { name = 'VISUAL', fg = colours.black.hex, bg = colours.cyan.hex },
+    V = { name = 'VISUAL-LINE', fg = colours.black.hex, bg = colours.lightCyan.hex },
+}
+
+local vi_mode = function()
+    local mode = fn.mode()
+
+    return string.format('  %s ', mode_alias_map[mode].name)
+end
+
+local file_namer = function()
+    local file_path = fn.expand('%:p')
+
+    if fn.empty(file_path) == 1 then return '' end
+
+    local file_icon = devicons.get_icon(
+        fn.fnamemodify(file_path, ':t'),
+        fn.fnamemodify(file_path, ':e'),
+        { default = true }
+    )
+    local relative_file_path = fn.fnamemodify(file_path, ':~:.')
+    local short_file_path = #relative_file_path < 40 
+        and relative_file_path
+        or fn.pathshorten(relative_file_path)
+    local file_info = string.format(' %s %s ', file_icon, short_file_path)
+
+    if bo.modified then
+        file_info = string.format('%s %s ', file_info, '')
     end
-} ]]
 
---[[ local create_highlight_group = function(name, highlight)
-    setmetatable(highlight, Highlight)
+    if not bo.modifiable then
+        file_info = string.format('%s %s ', file_info, '')
+    end
 
-    vim.api.nvim_command(string.format('hi %s %s', name, highlight))
-end ]]
-
---[[ local file_namer = function()
-    local file = vim.fn.expand('%:p:~:.')
-
-    if vim.fn.empty(file) == 1 then return '' end
-    return #file < 40 and file or vim.fn.pathshorten(file)
-end ]]
+    return file_info
+end
 
 local buffer_not_empty = function()
-  return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+  return fn.empty(fn.expand('%:t')) ~= 1
 end
 
 --[[
@@ -55,7 +117,8 @@ end
     right_rounded_thin	''
     circle	'●'
 
- ]]
+]]
+
 -- FELINE ------------------------------
 function M.setup()
     local properties = {
@@ -91,13 +154,14 @@ function M.setup()
     }
 
     components.left.active[1] = {
-        provider = 'vi_mode',
+        provider = vi_mode,
         hl = function()
             local val = {}
+            local mode = fn.mode();
 
-            val.name = vi_mode_utils.get_mode_highlight_name()
-            val.fg = colours.black.hex
-            val.bg = vi_mode_utils.get_mode_color()
+            val.name = mode_alias_map[mode].name
+            val.fg = mode_alias_map[mode].fg
+            val.bg = mode_alias_map[mode].bg
             val.style = 'bold'
 
             return val
@@ -107,7 +171,7 @@ function M.setup()
     }
 
     components.left.active[2] = {
-        provider = 'file_info',
+        provider = file_namer,
         enabled = buffer_not_empty,
         hl = {
             fg = colours.white.hex,
@@ -115,13 +179,6 @@ function M.setup()
             style = 'bold'
         },
         left_sep = {'left_rounded'},
-        right_sep = {
-            str = ' ',
-            hl = {
-                fg = 'NONE',
-                bg = colours.lightBlack.hex
-            }
-        }
     }
 
     components.left.active[3] = {
@@ -136,7 +193,7 @@ function M.setup()
             {
                 str = 'vertical_bar',
                 hl = {
-                    fg = colours.lightBlue.hex,
+                    fg = colours.orange.hex,
                     bg = colours.lightBlack.hex
                 }
             },
@@ -164,8 +221,15 @@ function M.setup()
             bg = colours.blue.hex,
             style = 'bold'
         },
-        left_sep = ' ',
-        right_sep = {'right_rounded'}
+        right_sep = function()
+            return {
+                str = '',
+                hl = {
+                    fg = b.gitsigns_status_dict and colours.blue.hex or colours.lightBlack.hex,
+                    bg = 'bg'
+                }
+            }
+        end
     }
 
     components.left.active[5] = {
@@ -278,29 +342,11 @@ function M.setup()
         }
     }
 
-    local vi_mode_colors = {
-        NORMAL = colours.lightYellow.hex,
-        OP = colours.yellow.hex,
-        INSERT = colours.lightGreen.hex,
-        VISUAL = colours.lightCyan.hex,
-        BLOCK = colours.cyan.hex,
-        REPLACE = colours.lightRed.hex,
-        ['V-REPLACE'] = colours.lightRed.hex,
-        ENTER = colours.purple.hex,
-        MORE = colours.blue.hex,
-        SELECT = colours.orange.hex,
-        COMMAND = colours.lightOrange.hex,
-        SHELL = colours.lightBlue.hex,
-        TERM = colours.lightPurple.hex,
-        NONE = colours.green.hex
-    }
-
     require('feline').setup({
         default_bg = colours.black.hex,
         default_fg = colours.white.hex,
         components = components,
         properties = properties,
-        vi_mode_colors = vi_mode_colors
     })
 end
 
