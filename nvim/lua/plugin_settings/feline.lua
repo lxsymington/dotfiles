@@ -32,9 +32,9 @@ end ]]
   return squeeze_width > 40
 end ]]
 
---[[ local buffer_not_empty = function()
+local buffer_not_empty = function()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
-end ]]
+end
 
 --[[
 
@@ -112,132 +112,147 @@ function M.setup()
     }
 
     components.left.active[2] = {
-        provider = ' ',
-    }
-
-    components.left.active[2] = {
         provider = 'file_info',
+        enabled = buffer_not_empty,
         hl = {
             fg = colours.white.hex,
             bg = colours.lightBlack.hex,
             style = 'bold'
         },
         left_sep = {'left_rounded'},
-        right_sep = {' '}
-    }
-
-    components.left.active[3] = {
-        provider = 'file_size',
-        enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
         right_sep = {
-            ' ',
-            {
-                str = 'slant_left_2_thin',
-                hl = {
-                    fg = 'fg',
-                    bg = 'bg'
-                }
-            },
-            ' '
-        }
-    }
-
-    components.left.active[4] = {
-        provider = 'position',
-        right_sep = {
-            ' ',
-            {
-                str = 'slant_right_2_thin',
-                hl = {
-                    fg = 'fg',
-                    bg = 'bg'
-                }
+            str = ' ',
+            hl = {
+                fg = 'NONE',
+                bg = colours.lightBlack.hex
             }
         }
     }
 
+    components.left.active[3] = {
+        provider = 'file_size',
+        enabled = buffer_not_empty,
+        hl = {
+            fg = colours.lightGrey.hex,
+            bg = colours.lightBlack.hex,
+            style = 'italic'
+        },
+        left_sep = {
+            {
+                str = 'vertical_bar',
+                hl = {
+                    fg = colours.lightBlue.hex,
+                    bg = colours.lightBlack.hex
+                }
+            },
+            {
+                str = ' ',
+                hl = {
+                    fg = 'NONE',
+                    bg = colours.lightBlack.hex
+                }
+            }
+        },
+        right_sep = {
+            str = ' ',
+            hl = {
+                fg = 'NONE',
+                bg = colours.lightBlack.hex
+            }
+        }
+    }
+
+    components.left.active[4] = {
+        provider = 'git_branch',
+        hl = {
+            fg = colours.lightWhite.hex,
+            bg = colours.blue.hex,
+            style = 'bold'
+        },
+        left_sep = '',
+        right_sep = {'right_rounded'}
+    }
+
     components.left.active[5] = {
-        provider = 'diagnostic_errors',
-        enabled = function() return lsp.diagnostics_exist('Error') end,
-        hl = { fg = 'red' }
+        provider = 'git_diff_added',
+        hl = {
+            fg = colours.green.hex,
+            bg = 'bg'
+        }
     }
 
     components.left.active[6] = {
-        provider = 'diagnostic_warnings',
-        enabled = function() return lsp.diagnostics_exist('Warning') end,
-        hl = { fg = 'yellow' }
+        provider = 'git_diff_changed',
+        hl = {
+            fg = colours.orange.hex,
+            bg = 'bg'
+        }
     }
 
     components.left.active[7] = {
-        provider = 'diagnostic_hints',
-        enabled = function() return lsp.diagnostics_exist('Hint') end,
-        hl = { fg = 'cyan' }
-    }
-
-    components.left.active[8] = {
-        provider = 'diagnostic_info',
-        enabled = function() return lsp.diagnostics_exist('Information') end,
-        hl = { fg = 'skyblue' }
+        provider = 'git_diff_removed',
+        hl = {
+            fg = colours.red.hex,
+            bg = 'bg'
+        },
     }
 
     components.right.active[1] = {
-        provider = 'git_branch',
-        hl = {
-            fg = 'white',
-            bg = 'black',
-            style = 'bold'
-        },
-        right_sep = function()
-            local val = {hl = {fg = 'NONE', bg = 'black'}}
-            if vim.b.gitsigns_status_dict then val.str = ' ' else val.str = '' end
-
-            return val
-        end
+        provider = 'diagnostic_errors',
+        enabled = function() return lsp.diagnostics_exist('Error') end,
+        hl = { fg = colours.red.hex }
     }
 
     components.right.active[2] = {
-        provider = 'git_diff_added',
-        hl = {
-            fg = 'green',
-            bg = 'black'
-        }
+        provider = 'diagnostic_warnings',
+        enabled = function() return lsp.diagnostics_exist('Warning') end,
+        hl = { fg = colours.yellow.hex }
     }
 
     components.right.active[3] = {
-        provider = 'git_diff_changed',
-        hl = {
-            fg = 'orange',
-            bg = 'black'
-        }
+        provider = 'diagnostic_hints',
+        enabled = function() return lsp.diagnostics_exist('Hint') end,
+        hl = { fg = colours.cyan.hex }
     }
 
     components.right.active[4] = {
-        provider = 'git_diff_removed',
-        hl = {
-            fg = 'red',
-            bg = 'black'
-        },
-        right_sep = function()
-            local val = {hl = {fg = 'NONE', bg = 'black'}}
-            if vim.b.gitsigns_status_dict then val.str = ' ' else val.str = '' end
-
-            return val
-        end
+        provider = 'diagnostic_info',
+        enabled = function() return lsp.diagnostics_exist('Information') end,
+        hl = { fg = colours.lightBlue.hex }
     }
 
     components.right.active[5] = {
+        provider = 'position',
+        left_sep = {
+            str = '  ',
+            hl = {
+                fg = colours.lightGrey.hex,
+                bg = 'bg'
+            }
+        },
+        right_sep = {
+            str = '  ',
+            hl = {
+                fg = colours.lightGrey.hex,
+                bg = 'bg'
+            }
+        },
+        hl = { fg = colours.lightGrey.hex }
+    }
+
+    components.right.active[6] = {
         provider = 'line_percentage',
         hl = {
             style = 'bold'
         },
-        left_sep = '  ',
+        left_sep = ' ',
         right_sep = ' '
     }
 
-    components.right.active[6] = {
+    components.right.active[7] = {
         provider = 'scroll_bar',
         hl = {
-            fg = 'skyblue',
+            fg = colours.lightPurple.hex,
             style = 'bold'
         }
     }
@@ -245,15 +260,15 @@ function M.setup()
     components.left.inactive[1] = {
         provider = 'file_type',
         hl = {
-            fg = 'white',
-            bg = 'oceanblue',
+            fg = colours.white.hex,
+            bg = colours.blue.hex,
             style = 'bold'
         },
         left_sep = {
             str = ' ',
             hl = {
                 fg = 'NONE',
-                bg = 'oceanblue'
+                bg = colours.blue.hex
             }
         },
         right_sep = {
@@ -261,10 +276,10 @@ function M.setup()
                 str = ' ',
                 hl = {
                     fg = 'NONE',
-                    bg = 'oceanblue'
+                    bg = colours.blue.hex
                 }
             },
-            'slant_right'
+            'right_rounded'
         }
     }
 

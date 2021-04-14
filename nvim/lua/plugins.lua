@@ -136,13 +136,6 @@ return require('packer').startup {
                 require('plugin_settings.feline').setup()
             end
         }
-        --[[ use {
-            'tjdevries/express_line.nvim',
-            requires = {'plenary.nvim'},
-            config = function()
-                require('plugin_settings.expressline').setup()
-            end
-        } ]]
 
         -- Colorscheme builder
         use 'rktjmp/lush.nvim'
