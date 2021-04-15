@@ -1,12 +1,10 @@
-local M = {}
-
 -- Autocommands Index ------------------
-function M.setup()
+local function autocommand_setup()
     vim.api.nvim_command [[
         augroup Terminal
         autocmd! * <buffer>
         autocmd TermOpen <buffer> setlocal statusline=%{b:term_title}
-        autocmd TermOpen <buffer> lua require('autocommands.terminal').setup() 
+        autocmd TermOpen <buffer> lua require('lxs.autocommands.terminal').setup() 
         augroup END
     ]]
 
@@ -18,4 +16,4 @@ function M.setup()
     ]]
 end
 
-return M
+return autocommand_setup()

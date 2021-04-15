@@ -2,11 +2,11 @@ local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
-local vint = require('plugin_settings.efm.vint')
-local lua_format = require('plugin_settings.efm.lua-format')
-local prettier = require('plugin_settings.efm.prettier')
-local eslint = require('plugin_settings.efm.eslint')
-local tslint = require('plugin_settings.efm.tslint')
+local vint = require('lxs.plugin_settings.efm.vint')
+local lua_format = require('lxs.plugin_settings.efm.lua-format')
+local prettier = require('lxs.plugin_settings.efm.prettier')
+local eslint = require('lxs.plugin_settings.efm.eslint')
+local tslint = require('lxs.plugin_settings.efm.tslint')
 local nnoremap = vim.keymap.nnoremap
 local M = {}
 

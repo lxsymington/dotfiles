@@ -25,41 +25,42 @@ local vi_mode_colors = {
 }
 
 local mode_alias_map = {
-    [''] = { name = 'SELECT-BLOCK', fg = colours.black.hex, bg = colours.lightPurple.hex },
-    [''] = { name = 'VISUAL-BLOCK', fg = colours.black.hex, bg = colours.lightCyan.hex },
-    ['!'] = { name = 'SHELL', fg = colours.black.hex, bg = colours.lightBlue.hex },
-    ['no'] = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
-    ['r?'] = { name = 'CONFIRM', fg = colours.black.hex, bg = colours.grey.hex },
-    c = { name = 'COMMAND-LINE', fg = colours.black.hex, bg = colours.orange.hex },
-    ce = { name = 'NORMAL-EX', fg = colours.black.hex, bg = colours.lightOrange.hex },
-    cv = { name = 'VIM-EX', fg = colours.black.hex, bg = colours.lightOrange.hex },
-    i = { name = 'INSERT', fg = colours.black.hex, bg = colours.green.hex },
-    ic = { name = 'INSERT-COMPLETION', fg = colours.black.hex, bg = colours.lightGreen.hex },
-    ix = { name = 'INSERT-COMPLETION', fg = colours.black.hex, bg = colours.lightGreen.hex },
-    n = { name = 'NORMAL', fg = colours.black.hex, bg = colours.yellow.hex },
-    niI = { name = 'NORMAL-INSERT', fg = colours.black.hex, bg = colours.lightYellow.hex },
-    niR = { name = 'NORMAL-REPLACE', fg = colours.black.hex, bg = colours.lightYellow.hex },
-    niV = { name = 'NORMAL-VIRTUAL-REPLAC', fg = colours.black.hex, bg = colours.lightYellow.hex },
-    no = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
-    noV = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
-    nov = { name = 'OPERATOR-PENDING', fg = colours.black.hex, bg = colours.lightGrey.hex },
-    r = { name = 'HIT-ENTER', fg = colours.black.hex, bg = colours.grey.hex },
-    R = { name = 'REPLACE', fg = colours.black.hex, bg = colours.red.hex },
-    Rc = { name = 'REPLACE-COMPLETION', fg = colours.black.hex, bg = colours.lightRed.hex },
-    rm = { name = '-- MORE --', fg = colours.black.hex, bg = colours.grey.hex },
-    Rv = { name = 'VIRTUAL-REPLACE', fg = colours.black.hex, bg = colours.lightRed.hex },
-    Rx = { name = 'REPLACE-COMPLETION', fg = colours.black.hex, bg = colours.lightRed.hex },
-    s = { name = 'SELECT', fg = colours.black.hex, bg = colours.purple.hex },
-    S = { name = 'SELECT-LINE', fg = colours.black.hex, bg = colours.lightPurple.hex },
-    t = { name = 'TERMINAL', fg = colours.black.hex, bg = colours.blue.hex },
-    v = { name = 'VISUAL', fg = colours.black.hex, bg = colours.cyan.hex },
-    V = { name = 'VISUAL-LINE', fg = colours.black.hex, bg = colours.lightCyan.hex },
+    [''] = { name = 'Select-Block', fg = colours.black.hex, bg = colours.lightPurple.hex },
+    [''] = { name = 'Visual-Block', fg = colours.black.hex, bg = colours.lightCyan.hex },
+    ['!'] = { name = 'Shell', fg = colours.black.hex, bg = colours.lightBlue.hex },
+    ['no'] = { name = 'Operator-Pending', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    ['r?'] = { name = 'Confirm', fg = colours.black.hex, bg = colours.grey.hex },
+    c = { name = 'Command-Line', fg = colours.black.hex, bg = colours.orange.hex },
+    ce = { name = 'Normal-Ex', fg = colours.black.hex, bg = colours.lightOrange.hex },
+    cv = { name = 'Vim-Ex', fg = colours.black.hex, bg = colours.lightOrange.hex },
+    i = { name = 'Insert', fg = colours.black.hex, bg = colours.green.hex },
+    ic = { name = 'Insert-Completion', fg = colours.black.hex, bg = colours.lightGreen.hex },
+    ix = { name = 'Insert-Completion', fg = colours.black.hex, bg = colours.lightGreen.hex },
+    n = { name = 'Normal', fg = colours.black.hex, bg = colours.yellow.hex },
+    niI = { name = 'Normal-Insert', fg = colours.black.hex, bg = colours.lightYellow.hex },
+    niR = { name = 'Normal-Replace', fg = colours.black.hex, bg = colours.lightYellow.hex },
+    niV = { name = 'Normal-Virtual-Replace', fg = colours.black.hex, bg = colours.lightYellow.hex },
+    no = { name = 'Operator-Pending', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    noV = { name = 'Operator-Pending', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    nov = { name = 'Operator-Pending', fg = colours.black.hex, bg = colours.lightGrey.hex },
+    r = { name = 'Hit-Enter', fg = colours.black.hex, bg = colours.grey.hex },
+    R = { name = 'Replace', fg = colours.black.hex, bg = colours.red.hex },
+    Rc = { name = 'Replace-Completion', fg = colours.black.hex, bg = colours.lightRed.hex },
+    rm = { name = '-- More --', fg = colours.black.hex, bg = colours.grey.hex },
+    Rv = { name = 'Virtual-Replace', fg = colours.black.hex, bg = colours.lightRed.hex },
+    Rx = { name = 'Replace-Completion', fg = colours.black.hex, bg = colours.lightRed.hex },
+    s = { name = 'Select', fg = colours.black.hex, bg = colours.purple.hex },
+    S = { name = 'Select-Line', fg = colours.black.hex, bg = colours.lightPurple.hex },
+    t = { name = 'Terminal', fg = colours.black.hex, bg = colours.blue.hex },
+    v = { name = 'Visual', fg = colours.black.hex, bg = colours.cyan.hex },
+    V = { name = 'Visual-Line', fg = colours.black.hex, bg = colours.lightCyan.hex },
 }
 
 local vi_mode = function()
     local mode = fn.mode()
+    local mode_alias = string.upper(mode_alias_map[mode].name)
 
-    return string.format('  %s ', mode_alias_map[mode].name)
+    return string.format('  %s ', mode_alias)
 end
 
 local file_namer = function()
@@ -159,7 +160,7 @@ function M.setup()
             local val = {}
             local mode = fn.mode();
 
-            val.name = mode_alias_map[mode].name
+            val.name = string.gsub(mode_alias_map[mode].name, '%A', '')
             val.fg = mode_alias_map[mode].fg
             val.bg = mode_alias_map[mode].bg
             val.style = 'bold'

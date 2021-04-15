@@ -7,11 +7,14 @@ cmd [[runtime macros/matchit.vim]]
 -- Astronauta --------------------------
 cmd [[runtime plugin/astronauta.vim]]
 
--- Plugins -----------------------------
-require('plugins')
+-- Globals -----------------------------
+require('lxs.globals')
+
+-- Plugin Dependencies -----------------
+require('lxs.dependencies')
 
 -- Autocommands ------------------------
-require('autocommands.index').setup()
+require('lxs.autocommands.index')
 
 -- Config ------------------------------
-require('config.index').setup()
+require('lxs.config.index')

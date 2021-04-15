@@ -3,9 +3,9 @@ local nnoremap = vim.keymap.nnoremap
 local should_reload = true
 local reloader = function()
     if should_reload then
-        -- RELOAD('plenary')
-        -- RELOAD('popup')
-        -- RELOAD('telescope')
+        RELOAD('plenary')
+        RELOAD('popup')
+        RELOAD('telescope')
     end
 end
 

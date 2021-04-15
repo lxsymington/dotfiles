@@ -27,13 +27,15 @@ return require('packer').startup {
 
         -- Utilities
         use 'nvim-lua/popup.nvim'
-        use 'nvim-lua/plenary.nvim'
+        use {
+            'nvim-lua/plenary.nvim'
+        }
 
         -- Highlighting
         use {
             'nvim-treesitter/nvim-treesitter',
             requires = {'nvim-treesitter/nvim-treesitter-textobjects'},
-            config = function() require('plugin_settings.treesitter') end,
+            config = function() require('lxs.plugin_settings.treesitter') end,
             run = function() vim.cmd('TSUpdate') end
         }
 
@@ -42,7 +44,7 @@ return require('packer').startup {
             'kyazdani42/nvim-tree.lua',
             requires = {'kyazdani42/nvim-web-devicons'},
             config = function()
-                require('plugin_settings.nvim_tree').setup()
+                require('lxs.plugin_settings.nvim_tree').setup()
             end
         }
 
@@ -50,7 +52,7 @@ return require('packer').startup {
         use {
             'norcalli/snippets.nvim',
             config = function()
-                require('plugin_settings.snippets').setup()
+                require('lxs.plugin_settings.snippets').setup()
             end
         }
 
@@ -67,7 +69,7 @@ return require('packer').startup {
                 'nvim-lua/lsp_extensions.nvim',
                 'nvim-treesitter/completion-treesitter'
             },
-            config = function() require('lsp_config').setup() end
+            config = function() require('lxs.lsp_config').setup() end
         }
 
         -- Highlight colours
@@ -88,7 +90,7 @@ return require('packer').startup {
             'nvim-telescope/telescope.nvim',
             requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
             config = function()
-                require('plugin_settings.telescope').setup()
+                require('lxs.plugin_settings.telescope').setup()
             end
         }
 
@@ -96,20 +98,20 @@ return require('packer').startup {
         use {
             'TimUntersberger/neogit',
             config = function()
-                require('plugin_settings.neogit').setup()
+                require('lxs.plugin_settings.neogit').setup()
             end
         }
         use {
             'tpope/vim-fugitive',
             config = function()
-                require('plugin_settings.fugitive').setup()
+                require('lxs.plugin_settings.fugitive').setup()
             end
         }
         use {
             'lewis6991/gitsigns.nvim',
             requires = {'nvim-lua/plenary.nvim'},
             config = function()
-                require('plugin_settings.gitsigns').setup()
+                require('lxs.plugin_settings.gitsigns').setup()
             end
         }
 
@@ -134,7 +136,7 @@ return require('packer').startup {
             'famiu/feline.nvim',
             requires = {'kyazdani42/nvim-web-devicons', 'lewis6991/gitsigns.nvim', 'neovim/nvim-lspconfig'},
             config = function()
-                require('plugin_settings.feline').setup()
+                require('lxs.plugin_settings.feline').setup()
             end
         }
 
@@ -151,7 +153,7 @@ return require('packer').startup {
         use {
             'mhinz/vim-startify',
             config = function()
-                require('plugin_settings.startify').setup()
+                require('lxs.plugin_settings.startify').setup()
             end
         }
 
@@ -160,14 +162,14 @@ return require('packer').startup {
             'mfussenegger/nvim-dap',
             requires = {'theHamsta/nvim-dap-virtual-text'},
             config = function()
-                require('plugin_settings.nvim_dap').setup()
+                require('lxs.plugin_settings.nvim_dap').setup()
             end
         }
         use {
             'nvim-telescope/telescope-dap.nvim',
             after = {'telescope.nvim', 'nvim-dap'},
             config = function()
-                require('plugin_settings.nvim_dap.telescope_integration').setup()
+                require('lxs.plugin_settings.nvim_dap.telescope_integration').setup()
             end
         }
 

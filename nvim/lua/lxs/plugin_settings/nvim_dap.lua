@@ -1,5 +1,5 @@
 local dap = require('dap')
-local mochaConfigurator = require('plugin_settings.nvim_dap.configurations.mocha.configurator')
+local mochaConfigurator = require('lxs.plugin_settings.nvim_dap.configurations.mocha.configurator')
 local nnoremap = vim.keymap.nnoremap
 local M = {}
 local api = vim.api
@@ -35,7 +35,7 @@ end
 -- DAP ---------------------------------
 function M.setup()
     -- Node debugger
-    dap.adapters.node = require('plugin_settings.nvim_dap.adapters.node')
+    dap.adapters.node = require('lxs.plugin_settings.nvim_dap.adapters.node')
     dap.configurations.node = {
         mochaConfigurator({
             title = 'Mocha JS Test File',
@@ -62,8 +62,8 @@ function M.setup()
             environment = './test/testEnvrironment.js',
             glob = 'test/**/*.test.js',
         }),
-        require('plugin_settings.nvim_dap.configurations.jest.workspace'),
-        require('plugin_settings.nvim_dap.configurations.jest.file')
+        require('lxs.plugin_settings.nvim_dap.configurations.jest.workspace'),
+        require('lxs.plugin_settings.nvim_dap.configurations.jest.file')
     }
     dap.configurations.typescript = {
         mochaConfigurator({
@@ -97,8 +97,8 @@ function M.setup()
             glob = 'test/**/*.test.ts',
             typescript = true
         }),
-        require('plugin_settings.nvim_dap.configurations.jest.workspace'),
-        require('plugin_settings.nvim_dap.configurations.jest.file')
+        require('lxs.plugin_settings.nvim_dap.configurations.jest.workspace'),
+        require('lxs.plugin_settings.nvim_dap.configurations.jest.file')
     }
 
     -- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json
