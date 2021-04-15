@@ -45,10 +45,31 @@ function M.setup()
             file_previewer = previewers.vim_buffer_cat.new,
             grep_previewer = previewers.vim_buffer_vimgrep.new,
             qflist_previewer = previewers.vim_buffer_qflist.new
-        }
+        },
+        extensions = {
+            frecency = {
+                show_scores = false,
+                show_unindexed = true,
+                ignore_patterns = {"*.git/*", "*/node_modules/*", "*/tmp/*"},
+                workspaces = {
+                    ["conf"] = os.getenv('HOME') .. ".config",
+                    ["data"] = os.getenv('HOME') .. ".local/share",
+                    ["development"] = os.getenv('HOME') .. "Development",
+                }
+            },
+            fzy_native = {
+                override_generic_sorter = false,
+                override_file_sorter = true,
+            }
+        },
     }
 
+    require('telescope').load_extension("frecency")
+    require('telescope').load_extension('fzy_native')
+
     nnoremap({'<Leader>fd', builtin.fd})
+
+    nnoremap({'<Leader>ff', require('telescope').extensions.frecency.frecency})
 
     nnoremap({'<Leader>fgf', builtin.git_files})
 

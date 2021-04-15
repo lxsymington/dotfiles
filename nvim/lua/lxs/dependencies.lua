@@ -88,7 +88,7 @@ return require('packer').startup {
         -- Search
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
+            requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim','tami5/sql.nvim', 'nvim-telescope/telescope-frecency.nvim', 'nvim-telescope/telescope-fzy-native.nvim'},
             config = function()
                 require('lxs.plugin_settings.telescope').setup()
             end
