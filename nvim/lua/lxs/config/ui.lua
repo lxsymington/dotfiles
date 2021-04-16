@@ -77,8 +77,6 @@ function M.setup()
     -- Set completeopt to have a better completion experience
     o.completeopt = table.concat({
         'menuone',
-        'longest',
-        'noinsert',
         'noselect'
     }, ',')
 end

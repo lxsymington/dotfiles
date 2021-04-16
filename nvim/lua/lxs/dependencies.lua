@@ -27,15 +27,15 @@ return require('packer').startup {
 
         -- Utilities
         use 'nvim-lua/popup.nvim'
-        use {
-            'nvim-lua/plenary.nvim'
-        }
+        use {'nvim-lua/plenary.nvim'}
 
         -- Highlighting
         use {
             'nvim-treesitter/nvim-treesitter',
             requires = {'nvim-treesitter/nvim-treesitter-textobjects'},
-            config = function() require('lxs.plugin_settings.treesitter') end,
+            config = function()
+                require('lxs.plugin_settings.treesitter')
+            end,
             run = function() vim.cmd('TSUpdate') end
         }
 
@@ -61,13 +61,17 @@ return require('packer').startup {
         use 'euclidianAce/BetterLua.vim'
         use 'bfredl/nvim-luadev'
 
+        -- Completion
+        use {
+            'hrsh7th/nvim-compe',
+            config = function() require('lxs.plugin_settings.compe').setup() end
+        }
+
         -- LSP configurations
         use {
             'neovim/nvim-lspconfig',
             requires = {
-                'nvim-lua/completion-nvim', 'nvim-lua/lsp-status.nvim',
-                'nvim-lua/lsp_extensions.nvim',
-                'nvim-treesitter/completion-treesitter'
+                'nvim-lua/lsp-status.nvim', 'nvim-lua/lsp_extensions.nvim',
             },
             config = function() require('lxs.lsp_config').setup() end
         }
@@ -88,7 +92,11 @@ return require('packer').startup {
         -- Search
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim','tami5/sql.nvim', 'nvim-telescope/telescope-frecency.nvim', 'nvim-telescope/telescope-fzy-native.nvim'},
+            requires = {
+                'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim',
+                'tami5/sql.nvim', 'nvim-telescope/telescope-frecency.nvim',
+                'nvim-telescope/telescope-fzy-native.nvim'
+            },
             config = function()
                 require('lxs.plugin_settings.telescope').setup()
             end
@@ -134,7 +142,10 @@ return require('packer').startup {
         -- Statusline
         use {
             'famiu/feline.nvim',
-            requires = {'kyazdani42/nvim-web-devicons', 'lewis6991/gitsigns.nvim', 'neovim/nvim-lspconfig'},
+            requires = {
+                'kyazdani42/nvim-web-devicons', 'lewis6991/gitsigns.nvim',
+                'neovim/nvim-lspconfig'
+            },
             config = function()
                 require('lxs.plugin_settings.feline').setup()
             end
@@ -184,7 +195,12 @@ return require('packer').startup {
         -- Databases
         use {
             'kristijanhusak/vim-dadbod-ui',
-            requires = {'tpope/vim-dadbod'}
+            requires = {'tpope/vim-dadbod'},
+            opt = true,
+            cmd = {
+                'DB', 'DBUI', 'DBUIAddConnection', 'DBUIFindBuffer',
+                'DBUILastQueryInfo', 'DBUIRenameBuffer', 'DBUIToggle'
+            }
         }
 
         -- Github

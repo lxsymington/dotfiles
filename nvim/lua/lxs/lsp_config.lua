@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
-local completion = require('completion')
 local vint = require('lxs.plugin_settings.efm.vint')
 local lua_format = require('lxs.plugin_settings.efm.lua-format')
 local prettier = require('lxs.plugin_settings.efm.prettier')
@@ -70,15 +69,21 @@ vim.cmd [[command! PeekDefinition lua PeekDefinition()]]
 -- Turn on status.
 lsp_status.register_progress()
 
+-- Enable snippet support
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true;
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+    }
+}
+capabilities = vim.tbl_extend('keep', capabilities or {},
+                                lsp_status.capabilities)
+
 -- Attach
 local custom_attach = function(client)
-    -- Enable snippet support
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true;
-    capabilities = vim.tbl_extend('keep', capabilities or {},
-                                  lsp_status.capabilities)
-
-    completion.on_attach(client)
     lsp_status.on_attach(client)
 
     if client.resolved_capabilities.document_formatting then
@@ -323,14 +328,6 @@ function M.setup()
 
     -- View workspace diagnostics
     nnoremap({'<Leader>wd', require('lsp_extensions.workspace.diagnostic').set_qf_list})
-
-    -- Highlight the current symbol in the document
-    vim.api.nvim_command [[
-        augroup Completion
-        autocmd! * <buffer>
-        autocmd BufEnter * lua require'completion'.on_attach()
-        augroup END
-    ]]
 end
 
 return M
