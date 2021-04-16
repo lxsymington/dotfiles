@@ -52,9 +52,9 @@ function M.setup()
                 show_unindexed = true,
                 ignore_patterns = {"*.git/*", "*/node_modules/*", "*/tmp/*"},
                 workspaces = {
-                    ["conf"] = os.getenv('HOME') .. ".config",
-                    ["data"] = os.getenv('HOME') .. ".local/share",
-                    ["development"] = os.getenv('HOME') .. "Development",
+                    ["conf"] = os.getenv('HOME') .. "/.config",
+                    ["data"] = os.getenv('HOME') .. "/.local/share",
+                    ["development"] = os.getenv('HOME') .. "/Development",
                 }
             },
             fzy_native = {
@@ -69,7 +69,15 @@ function M.setup()
 
     nnoremap({'<Leader>fd', builtin.fd})
 
-    nnoremap({'<Leader>ff', require('telescope').extensions.frecency.frecency})
+    nnoremap({'<Leader>ff', function()
+        local opts = themes.get_dropdown {
+            winblend = 10,
+            border = true,
+            shorten_path = false
+        }
+
+        require('telescope').extensions.frecency.frecency(opts)
+    end})
 
     nnoremap({'<Leader>fgf', builtin.git_files})
 
