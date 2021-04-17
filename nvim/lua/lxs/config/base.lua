@@ -16,7 +16,11 @@ function M.setup()
     bo.bomb = false
 
     -- Use host system format
-    o.fileformats = [[unix,dos,mac]]
+    o.fileformats = table.concat({
+        'unix',
+        'dos',
+        'mac'
+    }, ',')
 
     -- Enables syntax highlighting
     g.syntax = 'enable'
@@ -25,7 +29,11 @@ function M.setup()
     o.modelines = 0
 
     -- Sets the backspace behaviour to conventional
-    o.backspace = [[indent,eol,start]]
+    o.backspace = table.concat({
+        'indent',
+        'eol',
+        'start'
+    }, ',')
 
     -- Change the default leader ('\') character for custom mappings
     g.mapleader = ','
@@ -45,14 +53,23 @@ function M.setup()
     bo.textwidth = 120
 
     -- Creates a visual boundary
-    wo.colorcolumn = [[81,+1]]
+    wo.colorcolumn = table.concat({
+        '81',
+        '+1'
+    }, ',')
 
     -- Displays invisibles
     wo.list = true
 
     -- Sets characters to display for invisible characters
-    o.listchars =
-        [[space:―,tab:» ,eol:␤,nbsp:␣,extends:↩,precedes:↪]]
+    o.listchars = table.concat({
+        'space:⎯',
+        'tab:» ',
+        'eol:␤',
+        'nbsp:⎽',
+        'extends:↩',
+        'precedes:↪'
+    }, ',')
 
     -- Sets ambiguous width characters to be double width
     o.ambiwidth = 'single'
@@ -71,7 +88,11 @@ function M.setup()
     wo.breakindent = true
 
     -- Set breakindent options
-    wo.breakindentopt = [[min:20,shift:0,sbr]]
+    wo.breakindentopt = table.concat({
+        'min:20',
+        'shift:0',
+        'sbr'
+    }, ',')
 
     -- Hide abandoned buffers instead of unloading them
     o.hidden = true
@@ -96,7 +117,13 @@ function M.setup()
     o.shortmess = o.shortmess .. 'c'
 
     -- Improve mergetool and diff experience by using git's built in diff
-    o.diffopt = [[filler,iblank,iwhite,indent-heuristic,algorithm:patience]]
+    o.diffopt = table.concat({
+        'filler',
+        'iblank',
+        'iwhite',
+        'indent-heuristic',
+        'algorithm:patience'
+    }, ',')
 
     -- Keep an undo file (undo changes after closing)
     if fn.has 'persistent_undo' then o.undofile = true end

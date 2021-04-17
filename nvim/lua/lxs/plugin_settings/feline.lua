@@ -135,6 +135,10 @@ function M.setup()
             active = {},
             inactive = {}
         },
+	mid = {
+		active = {},
+		inactive = {}
+	},
         right = {
             active = {},
             inactive = {}
@@ -255,6 +259,10 @@ function M.setup()
             fg = colours.red.hex,
             bg = 'bg'
         },
+    }
+
+    components.mid.active[1] ={
+	    provider = '%n'
     }
 
     components.right.active[1] = {

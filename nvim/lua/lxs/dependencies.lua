@@ -123,22 +123,6 @@ return require('packer').startup {
             end
         }
 
-        -- Usability
-        use 'tpope/vim-abolish'
-
-        -- Colors
-        use {
-            'amadeus/vim-convert-color-to',
-            opt = true,
-            cmd = {'ConvertColorTo'}
-        }
-
-        -- Tmux
-        use 'christoomey/vim-tmux-navigator'
-
-        -- Editor config
-        use 'editorconfig/editorconfig-vim'
-
         -- Statusline
         use {
             'famiu/feline.nvim',
@@ -150,15 +134,6 @@ return require('packer').startup {
                 require('lxs.plugin_settings.feline').setup()
             end
         }
-
-        -- Colorscheme builder
-        use 'rktjmp/lush.nvim'
-
-        -- Colorschemes
-        use {'junegunn/seoul256.vim', opt = true}
-
-        -- Surround
-        use 'machakann/vim-sandwich'
 
         -- Landing page + sessions
         use {
@@ -210,6 +185,40 @@ return require('packer').startup {
             opt = true,
             cmd = {'Octo'}
         }
+
+        -- UI
+        use {
+            'lukas-reineke/indent-blankline.nvim',
+            branch = 'lua',
+            config = function()
+                require('lxs.plugin_settings.indent_blankline').setup()
+            end
+        }
+
+        -- Colors
+        use {
+            'amadeus/vim-convert-color-to',
+            opt = true,
+            cmd = {'ConvertColorTo'}
+        }
+
+        -- Colorscheme builder
+        use 'rktjmp/lush.nvim'
+
+        -- Colorschemes
+        use {'junegunn/seoul256.vim', opt = true}
+
+        -- Usability
+        use 'tpope/vim-abolish'
+
+        -- Tmux
+        use 'christoomey/vim-tmux-navigator'
+
+        -- Editor config
+        use 'editorconfig/editorconfig-vim'
+
+        -- Surround
+        use 'machakann/vim-sandwich'
 
         -- Pairing
         use 'tmsvg/pear-tree'
