@@ -1,5 +1,5 @@
 return {
-    formatCommand = ([[
+	formatCommand = ([[
         prettierme
         ${--config-precedence:configPrecedence}
         ${--tab-width:tabWidth}
@@ -8,5 +8,5 @@ return {
         --stdin
         --stdin-filepath ${INPUT}
     ]]):gsub("\n", ""),
-    formatStdin = true
+	formatStdin = true,
 }

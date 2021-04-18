@@ -7,9 +7,9 @@ local M = {}
 
 -- External
 function M.setup()
-    -- Use ripgrep instead of grep
-    o.grepprg = [[rg --vimgrep --no-heading --smart-case]]
-    o.grepformat = [[%f:%l:%c:%m,%f:%l:%m]]
+	-- Use ripgrep instead of grep
+	o.grepprg = [[rg --vimgrep --no-heading --smart-case]]
+	o.grepformat = [[%f:%l:%c:%m,%f:%l:%m]]
 end
 
 return M
