@@ -15,6 +15,16 @@ if not packer_exists then
 	return
 end
 
+vim.api.nvim_exec(
+	[[
+        augroup Packer
+            autocmd!
+            autocmd BufWritePost dependencies.lua PackerCompile
+        augroup end
+    ]],
+	false
+)
+
 return require("packer").startup({
 	function(use)
 		-- Packer can manage itself as an optional plugin
@@ -81,6 +91,23 @@ return require("packer").startup({
 			end,
 		})
 
+		-- LSP workspace diagnostics
+		use({
+			"folke/lsp-trouble.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function()
+				require("lxs.plugin_settings.lsp_trouble").setup()
+			end,
+		})
+
+		-- LSP file outline
+		use({
+			"simrat39/symbols-outline.nvim",
+			config = function()
+				require("lxs.plugin_settings.symbols_outline").setup()
+			end,
+		})
+
 		-- Highlight colours
 		use({
 			"norcalli/nvim-colorizer.lua",
@@ -92,6 +119,23 @@ return require("packer").startup({
 				})
 			end,
 		})
+
+		-- Zen mode
+        use({
+            "kdav5758/TrueZen.nvim",
+            config = function()
+                require("lxs.plugin_settings.true_zen").setup()
+            end
+        })
+        
+        -- Indent markers
+        use {
+            'lukas-reineke/indent-blankline.nvim',
+            branch="lua",
+            config = function()
+                require("lxs.plugin_settings.indent_blankline").setup()
+            end
+        }
 
 		-- Search
 		use({

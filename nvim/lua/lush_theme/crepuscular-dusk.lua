@@ -85,19 +85,23 @@ local theme = lush.merge({
 			TSText({ String }),
 			TSLiteral({ String }),
 			LspDiagnosticsVirtualTextError({
-				fg = colours.red.desaturate(45),
+				bg = colours.lightRed.abs_desaturate(60).abs_darken(60),
+				fg = colours.lightRed,
 				gui = "nocombine,italic",
 			}),
 			LspDiagnosticsVirtualTextHint({
-				fg = colours.lightGreen.desaturate(60),
+				bg = colours.lightGreen.abs_desaturate(30).abs_darken(30),
+				fg = colours.lightGreen,
 				gui = "nocombine,italic",
 			}),
 			LspDiagnosticsVirtualTextInformation({
-				fg = colours.lightBlue.desaturate(60),
+				bg = colours.lightBlue.abs_desaturate(30).abs_darken(45),
+				fg = colours.lightBlue,
 				gui = "nocombine,italic",
 			}),
 			LspDiagnosticsVirtualTextWarning({
-				fg = colours.yellow.desaturate(45),
+				bg = colours.yellow.abs_desaturate(45).abs_darken(45),
+				fg = colours.yellow,
 				gui = "nocombine,italic",
 			}),
 			GitSignsAddSign({ SignColumn, fg = colours.lightGreen, gui = "nocombine" }),

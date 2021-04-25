@@ -3,7 +3,7 @@ local function autocommand_setup()
 	vim.api.nvim_exec(
 		[[
         augroup Terminal
-        autocmd! * <buffer>
+        autocmd!
         autocmd TermOpen <buffer> setlocal statusline=%{b:term_title}
         autocmd TermOpen <buffer> lua require('lxs.autocommands.terminal').setup() 
         augroup END
@@ -14,7 +14,7 @@ local function autocommand_setup()
 	vim.api.nvim_exec(
 		[[
         augroup HighlightYank
-        autocmd! * <buffer>
+        autocmd!
         autocmd TextYankPost <buffer> silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
         augroup END
     ]],

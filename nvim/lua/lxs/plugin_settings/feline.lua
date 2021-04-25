@@ -3,6 +3,7 @@ local feline = require("feline")
 local lsp = require("feline.providers.lsp")
 local devicons = require("nvim-web-devicons")
 local fn = vim.fn
+local api = vim.api
 local bo = vim.bo
 local b = vim.b
 local M = {}
@@ -141,7 +142,8 @@ local file_namer = function()
 	local file_icon =
 		devicons.get_icon(fn.fnamemodify(file_path, ":t"), fn.fnamemodify(file_path, ":e"), { default = true })
 	local relative_file_path = fn.fnamemodify(file_path, ":~:.")
-	local short_file_path = #relative_file_path < 40 and relative_file_path or fn.pathshorten(relative_file_path)
+	local short_file_path = #relative_file_path < api.nvim_win_get_width(0) / 3 and relative_file_path
+		or fn.pathshorten(relative_file_path)
 	local file_info = string.format(" %s %s ", file_icon, short_file_path)
 
 	if bo.modified then
@@ -203,23 +205,6 @@ function M.setup()
 	properties.force_inactive.buftypes = { "terminal" }
 
 	components.left.active[1] = {
-		provider = vi_mode,
-		hl = function()
-			local val = {}
-			local mode = fn.mode()
-
-			val.name = string.gsub(mode_alias_map[mode].name, "%A", "")
-			val.fg = mode_alias_map[mode].fg
-			val.bg = mode_alias_map[mode].bg
-			val.style = "bold"
-
-			return val
-		end,
-		left_sep = { "left_rounded_thin", "left_rounded" },
-		right_sep = { "right_rounded", "right_rounded_thin", " " },
-	}
-
-	components.left.active[2] = {
 		provider = file_namer,
 		enabled = buffer_not_empty,
 		hl = {
@@ -230,7 +215,7 @@ function M.setup()
 		left_sep = { "left_rounded" },
 	}
 
-	components.left.active[3] = {
+	components.left.active[2] = {
 		provider = "file_size",
 		enabled = buffer_not_empty,
 		hl = {
@@ -248,7 +233,7 @@ function M.setup()
 		right_sep = { str = " ", hl = { fg = "NONE", bg = colours.lightBlack.hex } },
 	}
 
-	components.left.active[4] = {
+	components.left.active[3] = {
 		provider = "git_branch",
 		hl = {
 			fg = colours.lightWhite.hex,
@@ -260,32 +245,46 @@ function M.setup()
 				str = "right_rounded",
 				hl = {
 					fg = b.gitsigns_status_dict and colours.blue.hex or colours.lightBlack.hex,
-					bg = "bg",
 				},
 			}
 		end,
 	}
 
-	components.left.active[5] = {
+	components.left.active[4] = {
 		provider = "git_diff_added",
-		hl = { fg = colours.green.hex, bg = "bg" },
+		hl = { fg = colours.green.hex },
+	}
+
+	components.left.active[5] = {
+		provider = "git_diff_changed",
+		hl = { fg = colours.orange.hex },
 	}
 
 	components.left.active[6] = {
-		provider = "git_diff_changed",
-		hl = { fg = colours.orange.hex, bg = "bg" },
-	}
-
-	components.left.active[7] = {
 		provider = "git_diff_removed",
-		hl = { fg = colours.red.hex, bg = "bg" },
+		hl = { fg = colours.red.hex },
 	}
 
 	components.mid.active[1] = {
 		provider = "%n",
-		hl = { fg = colours.lightWhite.hex, bg = colours.lightBlack.hex },
-		left_sep = "left_rounded",
-		right_sep = "right_rounded",
+		hl = { fg = colours.lightWhite.hex, bg = colours.purple.hex, style = "bold" },
+		left_sep = { "left_rounded_thin", "left_rounded" },
+		right_sep = { "block" },
+	}
+
+	components.mid.active[2] = {
+		provider = vi_mode,
+		hl = function()
+			local mode = fn.mode()
+
+			return {
+				name = string.gsub(mode_alias_map[mode].name, "%A", ""),
+				fg = mode_alias_map[mode].fg,
+				bg = mode_alias_map[mode].bg,
+				style = "bold",
+			}
+		end,
+		right_sep = { "right_rounded", "right_rounded_thin" },
 	}
 
 	components.right.active[1] = {
@@ -323,26 +322,86 @@ function M.setup()
 	components.right.active[5] = {
 		provider = "position",
 		left_sep = {
-			str = "  ",
-			hl = { fg = colours.lightGrey.hex, bg = "bg" },
+			{
+				str = " ",
+				hl = { fg = "NONE" },
+			},
+			{
+				str = "left_rounded",
+				hl = { fg = colours.lightPurple.hex },
+			},
+			{
+				str = "left_rounded_thin",
+				hl = { bg = colours.lightPurple.hex, fg = "bg" },
+			},
+			{
+				str = "left_rounded",
+				hl = { bg = colours.lightPurple.hex, fg = "bg" },
+			},
+			{
+				str = "  ",
+				hl = { fg = colours.purple.hex },
+			},
 		},
 		right_sep = {
-			str = "  ",
-			hl = { fg = colours.lightGrey.hex, bg = "bg" },
+			{
+				str = "  ",
+				hl = { fg = colours.purple.hex },
+			},
+			{
+				str = "right_rounded",
+				hl = {
+					bg = colours.lightPurple.hex,
+					fg = "bg",
+				},
+			},
+			{
+				str = "right_rounded_thin",
+				hl = {
+					bg = colours.lightPurple.hex,
+					fg = "bg",
+				},
+			},
 		},
 		hl = { fg = colours.lightGrey.hex },
 	}
 
 	components.right.active[6] = {
 		provider = "line_percentage",
-		hl = { style = "bold" },
-		left_sep = " ",
-		right_sep = " ",
+		hl = {
+			bg = colours.lightPurple.hex,
+			fg = "bg",
+			style = "bold",
+		},
+		left_sep = {
+			str = " ",
+			hl = {
+				bg = colours.lightPurple.hex,
+				fg = "NONE",
+			},
+		},
+		right_sep = {
+			str = " ",
+			hl = {
+				bg = colours.lightPurple.hex,
+				fg = "NONE",
+			},
+		},
 	}
 
 	components.right.active[7] = {
 		provider = "scroll_bar",
-		hl = { fg = colours.lightPurple.hex, style = "bold" },
+		hl = {
+			bg = colours.purple.hex,
+			fg = colours.black.hex,
+			style = "bold",
+		},
+		right_sep = {
+			str = "right_rounded",
+			hl = {
+				fg = colours.lightPurple.hex,
+			},
+		},
 	}
 
 	components.left.inactive[1] = {

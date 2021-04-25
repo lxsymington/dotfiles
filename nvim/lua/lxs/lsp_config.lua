@@ -182,7 +182,7 @@ function M.setup()
 			},
 		})
 
-	local servers = { "cssls", "denols", "html", "jsonls", "rust_analyzer", "tsserver", "vimls", "yamlls" }
+	local servers = { "cssls", "html", "jsonls", "rust_analyzer", "tsserver", "vimls", "yamlls" }
 
 	for _, lsp in ipairs(servers) do
 		lspconfig[lsp].setup({
@@ -190,6 +190,15 @@ function M.setup()
 			capabilities = capabilities,
 		})
 	end
+
+	lspconfig.denols.setup({
+		init_options = {
+			enable = true,
+			lint = true,
+		},
+		on_attach = custom_attach,
+		capabilities = capabilities,
+	})
 
 	lspconfig.efm.setup({
 		cmd = {

@@ -1,28 +1,24 @@
-local imap = vim.keymap.imap
-local nnoremap = vim.keymap.nnoremap
-local tnoremap = vim.keymap.tnoremap
+local keymap = vim.api.nvim_set_keymap
 local M = {}
 
 function M.setup()
 	-- Convenient normal mode
-	imap({ "jj", "<esc>" })
+	keymap("i", "jj", "<esc>", { silent = true })
 
 	-- Open init.vim in a tab
-	nnoremap({ "<Leader>ev", function()
-		vim.cmd("tabedit $MYVIMRC")
-	end })
+	keymap("n", "<Leader>ev", "<cmd>tabedit $MYVIMRC<cr>", { silent = true, noremap = true })
 
 	-- Clear highlighting
-	nnoremap({ "<Leader>_", function()
-		vim.cmd("nohlsearch")
-	end })
+	keymap("n", "<Leader>_", "<cmd>nohlsearch<cr>", { silent = true, noremap = true })
 
 	-- Toggle relative numbers
-	nnoremap({ "<Leader>#", function()
-		vim.cmd("call NumberToggle()")
-	end })
+	keymap("n", "<Leader>#", "<cmd>call NumberToggle()<cr>", { silent = true, noremap = true })
 
-	tnoremap({ "<Leader><Esc>", "<C-\\><C-n>" })
+	-- Easier escape in integrated terminal
+	keymap("n", "<Leader><Esc>", "<C-\\><C-n>", { silent = true, noremap = true })
+
+	-- Y yank until the end of line
+	keymap("n", "Y", "y$", { noremap = true })
 end
 
 return M
