@@ -191,14 +191,14 @@ function M.setup()
 		})
 	end
 
-	lspconfig.denols.setup({
+	--[[ lspconfig.denols.setup({
 		init_options = {
 			enable = true,
 			lint = true,
 		},
 		on_attach = custom_attach,
 		capabilities = capabilities,
-	})
+	}) ]]
 
 	lspconfig.efm.setup({
 		cmd = {

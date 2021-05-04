@@ -1,7 +1,7 @@
 local lush = require("lush")
 
-package.loaded["lush_theme.crepuscular-colours"] = nil
-local colours = require("lush_theme.crepuscular-colours")
+package.loaded["lush_theme.crepuscular_colours"] = nil
+local colours = require("lush_theme.crepuscular_colours")
 
 -- CREPUSCULAR -------------------------
 

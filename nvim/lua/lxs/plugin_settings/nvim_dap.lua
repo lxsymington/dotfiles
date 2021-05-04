@@ -39,20 +39,20 @@ function M.setup()
 		}),
 		mochaConfigurator({
 			title = "Mocha JS Test File | Src Directory | Test Environment",
-			environment = "./src/testEnvrironment.js",
+			environment = "src/testEnvironment.js",
 		}),
 		mochaConfigurator({
 			title = "Mocha JS Test Workspace | Src Directory | Test Environment",
-			environment = "./src/testEnvrironment.js",
+			environment = "src/testEnvironment.js",
 			glob = "src/**/*.test.js",
 		}),
 		mochaConfigurator({
 			title = "Mocha JS Test File | Test Directory | Test Environment",
-			environment = "./test/testEnvrironment.js",
+			environment = "test/testEnvironment.js",
 		}),
 		mochaConfigurator({
 			title = "Mocha JS Test Workspace | Test Directory | Test Environment",
-			environment = "./test/testEnvrironment.js",
+			environment = "test/testEnvironment.js",
 			glob = "test/**/*.test.js",
 		}),
 		require("lxs.plugin_settings.nvim_dap.configurations.jest.workspace"),
@@ -70,23 +70,23 @@ function M.setup()
 		}),
 		mochaConfigurator({
 			title = "Mocha TS Test File | Src Directory | Test Environment",
-			environment = "./src/testEnvrironment.js",
+			environment = "src/testEnvironment.js",
 			typescript = true,
 		}),
 		mochaConfigurator({
 			title = "Mocha TS Test Workspace | Src Directory | Test Environment",
-			environment = "./src/testEnvrironment.js",
+			environment = "src/testEnvironment.js",
 			glob = "src/**/*.test.ts",
 			typescript = true,
 		}),
 		mochaConfigurator({
 			title = "Mocha TS Test File | Test Directory | Test Environment",
-			environment = "./test/testEnvrironment.js",
+			environment = "test/testEnvironment.js",
 			typescript = true,
 		}),
 		mochaConfigurator({
 			title = "Mocha TS Test Workspace | Test Directory | Test Environment",
-			environment = "./test/testEnvrironment.js",
+			environment = "test/testEnvironment.js",
 			glob = "test/**/*.test.ts",
 			typescript = true,
 		}),

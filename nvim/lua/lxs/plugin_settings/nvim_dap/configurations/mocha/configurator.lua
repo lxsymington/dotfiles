@@ -13,7 +13,7 @@ local function mochaConfigurator(config)
 		end
 	end
 
-	table.insert(args, config.glob and "${workspace}/" .. config.glob or "${file}")
+	table.insert(args, config.glob and "${workspaceFolder}/" .. config.glob or "${file}")
 
 	return {
 		type = "node",

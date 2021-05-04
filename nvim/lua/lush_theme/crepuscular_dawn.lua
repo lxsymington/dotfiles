@@ -1,9 +1,10 @@
 local lush = require("lush")
 
-package.loaded["lush_theme.crepuscular-colours"] = nil
+package.loaded["lush_theme.crepuscular_colours"] = nil
+package.loaded["lush_theme.crepuscular_base"] = nil
 
-local colours = require("lush_theme.crepuscular-colours")
-local base = require("lush_theme.crepuscular-base")
+local colours = require("lush_theme.crepuscular_colours")
+local base = require("lush_theme.crepuscular_base")
 
 local theme = lush.merge({
 	base,

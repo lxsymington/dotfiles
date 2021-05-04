@@ -1,8 +1,10 @@
 local lush = require("lush")
-package.loaded["lush_theme.crepuscular-colours"] = nil
 
-local colours = require("lush_theme.crepuscular-colours")
-local base = require("lush_theme.crepuscular-base")
+package.loaded["lush_theme.crepuscular_colours"] = nil
+package.loaded["lush_theme.crepuscular_base"] = nil
+
+local colours = require("lush_theme.crepuscular_colours")
+local base = require("lush_theme.crepuscular_base")
 
 local theme = lush.merge({
 	base,
@@ -48,7 +50,7 @@ local theme = lush.merge({
 			TabLineFill({ bg = colours.lightGrey.darken(30), fg = colours.black, gui = "nocombine" }),
 			TabLineSel({ Normal, gui = "nocombine,bold" }),
 			TermCursorNC({ bg = colours.white, fg = colours.black, gui = "nocombine" }),
-			VertSplit({ fg = colours.yellow, gui = "nocombine" }),
+			VertSplit({ fg = colours.lightPurple, gui = "nocombine" }),
 			Visual({ bg = colours.purple.abs_desaturate(50).abs_darken(15), gui = "nocombine" }),
 			VisualNOS({ bg = colours.lightCyan, gui = "nocombine" }),
 			Whitespace({ fg = colours.black.lighten(15), gui = "nocombine" }),

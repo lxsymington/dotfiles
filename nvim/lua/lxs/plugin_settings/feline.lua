@@ -1,4 +1,4 @@
-local colours = require("lush_theme.crepuscular-colours")
+local colours = require("lush_theme.crepuscular_colours")
 local feline = require("feline")
 local lsp = require("feline.providers.lsp")
 local devicons = require("nvim-web-devicons")
