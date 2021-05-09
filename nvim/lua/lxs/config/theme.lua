@@ -1,3 +1,4 @@
+local crepuscular_build = require("lush_theme.crepuscular_build")
 local M = {}
 
 -- THEME -------------------------------
@@ -26,6 +27,7 @@ function M.setup()
 	-- colorscheme seoul256
 
 	-- Sets the colorscheme to be Crepuscular
+	crepuscular_build.build()
 	vim.g.colors_name = "crepuscular_dusk"
 	-- vim.g.colors_name = "crepuscular_dawn"
 end

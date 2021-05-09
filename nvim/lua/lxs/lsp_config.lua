@@ -131,16 +131,15 @@ local custom_attach = function(client)
 		)
 	end
 
+	-- stylua: ignore
 	-- Rust is currently the only thing w/ inlay hints
 	if vim.api.nvim_buf_get_option(0, "filetype") == "rust" then
 		vim.api.nvim_exec(
 			[[
             augroup InlayHints
             autocmd! * <buffer>
-            autocmd BufEnter,BufWritePost <buffer> lua require('lsp_extensions.inlay_hints').request {
-                aligned = true,
-                prefix = " » "
-            }
+            autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require('lsp_extensions').inlay_hints({})
+            autocmd CursorHold,CursorHoldI *.rs lua require('lsp_extensions').inlay_hints({ aligned = true, prefix = " » " })
             augroup END
         ]],
 			false
@@ -175,12 +174,14 @@ function M.setup()
 		virtual_text = { spacing = 4, prefix = "🔎" },
 	})
 
-	vim.lsp.handlers["textDocument/publishDiagnostics"] =
-		vim.lsp.with(require("lsp_extensions.workspace.diagnostic").handler, {
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		require("lsp_extensions.workspace.diagnostic").handler,
+		{
 			signs = {
 				severity_limit = "Error",
 			},
-		})
+		}
+	)
 
 	local servers = { "cssls", "html", "jsonls", "rust_analyzer", "tsserver", "vimls", "yamlls" }
 
