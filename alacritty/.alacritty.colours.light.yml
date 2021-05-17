@@ -1,8 +1,5 @@
 
 colors:
-  line_indicator:
-    foreground: "None"
-    background: "#50494E"
   cursor:
     cursor: "CellForeground"
     text: "CellBackground"
@@ -28,29 +25,32 @@ colors:
     bright_foreground: "#FBF7E9"
     dim_foreground: "#A38FA0"
   bright:
-    green: "#789550"
-    cyan: "#D6F5F2"
-    blue: "#4C8CE6"
-    magenta: "#AF8FEF"
     black: "#50494E"
     white: "#FBF7E9"
     red: "#FA9E9E"
     yellow: "#FFD480"
+    green: "#789550"
+    cyan: "#D6F5F2"
+    blue: "#4C8CE6"
+    magenta: "#AF8FEF"
   dim:
-    green: "#8AA88F"
-    cyan: "#50958F"
-    blue: "#506D95"
-    magenta: "#412A6F"
     black: "#42334D"
     white: "#E6BF99"
     red: "#AF6A75"
     yellow: "#C38E22"
+    green: "#8AA88F"
+    cyan: "#50958F"
+    blue: "#506D95"
+    magenta: "#412A6F"
+  line_indicator:
+    foreground: "None"
+    background: "#50494E"
   normal:
-    green: "#36633D"
-    cyan: "#6BC7BF"
-    blue: "#1D64C9"
-    magenta: "#561DC9"
     black: "#281D30"
     white: "#EBCCAD"
     red: "#A3293D"
     yellow: "#FFBB33"
+    green: "#36633D"
+    cyan: "#6BC7BF"
+    blue: "#1D64C9"
+    magenta: "#561DC9"

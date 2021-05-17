@@ -1,0 +1,15 @@
+@seccl/auto-ops
+eslintme
+prettierme
+tslint
+neovim
+npm-check
+serverless
+typescript-language-server
+typescript
+vim-language-server
+vscode-css-languageserver-bin
+vscode-html-languageserver-bin
+vscode-json-languageserver-bin
+yaml-language-server
+yaml2json
