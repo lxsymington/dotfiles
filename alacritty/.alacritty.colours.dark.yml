@@ -1,56 +1,56 @@
 
 colors:
-  cursor:
-    cursor: "CellForeground"
-    text: "CellBackground"
+  line_indicator:
+    background: "#50494E"
+    foreground: "None"
   vi_mode_cursor:
+    text: "CellBackground"
     cursor: "CellForeground"
-    text: "CellBackground"
-  selection:
-    background: "CellForeground"
-    text: "CellBackground"
+  normal:
+    white: "#EBCCAD"
+    cyan: "#6BC7BF"
+    black: "#281D30"
+    magenta: "#561DC9"
+    blue: "#1D64C9"
+    green: "#36633D"
+    red: "#A3293D"
+    yellow: "#FFBB33"
   search:
-    bar:
-      foreground: "#1a141f"
-      background: "#ebccad"
     focused_match:
-      foreground: "CellBackground"
       background: "CellForeground"
+      foreground: "CellBackground"
     matches:
-      foreground: "#000000"
       background: "#ffffff"
+      foreground: "#000000"
+    bar:
+      background: "#ebccad"
+      foreground: "#1a141f"
   primary:
-    foreground: "#EBCCAD"
     background: "#1A141F"
     bright_foreground: "#FBF7E9"
     dim_foreground: "#A38FA0"
-  bright:
-    black: "#50494E"
-    white: "#FBF7E9"
-    red: "#FA9E9E"
-    yellow: "#FFD480"
-    green: "#789550"
-    cyan: "#D6F5F2"
-    blue: "#4C8CE6"
-    magenta: "#AF8FEF"
+    foreground: "#EBCCAD"
   dim:
-    black: "#42334D"
     white: "#E6BF99"
+    cyan: "#50958F"
+    black: "#42334D"
+    magenta: "#412A6F"
+    blue: "#506D95"
+    green: "#8AA88F"
     red: "#AF6A75"
     yellow: "#C38E22"
-    green: "#8AA88F"
-    cyan: "#50958F"
-    blue: "#506D95"
-    magenta: "#412A6F"
-  line_indicator:
-    foreground: "None"
-    background: "#50494E"
-  normal:
-    black: "#281D30"
-    white: "#EBCCAD"
-    red: "#A3293D"
-    yellow: "#FFBB33"
-    green: "#36633D"
-    cyan: "#6BC7BF"
-    blue: "#1D64C9"
-    magenta: "#561DC9"
+  bright:
+    white: "#FBF7E9"
+    cyan: "#D6F5F2"
+    black: "#50494E"
+    magenta: "#AF8FEF"
+    blue: "#4C8CE6"
+    green: "#789550"
+    red: "#FA9E9E"
+    yellow: "#FFD480"
+  selection:
+    text: "CellBackground"
+    background: "CellForeground"
+  cursor:
+    text: "CellBackground"
+    cursor: "CellForeground"

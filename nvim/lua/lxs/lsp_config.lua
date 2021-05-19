@@ -1,6 +1,7 @@
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 local lsp_status = require("lsp-status")
+local luadev = require("lua-dev")
 local vint = require("lxs.plugin_settings.efm.vint")
 local stylua = require("lxs.plugin_settings.efm.stylua")
 local prettier = require("lxs.plugin_settings.efm.prettier")
@@ -192,6 +193,20 @@ function M.setup()
 		})
 	end
 
+	lspconfig.gopls.setup({
+		on_attach = custom_attach,
+		capabilities = capabilities,
+		cmd = { "gopls", "serve" },
+		settings = {
+			gopls = {
+				analyses = {
+					unusedparams = true,
+				},
+				staticcheck = true,
+			},
+		},
+	})
+
 	--[[ lspconfig.denols.setup({
 		init_options = {
 			enable = true,
@@ -256,20 +271,23 @@ function M.setup()
 		message_level = vim.lsp.protocol.MessageType.Log,
 	})
 
-	require("nlua.lsp.nvim").setup(lspconfig, {
-		on_attach = custom_attach,
-		capabilities = capabilities,
+	require("nlua.lsp.nvim").setup(
+		lspconfig,
+		luadev.setup({
+			on_attach = custom_attach,
+			capabilities = capabilities,
 
-		cmd = {
-			"lua-language-server",
-			"-E",
-			os.getenv("HOME") .. "/Tools/lua-language-server/main.lua",
-		},
+			cmd = {
+				"lua-language-server",
+				"-E",
+				os.getenv("HOME") .. "/Tools/lua-language-server/main.lua",
+			},
 
-		root_dir = function(fname)
-			return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
-		end,
-	})
+			root_dir = function(fname)
+				return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
+			end,
+		})
+	)
 
 	vim.fn.sign_define("LspDiagnosticsSignError", {
 		text = "✗",

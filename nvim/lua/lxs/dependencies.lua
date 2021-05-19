@@ -99,6 +99,7 @@ return require("packer").startup(function(use)
 		requires = {
 			"nvim-lua/lsp-status.nvim",
 			"nvim-lua/lsp_extensions.nvim",
+			"folke/lua-dev.nvim"
 		},
 		config = function()
 			require("lxs.lsp_config").setup()
@@ -154,14 +155,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- Zen mode
-	use({
-		"kdav5758/TrueZen.nvim",
-		config = function()
-			require("lxs.plugin_settings.true_zen").setup()
-		end,
-	})
-
 	-- Indent markers
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -188,7 +181,7 @@ return require("packer").startup(function(use)
 			require("lxs.plugin_settings.telescope").setup()
 		end,
 		opt = true,
-		cmd = { "Telescope" },
+		cmd = { "Telescope", "Octo" },
 		keys = {
 			{ "n", "<Leader>ff" },
 			{ "n", "<Leader>fgf" },
@@ -295,6 +288,31 @@ return require("packer").startup(function(use)
 		opt = true,
 		cmd = { "Octo" },
 	})
+
+    -- Lua
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup()
+        end
+    }
+
+    -- Lua
+    use {
+        "folke/zen-mode.nvim",
+        config = function()
+			require("lxs.plugin_settings.zen_mode").setup()
+		end
+    }
+
+    -- Lua
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup()
+        end
+    }
 
 	-- Colors
 	use({
