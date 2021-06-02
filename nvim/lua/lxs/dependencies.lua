@@ -258,6 +258,10 @@ return require("packer").startup(function(use)
 			require("lxs.plugin_settings.nvim_dap.telescope_integration").setup()
 		end,
 	})
+    use({
+        "rcarriga/nvim-dap-ui",
+        after = {"nvim-dap"}
+    })
 
 	-- Markdown Preview
 	use({

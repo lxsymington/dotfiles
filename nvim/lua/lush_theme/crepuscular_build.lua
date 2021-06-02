@@ -110,6 +110,29 @@ function targets.alacritty(colours)
 					foreground = "#1a141f",
 				},
 			},
+            -- Keyboard regex hints
+            hints = {
+                --[[
+                    First character in the hint label
+
+                    Allowed values are CellForeground/CellBackground, which reference the
+                    affected cell, or hexadecimal colors like #ff00ff.
+                ]]
+                start = {
+                    foreground = '#1d1f21',
+                    background = '#e9ff5e',
+                },
+                --[[
+                    All characters after the first one in the hint label
+                    
+                    Allowed values are CellForeground/CellBackground, which reference the
+                    affected cell, or hexadecimal colors like #ff00ff.
+                ]]
+                end = {
+                    foreground = '#e9ff5e',
+                    background = '#1d1f21'
+                }
+            }
 			--[[
                 Line indicator
 

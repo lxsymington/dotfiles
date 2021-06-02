@@ -197,6 +197,9 @@ function M.setup()
 		on_attach = custom_attach,
 		capabilities = capabilities,
 		cmd = { "gopls", "serve" },
+		root_dir = function(fname)
+			return util.root_pattern("go.mod", ".git")(fname) or util.path.dirname(fname)
+		end,
 		settings = {
 			gopls = {
 				analyses = {

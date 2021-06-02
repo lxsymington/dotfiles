@@ -15,4 +15,6 @@ function load_nvm --on-variable="PWD"
         echo "Reverting to default Node version"
         nvm use default
     end
+
+    set -Ux NPM_GLOBAL_PACKAGE_PATH (realpath (nvm which current)/../../lib/node_modules)
 end
