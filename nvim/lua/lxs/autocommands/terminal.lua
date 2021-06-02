@@ -1,18 +1,21 @@
--- TERMINAL
+local api = vim.api
 local M = {}
 
+-- TERMINAL
 function M.setup()
-	print("Applying terminal config...")
+	function TerminalStyle()
+		-- Disables line numbers
+		vim.wo.number = false
+		vim.wo.relativenumber = false
 
-	-- Disables line numbers
-	vim.wo.number = false
-	vim.wo.relativenumber = false
+		-- Remove the signcolumn
+		vim.wo.signcolumn = "no"
 
-	-- Remove the signcolumn
-	vim.wo.signcolumn = "no"
+		-- Remove the foldcolumn
+		vim.wo.foldcolumn = "0"
+	end
 
-	-- Remove the foldcolumn
-	vim.wo.foldcolumn = "0"
+	api.nvim_command([[ command! TerminalStyle lua TerminalStyle()]])
 end
 
 return M

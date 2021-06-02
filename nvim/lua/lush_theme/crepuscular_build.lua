@@ -1,4 +1,5 @@
 local uv = vim.loop
+local api = vim.api
 local lush = require("lush")
 
 local targets = {}
@@ -110,29 +111,29 @@ function targets.alacritty(colours)
 					foreground = "#1a141f",
 				},
 			},
-            -- Keyboard regex hints
-            hints = {
-                --[[
+			-- Keyboard regex hints
+			hints = {
+				--[[
                     First character in the hint label
 
                     Allowed values are CellForeground/CellBackground, which reference the
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
-                start = {
-                    foreground = '#1d1f21',
-                    background = '#e9ff5e',
-                },
-                --[[
+				start = {
+					foreground = "#1d1f21",
+					background = "#e9ff5e",
+				},
+				--[[
                     All characters after the first one in the hint label
                     
                     Allowed values are CellForeground/CellBackground, which reference the
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
-                end = {
-                    foreground = '#e9ff5e',
-                    background = '#1d1f21'
-                }
-            }
+				["end"] = {
+					foreground = "#e9ff5e",
+					background = "#1d1f21",
+				},
+			},
 			--[[
                 Line indicator
 
@@ -197,19 +198,33 @@ local function write_file(file, buf)
 	assert(uv.fs_close(fd))
 end
 
-function M.build()
-	local crepuscular
+function M.setup()
+	function CrepuscularBuild()
+		local crepuscular
 
-	for _, variant in ipairs({ "dark", "light" }) do
-		package.loaded["lush_theme.crepuscular_colours"] = nil
-		vim.o.background = variant
-		crepuscular = require("lush_theme.crepuscular_colours")
+		for _, variant in ipairs({ "dark", "light" }) do
+			package.loaded["lush_theme.crepuscular_colours"] = nil
+			vim.o.background = variant
+			crepuscular = require("lush_theme.crepuscular_colours")
 
-		write_file(
-			string.format(os.getenv("HOME") .. "/.dotfiles/alacritty/.alacritty.colours.%s.yml", variant),
-			targets.alacritty(crepuscular)
-		)
+			write_file(
+				string.format(os.getenv("HOME") .. "/.dotfiles/alacritty/.alacritty.colours.%s.yml", variant),
+				targets.alacritty(crepuscular)
+			)
+		end
 	end
+
+	api.nvim_command([[ command! CrepuscularBuild lua CrepuscularBuild() ]])
+
+	vim.api.nvim_exec(
+		[[
+        augroup LushBuild
+        autocmd!
+        autocmd BufWritePost crepuscular_build.lua CrepuscularBuild
+        augroup end
+        ]],
+		false
+	)
 end
 
 return M

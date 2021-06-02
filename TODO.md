@@ -9,14 +9,14 @@
  - [x] Symbols outline
     - [ ] Look into the issues with this not behaving as expected
  - [-] DenoLS for node
- - [ ] Neogit - NvimTree conflict
+ - [x] Neogit - NvimTree conflict
  - [-] Colourscheme
     - [x] Diagnostics highlights background
-    - [-] Generate alacritty colour scheme from lush
-    - [-] Statusline colours
+    - [x] Generate alacritty colour scheme from lush
+    - [x] Statusline colours
     - [ ] Auto-switching
     - [ ] Light theme refresh/update
 
 # Tmux todolist
 
- - [ ] Simplify the Statusline
+ - [x] Simplify the Statusline

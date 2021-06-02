@@ -27,7 +27,7 @@ function M.setup()
 	-- colorscheme seoul256
 
 	-- Sets the colorscheme to be Crepuscular
-	crepuscular_build.build()
+	crepuscular_build.setup()
 	vim.g.colors_name = "crepuscular_dusk"
 	-- vim.g.colors_name = "crepuscular_dawn"
 end
