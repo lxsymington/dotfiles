@@ -19,7 +19,7 @@ function M.setup()
 	keymap({
 		"i",
 		"<S-Tab>",
-		"<cmd>lua ls.jump(-1)<Cr>",
+		"<cmd>lua require('luasnip').jump(-1)<Cr>",
 		{
 			noremap = true,
 			silent = true,
@@ -29,7 +29,7 @@ function M.setup()
 	keymap({
 		"s",
 		"<Tab>",
-		"<cmd>lua ls.jump(1)<Cr>",
+		"<cmd>lua require('luasnip').jump(1)<Cr>",
 		{
 			noremap = true,
 			silent = true,
@@ -39,7 +39,7 @@ function M.setup()
 	keymap({
 		"s",
 		"<S-Tab>",
-		"<cmd>lua ls.jump(-1)<Cr>",
+		"<cmd>lua require('luasnip').jump(-1)<Cr>",
 		{
 			noremap = true,
 			silent = true,

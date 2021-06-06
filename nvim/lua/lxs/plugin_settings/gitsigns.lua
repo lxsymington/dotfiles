@@ -13,7 +13,6 @@ function M.setup()
 		},
 		numhl = true,
 		current_line_blame = true,
-		current_line_blame_position = "right_align",
 	})
 end
 

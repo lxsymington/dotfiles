@@ -1,50 +1,54 @@
+local g = vim.g
+local opt = vim.opt
+local has = vim.fn.has
+
 local M = {}
 
 -- ENVIRONMENT -------------------------
 function M.setup()
 	-- Establish which environment vim/neovim is running in.
-	if vim.g.env == nil then
-		if vim.fn.has("win64") + vim.fn.has("win32") + vim.fn.has("win16") > 0 then
-			vim.g.env = "WINDOWS"
-		elseif vim.fn.has("macunix") then
-			vim.g.env = "MACOS"
-		elseif vim.fn.has("unix") then
-			vim.g.env = "UNX"
+	if g.env == nil then
+		if has("win64") + has("win32") + has("win16") > 0 then
+			g.env = "WINDOWS"
+		elseif has("macunix") then
+			g.env = "MACOS"
+		elseif has("unix") then
+			g.env = "UNX"
 		else
-			vim.g.env = vim.cmd([[toupper(substitute(system('uname'), '\n', '', ''))]])
+			g.env = vim.cmd([[toupper(substitute(system('uname'), '\n', '', ''))]])
 		end
 	end
 
 	-- Example -----------------------------
-	-- if vim.g.env == 'WINDOWS' then
+	-- if g.env == 'WINDOWS' then
 	--   Enable Windows specific settings/plugins
 	-- end
 
-	-- if vim.g.env == 'LINUX' then
+	-- if g.env == 'LINUX' then
 	--   Enable Linux specific settings/plugins
 	-- end
 
-	-- if vim.g.env == 'DARWIN' then
+	-- if g.env == 'DARWIN' then
 	--   Enable MacOS specific settings/plugins
 	-- end
 
-	-- if vim.g.env == 'MINGW' then
+	-- if g.env == 'MINGW' then
 	--   Enable MinGW specific settings/plugins (Git Bash, mainly)
 	-- end
 
 	-- ENVIRONMENT -------------------------
-	if vim.g.env == "WINDOWS" then
-		vim.g.behave = "mswin"
-		vim.o.shell = "powershell.exe"
-		vim.o.shellcmdflag = [[ -NoLogo -ExecutionPolicy RemoteSigned -Command]]
-		vim.o.shellquote = [[shellpipe=| shellxquote=]]
-		vim.o.shellredir = [[| Out-File -Encoding UTF8]]
-		vim.g.python_host_prog = "C:\\Users\\lsymington\\scoop\\shims\\python2.EXE"
-		vim.g.python3_host_prog = "C:\\Users\\lsymington\\scoop\\shims\\python3.EXE"
-	elseif vim.g.env == "DARWIN" then
-		vim.o.shell = [[/usr/local/bin/fish]]
-	elseif vim.g.env == "LINUX" then
-		vim.o.shell = [[/usr/bin/fish]]
+	if g.env == "WINDOWS" then
+		g.behave = "mswin"
+		opt.shell = "powershell.exe"
+		opt.shellcmdflag = [[ -NoLogo -ExecutionPolicy RemoteSigned -Command]]
+		opt.shellquote = [[shellpipe=| shellxquote=]]
+		opt.shellredir = [[| Out-File -Encoding UTF8]]
+		g.python_host_prog = "C:\\Users\\lsymington\\scoop\\shims\\python2.EXE"
+		g.python3_host_prog = "C:\\Users\\lsymington\\scoop\\shims\\python3.EXE"
+	elseif g.env == "DARWIN" then
+		opt.shell = [[/usr/local/bin/fish]]
+	elseif g.env == "LINUX" then
+		opt.shell = [[/usr/bin/fish]]
 	end
 end
 

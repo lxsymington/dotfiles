@@ -1,6 +1,6 @@
 local dap = require("dap")
 local mochaConfigurator = require("lxs.plugin_settings.nvim_dap.configurations.mocha.configurator")
-local nnoremap = vim.keymap.nnoremap
+local keymap = vim.api.nvim_set_keymap
 local M = {}
 local api = vim.api
 local keymap_restore = {}
@@ -99,33 +99,31 @@ function M.setup()
 
 	-- Set up mappings for `nvim-dap`
 	-- CONTINUE
-	nnoremap({ "<F5>", dap.continue })
+	keymap("n", "<F5>", "<Cmd>:lua require('dap').continue()<CR>", { noremap = true, silent = true })
 	-- STEP OVER
-	nnoremap({ "<F10>", dap.step_over })
+	keymap("n", "<F10>", "<Cmd>:lua require('dap').step_over()<CR>", { noremap = true, silent = true })
 	-- STEP INTO
-	nnoremap({ "<F11>", dap.step_into })
+	keymap("n", "<F11>", "<Cmd>:lua require('dap').step_into()<CR>", { noremap = true, silent = true })
 	-- STEP OUT
-	nnoremap({ "<F12>", dap.step_out })
+	keymap("n", "<F12>", "<Cmd>:lua require('dap').step_out()<CR>", { noremap = true, silent = true })
 	-- TOGGLE BREAKPOINT
-	nnoremap({ "<Leader>b", dap.toggle_breakpoint })
+	keymap("n", "<Leader>b", "<Cmd>:lua require('dap').toggle_breakpoint()<CR>", { noremap = true, silent = true })
 	-- SET CONDITIONAL BREAKPOINT
-	nnoremap({
+	keymap(
+		"n",
 		"<Leader>B",
-		function()
-			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-		end,
-	})
+		"<Cmd>:lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+		{ noremap = true, silent = true }
+	)
 	-- SET LOGPOINT
-	nnoremap({
-		"<Leader>lp",
-		function()
-			dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-		end,
+	keymap("n", "<Leader>lp", "<Cmd>:lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", {
+		noremap = true,
+		silent = true,
 	})
 	-- OPEN DEBUGGER CONSOLE
-	nnoremap({ "<Leader>dr", dap.repl.open })
+	keymap("n", "<Leader>dr", "<Cmd>:lua require('dap').repl.open()<CR>", { noremap = true, silent = true })
 	-- RE-RUN LAST DEBUGGING SESSION
-	nnoremap({ "<Leader>dl", dap.run_last })
+	keymap("n", "<Leader>dl", "<Cmd>:lua require('dap').run_last()<CR>", { noremap = true, silent = true })
 
 	-- Show virtual text for current frame
 	vim.g.dap_virtual_text = true

@@ -139,8 +139,11 @@ local file_namer = function()
 		return ""
 	end
 
-	local file_icon =
-		devicons.get_icon(fn.fnamemodify(file_path, ":t"), fn.fnamemodify(file_path, ":e"), { default = true })
+	local file_icon = devicons.get_icon(
+		fn.fnamemodify(file_path, ":t"),
+		fn.fnamemodify(file_path, ":e"),
+		{ default = true }
+	)
 	local relative_file_path = fn.fnamemodify(file_path, ":~:.")
 	local short_file_path = #relative_file_path < api.nvim_win_get_width(0) / 3 and relative_file_path
 		or fn.pathshorten(relative_file_path)
@@ -212,7 +215,7 @@ function M.setup()
 			bg = colours.lightBlack.hex,
 			style = "bold",
 		},
-		left_sep = { "left_rounded" },
+		left_sep = { "block" },
 	}
 
 	components.left.active[2] = {
@@ -395,12 +398,6 @@ function M.setup()
 			bg = colours.purple.hex,
 			fg = colours.black.hex,
 			style = "bold",
-		},
-		right_sep = {
-			str = "right_rounded",
-			hl = {
-				fg = colours.lightPurple.hex,
-			},
 		},
 	}
 

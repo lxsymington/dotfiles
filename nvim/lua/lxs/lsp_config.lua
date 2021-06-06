@@ -7,7 +7,7 @@ local stylua = require("lxs.plugin_settings.efm.stylua")
 local prettier = require("lxs.plugin_settings.efm.prettier")
 local eslint = require("lxs.plugin_settings.efm.eslint")
 local tslint = require("lxs.plugin_settings.efm.tslint")
-local nnoremap = vim.keymap.nnoremap
+local keymap = vim.api.nvim_set_keymap
 local M = {}
 
 -- Pretty icons
@@ -292,65 +292,68 @@ function M.setup()
 	}))
 
 	vim.fn.sign_define("LspDiagnosticsSignError", {
-		text = "✗",
+		text = "",
 		texthl = "LspDiagnosticsSignError",
 	})
 
 	vim.fn.sign_define("LspDiagnosticsSignWarning", {
-		text = "‼",
+		text = "",
 		texthl = "LspDiagnosticsSignWarning",
 	})
 
 	vim.fn.sign_define("LspDiagnosticsSignInformation", {
-		text = "𝒊",
+		text = "",
 		texthl = "LspDiagnosticsSignInformation",
 	})
 
 	vim.fn.sign_define("LspDiagnosticsSignHint", {
-		text = "▶",
+		text = "",
 		texthl = "LspDiagnosticsSignHint",
 	})
 
 	-- Go to definition
-	nnoremap({ "<Leader>gd", vim.lsp.buf.definition })
+	keymap("n", "<Leader>gd", "<Cmd>:lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 
 	-- Peek definition
-	nnoremap({ "<Leader>@", function()
-		vim.cmd("PeekDefinition")
-	end })
+	keymap("n", "<Leader>@", "<Cmd>:PeekDefinition<CR>", { noremap = true, silent = true })
 
 	-- Go to implementation
-	nnoremap({ "<Leader>gi", vim.lsp.buf.implementation })
+	keymap("n", "<Leader>gi", "<Cmd>:lua vim.lsp.buf.implementation()<CR>", { noremap = true, silent = true })
 
 	-- Go to type definition
-	nnoremap({ "<Leader>gtd", vim.lsp.buf.type_definition })
+	keymap("n", "<Leader>gtd", "<Cmd>:lua vim.lsp.buf.type_definition()<CR>", { noremap = true, silent = true })
 
 	-- Go to references
-	nnoremap({ "<Leader>gr", vim.lsp.buf.references })
+	keymap("n", "<Leader>gr", "<Cmd>:lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
 
 	-- Code action
-	nnoremap({ "<Leader>ca", vim.lsp.buf.code_action })
+	keymap("n", "<Leader>ca", "<Cmd>:lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
 
 	-- Rename
-	nnoremap({ "<Leader>r", vim.lsp.buf.rename })
+	keymap("n", "<Leader>r", "<Cmd>:lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 
 	-- Hover
-	nnoremap({ "K", vim.lsp.buf.hover })
+	keymap("n", "K", "<Cmd>:lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 
 	-- Open diagnostics
-	nnoremap({ "<Leader>-", vim.lsp.diagnostic.set_loclist })
+	keymap("n", "<Leader>-", "<Cmd>:lua vim.lsp.diagnostic.set_loclist()<CR>", { noremap = true, silent = true })
 
 	-- Signature help
-	nnoremap({ "<Leader>sh", vim.lsp.buf.signature_help })
+	keymap("n", "<Leader>sh", "<Cmd>:lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
 
 	-- Go to next diagnostic
-	nnoremap({ "]d", vim.lsp.diagnostic.goto_next })
+	keymap("n", "]d", "<Cmd>:lua vim.lsp.diagnostic.goto_next()<CR>", { noremap = true, silent = true })
 
 	-- Go to previous diagnostic
-	nnoremap({ "[d", vim.lsp.diagnostic.goto_prev })
+	keymap("n", "[d", "<Cmd>:lua vim.lsp.diagnostic.goto_prev()<CR>", { noremap = true, silent = true })
 
 	-- View workspace diagnostics
-	nnoremap({ "<Leader>wd", require("lsp_extensions.workspace.diagnostic").set_qf_list })
+	keymap(
+		"n",
+		"<Leader>wd",
+		"<Cmd>:lua require('lsp_extensions.workspace.diagnostic').set_qf_list()<CR>",
+		{ noremap = true, silent = true }
+	)
 end
 
 return M
