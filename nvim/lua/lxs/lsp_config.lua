@@ -274,9 +274,8 @@ function M.setup()
 		message_level = vim.lsp.protocol.MessageType.Log,
 	})
 
-	require("nlua.lsp.nvim").setup(
-		lspconfig,
-		luadev.setup({
+	lspconfig.sumneko_lua.setup(luadev.setup({
+		lspconfig = {
 			on_attach = custom_attach,
 			capabilities = capabilities,
 
@@ -287,10 +286,10 @@ function M.setup()
 			},
 
 			root_dir = function(fname)
-				return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
+				return util.find_git_ancestor(fname) or util.path.dirname(fname)
 			end,
-		})
-	)
+		},
+	}))
 
 	vim.fn.sign_define("LspDiagnosticsSignError", {
 		text = "✗",

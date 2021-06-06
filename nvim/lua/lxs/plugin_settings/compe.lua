@@ -1,5 +1,5 @@
 local compe = require("compe")
-local api = vim.api
+local keymap = vim.api.nvim_set_keymap
 
 local M = {}
 
@@ -29,11 +29,11 @@ function M.setup()
 		},
 	})
 
-	api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", { noremap = true, expr = true, silent = true })
-	api.nvim_set_keymap("i", "<C-y>", "compe#confirm()", { noremap = true, expr = true, silent = true })
-	api.nvim_set_keymap("i", "<C-e>", "compe#close()", { noremap = true, expr = true, silent = true })
-	api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta' = +4 })", { noremap = true, expr = true, silent = true })
-	api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta' = -4 })", { noremap = true, expr = true, silent = true })
+	keymap("i", "<C-Space>", "compe#complete()", { noremap = true, expr = true, silent = true })
+	keymap("i", "<C-y>", "compe#confirm()", { noremap = true, expr = true, silent = true })
+	keymap("i", "<C-e>", "compe#close()", { noremap = true, expr = true, silent = true })
+	keymap("i", "<C-f>", "compe#scroll({ 'delta' = +4 })", { noremap = true, expr = true, silent = true })
+	keymap("i", "<C-d>", "compe#scroll({ 'delta' = -4 })", { noremap = true, expr = true, silent = true })
 end
 
 return M

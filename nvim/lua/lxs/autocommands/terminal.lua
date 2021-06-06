@@ -5,14 +5,14 @@ local M = {}
 function M.setup()
 	function TerminalStyle()
 		-- Disables line numbers
-		vim.wo.number = false
-		vim.wo.relativenumber = false
+		vim.opt.number = false
+		vim.opt.relativenumber = false
 
 		-- Remove the signcolumn
-		vim.wo.signcolumn = "no"
+		vim.opt.signcolumn = "no"
 
 		-- Remove the foldcolumn
-		vim.wo.foldcolumn = "0"
+		vim.opt.foldcolumn = "0"
 	end
 
 	api.nvim_command([[ command! TerminalStyle lua TerminalStyle()]])

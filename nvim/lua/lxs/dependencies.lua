@@ -53,37 +53,13 @@ return require("packer").startup(function(use)
 
 	use({ "kyazdani42/nvim-web-devicons" })
 
-	-- File Explorer
-	use({
-		"kyazdani42/nvim-tree.lua",
-		after = "nvim-web-devicons",
-		config = function()
-			require("lxs.plugin_settings.nvim_tree").setup()
-		end,
-		opt = true,
-		cmd = {
-			"NvimTreeClipboard",
-			"NvimTreeClose",
-			"NvimTreeFindFile",
-			"NvimTreeOpen",
-			"NvimTreeRefresh",
-			"NvimTreeToggle",
-		},
-		keys = { "n", "<Leader><Tab>" },
-	})
-
 	-- Snippets
 	use({
-		"norcalli/snippets.nvim",
+		"L3MON4D3/LuaSnip",
 		config = function()
-			require("lxs.plugin_settings.snippets").setup()
+			-- require("lxs.plugin_settings.snippets").setup()
 		end,
 	})
-
-	-- Neovim Lua Helper
-	use("tjdevries/nlua.nvim")
-	use("euclidianAce/BetterLua.vim")
-	use("bfredl/nvim-luadev")
 
 	-- Completion
 	use({
@@ -183,6 +159,7 @@ return require("packer").startup(function(use)
 		opt = true,
 		cmd = { "Telescope", "Octo" },
 		keys = {
+            { "n", "<Leader><Tab>" },
 			{ "n", "<Leader>ff" },
 			{ "n", "<Leader>fgf" },
 			{ "n", "<Leader>fb" },
@@ -328,9 +305,6 @@ return require("packer").startup(function(use)
 	-- Colorscheme builder
 	use("rktjmp/lush.nvim")
 
-	-- Colorschemes
-	use({ "junegunn/seoul256.vim", opt = true })
-
 	-- Usability
 	use("tpope/vim-abolish")
 
@@ -348,9 +322,6 @@ return require("packer").startup(function(use)
 
 	-- Commenting
 	use("b3nj5m1n/kommentary")
-
-	-- Git Author
-	use("f-person/git-blame.nvim")
 end, {
 	display = {
 		open_fn = require("packer.util").float,

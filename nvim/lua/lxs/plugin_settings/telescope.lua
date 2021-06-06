@@ -1,4 +1,4 @@
-local nnoremap = vim.keymap.nnoremap
+local keymap = vim.api.nvim_set_keymap
 
 local should_reload = true
 local reloader = function()
@@ -27,18 +27,6 @@ function M.setup()
 			-- followed by the character to use for the
 			-- topleft/topright/botright/botleft corner.
 			layout_strategy = "flex",
-			layout_defaults = {
-				horizontal = {
-					width_padding = 0.1,
-					height_padding = 0.1,
-					preview_width = 0.6,
-				},
-				vertical = {
-					width_padding = 0.05,
-					height_padding = 1,
-					preview_height = 0.5,
-				},
-			},
 			prompt_prefix = "🔭 ➜",
 			scroll_strategy = "cycle",
 			winblend = 10,
@@ -67,83 +55,20 @@ function M.setup()
 	require("telescope").load_extension("frecency")
 	require("telescope").load_extension("fzy_native")
 
-	nnoremap({ "<Leader>fd", builtin.fd })
-
-	nnoremap({
-		"<Leader>ff",
-		function()
-			local opts = themes.get_dropdown({
-				winblend = 10,
-				border = true,
-				shorten_path = false,
-			})
-
-			require("telescope").extensions.frecency.frecency(opts)
-		end,
-	})
-
-	nnoremap({ "<Leader>fgf", builtin.git_files })
-
-	nnoremap({
-		"<Leader>fpf",
-		function()
-			builtin.find_files({
-				previewer = false,
-				layout_strategy = "vertical",
-				cwd = require("lsp_config.util").root_pattern(".git")(vim.fn.expand("%:p")),
-			})
-		end,
-	})
-
-	nnoremap({ "<Leader>fht", builtin.help_tags })
-
-	nnoremap({ "<Leader>fb", builtin.buffers })
-
-	nnoremap({ "<Leader>lg", builtin.live_grep })
-
-	nnoremap({
-		"<Leader>lbg",
-		function()
-			local opts = themes.get_dropdown({
-				winblend = 10,
-				border = true,
-				previewer = false,
-				shorten_path = false,
-			})
-
-			builtin.current_buffer_fuzzy_find(opts)
-		end,
-	})
-
-	nnoremap({ "<Leader>sr", builtin.lsp_references })
-
-	nnoremap({ "<Leader><space>", builtin.lsp_code_actions })
-
-	nnoremap({ "<Leader>?", builtin.lsp_range_code_actions })
-
-	nnoremap({ "<Leader>gb", builtin.git_branches })
-
-	nnoremap({ "<Leader>gs", builtin.git_status })
-end
-
-function M.fd()
-	builtin.fd()
-end
-
-function M.builtin()
-	builtin.builtin()
-end
-
-function M.git_files()
-	builtin.git_files()
-end
-
-function M.live_grep()
-	builtin.live_grep()
-end
-
-function M.oldfiles()
-	builtin.oldfiles()
+	keymap("n", "<Leader><Tab>", "<Cmd>:Telescope file_browser<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader><space>", "<Cmd>:Telescope lsp_code_actions<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>?", "<Cmd>:Telescope lsp_range_code_actions<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>fb", "<Cmd>:Telescope buffers<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>fd", "<Cmd>:Telescope fd<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>ff", "<Cmd>:Telescope frecency<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>fgf", "<Cmd>:Telescope git_files<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>fht", "<Cmd>:Telescope help_tags<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>fpf", "<Cmd>:Telescope project_search<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>gb", "<Cmd>:Telescope git_branches<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>gs", "<Cmd>:Telescope git_status<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>lbg", "<Cmd>:Telescope curbuf<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>lg", "<Cmd>:Telescope live_grep<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>sr", "<Cmd>:Telescope lsp_references<CR>", { noremap = true, silent = true })
 end
 
 function M.project_search()
@@ -152,10 +77,6 @@ function M.project_search()
 		layout_strategy = "vertical",
 		cwd = require("nvim_lsp.util").root_pattern(".git")(vim.fn.expand("%:p")),
 	})
-end
-
-function M.buffers()
-	builtin.buffers({ shorten_path = false })
 end
 
 function M.curbuf()
@@ -169,8 +90,14 @@ function M.curbuf()
 	builtin.current_buffer_fuzzy_find(opts)
 end
 
-function M.help_tags()
-	builtin.help_tags({ show_version = true })
+function M.frecency()
+	local opts = themes.get_dropdown({
+		winblend = 10,
+		border = true,
+		shorten_path = false,
+	})
+
+	require("telescope").extensions.frecency.frecency(opts)
 end
 
 return setmetatable({}, {

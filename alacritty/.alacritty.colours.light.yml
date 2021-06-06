@@ -1,63 +1,63 @@
 
 colors:
-  selection:
-    text: "CellBackground"
-    background: "CellForeground"
-  vi_mode_cursor:
-    text: "CellBackground"
-    cursor: "CellForeground"
-  primary:
-    background: "#1A141F"
-    bright_foreground: "#FBF7E9"
-    dim_foreground: "#A38FA0"
-    foreground: "#EBCCAD"
+  dim:
+    green: "#8AA88F"
+    cyan: "#50958F"
+    blue: "#506D95"
+    magenta: "#412A6F"
+    white: "#E6BF99"
+    black: "#42334D"
+    red: "#AF6A75"
+    yellow: "#C38E22"
   search:
     matches:
       background: "#ffffff"
       foreground: "#000000"
     bar:
-      background: "#ebccad"
       foreground: "#1a141f"
+      background: "#ebccad"
     focused_match:
       background: "CellForeground"
       foreground: "CellBackground"
-  bright:
-    white: "#FBF7E9"
-    black: "#50494E"
-    red: "#FA9E9E"
-    yellow: "#FFD480"
-    green: "#789550"
-    cyan: "#D6F5F2"
-    blue: "#4C8CE6"
-    magenta: "#AF8FEF"
-  hints:
-    start:
-      background: "#e9ff5e"
-      foreground: "#1d1f21"
-    end:
-      background: "#1d1f21"
-      foreground: "#e9ff5e"
-  dim:
-    white: "#E6BF99"
-    black: "#42334D"
-    red: "#AF6A75"
-    yellow: "#C38E22"
-    green: "#8AA88F"
-    cyan: "#50958F"
-    blue: "#506D95"
-    magenta: "#412A6F"
-  normal:
-    white: "#EBCCAD"
-    black: "#281D30"
-    red: "#A3293D"
-    yellow: "#FFBB33"
-    green: "#36633D"
-    cyan: "#6BC7BF"
-    blue: "#1D64C9"
-    magenta: "#561DC9"
   line_indicator:
     background: "#50494E"
     foreground: "None"
   cursor:
     text: "CellBackground"
     cursor: "CellForeground"
+  normal:
+    green: "#36633D"
+    cyan: "#6BC7BF"
+    blue: "#1D64C9"
+    magenta: "#561DC9"
+    white: "#EBCCAD"
+    black: "#281D30"
+    red: "#A3293D"
+    yellow: "#FFBB33"
+  vi_mode_cursor:
+    text: "CellBackground"
+    cursor: "CellForeground"
+  selection:
+    text: "CellBackground"
+    background: "CellForeground"
+  primary:
+    bright_foreground: "#FBF7E9"
+    background: "#1A141F"
+    dim_foreground: "#A38FA0"
+    foreground: "#EBCCAD"
+  bright:
+    green: "#789550"
+    cyan: "#D6F5F2"
+    blue: "#4C8CE6"
+    magenta: "#AF8FEF"
+    white: "#FBF7E9"
+    black: "#50494E"
+    red: "#FA9E9E"
+    yellow: "#FFD480"
+  hints:
+    end:
+      background: "#1d1f21"
+      foreground: "#e9ff5e"
+    start:
+      background: "#e9ff5e"
+      foreground: "#1d1f21"

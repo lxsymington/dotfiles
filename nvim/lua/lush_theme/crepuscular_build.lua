@@ -204,7 +204,7 @@ function M.setup()
 
 		for _, variant in ipairs({ "dark", "light" }) do
 			package.loaded["lush_theme.crepuscular_colours"] = nil
-			vim.o.background = variant
+			vim.opt.background = variant
 			crepuscular = require("lush_theme.crepuscular_colours")
 
 			write_file(

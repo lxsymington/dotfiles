@@ -1,19 +1,70 @@
-local snippets = require("snippets")
-local inoremap = vim.keymap.inoremap
+local ls = require("luasnip")
+local keymap = vim.api.nvim_set_keymap
 local M = {}
 
 -- SNIPPETS ----------------------------
 function M.setup()
-	snippets.use_suggested_mappings()
+	ls.config.set_config()
 
-	inoremap({ "<Leader>p", function()
-		snippets.expand_or_advance(1)
-	end })
-	inoremap({ "<Leader>n", function()
-		snippets.advance_snippet(-1)
-	end })
+	keymap({
+		"i",
+		"<Tab>",
+		"luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'",
+		{
+			expr = true,
+			silent = true,
+		},
+	})
 
-	snippets.snippets = {}
+	keymap({
+		"i",
+		"<S-Tab>",
+		"<cmd>lua ls.jump(-1)<Cr>",
+		{
+			noremap = true,
+			silent = true,
+		},
+	})
+
+	keymap({
+		"s",
+		"<Tab>",
+		"<cmd>lua ls.jump(1)<Cr>",
+		{
+			noremap = true,
+			silent = true,
+		},
+	})
+
+	keymap({
+		"s",
+		"<S-Tab>",
+		"<cmd>lua ls.jump(-1)<Cr>",
+		{
+			noremap = true,
+			silent = true,
+		},
+	})
+
+	keymap({
+		"i",
+		"<C-E>",
+		"luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
+		{
+			expr = true,
+			silent = true,
+		},
+	})
+
+	keymap({
+		"s",
+		"<C-E>",
+		"luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
+		{
+			expr = true,
+			silent = true,
+		},
+	})
 end
 
 return M
