@@ -134,7 +134,6 @@ return require("packer").startup(function(use)
 	-- Indent markers
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		branch = "lua",
 		config = function()
 			require("lxs.plugin_settings.indent_blankline").setup()
 		end,

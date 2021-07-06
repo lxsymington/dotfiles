@@ -13,3 +13,4 @@ vim/.vim/autoload/plug.vim*
 vim/.vim/session
 vim/.vim/sessions
 packer_compiled.vim
+packer_compiled.lua
