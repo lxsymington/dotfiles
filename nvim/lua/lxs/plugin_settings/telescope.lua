@@ -11,6 +11,7 @@ end
 
 reloader()
 
+local telescope = require("telescope")
 local actions = require("telescope.actions")
 local sorters = require("telescope.sorters")
 local themes = require("telescope.themes")
@@ -21,13 +22,16 @@ local M = {}
 
 -- TELESCOPE ---------------------------
 function M.setup()
-	require("telescope").setup({
+	telescope.load_extension("frecency")
+	telescope.load_extension("fzy_native")
+
+	telescope.setup({
 		defaults = {
 			-- for the top/right/bottom/left border.  Optionally
 			-- followed by the character to use for the
 			-- topleft/topright/botright/botleft corner.
 			layout_strategy = "flex",
-			prompt_prefix = "🔭 ➜",
+			prompt_prefix = "🔭 ➜ ",
 			scroll_strategy = "cycle",
 			winblend = 10,
 			file_previewer = previewers.vim_buffer_cat.new,
@@ -43,6 +47,7 @@ function M.setup()
 					["conf"] = os.getenv("HOME") .. "/.config",
 					["data"] = os.getenv("HOME") .. "/.local/share",
 					["development"] = os.getenv("HOME") .. "/Development",
+					["learning"] = os.getenv("HOME") .. "/Learning",
 				},
 			},
 			fzy_native = {
@@ -51,9 +56,6 @@ function M.setup()
 			},
 		},
 	})
-
-	require("telescope").load_extension("frecency")
-	require("telescope").load_extension("fzy_native")
 
 	keymap("n", "<Leader><Tab>", "<Cmd>:Telescope file_browser<CR>", { noremap = true, silent = true })
 	keymap("n", "<Leader><space>", "<Cmd>:Telescope lsp_code_actions<CR>", { noremap = true, silent = true })
@@ -97,7 +99,7 @@ function M.frecency()
 		shorten_path = false,
 	})
 
-	require("telescope").extensions.frecency.frecency(opts)
+	telescope.extensions.frecency.frecency(opts)
 end
 
 return setmetatable({}, {

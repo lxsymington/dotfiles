@@ -6,11 +6,9 @@ if not packer_exists then
 
 	vim.fn.mkdir(directory, "p")
 
-	local out = vim.fn.system(string.format(
-		"git clone %s %s",
-		"https://github.com/wbthomason/packer.nvim",
-		directory .. "packer.nvim"
-	))
+	local out = vim.fn.system(
+		string.format("git clone %s %s", "https://github.com/wbthomason/packer.nvim", directory .. "packer.nvim")
+	)
 
 	print(out)
 	print("Downloading packer.nvim")
@@ -75,7 +73,7 @@ return require("packer").startup(function(use)
 		requires = {
 			"nvim-lua/lsp-status.nvim",
 			"nvim-lua/lsp_extensions.nvim",
-			"folke/lua-dev.nvim"
+			"folke/lua-dev.nvim",
 		},
 		config = function()
 			require("lxs.lsp_config").setup()
@@ -141,16 +139,18 @@ return require("packer").startup(function(use)
 
 	-- Search
 	use("tami5/sql.nvim")
-    use("nvim-telescope/telescope-frecency.nvim")
-    use("nvim-telescope/telescope-fzy-native.nvim")
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		after = { "sql.nvim" },
+	})
+	use("nvim-telescope/telescope-fzy-native.nvim")
 	use({
 		"nvim-telescope/telescope.nvim",
 		after = {
 			"popup.nvim",
 			"plenary.nvim",
-			"sql.nvim",
-            "telescope-frecency.nvim",
-            "telescope-fzy-native.nvim",
+			"telescope-frecency.nvim",
+			"telescope-fzy-native.nvim",
 		},
 		config = function()
 			require("lxs.plugin_settings.telescope").setup()
@@ -158,7 +158,7 @@ return require("packer").startup(function(use)
 		opt = true,
 		cmd = { "Telescope", "Octo" },
 		keys = {
-            { "n", "<Leader><Tab>" },
+			{ "n", "<Leader><Tab>" },
 			{ "n", "<Leader>ff" },
 			{ "n", "<Leader>fgf" },
 			{ "n", "<Leader>fb" },
@@ -181,8 +181,8 @@ return require("packer").startup(function(use)
 			require("lxs.plugin_settings.neogit").setup()
 		end,
 		opt = true,
-		cmd = { 'Neogit' },
-		keys = { 'n', '<Leader>g' }
+		cmd = { "Neogit" },
+		keys = { "n", "<Leader>g" },
 	})
 	use({
 		"tpope/vim-fugitive",
@@ -234,10 +234,10 @@ return require("packer").startup(function(use)
 			require("lxs.plugin_settings.nvim_dap.telescope_integration").setup()
 		end,
 	})
-    use({
-        "rcarriga/nvim-dap-ui",
-        after = {"nvim-dap"}
-    })
+	use({
+		"rcarriga/nvim-dap-ui",
+		after = { "nvim-dap" },
+	})
 
 	-- Markdown Preview
 	use({
@@ -269,30 +269,30 @@ return require("packer").startup(function(use)
 		cmd = { "Octo" },
 	})
 
-    -- Lua
-    use {
-        "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup()
-        end
-    }
+	-- Lua
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	})
 
-    -- Lua
-    use {
-        "folke/zen-mode.nvim",
-        config = function()
+	-- Lua
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
 			require("lxs.plugin_settings.zen_mode").setup()
-		end
-    }
+		end,
+	})
 
-    -- Lua
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup()
-        end
-    }
+	-- Lua
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup()
+		end,
+	})
 
 	-- Colors
 	use({
