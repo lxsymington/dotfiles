@@ -1,3 +1,3 @@
 function nvm
-    replay source ~/.nvm/nvm.sh ';' nvm $argv
+    replay source $NVM_DIR/nvm.sh ';' nvm $argv
 end
