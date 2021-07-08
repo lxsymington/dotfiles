@@ -11,7 +11,6 @@ end
 
 reloader()
 
-local telescope = require("telescope")
 local actions = require("telescope.actions")
 local sorters = require("telescope.sorters")
 local themes = require("telescope.themes")
@@ -22,25 +21,39 @@ local M = {}
 
 -- TELESCOPE ---------------------------
 function M.setup()
-	telescope.load_extension("frecency")
-	telescope.load_extension("fzy_native")
-
-	telescope.setup({
+	require("telescope").setup({
 		defaults = {
-			-- for the top/right/bottom/left border.  Optionally
-			-- followed by the character to use for the
-			-- topleft/topright/botright/botleft corner.
 			layout_strategy = "flex",
+			layout_config = {
+				width = 0.95,
+				height = 0.85,
+				prompt_position = "top",
+
+				flex = {
+					horizontal = {
+						preview_width = function(_, cols, _)
+							if cols > 200 then
+								return math.floor(cols * 0.6)
+							else
+								return math.floor(cols * 0.5)
+							end
+						end,
+					},
+					vertical = {
+						width = 0.9,
+						height = 0.95,
+						preview_height = 0.5,
+					},
+				},
+			},
 			prompt_prefix = "🔭 ➜ ",
 			scroll_strategy = "cycle",
+			selection_caret = "✯ ",
 			winblend = 10,
-			file_previewer = previewers.vim_buffer_cat.new,
-			grep_previewer = previewers.vim_buffer_vimgrep.new,
-			qflist_previewer = previewers.vim_buffer_qflist.new,
 		},
 		extensions = {
-			frecency = {
-				show_scores = false,
+			--[[ frecency = {
+				show_scores = true,
 				show_unindexed = true,
 				ignore_patterns = { "*.git/*", "*/node_modules/*", "*/tmp/*" },
 				workspaces = {
@@ -49,28 +62,101 @@ function M.setup()
 					["development"] = os.getenv("HOME") .. "/Development",
 					["learning"] = os.getenv("HOME") .. "/Learning",
 				},
-			},
+			}, ]]
 			fzy_native = {
-				override_generic_sorter = false,
+				override_generic_sorter = true,
 				override_file_sorter = true,
 			},
 		},
 	})
 
-	keymap("n", "<Leader><Tab>", "<Cmd>:Telescope file_browser<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader><space>", "<Cmd>:Telescope lsp_code_actions<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>?", "<Cmd>:Telescope lsp_range_code_actions<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>fb", "<Cmd>:Telescope buffers<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>fd", "<Cmd>:Telescope fd<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>ff", "<Cmd>:Telescope frecency<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>fgf", "<Cmd>:Telescope git_files<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>fht", "<Cmd>:Telescope help_tags<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>fpf", "<Cmd>:Telescope project_search<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>gb", "<Cmd>:Telescope git_branches<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>gs", "<Cmd>:Telescope git_status<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>lbg", "<Cmd>:Telescope curbuf<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>lg", "<Cmd>:Telescope live_grep<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>sr", "<Cmd>:Telescope lsp_references<CR>", { noremap = true, silent = true })
+	-- require("telescope").load_extension("frecency")
+	require("telescope").load_extension("fzy_native")
+
+	keymap(
+		"n",
+		"<Leader><Tab>",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').file_browser()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader><space>",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').lsp_code_actions()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>?",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').lsp_range_code_actions()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>fb",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').buffers()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>fd",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').fd()<CR>",
+		{ noremap = true, silent = true }
+	)
+	--[[ keymap(
+		"n",
+		"<Leader>ff",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').frecency()<CR>",
+		{ noremap = true, silent = true }
+	) ]]
+	keymap(
+		"n",
+		"<Leader>fgf",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').git_files()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>fht",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').help_tags()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>fpf",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').project_search()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>gb",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').git_branches()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>gs",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').git_status()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>lbg",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').curbuf()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>lg",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').live_grep()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"n",
+		"<Leader>sr",
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').lsp_references()<CR>",
+		{ noremap = true, silent = true }
+	)
 end
 
 function M.project_search()
@@ -92,15 +178,15 @@ function M.curbuf()
 	builtin.current_buffer_fuzzy_find(opts)
 end
 
-function M.frecency()
+--[[ function M.frecency()
 	local opts = themes.get_dropdown({
 		winblend = 10,
 		border = true,
 		shorten_path = false,
 	})
 
-	telescope.extensions.frecency.frecency(opts)
-end
+	require("telescope").extensions.frecency.frecency(opts)
+end ]]
 
 return setmetatable({}, {
 	__index = function(_, k)

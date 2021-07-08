@@ -138,18 +138,15 @@ return require("packer").startup(function(use)
 	})
 
 	-- Search
-	use("tami5/sql.nvim")
-	use({
-		"nvim-telescope/telescope-frecency.nvim",
-		after = { "sql.nvim" },
-	})
+	--[[ use("tami5/sql.nvim")
+	use("nvim-telescope/telescope-frecency.nvim") ]]
 	use("nvim-telescope/telescope-fzy-native.nvim")
 	use({
 		"nvim-telescope/telescope.nvim",
-		after = {
-			"popup.nvim",
-			"plenary.nvim",
-			"telescope-frecency.nvim",
+		requires = {
+			"nvim-lua/popup.nvim",
+			"nvim-lua/plenary.nvim",
+			-- "telescope-frecency.nvim",
 			"telescope-fzy-native.nvim",
 		},
 		config = function()
@@ -159,18 +156,19 @@ return require("packer").startup(function(use)
 		cmd = { "Telescope", "Octo" },
 		keys = {
 			{ "n", "<Leader><Tab>" },
-			{ "n", "<Leader>ff" },
-			{ "n", "<Leader>fgf" },
-			{ "n", "<Leader>fb" },
-			{ "n", "<Leader>fd" },
-			{ "n", "<Leader>fht" },
-			{ "n", "<Leader>lg" },
-			{ "n", "<Leader>lbg" },
-			{ "n", "<Leader>sr" },
 			{ "n", "<Leader><space>" },
 			{ "n", "<Leader>?" },
+			{ "n", "<Leader>fb" },
+			{ "n", "<Leader>fd" },
+			{ "n", "<Leader>ff" },
+			{ "n", "<Leader>fgf" },
+			{ "n", "<Leader>fht" },
+			{ "n", "<Leader>fpf" },
 			{ "n", "<Leader>gb" },
 			{ "n", "<Leader>gs" },
+			{ "n", "<Leader>lbg" },
+			{ "n", "<Leader>lg" },
+			{ "n", "<Leader>sr" },
 		},
 	})
 
