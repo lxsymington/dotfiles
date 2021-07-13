@@ -55,7 +55,7 @@ return require("packer").startup(function(use)
 	use({
 		"L3MON4D3/LuaSnip",
 		config = function()
-			-- require("lxs.plugin_settings.snippets").setup()
+			require("lxs.plugin_settings.snippets").setup()
 		end,
 	})
 
