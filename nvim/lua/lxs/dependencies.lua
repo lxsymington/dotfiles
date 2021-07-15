@@ -267,7 +267,7 @@ return require("packer").startup(function(use)
 		cmd = { "Octo" },
 	})
 
-	-- Lua
+	-- UI tweaks
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
@@ -275,16 +275,18 @@ return require("packer").startup(function(use)
 			require("todo-comments").setup()
 		end,
 	})
-
-	-- Lua
 	use({
 		"folke/zen-mode.nvim",
 		config = function()
 			require("lxs.plugin_settings.zen_mode").setup()
 		end,
 	})
-
-	-- Lua
+	use({
+        "folke/twilight.nvim",
+        config = function()
+            require('twilight').setup()
+        end
+    })
 	use({
 		"folke/which-key.nvim",
 		config = function()

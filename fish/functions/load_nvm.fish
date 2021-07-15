@@ -16,5 +16,5 @@ function load_nvm --on-variable="PWD"
         nvm use default
     end
 
-set -Ux NPM_GLOBAL_PACKAGE_PATH (realpath $NVM_DIR/versions/node/(nvm current)/lib/node_modules)
+    set -Ux NPM_GLOBAL_PACKAGE_PATH (realpath $NVM_DIR/versions/node/(nvm current)/lib/node_modules)
 end
