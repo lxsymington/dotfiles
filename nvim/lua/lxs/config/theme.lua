@@ -22,16 +22,10 @@ function M.setup()
 	-- Sets the background to be dark
 	opt.background = "dark"
 
-	-- Sets the colorscheme to be Seoul 256 Light
-	-- colorscheme seoul256-light
-
-	-- Sets the colorscheme to be Seoul 256
-	-- colorscheme seoul256
-
 	-- Sets the colorscheme to be Crepuscular
-	crepuscular_build.setup()
 	g.colors_name = "crepuscular_dusk"
 	-- g.colors_name = "crepuscular_dawn"
+	crepuscular_build.setup()
 end
 
 return M

@@ -216,7 +216,7 @@ function M.setup()
 
 	api.nvim_command([[ command! CrepuscularBuild lua CrepuscularBuild() ]])
 
-	vim.api.nvim_exec(
+	api.nvim_exec(
 		[[
         augroup LushBuild
         autocmd!
@@ -225,6 +225,8 @@ function M.setup()
         ]],
 		false
 	)
+
+	lush(require("lush_theme." .. vim.g.colors_name))
 end
 
 return M
