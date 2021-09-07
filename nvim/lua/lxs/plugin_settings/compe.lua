@@ -1,16 +1,16 @@
-local compe = require("compe")
+local compe = require('compe')
 local keymap = vim.api.nvim_set_keymap
 
 local M = {}
 
 -- COMPE -------------------------------
 function M.setup()
-	require("compe").setup({
+	require('compe').setup({
 		enabled = true,
 		autocomplete = true,
 		debug = false,
 		min_length = 1,
-		preselect = "enable",
+		preselect = 'enable',
 		throttle_time = 80,
 		source_timeout = 200,
 		incomplete_delay = 400,
@@ -29,11 +29,21 @@ function M.setup()
 		},
 	})
 
-	keymap("i", "<C-Space>", "compe#complete()", { noremap = true, expr = true, silent = true })
-	keymap("i", "<C-y>", "compe#confirm()", { noremap = true, expr = true, silent = true })
-	keymap("i", "<C-e>", "compe#close()", { noremap = true, expr = true, silent = true })
-	keymap("i", "<C-f>", "compe#scroll({ 'delta' = +4 })", { noremap = true, expr = true, silent = true })
-	keymap("i", "<C-d>", "compe#scroll({ 'delta' = -4 })", { noremap = true, expr = true, silent = true })
+	keymap('i', '<C-Space>', 'compe#complete()', { noremap = true, expr = true, silent = true })
+	keymap('i', '<C-y>', 'compe#confirm()', { noremap = true, expr = true, silent = true })
+	keymap('i', '<C-e>', 'compe#close()', { noremap = true, expr = true, silent = true })
+	keymap(
+		'i',
+		'<C-f>',
+		"compe#scroll({ 'delta' = +4 })",
+		{ noremap = true, expr = true, silent = true }
+	)
+	keymap(
+		'i',
+		'<C-d>',
+		"compe#scroll({ 'delta' = -4 })",
+		{ noremap = true, expr = true, silent = true }
+	)
 end
 
 return M

@@ -1,4 +1,4 @@
-local neogit = require("neogit")
+local neogit = require('neogit')
 local keymap = vim.api.nvim_set_keymap
 local M = {}
 
@@ -6,7 +6,7 @@ local M = {}
 function M.setup()
 	neogit.setup({})
 
-	keymap("n", "<Leader>g", "<cmd>Neogit<cr>", { silent = true, noremap = true })
+	keymap('n', '<Leader>g', '<cmd>Neogit<cr>', { silent = true, noremap = true })
 end
 
 return M

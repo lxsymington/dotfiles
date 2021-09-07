@@ -18,16 +18,16 @@ function M.setup()
 	api.nvim_command([[ command! NumberToggle lua NumberToggle() ]])
 
 	function SaveAndExec()
-		api.nvim_command("silent! write")
+		api.nvim_command('silent! write')
 
-		if opt.filetype == "vim" then
-			api.nvim_command("source $MYVIMRC")
-			api.nvim_command("source %")
-		elseif opt.filetype == "lua" then
-			api.nvim_command("luafile $MYVIMRC")
-			api.nvim_command("luafile %")
+		if opt.filetype == 'vim' then
+			api.nvim_command('source $MYVIMRC')
+			api.nvim_command('source %')
+		elseif opt.filetype == 'lua' then
+			api.nvim_command('luafile $MYVIMRC')
+			api.nvim_command('luafile %')
 		else
-			error(string.format("Executing %s files is not supported", opt.filetype))
+			error(string.format('Executing %s files is not supported', opt.filetype))
 		end
 	end
 
@@ -35,7 +35,7 @@ function M.setup()
 	api.nvim_command([[ command! SaveAndExec lua SaveAndExec() ]])
 
 	-- Keymap to quickly save and execute
-	keymap("n", "<Leader>xf", "<cmd>SaveAndExec<cr>", { silent = true, noremap = true })
+	keymap('n', '<Leader>xf', '<cmd>SaveAndExec<cr>', { silent = true, noremap = true })
 end
 
 return M

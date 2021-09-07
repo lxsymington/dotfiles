@@ -1,7 +1,7 @@
-local colours = require("lush_theme.crepuscular_colours")
-local feline = require("feline")
-local lsp = require("feline.providers.lsp")
-local devicons = require("nvim-web-devicons")
+local colours = require('lush_theme.crepuscular_colours')
+local feline = require('feline')
+local lsp = require('feline.providers.lsp')
+local devicons = require('nvim-web-devicons')
 local fn = vim.fn
 local api = vim.api
 local bo = vim.bo
@@ -15,7 +15,7 @@ local vi_mode_colors = {
 	VISUAL = colours.cyan.hex,
 	BLOCK = colours.lightCyan.hex,
 	REPLACE = colours.red.hex,
-	["V-REPLACE"] = colours.lightRed.hex,
+	['V-REPLACE'] = colours.lightRed.hex,
 	ENTER = colours.lightPurple.hex,
 	MORE = colours.lightBlue.hex,
 	SELECT = colours.lightOrange.hex,
@@ -26,100 +26,100 @@ local vi_mode_colors = {
 }
 
 local mode_alias_map = {
-	[""] = {
-		name = "Select-Block",
+	[''] = {
+		name = 'Select-Block',
 		fg = colours.black.hex,
 		bg = colours.lightPurple.hex,
 	},
-	[""] = {
-		name = "Visual-Block",
+	[''] = {
+		name = 'Visual-Block',
 		fg = colours.black.hex,
 		bg = colours.lightCyan.hex,
 	},
-	["!"] = { name = "Shell", fg = colours.black.hex, bg = colours.lightBlue.hex },
-	["no"] = {
-		name = "Operator-Pending",
+	['!'] = { name = 'Shell', fg = colours.black.hex, bg = colours.lightBlue.hex },
+	['no'] = {
+		name = 'Operator-Pending',
 		fg = colours.black.hex,
 		bg = colours.lightGrey.hex,
 	},
-	["r?"] = { name = "Confirm", fg = colours.black.hex, bg = colours.grey.hex },
-	c = { name = "Command-Line", fg = colours.black.hex, bg = colours.orange.hex },
+	['r?'] = { name = 'Confirm', fg = colours.black.hex, bg = colours.grey.hex },
+	c = { name = 'Command-Line', fg = colours.black.hex, bg = colours.orange.hex },
 	ce = {
-		name = "Normal-Ex",
+		name = 'Normal-Ex',
 		fg = colours.black.hex,
 		bg = colours.lightOrange.hex,
 	},
-	cv = { name = "Vim-Ex", fg = colours.black.hex, bg = colours.lightOrange.hex },
-	i = { name = "Insert", fg = colours.black.hex, bg = colours.green.hex },
+	cv = { name = 'Vim-Ex', fg = colours.black.hex, bg = colours.lightOrange.hex },
+	i = { name = 'Insert', fg = colours.black.hex, bg = colours.green.hex },
 	ic = {
-		name = "Insert-Completion",
+		name = 'Insert-Completion',
 		fg = colours.black.hex,
 		bg = colours.lightGreen.hex,
 	},
 	ix = {
-		name = "Insert-Completion",
+		name = 'Insert-Completion',
 		fg = colours.black.hex,
 		bg = colours.lightGreen.hex,
 	},
-	n = { name = "Normal", fg = colours.black.hex, bg = colours.yellow.hex },
+	n = { name = 'Normal', fg = colours.black.hex, bg = colours.yellow.hex },
 	niI = {
-		name = "Normal-Insert",
+		name = 'Normal-Insert',
 		fg = colours.black.hex,
 		bg = colours.lightYellow.hex,
 	},
 	niR = {
-		name = "Normal-Replace",
+		name = 'Normal-Replace',
 		fg = colours.black.hex,
 		bg = colours.lightYellow.hex,
 	},
 	niV = {
-		name = "Normal-Virtual-Replace",
+		name = 'Normal-Virtual-Replace',
 		fg = colours.black.hex,
 		bg = colours.lightYellow.hex,
 	},
 	no = {
-		name = "Operator-Pending",
+		name = 'Operator-Pending',
 		fg = colours.black.hex,
 		bg = colours.lightGrey.hex,
 	},
 	noV = {
-		name = "Operator-Pending",
+		name = 'Operator-Pending',
 		fg = colours.black.hex,
 		bg = colours.lightGrey.hex,
 	},
 	nov = {
-		name = "Operator-Pending",
+		name = 'Operator-Pending',
 		fg = colours.black.hex,
 		bg = colours.lightGrey.hex,
 	},
-	r = { name = "Hit-Enter", fg = colours.black.hex, bg = colours.grey.hex },
-	R = { name = "Replace", fg = colours.black.hex, bg = colours.red.hex },
+	r = { name = 'Hit-Enter', fg = colours.black.hex, bg = colours.grey.hex },
+	R = { name = 'Replace', fg = colours.black.hex, bg = colours.red.hex },
 	Rc = {
-		name = "Replace-Completion",
+		name = 'Replace-Completion',
 		fg = colours.black.hex,
 		bg = colours.lightRed.hex,
 	},
-	rm = { name = "-- More --", fg = colours.black.hex, bg = colours.grey.hex },
+	rm = { name = '-- More --', fg = colours.black.hex, bg = colours.grey.hex },
 	Rv = {
-		name = "Virtual-Replace",
+		name = 'Virtual-Replace',
 		fg = colours.black.hex,
 		bg = colours.lightRed.hex,
 	},
 	Rx = {
-		name = "Replace-Completion",
+		name = 'Replace-Completion',
 		fg = colours.black.hex,
 		bg = colours.lightRed.hex,
 	},
-	s = { name = "Select", fg = colours.black.hex, bg = colours.purple.hex },
+	s = { name = 'Select', fg = colours.black.hex, bg = colours.purple.hex },
 	S = {
-		name = "Select-Line",
+		name = 'Select-Line',
 		fg = colours.black.hex,
 		bg = colours.lightPurple.hex,
 	},
-	t = { name = "Terminal", fg = colours.black.hex, bg = colours.blue.hex },
-	v = { name = "Visual", fg = colours.black.hex, bg = colours.cyan.hex },
+	t = { name = 'Terminal', fg = colours.black.hex, bg = colours.blue.hex },
+	v = { name = 'Visual', fg = colours.black.hex, bg = colours.cyan.hex },
 	V = {
-		name = "Visual-Line",
+		name = 'Visual-Line',
 		fg = colours.black.hex,
 		bg = colours.lightCyan.hex,
 	},
@@ -129,39 +129,39 @@ local vi_mode = function()
 	local mode = fn.mode()
 	local mode_alias = string.upper(mode_alias_map[mode].name)
 
-	return string.format("  %s ", mode_alias)
+	return string.format('  %s ', mode_alias)
 end
 
 local file_namer = function()
-	local file_path = fn.expand("%:p")
+	local file_path = fn.expand('%:p')
 
 	if fn.empty(file_path) == 1 then
-		return ""
+		return ''
 	end
 
 	local file_icon = devicons.get_icon(
-		fn.fnamemodify(file_path, ":t"),
-		fn.fnamemodify(file_path, ":e"),
+		fn.fnamemodify(file_path, ':t'),
+		fn.fnamemodify(file_path, ':e'),
 		{ default = true }
 	)
-	local relative_file_path = fn.fnamemodify(file_path, ":~:.")
+	local relative_file_path = fn.fnamemodify(file_path, ':~:.')
 	local short_file_path = #relative_file_path < api.nvim_win_get_width(0) / 3 and relative_file_path
 		or fn.pathshorten(relative_file_path)
-	local file_info = string.format(" %s %s ", file_icon, short_file_path)
+	local file_info = string.format(' %s %s ', file_icon, short_file_path)
 
 	if bo.modified then
-		file_info = string.format("%s %s ", file_info, "")
+		file_info = string.format('%s %s ', file_info, '')
 	end
 
 	if not bo.modifiable then
-		file_info = string.format("%s %s ", file_info, "")
+		file_info = string.format('%s %s ', file_info, '')
 	end
 
 	return file_info
 end
 
 local buffer_not_empty = function()
-	return fn.empty(fn.expand("%:t")) ~= 1
+	return fn.empty(fn.expand('%:t')) ~= 1
 end
 
 --[[
@@ -203,9 +203,16 @@ function M.setup()
 		right = { active = {}, inactive = {} },
 	}
 
-	properties.force_inactive.filetypes = { "NvimTree", "dbui", "packer", "startify", "fugitive", "fugitiveblame" }
+	properties.force_inactive.filetypes = {
+		'NvimTree',
+		'dbui',
+		'packer',
+		'startify',
+		'fugitive',
+		'fugitiveblame',
+	}
 
-	properties.force_inactive.buftypes = { "terminal" }
+	properties.force_inactive.buftypes = { 'terminal' }
 
 	components.left.active[1] = {
 		provider = file_namer,
@@ -213,39 +220,39 @@ function M.setup()
 		hl = {
 			fg = colours.white.hex,
 			bg = colours.lightBlack.hex,
-			style = "bold",
+			style = 'bold',
 		},
-		left_sep = { "block" },
+		left_sep = { 'block' },
 	}
 
 	components.left.active[2] = {
-		provider = "file_size",
+		provider = 'file_size',
 		enabled = buffer_not_empty,
 		hl = {
 			fg = colours.lightGrey.hex,
 			bg = colours.lightBlack.hex,
-			style = "italic",
+			style = 'italic',
 		},
 		left_sep = {
 			{
-				str = "vertical_bar",
+				str = 'vertical_bar',
 				hl = { fg = colours.orange.hex, bg = colours.lightBlack.hex },
 			},
-			{ str = " ", hl = { fg = "NONE", bg = colours.lightBlack.hex } },
+			{ str = ' ', hl = { fg = 'NONE', bg = colours.lightBlack.hex } },
 		},
-		right_sep = { str = " ", hl = { fg = "NONE", bg = colours.lightBlack.hex } },
+		right_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.lightBlack.hex } },
 	}
 
 	components.left.active[3] = {
-		provider = "git_branch",
+		provider = 'git_branch',
 		hl = {
 			fg = colours.lightWhite.hex,
 			bg = colours.blue.hex,
-			style = "bold",
+			style = 'bold',
 		},
 		right_sep = function()
 			return {
-				str = "right_rounded",
+				str = 'right_rounded',
 				hl = {
 					fg = b.gitsigns_status_dict and colours.blue.hex or colours.lightBlack.hex,
 				},
@@ -254,25 +261,25 @@ function M.setup()
 	}
 
 	components.left.active[4] = {
-		provider = "git_diff_added",
+		provider = 'git_diff_added',
 		hl = { fg = colours.green.hex },
 	}
 
 	components.left.active[5] = {
-		provider = "git_diff_changed",
+		provider = 'git_diff_changed',
 		hl = { fg = colours.orange.hex },
 	}
 
 	components.left.active[6] = {
-		provider = "git_diff_removed",
+		provider = 'git_diff_removed',
 		hl = { fg = colours.red.hex },
 	}
 
 	components.mid.active[1] = {
-		provider = "%n",
-		hl = { fg = colours.lightWhite.hex, bg = colours.purple.hex, style = "bold" },
-		left_sep = { "left_rounded_thin", "left_rounded" },
-		right_sep = { "block" },
+		provider = '%n',
+		hl = { fg = colours.lightWhite.hex, bg = colours.purple.hex, style = 'bold' },
+		left_sep = { 'left_rounded_thin', 'left_rounded' },
+		right_sep = { 'block' },
 	}
 
 	components.mid.active[2] = {
@@ -281,88 +288,88 @@ function M.setup()
 			local mode = fn.mode()
 
 			return {
-				name = string.gsub(mode_alias_map[mode].name, "%A", ""),
+				name = string.gsub(mode_alias_map[mode].name, '%A', ''),
 				fg = mode_alias_map[mode].fg,
 				bg = mode_alias_map[mode].bg,
-				style = "bold",
+				style = 'bold',
 			}
 		end,
-		right_sep = { "right_rounded", "right_rounded_thin" },
+		right_sep = { 'right_rounded', 'right_rounded_thin' },
 	}
 
 	components.right.active[1] = {
-		provider = "diagnostic_errors",
+		provider = 'diagnostic_errors',
 		enabled = function()
-			return lsp.diagnostics_exist("Error")
+			return lsp.diagnostics_exist('Error')
 		end,
 		hl = { fg = colours.red.hex },
 	}
 
 	components.right.active[2] = {
-		provider = "diagnostic_warnings",
+		provider = 'diagnostic_warnings',
 		enabled = function()
-			return lsp.diagnostics_exist("Warning")
+			return lsp.diagnostics_exist('Warning')
 		end,
 		hl = { fg = colours.yellow.hex },
 	}
 
 	components.right.active[3] = {
-		provider = "diagnostic_hints",
+		provider = 'diagnostic_hints',
 		enabled = function()
-			return lsp.diagnostics_exist("Hint")
+			return lsp.diagnostics_exist('Hint')
 		end,
 		hl = { fg = colours.cyan.hex },
 	}
 
 	components.right.active[4] = {
-		provider = "diagnostic_info",
+		provider = 'diagnostic_info',
 		enabled = function()
-			return lsp.diagnostics_exist("Information")
+			return lsp.diagnostics_exist('Information')
 		end,
 		hl = { fg = colours.lightBlue.hex },
 	}
 
 	components.right.active[5] = {
-		provider = "position",
+		provider = 'position',
 		left_sep = {
 			{
-				str = " ",
-				hl = { fg = "NONE" },
+				str = ' ',
+				hl = { fg = 'NONE' },
 			},
 			{
-				str = "left_rounded",
+				str = 'left_rounded',
 				hl = { fg = colours.lightPurple.hex },
 			},
 			{
-				str = "left_rounded_thin",
-				hl = { bg = colours.lightPurple.hex, fg = "bg" },
+				str = 'left_rounded_thin',
+				hl = { bg = colours.lightPurple.hex, fg = 'bg' },
 			},
 			{
-				str = "left_rounded",
-				hl = { bg = colours.lightPurple.hex, fg = "bg" },
+				str = 'left_rounded',
+				hl = { bg = colours.lightPurple.hex, fg = 'bg' },
 			},
 			{
-				str = "  ",
+				str = '  ',
 				hl = { fg = colours.purple.hex },
 			},
 		},
 		right_sep = {
 			{
-				str = "  ",
+				str = '  ',
 				hl = { fg = colours.purple.hex },
 			},
 			{
-				str = "right_rounded",
+				str = 'right_rounded',
 				hl = {
 					bg = colours.lightPurple.hex,
-					fg = "bg",
+					fg = 'bg',
 				},
 			},
 			{
-				str = "right_rounded_thin",
+				str = 'right_rounded_thin',
 				hl = {
 					bg = colours.lightPurple.hex,
-					fg = "bg",
+					fg = 'bg',
 				},
 			},
 		},
@@ -370,48 +377,48 @@ function M.setup()
 	}
 
 	components.right.active[6] = {
-		provider = "line_percentage",
+		provider = 'line_percentage',
 		hl = {
 			bg = colours.lightPurple.hex,
-			fg = "bg",
-			style = "bold",
+			fg = 'bg',
+			style = 'bold',
 		},
 		left_sep = {
-			str = " ",
+			str = ' ',
 			hl = {
 				bg = colours.lightPurple.hex,
-				fg = "NONE",
+				fg = 'NONE',
 			},
 		},
 		right_sep = {
-			str = " ",
+			str = ' ',
 			hl = {
 				bg = colours.lightPurple.hex,
-				fg = "NONE",
+				fg = 'NONE',
 			},
 		},
 	}
 
 	components.right.active[7] = {
-		provider = "scroll_bar",
+		provider = 'scroll_bar',
 		hl = {
 			bg = colours.purple.hex,
 			fg = colours.black.hex,
-			style = "bold",
+			style = 'bold',
 		},
 	}
 
 	components.left.inactive[1] = {
-		provider = "file_type",
-		hl = { fg = colours.white.hex, bg = colours.blue.hex, style = "bold" },
-		left_sep = { str = " ", hl = { fg = "NONE", bg = colours.blue.hex } },
+		provider = 'file_type',
+		hl = { fg = colours.white.hex, bg = colours.blue.hex, style = 'bold' },
+		left_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
 		right_sep = {
-			{ str = " ", hl = { fg = "NONE", bg = colours.blue.hex } },
-			"right_rounded",
+			{ str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
+			'right_rounded',
 		},
 	}
 
-	require("feline").setup({
+	require('feline').setup({
 		default_bg = colours.black.hex,
 		default_fg = colours.white.hex,
 		components = components,

@@ -1,4 +1,4 @@
-local ls = require("luasnip")
+local ls = require('luasnip')
 local keymap = vim.api.nvim_set_keymap
 local M = {}
 
@@ -8,32 +8,32 @@ function M.setup()
 		history = true,
 	})
 
-	keymap("i", "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", {
+	keymap('i', '<Tab>', "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", {
 		expr = true,
 		silent = true,
 	})
 
-	keymap("i", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>", {
+	keymap('i', '<S-Tab>', "<cmd>lua require('luasnip').jump(-1)<Cr>", {
 		noremap = true,
 		silent = true,
 	})
 
-	keymap("s", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", {
+	keymap('s', '<Tab>', "<cmd>lua require('luasnip').jump(1)<Cr>", {
 		noremap = true,
 		silent = true,
 	})
 
-	keymap("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>", {
+	keymap('s', '<S-Tab>', "<cmd>lua require('luasnip').jump(-1)<Cr>", {
 		noremap = true,
 		silent = true,
 	})
 
-	keymap("i", "<C-E>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", {
+	keymap('i', '<C-E>', "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", {
 		expr = true,
 		silent = true,
 	})
 
-	keymap("s", "<C-E>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", {
+	keymap('s', '<C-E>', "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", {
 		expr = true,
 		silent = true,
 	})

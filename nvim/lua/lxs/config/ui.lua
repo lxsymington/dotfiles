@@ -29,16 +29,16 @@ function M.setup()
 	opt.incsearch = true
 
 	-- Preview effects of :s as you type
-	opt.inccommand = "split"
+	opt.inccommand = 'split'
 
 	-- Visual autocomplete of command menu
 	opt.wildmenu = true
 
 	-- Wildmode settings
-	opt.wildmode = { longest = "full", "full" }
+	opt.wildmode = { longest = 'full', 'full' }
 
 	-- Wild options
-	opt.wildoptions = "pum"
+	opt.wildoptions = 'pum'
 
 	-- Highlights the current line
 	opt.cursorline = true
@@ -50,14 +50,14 @@ function M.setup()
 	opt.history = 50
 
 	-- Always show the sign column
-	opt.signcolumn = "yes:2"
+	opt.signcolumn = 'yes:2'
 
 	-- Make splits remain equal
 	opt.equalalways = true
-	opt.eadirection = "both"
+	opt.eadirection = 'both'
 
 	-- Display the foldcolumn
-	opt.foldcolumn = "1"
+	opt.foldcolumn = '1'
 
 	-- Enable pseudo-transparency for popup menus
 	opt.pumblend = 10
@@ -66,7 +66,7 @@ function M.setup()
 	opt.winblend = 10
 
 	-- Set completeopt to have a better completion experience
-	opt.completeopt = { "menuone", "noselect" }
+	opt.completeopt = { 'menuone', 'noselect' }
 end
 
 return M

@@ -1,4 +1,4 @@
-local terminal = require("lxs.autocommands.terminal")
+local terminal = require('lxs.autocommands.terminal')
 
 -- Autocommands Index ------------------
 local function autocommand_setup()

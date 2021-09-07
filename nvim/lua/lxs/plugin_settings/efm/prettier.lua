@@ -7,6 +7,9 @@ return {
         ${--trailing-comma:trailingComma}
         --stdin
         --stdin-filepath ${INPUT}
-    ]]):gsub("\n", ""),
+    ]]):gsub(
+		'\n',
+		''
+	),
 	formatStdin = true,
 }

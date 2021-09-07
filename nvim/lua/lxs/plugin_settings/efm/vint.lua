@@ -1,5 +1,5 @@
 return {
-	lintCommand = "vint -",
+	lintCommand = 'vint -',
 	lintStdin = true,
-	lintFormats = { "%f:%l:%c: %m" },
+	lintFormats = { '%f:%l:%c: %m' },
 }

@@ -1,10 +1,32 @@
 
 colors:
+  vi_mode_cursor:
+    cursor: "CellForeground"
+    text: "CellBackground"
+  selection:
+    background: "CellForeground"
+    text: "CellBackground"
   primary:
     bright_foreground: "#FBF7E9"
     background: "#1A141F"
     foreground: "#EBCCAD"
     dim_foreground: "#A38FA0"
+  dim:
+    blue: "#506D95"
+    red: "#AF6A75"
+    yellow: "#C38E22"
+    green: "#8AA88F"
+    magenta: "#412A6F"
+    cyan: "#50958F"
+    black: "#42334D"
+    white: "#E6BF99"
+  hints:
+    start:
+      foreground: "#1d1f21"
+      background: "#e9ff5e"
+    end:
+      foreground: "#e9ff5e"
+      background: "#1d1f21"
   search:
     bar:
       foreground: "#1a141f"
@@ -16,21 +38,14 @@ colors:
       foreground: "#000000"
       background: "#ffffff"
   bright:
-    cyan: "#D6F5F2"
     blue: "#4C8CE6"
-    magenta: "#AF8FEF"
-    white: "#FBF7E9"
-    black: "#50494E"
     red: "#FA9E9E"
     yellow: "#FFD480"
     green: "#789550"
-  hints:
-    start:
-      foreground: "#1d1f21"
-      background: "#e9ff5e"
-    end:
-      foreground: "#e9ff5e"
-      background: "#1d1f21"
+    magenta: "#AF8FEF"
+    cyan: "#D6F5F2"
+    black: "#50494E"
+    white: "#FBF7E9"
   line_indicator:
     foreground: "None"
     background: "#50494E"
@@ -38,26 +53,11 @@ colors:
     cursor: "CellForeground"
     text: "CellBackground"
   normal:
-    cyan: "#6BC7BF"
     blue: "#1D64C9"
-    magenta: "#561DC9"
-    white: "#EBCCAD"
-    black: "#281D30"
     red: "#A3293D"
     yellow: "#FFBB33"
     green: "#36633D"
-  dim:
-    cyan: "#50958F"
-    blue: "#506D95"
-    magenta: "#412A6F"
-    white: "#E6BF99"
-    black: "#42334D"
-    red: "#AF6A75"
-    yellow: "#C38E22"
-    green: "#8AA88F"
-  vi_mode_cursor:
-    cursor: "CellForeground"
-    text: "CellBackground"
-  selection:
-    background: "CellForeground"
-    text: "CellBackground"
+    magenta: "#561DC9"
+    cyan: "#6BC7BF"
+    black: "#281D30"
+    white: "#EBCCAD"

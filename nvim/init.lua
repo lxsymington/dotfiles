@@ -1,11 +1,11 @@
 local cmd = vim.cmd
 
 -- Builtin -----------------------------
-cmd [[runtime ftplugin/man.vim]]
-cmd [[runtime macros/matchit.vim]]
+cmd([[runtime ftplugin/man.vim]])
+cmd([[runtime macros/matchit.vim]])
 
 -- Astronauta --------------------------
-cmd [[runtime plugin/astronauta.vim]]
+cmd([[runtime plugin/astronauta.vim]])
 
 -- Globals -----------------------------
 require('lxs.globals')

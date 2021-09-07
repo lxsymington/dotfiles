@@ -1,30 +1,36 @@
 local uv = vim.loop
 local api = vim.api
-local lush = require("lush")
+local lush = require('lush')
 
 local targets = {}
 local M = {}
 
 local YamlTable = {
 	__tostring = function(table)
-		local yaml = ""
+		local yaml = ''
 		local indent_level = 0
 
 		local function yamlRecurse(tableSection, indent_level)
-			local result = ""
+			local result = ''
 
 			for key, value in pairs(tableSection, indent_level) do
 				-- TODO: handle list-like tables
-				if type(value) == "table" then
+				if type(value) == 'table' then
 					result = string.format(
-						"%s\n%s%s:%s",
+						'%s\n%s%s:%s',
 						result,
-						string.rep(" ", 2 * indent_level),
+						string.rep(' ', 2 * indent_level),
 						key,
 						yamlRecurse(value, indent_level + 1)
 					)
 				else
-					result = string.format("%s\n%s%s: %q", result, string.rep(" ", 2 * indent_level), key, value)
+					result = string.format(
+						'%s\n%s%s: %q',
+						result,
+						string.rep(' ', 2 * indent_level),
+						key,
+						value
+					)
 				end
 			end
 
@@ -61,8 +67,8 @@ function targets.alacritty(colours)
                 affected cell, or hexadecimal colors like #ff00ff. 
             ]]
 			cursor = {
-				text = "CellBackground",
-				cursor = "CellForeground",
+				text = 'CellBackground',
+				cursor = 'CellForeground',
 			},
 			--[[
                 Vi mode cursor colors
@@ -73,8 +79,8 @@ function targets.alacritty(colours)
                 affected cell, or hexadecimal colors like #ff00ff. 
             ]]
 			vi_mode_cursor = {
-				text = "CellBackground",
-				cursor = "CellForeground",
+				text = 'CellBackground',
+				cursor = 'CellForeground',
 			},
 			--[[
                 Selection colors
@@ -85,8 +91,8 @@ function targets.alacritty(colours)
                 affected cell, or hexadecimal colors like #ff00ff. 
             ]]
 			selection = {
-				text = "CellBackground",
-				background = "CellForeground",
+				text = 'CellBackground',
+				background = 'CellForeground',
 			},
 			--[[
                 Search colors
@@ -99,16 +105,16 @@ function targets.alacritty(colours)
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
 				matches = {
-					foreground = "#000000",
-					background = "#ffffff",
+					foreground = '#000000',
+					background = '#ffffff',
 				},
 				focused_match = {
-					foreground = "CellBackground",
-					background = "CellForeground",
+					foreground = 'CellBackground',
+					background = 'CellForeground',
 				},
 				bar = {
-					background = "#ebccad",
-					foreground = "#1a141f",
+					background = '#ebccad',
+					foreground = '#1a141f',
 				},
 			},
 			-- Keyboard regex hints
@@ -120,18 +126,18 @@ function targets.alacritty(colours)
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
 				start = {
-					foreground = "#1d1f21",
-					background = "#e9ff5e",
+					foreground = '#1d1f21',
+					background = '#e9ff5e',
 				},
 				--[[
                     All characters after the first one in the hint label
-                    
+
                     Allowed values are CellForeground/CellBackground, which reference the
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
-				["end"] = {
-					foreground = "#e9ff5e",
-					background = "#1d1f21",
+				['end'] = {
+					foreground = '#e9ff5e',
+					background = '#1d1f21',
 				},
 			},
 			--[[
@@ -143,7 +149,7 @@ function targets.alacritty(colours)
                 By default, these will use the opposing primary color. 
             ]]
 			line_indicator = {
-				foreground = "None",
+				foreground = 'None',
 				background = colours.grey.hex,
 			},
 			-- Normal colours
@@ -189,11 +195,11 @@ function targets.alacritty(colours)
 
 	setmetatable(template, YamlTable)
 
-	return string.format("%s", template)
+	return string.format('%s', template)
 end
 
 local function write_file(file, buf)
-	local fd = assert(uv.fs_open(file, "w", 420))
+	local fd = assert(uv.fs_open(file, 'w', 420))
 	uv.fs_write(fd, buf, -1)
 	assert(uv.fs_close(fd))
 end
@@ -202,13 +208,16 @@ function M.setup()
 	function CrepuscularBuild()
 		local crepuscular
 
-		for _, variant in ipairs({ "dark", "light" }) do
-			package.loaded["lush_theme.crepuscular_colours"] = nil
+		for _, variant in ipairs({ 'dark', 'light' }) do
+			package.loaded['lush_theme.crepuscular_colours'] = nil
 			vim.opt.background = variant
-			crepuscular = require("lush_theme.crepuscular_colours")
+			crepuscular = require('lush_theme.crepuscular_colours')
 
 			write_file(
-				string.format(os.getenv("HOME") .. "/.dotfiles/alacritty/.alacritty.colours.%s.yml", variant),
+				string.format(
+					os.getenv('HOME') .. '/.dotfiles/alacritty/.alacritty.colours.%s.yml',
+					variant
+				),
 				targets.alacritty(crepuscular)
 			)
 		end
@@ -226,7 +235,7 @@ function M.setup()
 		false
 	)
 
-	lush(require("lush_theme." .. vim.g.colors_name))
+	lush(require('lush_theme.' .. vim.g.colors_name))
 end
 
 return M

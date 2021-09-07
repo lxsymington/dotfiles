@@ -1,4 +1,4 @@
 return {
-	formatCommand = "stylua -",
+	formatCommand = 'stylua -',
 	formatStdin = true,
 }
