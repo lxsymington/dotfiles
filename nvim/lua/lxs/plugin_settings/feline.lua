@@ -193,28 +193,32 @@ end
 
 -- FELINE ------------------------------
 function M.setup()
-	local properties = {
-		force_inactive = { filetypes = {}, buftypes = {}, bufnames = {} },
-	}
-
 	local components = {
-		left = { active = {}, inactive = {} },
-		mid = { active = {}, inactive = {} },
-		right = { active = {}, inactive = {} },
+		active = {
+			{},
+			{},
+			{},
+		},
+		inactive = {
+			{},
+			{},
+			{},
+		},
 	}
 
-	properties.force_inactive.filetypes = {
+	--[[ local force_inactive = {
+	  filetypes = {
 		'NvimTree',
 		'dbui',
 		'packer',
 		'startify',
 		'fugitive',
 		'fugitiveblame',
+      },
+      buftypes = { 'terminal' }
 	}
-
-	properties.force_inactive.buftypes = { 'terminal' }
-
-	components.left.active[1] = {
+ ]]
+	table.insert(components.active[1], {
 		provider = file_namer,
 		enabled = buffer_not_empty,
 		hl = {
@@ -223,9 +227,9 @@ function M.setup()
 			style = 'bold',
 		},
 		left_sep = { 'block' },
-	}
+	})
 
-	components.left.active[2] = {
+	table.insert(components.active[1], {
 		provider = 'file_size',
 		enabled = buffer_not_empty,
 		hl = {
@@ -241,15 +245,16 @@ function M.setup()
 			{ str = ' ', hl = { fg = 'NONE', bg = colours.lightBlack.hex } },
 		},
 		right_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.lightBlack.hex } },
-	}
+	})
 
-	components.left.active[3] = {
+	table.insert(components.active[1], {
 		provider = 'git_branch',
 		hl = {
 			fg = colours.lightWhite.hex,
 			bg = colours.blue.hex,
 			style = 'bold',
 		},
+		left_sep = { 'block' },
 		right_sep = function()
 			return {
 				str = 'right_rounded',
@@ -258,78 +263,78 @@ function M.setup()
 				},
 			}
 		end,
-	}
+	})
 
-	components.left.active[4] = {
+	table.insert(components.active[1], {
 		provider = 'git_diff_added',
 		hl = { fg = colours.green.hex },
-	}
+	})
 
-	components.left.active[5] = {
+	table.insert(components.active[1], {
 		provider = 'git_diff_changed',
 		hl = { fg = colours.orange.hex },
-	}
+	})
 
-	components.left.active[6] = {
+	table.insert(components.active[1], {
 		provider = 'git_diff_removed',
 		hl = { fg = colours.red.hex },
-	}
+	})
 
-	components.mid.active[1] = {
+	table.insert(components.active[2], {
 		provider = '%n',
 		hl = { fg = colours.lightWhite.hex, bg = colours.purple.hex, style = 'bold' },
 		left_sep = { 'left_rounded_thin', 'left_rounded' },
 		right_sep = { 'block' },
-	}
+	})
 
-	components.mid.active[2] = {
+	table.insert(components.active[2], {
 		provider = vi_mode,
 		hl = function()
 			local mode = fn.mode()
 
 			return {
-				name = string.gsub(mode_alias_map[mode].name, '%A', ''),
+				name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
 				fg = mode_alias_map[mode].fg,
 				bg = mode_alias_map[mode].bg,
 				style = 'bold',
 			}
 		end,
 		right_sep = { 'right_rounded', 'right_rounded_thin' },
-	}
+	})
 
-	components.right.active[1] = {
+	table.insert(components.active[3], {
 		provider = 'diagnostic_errors',
 		enabled = function()
 			return lsp.diagnostics_exist('Error')
 		end,
 		hl = { fg = colours.red.hex },
-	}
+	})
 
-	components.right.active[2] = {
+	table.insert(components.active[3], {
 		provider = 'diagnostic_warnings',
 		enabled = function()
 			return lsp.diagnostics_exist('Warning')
 		end,
 		hl = { fg = colours.yellow.hex },
-	}
+	})
 
-	components.right.active[3] = {
+	table.insert(components.active[3], {
 		provider = 'diagnostic_hints',
 		enabled = function()
 			return lsp.diagnostics_exist('Hint')
 		end,
 		hl = { fg = colours.cyan.hex },
-	}
+	})
 
-	components.right.active[4] = {
+	table.insert(components.active[3], {
 		provider = 'diagnostic_info',
 		enabled = function()
 			return lsp.diagnostics_exist('Information')
 		end,
 		hl = { fg = colours.lightBlue.hex },
-	}
+	})
 
-	components.right.active[5] = {
+	table.insert(components.active[3], {
 		provider = 'position',
 		left_sep = {
 			{
@@ -374,9 +379,9 @@ function M.setup()
 			},
 		},
 		hl = { fg = colours.lightGrey.hex },
-	}
+	})
 
-	components.right.active[6] = {
+	table.insert(components.active[3], {
 		provider = 'line_percentage',
 		hl = {
 			bg = colours.lightPurple.hex,
@@ -397,32 +402,43 @@ function M.setup()
 				fg = 'NONE',
 			},
 		},
-	}
+	})
 
-	components.right.active[7] = {
+	table.insert(components.active[3], {
 		provider = 'scroll_bar',
 		hl = {
 			bg = colours.purple.hex,
 			fg = colours.black.hex,
 			style = 'bold',
 		},
-	}
+	})
 
-	components.left.inactive[1] = {
+	table.insert(components.inactive[1], {
+		provider = file_namer,
+		enabled = buffer_not_empty,
+		hl = {
+			fg = colours.white.hex,
+			bg = colours.lightBlack.hex,
+			style = 'bold',
+		},
+		left_sep = { 'block' },
+	})
+	table.insert(components.inactive[3], {
 		provider = 'file_type',
 		hl = { fg = colours.white.hex, bg = colours.blue.hex, style = 'bold' },
-		left_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
-		right_sep = {
+		left_sep = {
+			'left_rounded',
 			{ str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
-			'right_rounded',
 		},
-	}
+		right_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
+	})
 
 	require('feline').setup({
-		default_bg = colours.black.hex,
-		default_fg = colours.white.hex,
+		colors = {
+			bg = colours.black.hex,
+			fg = colours.white.hex,
+		},
 		components = components,
-		properties = properties,
 	})
 end
 

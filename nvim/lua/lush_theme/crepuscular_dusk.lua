@@ -14,14 +14,10 @@ local theme = lush.merge({
 			Comment({ fg = colours.lightGrey, gui = 'nocombine,italic' }),
 			CursorLine({ bg = colours.black.darken(20), gui = 'nocombine' }),
 			CursorLineNr({ bg = colours.black, fg = colours.yellow, gui = 'nocombine,bold' }),
-			DiffAdd({ bg = colours.green, fg = colours.lightGreen, gui = 'nocombine,bold' }),
-			DiffChange({ bg = colours.blue, fg = colours.lightBlue, gui = 'nocombine,bold' }),
-			DiffDelete({ bg = colours.red, fg = colours.lightRed, gui = 'nocombine,bold' }),
-			DiffText({
-				bg = colours.purple,
-				fg = colours.lightPurple,
-				gui = 'nocombine,bold,undercurl',
-			}),
+			DiffAdd({ bg = colours.black.mix(colours.green, 50), gui = 'nocombine,bold' }),
+			DiffChange({ bg = colours.black.mix(colours.blue, 50), gui = 'nocombine,bold' }),
+			DiffDelete({ bg = colours.black.mix(colours.red, 50), gui = 'nocombine,bold' }),
+			DiffText({ bg = colours.black.mix(colours.purple, 50), gui = 'nocombine,bold,undercurl' }),
 			IncSearch({ bg = colours.lightGreen, fg = colours.black, gui = 'nocombine,bold' }),
 			LineNr({
 				bg = colours.black.lighten(5),

@@ -89,7 +89,10 @@ function M.setup()
 		'n',
 		'<Leader>?',
 		"<Cmd>:lua require('lxs.plugin_settings.telescope').lsp_range_code_actions()<CR>",
-		{ noremap = true, silent = true }
+		{
+			noremap = true,
+			silent = true,
+		}
 	)
 	keymap('n', '<Leader>fb', "<Cmd>:lua require('lxs.plugin_settings.telescope').buffers()<CR>", {
 		noremap = true,

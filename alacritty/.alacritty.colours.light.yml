@@ -1,63 +1,63 @@
 
 colors:
+  line_indicator:
+    foreground: "None"
+    background: "#50494E"
   vi_mode_cursor:
     cursor: "CellForeground"
     text: "CellBackground"
+  normal:
+    cyan: "#6BC7BF"
+    black: "#281D30"
+    magenta: "#561DC9"
+    blue: "#1D64C9"
+    green: "#36633D"
+    red: "#A3293D"
+    yellow: "#FFBB33"
+    white: "#EBCCAD"
   selection:
     background: "CellForeground"
     text: "CellBackground"
   primary:
     bright_foreground: "#FBF7E9"
-    background: "#1A141F"
-    foreground: "#EBCCAD"
     dim_foreground: "#A38FA0"
-  dim:
-    blue: "#506D95"
-    red: "#AF6A75"
-    yellow: "#C38E22"
-    green: "#8AA88F"
-    magenta: "#412A6F"
-    cyan: "#50958F"
-    black: "#42334D"
-    white: "#E6BF99"
+    foreground: "#EBCCAD"
+    background: "#1A141F"
   hints:
-    start:
-      foreground: "#1d1f21"
-      background: "#e9ff5e"
     end:
       foreground: "#e9ff5e"
       background: "#1d1f21"
+    start:
+      foreground: "#1d1f21"
+      background: "#e9ff5e"
   search:
     bar:
-      foreground: "#1a141f"
       background: "#ebccad"
+      foreground: "#1a141f"
     focused_match:
       foreground: "CellBackground"
       background: "CellForeground"
     matches:
       foreground: "#000000"
       background: "#ffffff"
-  bright:
-    blue: "#4C8CE6"
-    red: "#FA9E9E"
-    yellow: "#FFD480"
-    green: "#789550"
-    magenta: "#AF8FEF"
-    cyan: "#D6F5F2"
-    black: "#50494E"
-    white: "#FBF7E9"
-  line_indicator:
-    foreground: "None"
-    background: "#50494E"
+  dim:
+    cyan: "#50958F"
+    black: "#42334D"
+    magenta: "#412A6F"
+    blue: "#506D95"
+    green: "#8AA88F"
+    red: "#AF6A75"
+    yellow: "#C38E22"
+    white: "#E6BF99"
   cursor:
     cursor: "CellForeground"
     text: "CellBackground"
-  normal:
-    blue: "#1D64C9"
-    red: "#A3293D"
-    yellow: "#FFBB33"
-    green: "#36633D"
-    magenta: "#561DC9"
-    cyan: "#6BC7BF"
-    black: "#281D30"
-    white: "#EBCCAD"
+  bright:
+    cyan: "#D6F5F2"
+    black: "#50494E"
+    magenta: "#AF8FEF"
+    blue: "#4C8CE6"
+    green: "#789550"
+    red: "#FA9E9E"
+    yellow: "#FFD480"
+    white: "#FBF7E9"

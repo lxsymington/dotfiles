@@ -144,7 +144,10 @@ function M.setup()
 		'n',
 		'<Leader>B',
 		"<Cmd>:lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-		{ noremap = true, silent = true }
+		{
+			noremap = true,
+			silent = true,
+		}
 	)
 	-- SET LOGPOINT
 	keymap(
