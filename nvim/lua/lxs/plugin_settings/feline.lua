@@ -145,7 +145,8 @@ local file_namer = function()
 		{ default = true }
 	)
 	local relative_file_path = fn.fnamemodify(file_path, ':~:.')
-	local short_file_path = #relative_file_path < api.nvim_win_get_width(0) / 3 and relative_file_path
+	local short_file_path = #relative_file_path < api.nvim_win_get_width(0) / 3
+			and relative_file_path
 		or fn.pathshorten(relative_file_path)
 	local file_info = string.format(' %s %s ', file_icon, short_file_path)
 

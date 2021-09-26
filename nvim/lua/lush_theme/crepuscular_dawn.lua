@@ -17,7 +17,11 @@ local theme = lush.merge({
 			DiffAdd({ bg = colours.lightGreen, fg = colours.green, gui = 'nocombine,bold' }),
 			DiffChange({ bg = colours.lightBlue, fg = colours.blue, gui = 'nocombine,bold' }),
 			DiffDelete({ bg = colours.lightRed, fg = colours.red, gui = 'nocombine,bold' }),
-			DiffText({ bg = colours.lightCyan, fg = colours.cyan, gui = 'nocombine,bold,undercurl' }),
+			DiffText({
+				bg = colours.lightCyan,
+				fg = colours.cyan,
+				gui = 'nocombine,bold,undercurl',
+			}),
 			IncSearch({ bg = colours.lightGreen, fg = colours.lightBlack, gui = 'nocombine,bold' }),
 			LineNr({
 				bg = colours.white.abs_lighten(5),
@@ -37,7 +41,11 @@ local theme = lush.merge({
 				fg = colours.lightBlack,
 				gui = 'nocombine',
 			}),
-			Pmenu({ bg = colours.lightWhite.abs_lighten(10), fg = colours.grey, gui = 'nocombine' }),
+			Pmenu({
+				bg = colours.lightWhite.abs_lighten(10),
+				fg = colours.grey,
+				gui = 'nocombine',
+			}),
 			PmenuSbar({ bg = colours.white.abs_lighten(10), gui = 'nocombine' }),
 			PmenuSel({ bg = colours.lightCyan, fg = colours.black, gui = 'nocombine,bold' }),
 			QuickFixLine({

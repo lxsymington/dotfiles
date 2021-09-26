@@ -110,7 +110,12 @@ function M.setup()
 
 	-- Set up mappings for `nvim-dap`
 	-- CONTINUE
-	keymap('n', '<F5>', "<Cmd>:lua require('dap').continue()<CR>", { noremap = true, silent = true })
+	keymap(
+		'n',
+		'<F5>',
+		"<Cmd>:lua require('dap').continue()<CR>",
+		{ noremap = true, silent = true }
+	)
 	-- STEP OVER
 	keymap(
 		'n',

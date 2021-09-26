@@ -17,7 +17,10 @@ local theme = lush.merge({
 			DiffAdd({ bg = colours.black.mix(colours.green, 25), gui = 'nocombine,bold' }),
 			DiffChange({ bg = colours.black.mix(colours.blue, 25), gui = 'nocombine,bold' }),
 			DiffDelete({ fg = colours.black.mix(colours.red, 75), gui = 'nocombine,bold' }),
-			DiffText({ bg = colours.black.mix(colours.lightPurple, 25), gui = 'nocombine,bold,undercurl' }),
+			DiffText({
+				bg = colours.black.mix(colours.lightPurple, 25),
+				gui = 'nocombine,bold,undercurl',
+			}),
 			IncSearch({ bg = colours.lightGreen, fg = colours.black, gui = 'nocombine,bold' }),
 			LineNr({
 				bg = colours.black.lighten(5),
@@ -43,7 +46,11 @@ local theme = lush.merge({
 			StatusLineNC({ bg = colours.black, gui = 'nocombine' }),
 			Substitute({ bg = colours.blue, fg = colours.lightCyan, gui = 'nocombine' }),
 			TabLine({ bg = colours.grey, fg = colours.lightGrey }),
-			TabLineFill({ bg = colours.lightGrey.darken(30), fg = colours.black, gui = 'nocombine' }),
+			TabLineFill({
+				bg = colours.lightGrey.darken(30),
+				fg = colours.black,
+				gui = 'nocombine',
+			}),
 			TabLineSel({ Normal, gui = 'nocombine,bold' }),
 			TermCursorNC({ bg = colours.white, fg = colours.black, gui = 'nocombine' }),
 			VertSplit({ fg = colours.lightPurple, gui = 'nocombine' }),

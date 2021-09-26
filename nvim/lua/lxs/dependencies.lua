@@ -6,11 +6,13 @@ if not packer_exists then
 
 	vim.fn.mkdir(directory, 'p')
 
-	local out = vim.fn.system(string.format(
-		'git clone %s %s',
-		'https://github.com/wbthomason/packer.nvim',
-		directory .. 'packer.nvim'
-	))
+	local out = vim.fn.system(
+		string.format(
+			'git clone %s %s',
+			'https://github.com/wbthomason/packer.nvim',
+			directory .. 'packer.nvim'
+		)
+	)
 
 	print(out)
 	print('Downloading packer.nvim')
@@ -50,6 +52,28 @@ return require('packer').startup(function(use)
 			vim.cmd('TSUpdate')
 		end,
 	})
+	use({
+		'mfussenegger/nvim-ts-hint-textobject',
+		opt = true,
+		keys = {
+			{ 'o', '<silent> m' },
+			{ 'v', '<silent> m' },
+		},
+		config = function()
+			require('lxs.plugin_settings.tsht').setup()
+		end,
+	})
+	use({
+		'nvim-treesitter/playground',
+		opt = true,
+		cmd = {
+			'TSPlaygroundToggle',
+			'TSHighlightCapturesUnderCursor',
+		},
+		config = function()
+			require('lxs.plugin_settings.treesitter_playground').setup()
+		end,
+	})
 
 	use({ 'kyazdani42/nvim-web-devicons' })
 
@@ -63,9 +87,14 @@ return require('packer').startup(function(use)
 
 	-- Completion
 	use({
-		'hrsh7th/nvim-compe',
+		'hrsh7th/nvim-cmp',
+		requires = {
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-buffer',
+			'saadparwaiz1/cmp_luasnip',
+		},
 		config = function()
-			require('lxs.plugin_settings.compe').setup()
+			require('lxs.plugin_settings.cmp').setup()
 		end,
 	})
 
@@ -78,7 +107,7 @@ return require('packer').startup(function(use)
 			'folke/lua-dev.nvim',
 		},
 		config = function()
-			require('lxs.lsp_config').setup()
+			require('lxs.lsp').setup()
 		end,
 	})
 
@@ -140,16 +169,23 @@ return require('packer').startup(function(use)
 	})
 
 	-- Search
-	--[[ use("tami5/sql.nvim")
-    use("nvim-telescope/telescope-frecency.nvim") ]]
-	use('nvim-telescope/telescope-fzy-native.nvim')
+	use({
+		'nvim-telescope/telescope-fzf-native.nvim',
+		run = 'make',
+	})
+	use({
+		'nvim-telescope/telescope-frecency.nvim',
+		requires = { 'tami5/sqlite.lua' },
+	})
 	use({
 		'nvim-telescope/telescope.nvim',
+		after = {
+			'telescope-fzf-native.nvim',
+			'telescope-frecency.nvim',
+		},
 		requires = {
 			'nvim-lua/popup.nvim',
 			'nvim-lua/plenary.nvim',
-			-- "telescope-frecency.nvim",
-			'telescope-fzy-native.nvim',
 		},
 		config = function()
 			require('lxs.plugin_settings.telescope').setup()

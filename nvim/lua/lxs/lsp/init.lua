@@ -1,3 +1,5 @@
+require('lxs.lsp.handlers')
+require('lxs.lsp.formatting')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
@@ -12,7 +14,7 @@ local M = {}
 
 -- Pretty icons
 vim.lsp.protocol.CompletionItemKind = {
-	' [text]',
+	' [text]',
 	' [method]',
 	' [function]',
 	' [constructor]',
@@ -36,40 +38,34 @@ vim.lsp.protocol.CompletionItemKind = {
 	' [struct]',
 	'⌘ [event]',
 	' [operator]',
-	'♛ [type]',
+	' [type]',
 }
 
--- Formatting
-local format_options_prettier = {
-	tabWidth = 4,
-	singleQuote = true,
-	trailingComma = 'all',
-	configPrecedence = 'prefer-file',
+M.symbol_kind_icons = {
+	Function = '',
+	Method = '',
+	Variable = '',
+	Constant = '',
+	Interface = '',
+	Field = 'ﰠ',
+	Property = '',
+	Struct = '',
+	Enum = '',
+	Class = '',
 }
 
-vim.g.format_options_typescript = format_options_prettier
-vim.g.format_options_javascript = format_options_prettier
-vim.g.format_options_typescriptreact = format_options_prettier
-vim.g.format_options_javascriptreact = format_options_prettier
-vim.g.format_options_css = format_options_prettier
-vim.g.format_options_scss = format_options_prettier
-vim.g.format_options_html = format_options_prettier
-vim.g.format_options_yaml = format_options_prettier
-vim.g.format_options_markdown = format_options_prettier
-
-function FormatToggle(value)
-	vim.g[string.format('format_disabled_%s', vim.bo.filetype)] = value
-end
-
-vim.cmd([[command! FormatDisable lua FormatToggle(true)]])
-vim.cmd([[command! FormatEnable lua FormatToggle(false)]])
-
-_G.formatting = function()
-	if not vim.g[string.format('format_disabled_%s', vim.bo.filetype)] then
-		print('Formatting file...')
-		vim.lsp.buf.formatting(vim.g[string.format('format_options_%s', vim.bo.filetype)] or {})
-	end
-end
+M.symbol_kind_colors = {
+	Function = 'green',
+	Method = 'green',
+	Variable = 'blue',
+	Constant = 'red',
+	Interface = 'cyan',
+	Field = 'blue',
+	Property = 'blue',
+	Struct = 'cyan',
+	Enum = 'yellow',
+	Class = 'red',
+}
 
 -- Preview definition
 local function preview_location_callback(_, _, result)
@@ -79,12 +75,12 @@ local function preview_location_callback(_, _, result)
 	vim.lsp.util.preview_location(result[1])
 end
 
-function PeekDefinition()
+function M.PeekDefinition()
 	local params = vim.lsp.util.make_position_params()
 	return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
 end
 
-vim.cmd([[command! PeekDefinition lua PeekDefinition()]])
+vim.cmd([[command! PeekDefinition lua require('lxs.lsp').PeekDefinition()]])
 
 -- Turn on status.
 lsp_status.register_progress()
@@ -110,7 +106,7 @@ local custom_attach = function(client)
 			[[
             augroup Format
             autocmd! * <buffer>
-            autocmd BufWritePost <buffer> lua formatting()
+            autocmd BufWritePost <buffer> lua require('lxs.lsp.formatting').format()
             augroup END
         ]],
 			true
@@ -154,39 +150,6 @@ function M.setup()
 	-- Set LSP client's log level. Server's log level is not affected.
 	vim.lsp.set_log_level('info')
 
-	vim.lsp.handlers['textDocument/formatting'] = function(err, _, result, _, bufnr)
-		if err ~= nil or result == nil then
-			return
-		end
-		if not vim.api.nvim_buf_get_option(bufnr, 'modified') then
-			local view = vim.fn.winsaveview()
-			vim.lsp.util.apply_text_edits(result, bufnr)
-			vim.fn.winrestview(view)
-			if bufnr == vim.api.nvim_get_current_buf() then
-				vim.api.nvim_command('noautocmd :update')
-			end
-		end
-	end
-
-	vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-		vim.lsp.diagnostic.on_publish_diagnostics,
-		{
-			-- Enable underline, use default values
-			underline = true,
-			-- Enable virtual text, override spacing to 4
-			virtual_text = { spacing = 4, prefix = '🔎' },
-		}
-	)
-
-	vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-		require('lsp_extensions.workspace.diagnostic').handler,
-		{
-			signs = {
-				severity_limit = 'Error',
-			},
-		}
-	)
-
 	local servers = { 'cssls', 'html', 'jsonls', 'rust_analyzer', 'tsserver', 'vimls', 'yamlls' }
 
 	for _, lsp in ipairs(servers) do
@@ -225,36 +188,12 @@ function M.setup()
 	lspconfig.efm.setup({
 		cmd = {
 			'efm-langserver',
-			'-logfile',
-			os.getenv('HOME') .. '/efm.log',
 			'-loglevel',
 			'2',
+			'-logfile',
+			os.getenv('HOME') .. '/efm.log',
 		},
-		root_dir = util.root_pattern('package.json', '.git/'),
-		init_options = {
-			documentFormatting = true,
-			hover = false,
-			documentSymbol = true,
-			codeAction = true,
-			completion = false,
-		},
-		settings = {
-			rootMarkers = { 'package.json', '.git/' },
-			languages = {
-				lua = { stylua },
-				vim = { vint },
-				typescript = { prettier, tslint, eslint },
-				javascript = { prettier, eslint },
-				typescriptreact = { prettier, tslint, eslint },
-				javascriptreact = { prettier, eslint },
-				yaml = { prettier },
-				json = { prettier },
-				html = { prettier },
-				scss = { prettier },
-				css = { prettier },
-				markdown = { prettier },
-			},
-		},
+		capabilities = capabilities,
 		filetypes = {
 			'lua',
 			'vim',
@@ -271,10 +210,38 @@ function M.setup()
 			'css',
 			'markdown',
 		},
-		on_attach = custom_attach,
-		capabilities = capabilities,
+		flags = { debounce_text_changes = 1200 },
+		init_options = {
+			codeAction = false,
+			completion = false,
+			documentFormatting = true,
+			documentSymbol = false,
+			document_formatting = true,
+			hover = false,
+		},
 		log_level = vim.lsp.protocol.MessageType.Log,
 		message_level = vim.lsp.protocol.MessageType.Log,
+		on_attach = custom_attach,
+		root_dir = util.root_pattern('package.json', '.git/'),
+		settings = {
+			rootMarkers = { 'package.json', '.git/' },
+			lintDebounce = '300ms',
+			formatDebounce = '1200ms',
+			languages = {
+				lua = { stylua },
+				vim = { vint },
+				typescript = { prettier, tslint, eslint },
+				javascript = { prettier, eslint },
+				typescriptreact = { prettier, tslint, eslint },
+				javascriptreact = { prettier, eslint },
+				yaml = { prettier },
+				json = { prettier },
+				html = { prettier },
+				scss = { prettier },
+				css = { prettier },
+				markdown = { prettier },
+			},
+		},
 	})
 
 	lspconfig.sumneko_lua.setup(luadev.setup({
@@ -358,7 +325,12 @@ function M.setup()
 	)
 
 	-- Rename
-	keymap('n', '<Leader>r', '<Cmd>:lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+	keymap(
+		'n',
+		'<Leader>r',
+		'<Cmd>:lua vim.lsp.buf.rename()<CR>',
+		{ noremap = true, silent = true }
+	)
 
 	-- Hover
 	keymap('n', 'K', '<Cmd>:lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })

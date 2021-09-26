@@ -52,26 +52,28 @@ function M.setup()
 			winblend = 10,
 		},
 		extensions = {
-			--[[ frecency = {
+			frecency = {
 				show_scores = true,
 				show_unindexed = true,
-				ignore_patterns = { "*.git/*", "*/node_modules/*", "*/tmp/*" },
+				ignore_patterns = { '*.git/*', '*/node_modules/*', '*/tmp/*' },
 				workspaces = {
-					["conf"] = os.getenv("HOME") .. "/.config",
-					["data"] = os.getenv("HOME") .. "/.local/share",
-					["development"] = os.getenv("HOME") .. "/Development",
-					["learning"] = os.getenv("HOME") .. "/Learning",
+					['conf'] = os.getenv('HOME') .. '/.config',
+					['data'] = os.getenv('HOME') .. '/.local/share',
+					['development'] = os.getenv('HOME') .. '/Development',
+					['learning'] = os.getenv('HOME') .. '/Learning',
 				},
-			}, ]]
-			fzy_native = {
+			},
+			fzf = {
+				fuzzy = true,
 				override_generic_sorter = true,
 				override_file_sorter = true,
+				case_mode = 'smart_case',
 			},
 		},
 	})
 
-	-- require("telescope").load_extension("frecency")
-	require('telescope').load_extension('fzy_native')
+	require('telescope').load_extension('fzf')
+	require('telescope').load_extension('frecency')
 
 	keymap(
 		'n',
@@ -102,12 +104,12 @@ function M.setup()
 		noremap = true,
 		silent = true,
 	})
-	--[[ keymap(
-		"n",
-		"<Leader>ff",
+	keymap(
+		'n',
+		'<Leader>ff',
 		"<Cmd>:lua require('lxs.plugin_settings.telescope').frecency()<CR>",
 		{ noremap = true, silent = true }
-	) ]]
+	)
 	keymap('n', '<Leader>fgf', "<Cmd>:lua require('lxs.plugin_settings.telescope').git_files()<CR>", {
 		noremap = true,
 		silent = true,
@@ -167,15 +169,15 @@ function M.curbuf()
 	builtin.current_buffer_fuzzy_find(opts)
 end
 
---[[ function M.frecency()
+function M.frecency()
 	local opts = themes.get_dropdown({
 		winblend = 10,
 		border = true,
 		shorten_path = false,
 	})
 
-	require("telescope").extensions.frecency.frecency(opts)
-end ]]
+	require('telescope').extensions.frecency.frecency(opts)
+end
 
 return setmetatable({}, {
 	__index = function(_, k)

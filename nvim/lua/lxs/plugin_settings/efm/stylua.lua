@@ -1,4 +1,4 @@
 return {
-	formatCommand = 'stylua -',
+	formatCommand = 'stylua --stdin-filepath ${INPUT} -',
 	formatStdin = true,
 }
