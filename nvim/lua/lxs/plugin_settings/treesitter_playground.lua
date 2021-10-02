@@ -1,7 +1,7 @@
 local keymap = vim.api.nvim_set_keymap
 local M = {}
 
--- TROUBLE -----------------------------
+-- TREESITTER PLAYGROUND ---------------
 function M.setup()
 	require('nvim-treesitter.configs').setup({
 		playground = {

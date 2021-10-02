@@ -68,11 +68,12 @@ M.symbol_kind_colors = {
 }
 
 -- Preview definition
-local function preview_location_callback(_, _, result)
+local function preview_location_callback(_, result)
 	if result == nil or vim.tbl_isempty(result) then
 		return nil
 	end
-	vim.lsp.util.preview_location(result[1])
+
+	vim.lsp.util.preview_location(result[1], { border = 'rounded' })
 end
 
 function M.PeekDefinition()
@@ -87,21 +88,37 @@ lsp_status.register_progress()
 
 -- Enable snippet support
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		'documentation',
-		'detail',
-		'additionalTextEdits',
-	},
-}
+capabilities.textDocument.completion.completionItem = vim.tbl_extend(
+	'keep',
+	capabilities.textDocument.completion.completionItem,
+	{
+		commitCharactersSupport = true,
+		deprecatedSupport = true,
+		documentationFormat = { 'markdown', 'plaintext' },
+		insertReplaceSupport = true,
+		labelDetailsSupport = true,
+		preselectSupport = true,
+		snippetSupport = true,
+		tagSupport = { valueSet = { 1 } },
+		resolveSupport = {
+			properties = {
+				'documentation',
+				'detail',
+				'additionalTextEdits',
+			},
+		},
+	}
+)
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 -- Attach
 local custom_attach = function(client)
 	lsp_status.on_attach(client)
 
-	if client.resolved_capabilities.document_formatting then
+	if
+		client.resolved_capabilities.document_formatting
+		or client.resolved_capabilities.documentFormatting
+	then
 		vim.api.nvim_exec(
 			[[
             augroup Format
@@ -248,13 +265,11 @@ function M.setup()
 		lspconfig = {
 			on_attach = custom_attach,
 			capabilities = capabilities,
-
 			cmd = {
 				'lua-language-server',
 				'-E',
 				os.getenv('HOME') .. '/Tools/lua-language-server/main.lua',
 			},
-
 			root_dir = function(fname)
 				return util.find_git_ancestor(fname) or util.path.dirname(fname)
 			end,

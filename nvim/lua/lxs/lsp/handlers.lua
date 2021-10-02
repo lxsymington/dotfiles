@@ -1,15 +1,17 @@
-vim.lsp.handlers['textDocument/formatting'] = function(err, _, result, _, bufnr)
+vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, config)
 	if err ~= nil or result == nil then
+		P(err)
 		return
 	end
+
 	if
-		vim.api.nvim_buf_get_var(bufnr, 'init_changedtick')
-		== vim.api.nvim_buf_get_var(bufnr, 'changedtick')
+		vim.api.nvim_buf_get_var(ctx.bufnr, 'init_changedtick')
+		== vim.api.nvim_buf_get_var(ctx.bufnr, 'changedtick')
 	then
 		local view = vim.fn.winsaveview()
-		vim.lsp.util.apply_text_edits(result, bufnr)
+		vim.lsp.util.apply_text_edits(result, ctx.bufnr)
 		vim.fn.winrestview(view)
-		if bufnr == vim.api.nvim_get_current_buf() then
+		if ctx.bufnr == vim.api.nvim_get_current_buf() then
 			vim.b.saving_format = true
 			vim.cmd([[update]])
 			vim.b.saving_format = false
@@ -22,7 +24,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = function(...)
 		-- Enable underline, use default values
 		underline = true,
 		-- Enable virtual text, override spacing to 4
-		virtual_text = { spacing = 4, prefix = '🔎' },
+		virtual_text = { spacing = 4, prefix = '🔎', source = 'always' },
 		require('lsp_extensions.workspace.diagnostic').handler,
 		{
 			signs = {
@@ -34,9 +36,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = function(...)
 end
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = vim.g.floating_window_border_dark,
+	border = 'rounded',
 })
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = vim.g.floating_window_border_dark,
+	border = 'rounded',
 })

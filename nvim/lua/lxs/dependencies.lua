@@ -359,6 +359,12 @@ return require('packer').startup(function(use)
 
 	-- Pairing
 	use('tmsvg/pear-tree')
+	use({
+		'windwp/nvim-autopairs',
+		config = function()
+			require('lxs.plugin_settings.nvim_autopairs')
+		end,
+	})
 
 	-- Commenting
 	use('b3nj5m1n/kommentary')

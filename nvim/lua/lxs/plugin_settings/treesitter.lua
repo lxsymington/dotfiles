@@ -55,5 +55,6 @@ return ts_configs.setup({
 				['<Leader>dF'] = '@class.outer',
 			},
 		},
+		autopairs = { enable = true },
 	},
 })
