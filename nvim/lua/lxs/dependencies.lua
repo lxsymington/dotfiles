@@ -75,6 +75,20 @@ return require('packer').startup(function(use)
 		end,
 	})
 
+	-- Note taking
+	-- TODO: Config for orgmode
+    use {
+        'kristijanhusak/orgmode.nvim',
+        branch = 'tree-sitter',
+        config = function()
+            require('orgmode').setup({
+                org_agenda_files = { '~/Documents/org_agenda' },
+                org_default_notes_files = { '~/Documents/org_notes' }
+            })
+        end
+    }
+
+    -- Icons
 	use({ 'kyazdani42/nvim-web-devicons' })
 
 	-- Snippets
@@ -193,20 +207,23 @@ return require('packer').startup(function(use)
 		opt = true,
 		cmd = { 'Telescope', 'Octo' },
 		keys = {
-			{ 'n', '<Leader><Tab>' },
-			{ 'n', '<Leader><space>' },
-			{ 'n', '<Leader>?' },
-			{ 'n', '<Leader>fb' },
-			{ 'n', '<Leader>fd' },
-			{ 'n', '<Leader>ff' },
-			{ 'n', '<Leader>fgf' },
-			{ 'n', '<Leader>fht' },
-			{ 'n', '<Leader>fpf' },
-			{ 'n', '<Leader>gb' },
+			{ 'n', '<Leader>p' },
+			{ 'n', '<Leader>pf' },
+			{ 'n', '<Leader>pfd' },
+			{ 'n', '<Leader>ps' },
+			{ 'n', '<Leader>p/' },
+			{ 'n', '<Leader>la' },
+			{ 'n', '<Leader>lar' },
+			{ 'n', '<Leader>lr' },
+			{ 'n', '<Leader>ld' },
+			{ 'n', '<Leader>ldw' },
+			{ 'n', '<Leader>gf' },
 			{ 'n', '<Leader>gs' },
-			{ 'n', '<Leader>lbg' },
-			{ 'n', '<Leader>lg' },
-			{ 'n', '<Leader>sr' },
+			{ 'n', '<Leader>gb' },
+			{ 'n', '<Leader>vh' },
+			{ 'n', '<Leader>vm' },
+			{ 'n', '<Leader>bf' },
+			{ 'n', '<Leader>b/' },
 		},
 	})
 

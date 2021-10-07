@@ -8,7 +8,6 @@ local function autocommand_setup()
 		[[
 			augroup Terminal
 			autocmd!
-			autocmd TermOpen <buffer> setlocal statusline=%{b:term_title}
 			autocmd TermOpen <buffer> TerminalStyle
 			augroup END
 		]],
