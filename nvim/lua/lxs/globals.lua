@@ -11,6 +11,7 @@ function _G.ReloadConfig()
 		end
 	end
 
-	dofile(vim.env.MYVIMRC)
+	vim.api.nvim_exec([[ autocmd! * ]], false)
 	vim.cmd('PackerCompile')
+	dofile(vim.env.MYVIMRC)
 end

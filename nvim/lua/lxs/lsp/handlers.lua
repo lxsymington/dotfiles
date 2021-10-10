@@ -1,6 +1,6 @@
 vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, config)
 	if err ~= nil or result == nil then
-		P(err)
+		vim.notify(err, 'error')
 		return
 	end
 

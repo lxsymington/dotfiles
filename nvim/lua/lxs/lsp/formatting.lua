@@ -47,7 +47,7 @@ M.format = function()
 	if not vim.b.saving_format and not vim.g[format_disabled_var()] then
 		local file_path = vim.fn.expand('%:p')
 		local relative_file_path = vim.fn.fnamemodify(file_path, ':~:.')
-		print(string.format('Formatting – %s', relative_file_path))
+		vim.notify(string.format('Formatting – %s', relative_file_path), 'info')
 		local format_options = vim.g[format_options_var()]
 		vim.b.init_changedtick = vim.b.changedtick
 		vim.lsp.buf.formatting(format_options or {})

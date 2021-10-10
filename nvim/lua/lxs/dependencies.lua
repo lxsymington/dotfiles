@@ -44,6 +44,10 @@ function M.setup()
 		-- Utilities
 		use('nvim-lua/popup.nvim')
 		use('nvim-lua/plenary.nvim')
+		use({
+			'williamboman/nvim-lsp-installer',
+			config = function() end,
+		})
 
 		-- Highlighting
 		use({
@@ -234,6 +238,12 @@ function M.setup()
 		})
 
 		-- Version Control
+		use({
+			'sindrets/diffview.nvim',
+			config = function()
+				require('diffview').setup()
+			end,
+		})
 		use({
 			'TimUntersberger/neogit',
 			config = function()

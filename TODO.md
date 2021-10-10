@@ -23,8 +23,15 @@
 
 ## In progress
  - [ ] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
+    - see [author's config](https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua)
 
 ## Blocked
+ - [ ] Orgmode
+    - [ ] Possibly use Neorg instead
+    - [x] Install [Orgmode.nvim](https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter)
+    - [x] Set up the [tree-sitter grammar](https://github.com/milisims/tree-sitter-org)
+    - [ ] Correctly configure it
+    - [ ] Figure out how to integrate sniprun with the codeblocks
  - [ ] Telescope frecency workspaces
     - [x] Check configuration
     - [ ] Pull down and test plugin locally
@@ -37,11 +44,6 @@
     - [x] Statusline colours
     - [ ] Auto-switching
     - [ ] Light theme refresh/update
- - [ ] Orgmode
-    - [x] Install [Orgmode.nvim](https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter)
-    - [x] Set up the [tree-sitter grammar](https://github.com/milisims/tree-sitter-org)
-    - [ ] Correctly configure it
-    - [ ] Figure out how to integrate sniprun with the codeblocks
 
 ## Backlog
  - [ ] Investigate [vim-ultest](https://github.com/rcarriga/vim-ultest)

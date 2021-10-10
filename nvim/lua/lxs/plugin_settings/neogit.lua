@@ -4,7 +4,17 @@ local M = {}
 
 -- NEOGIT ------------------------------
 function M.setup()
-	neogit.setup({})
+	neogit.setup({
+		signs = {
+			-- { CLOSED, OPENED }
+			section = { '▶', '▼' },
+			item = { '▷', '▽' },
+			hunk = { '▸', '▾' },
+		},
+		integrations = {
+			diffview = true,
+		},
+	})
 
 	keymap('n', '<Leader>g', '<cmd>Neogit<cr>', { silent = true, noremap = true })
 end
