@@ -13,10 +13,18 @@
  - [x] Install and configure [Telescope Symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)
  - [x] Get borders working on Diagnostics popups, see this [reddit thread](https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3)
  - [x] tree-sitter `foldexpr` see `:h nvim_treesitter#foldexpr()`
+ - [x] tree-sitter `statsline` component see `:h nvim_treesitter#statsline()`
  - [x] Make neovim config reloadable
+ - [x] Try [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) again
+ - [x] Properly understand how removing an autocommand works
+    - see [this](https://learnvimscriptthehardway.stevelosh.com/chapters/14.html)
+ - [x] Properly configure [dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+ - [x] Install [nvim-notify](https://github.com/rcarriga/nvim-notify)
 
 ## In progress
- - [ ] tree-sitter `statsline` component see `:h nvim_treesitter#statsline()`
+ - [ ] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
+
+## Blocked
  - [ ] Telescope frecency workspaces
     - [x] Check configuration
     - [ ] Pull down and test plugin locally
@@ -36,15 +44,18 @@
     - [ ] Figure out how to integrate sniprun with the codeblocks
 
 ## Backlog
- - [ ] Try [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) again
- - [ ] Install [sniprun](https://github.com/michaelb/sniprun)
- - [ ] Install and configure [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
- - [ ] Investigate [nvim-notify](https://github.com/rcarriga/nvim-notify)
- - [ ] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
- - [ ] Look into [rest.nvim](https://github.com/NTBBloodbath/rest.nvim)
  - [ ] Investigate [vim-ultest](https://github.com/rcarriga/vim-ultest)
+ - [ ] Look into [rest.nvim](https://github.com/NTBBloodbath/rest.nvim)
+ - [ ] Install [sniprun](https://github.com/michaelb/sniprun)
+
+## Review
+ - [ ] Install and configure [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
+    - Looks as if this would be early adoption, revisit this later
+ - [ ] Auto-documenting via [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs)
+---
  - [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [language server](https://github.com/SonarSource/sonarlint-language-server)
 
+---
  - [ ] Move `typescript.ts` to an org file from the system tests repo
 
 # Tmux todolist

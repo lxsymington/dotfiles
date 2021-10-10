@@ -167,14 +167,11 @@ end
 
 local treesitter_status = function()
 	local ok, string = pcall(vim.fn['nvim_treesitter#statusline'], {
-		indicator_size = vim.o.columns - 90,
+		indicator_size = math.floor(vim.o.columns * 0.2),
 		separator = ' ⟫ ',
 	})
 
-	P(ok)
-	P(string)
-
-	return ok and string ~= vim.NIL and string or '∅'
+	return ok and string ~= vim.NIL and string:gsub('function', '⒡ ') or '∅'
 end
 
 --[[

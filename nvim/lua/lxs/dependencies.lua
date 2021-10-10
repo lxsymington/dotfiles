@@ -25,7 +25,7 @@ end
 vim.api.nvim_exec(
 	[[
         augroup Packer
-        autocmd! * <buffer>
+        autocmd!
         autocmd BufWritePost dependencies.lua PackerCompile
         augroup END
     ]],
@@ -296,6 +296,9 @@ function M.setup()
 		use({
 			'rcarriga/nvim-dap-ui',
 			after = { 'nvim-dap' },
+			config = function()
+				require('lxs.plugin_settings.dap_ui').setup()
+			end,
 		})
 
 		-- Markdown Preview
@@ -355,6 +358,18 @@ function M.setup()
 			'folke/which-key.nvim',
 			config = function()
 				require('which-key').setup()
+			end,
+		})
+		use({
+			'kosayoda/nvim-lightbulb',
+			config = function()
+				require('lxs.plugin_settings.lightbulb').setup()
+			end,
+		})
+		use({
+			'rcarriga/nvim-notify',
+			config = function()
+				require('lxs.plugin_settings.notify').setup()
 			end,
 		})
 

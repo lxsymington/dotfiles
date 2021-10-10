@@ -8,6 +8,7 @@ function M.setup()
 	vim.api.nvim_exec(
 		[[
             augroup Terminal
+            autocmd!
             autocmd TermOpen,TermEnter <buffer> TerminalStyle
             augroup END
         ]],
@@ -17,21 +18,20 @@ function M.setup()
 	vim.api.nvim_exec(
 		[[
             augroup HighlightYank
-            autocmd TextYankPost <buffer> silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
+            autocmd!
+            autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
             augroup END
         ]],
 		false
 	)
 
 	vim.api.nvim_exec(
-		string.format(
-			[[
-                augroup ReloadConfig
-                autocmd BufWritePost %s silent! ReloadConfig
-                augroup END
-            ]],
-			os.getenv('HOME') .. '/.config/nvim/*.lua'
-		),
+		[[
+            augroup ReloadConfig
+            autocmd!
+            autocmd BufWritePost */nvim/** ++once ReloadConfig
+            augroup END
+        ]],
 		false
 	)
 end

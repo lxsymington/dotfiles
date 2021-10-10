@@ -1,9 +1,9 @@
 local dap = require('dap')
 local mochaConfigurator = require('lxs.plugin_settings.nvim_dap.configurations.mocha.configurator')
-local keymap = vim.api.nvim_set_keymap
-local M = {}
 local api = vim.api
+local keymap = api.nvim_set_keymap
 local keymap_restore = {}
+local M = {}
 
 dap.listeners.after['event_initialized']['me'] = function()
 	for _, buf in pairs(api.nvim_list_bufs()) do
@@ -15,12 +15,8 @@ dap.listeners.after['event_initialized']['me'] = function()
 			end
 		end
 	end
-	api.nvim_set_keymap(
-		'n',
-		'K',
-		'<Cmd>lua require("dap.ui.variables").hover()<CR>',
-		{ silent = true }
-	)
+
+	keymap('n', 'K', '<Cmd>lua require("dap.ui.variables").hover()<CR>', { silent = true })
 end
 
 dap.listeners.after['event_terminated']['me'] = function()
