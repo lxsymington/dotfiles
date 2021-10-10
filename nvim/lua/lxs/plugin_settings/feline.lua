@@ -165,8 +165,19 @@ local buffer_not_empty = function()
 	return fn.empty(fn.expand('%:t')) ~= 1
 end
 
---[[
+local treesitter_status = function()
+	local ok, string = pcall(vim.fn['nvim_treesitter#statusline'], {
+		indicator_size = vim.o.columns - 90,
+		separator = ' ⟫ ',
+	})
 
+	P(ok)
+	P(string)
+
+	return ok and string ~= vim.NIL and string or '∅'
+end
+
+--[[
     Feline Separators
 
     block = '█',
@@ -189,7 +200,6 @@ end
     slant_right_thin = '',
     vertical_bar = '┃',
     vertical_bar_thin = '│',
-
 ]]
 
 -- FELINE ------------------------------
@@ -217,8 +227,8 @@ function M.setup()
 		'fugitiveblame',
       },
       buftypes = { 'terminal' }
-	}
- ]]
+	} ]]
+
 	table.insert(components.active[1], {
 		provider = file_namer,
 		enabled = buffer_not_empty,
@@ -301,6 +311,11 @@ function M.setup()
 			}
 		end,
 		right_sep = { 'right_rounded', 'right_rounded_thin' },
+	})
+
+	table.insert(components.active[3], {
+		provider = treesitter_status,
+		hl = { fg = colours.lightGrey.hex },
 	})
 
 	table.insert(components.active[3], {
@@ -424,6 +439,7 @@ function M.setup()
 		},
 		left_sep = { 'block' },
 	})
+
 	table.insert(components.inactive[3], {
 		provider = 'file_type',
 		hl = { fg = colours.white.hex, bg = colours.blue.hex, style = 'bold' },

@@ -204,33 +204,35 @@ local function write_file(file, buf)
 	assert(uv.fs_close(fd))
 end
 
-function M.setup()
-	function CrepuscularBuild()
-		local crepuscular
+function M.build()
+	local crepuscular
 
-		for _, variant in ipairs({ 'dark', 'light' }) do
-			package.loaded['lush_theme.crepuscular_colours'] = nil
-			vim.opt.background = variant
-			crepuscular = require('lush_theme.crepuscular_colours')
+	for _, variant in ipairs({ 'dark', 'light' }) do
+		package.loaded['lush_theme.crepuscular_colours'] = nil
+		vim.opt.background = variant
+		crepuscular = require('lush_theme.crepuscular_colours')
 
-			write_file(
-				string.format(
-					os.getenv('HOME') .. '/.dotfiles/alacritty/.alacritty.colours.%s.yml',
-					variant
-				),
-				targets.alacritty(crepuscular)
-			)
-		end
+		write_file(
+			string.format(
+				os.getenv('HOME') .. '/.dotfiles/alacritty/.alacritty.colours.%s.yml',
+				variant
+			),
+			targets.alacritty(crepuscular)
+		)
 	end
+end
 
-	api.nvim_command([[ command! CrepuscularBuild lua CrepuscularBuild() ]])
+function M.setup()
+	api.nvim_command(
+		[[ command! CrepuscularBuild lua require('lush_theme.crepuscular_build').build() ]]
+	)
 
 	api.nvim_exec(
 		[[
-        augroup LushBuild
-        autocmd!
-        autocmd BufWritePost crepuscular_build.lua CrepuscularBuild
-        augroup end
+            augroup LushBuild
+            autocmd! * <buffer>
+            autocmd BufWritePost crepuscular_build.lua require('lush_theme.crepuscular_build').build()
+            augroup end
         ]],
 		false
 	)

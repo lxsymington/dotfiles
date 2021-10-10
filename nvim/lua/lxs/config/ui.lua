@@ -1,4 +1,5 @@
 local opt = vim.opt
+local fn = vim.fn
 local M = {}
 
 -- UI ----------------------------------
@@ -59,6 +60,28 @@ function M.setup()
 	-- Display the foldcolumn
 	opt.foldcolumn = '1'
 
+	-- Enable folding by default
+	opt.foldenable = true
+
+	-- Sets the initial fold state
+	opt.foldlevelstart = 0
+
+	-- Use an expression for the foldmethod
+	opt.foldmethod = 'expr'
+
+	-- Use tree-sitter for the foldexpr
+	opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+    -- stylua: ignore
+	-- Match the indent for the fold display
+	opt.foldtext = 'v:lua.require(\"lxs.config.utils\").foldtext()'
+
+	-- Set maximum nesting of folds
+	opt.foldnestmax = 20
+
+	-- Set the minimum size of the fold
+	opt.foldminlines = 1
+
 	-- Enable pseudo-transparency for popup menus
 	opt.pumblend = 10
 
@@ -73,12 +96,12 @@ function M.setup()
 		stl = ' ', -- ' ' or '^' statusline of the current window
 		stlnc = ' ', -- ' ' or '=' statusline of the non-current windows
 		vert = '│', -- '│' or '|' vertical separators |:vsplit|
-		fold = '╍', -- '·' or '-' filling 'foldtext'
-		foldopen = '╌', -- '-' mark the beginning of a fold
-		foldclose = '━', -- '+' show a closed fold
+		fold = ' ', -- '·' or '-' filling 'foldtext'
+		foldopen = '▽', -- '-' mark the beginning of a fold
+		foldclose = '▶', -- '+' show a closed fold
 		foldsep = '│', -- '│' or '|' open fold middle marker
-		diff = '╱', -- '-' deleted lines of the 'diff' option
-		msgsep = '━', -- ' ' message separator 'display'
+		diff = '╳', -- '-' deleted lines of the 'diff' option | alternatives = ⣿ ░ ─ ╱
+		msgsep = '╌', -- ' ' message separator 'display'
 		eob = '∅', -- '~' empty lines at the end of a buffer
 	}
 end

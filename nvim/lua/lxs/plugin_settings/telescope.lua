@@ -1,68 +1,60 @@
-local keymap = vim.api.nvim_set_keymap
 local util = require('lspconfig.util')
-
-local should_reload = true
-local reloader = function()
-	if should_reload then
-		RELOAD('plenary')
-		RELOAD('popup')
-		RELOAD('telescope')
-	end
-end
-
-reloader()
-
 local actions = require('telescope.actions')
 local sorters = require('telescope.sorters')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
 local previewers = require('telescope.previewers')
+local keymap = vim.api.nvim_set_keymap
 
 local M = {}
 
 -- TELESCOPE ---------------------------
 function M.setup()
+	local workspaces = {
+		['conf'] = os.getenv('HOME') .. '/.config',
+		['development'] = os.getenv('HOME') .. '/Development',
+		['learning'] = os.getenv('HOME') .. '/Learning',
+		['notes'] = os.getenv('HOME') .. '/Documents/org_notes',
+		['agenda'] = os.getenv('HOME') .. '/Documents/org_agendanotes',
+	}
+
 	require('telescope').setup({
 		defaults = {
 			layout_strategy = 'flex',
 			layout_config = {
-				width = 0.95,
-				height = 0.85,
+				width = function(_, cols, _)
+					return math.min(240, math.floor(cols * 0.8))
+				end,
+				height = function(_, _, lines)
+					return math.min(60, math.floor(lines * 0.75))
+				end,
 				prompt_position = 'top',
-
 				flex = {
 					horizontal = {
 						preview_width = function(_, cols, _)
-							if cols > 200 then
-								return math.floor(cols * 0.6)
-							else
-								return math.floor(cols * 0.5)
-							end
+							return math.min(120, math.floor(cols * 0.6 * 0.8))
 						end,
 					},
 					vertical = {
-						width = 0.9,
-						height = 0.95,
-						preview_height = 0.5,
+						width = function(_, cols, _)
+							return math.min(120, math.floor(cols * 0.8))
+						end,
+						preview_height = function(_, _, lines)
+							return math.min(45, math.floor(lines * 0.5))
+						end,
 					},
 				},
 			},
 			prompt_prefix = '🔭 ➜ ',
 			scroll_strategy = 'cycle',
-			selection_caret = '✯ ',
+			selection_caret = '➜ ',
 			winblend = 10,
 		},
 		extensions = {
 			frecency = {
 				show_scores = true,
-				show_unindexed = true,
 				ignore_patterns = { '*.git/*', '*/node_modules/*', '*/tmp/*' },
-				workspaces = {
-					['conf'] = os.getenv('HOME') .. '/.config',
-					['data'] = os.getenv('HOME') .. '/.local/share',
-					['development'] = os.getenv('HOME') .. '/Development',
-					['learning'] = os.getenv('HOME') .. '/Learning',
-				},
+				workspaces = workspaces,
 			},
 			fzf = {
 				fuzzy = true,
@@ -73,8 +65,8 @@ function M.setup()
 		},
 	})
 
-	require('telescope').load_extension('fzf')
-	require('telescope').load_extension('frecency')
+	pcall(require('telescope').load_extension, 'frecency')
+	pcall(require('telescope').load_extension, 'fzf')
 
 	-- Project
 	keymap(
@@ -83,16 +75,10 @@ function M.setup()
 		"<Cmd>:lua require('lxs.plugin_settings.telescope').file_browser()<CR>",
 		{ noremap = true, silent = true }
 	)
-	keymap('n', '<Leader>pfd', "<Cmd>:lua require('lxs.plugin_settings.telescope').fd()<CR>", {
+	keymap('n', '<Leader>pf', "<Cmd>:lua require('lxs.plugin_settings.telescope').fd()<CR>", {
 		noremap = true,
 		silent = true,
 	})
-	keymap(
-		'n',
-		'<Leader>pf',
-		"<Cmd>:lua require('lxs.plugin_settings.telescope').frecency()<CR>",
-		{ noremap = true, silent = true }
-	)
 	keymap(
 		'n',
 		'<Leader>ps',
@@ -174,14 +160,26 @@ function M.setup()
 		noremap = true,
 		silent = true,
 	})
+
+	-- General
+	keymap('n', '<Leader>;', "<Cmd>:lua require('lxs.plugin_settings.telescope').symbols()<CR>", {
+		noremap = true,
+		silent = true,
+	})
+	keymap(
+		'n',
+		'<Leader>hz',
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').frecency()<CR>",
+		{ noremap = true, silent = true }
+	)
 end
 
 function M.curbuf()
 	local opts = themes.get_dropdown({
-		winblend = 10,
 		border = true,
+		path_display = { shorten = 3 },
 		previewer = false,
-		path_display = { 'shorten' },
+		winblend = 10,
 	})
 
 	builtin.current_buffer_fuzzy_find(opts)
@@ -197,8 +195,8 @@ end
 
 function M.frecency()
 	local opts = themes.get_dropdown({
-		winblend = 10,
 		border = true,
+		winblend = 10,
 	})
 
 	require('telescope').extensions.frecency.frecency(opts)
@@ -242,9 +240,9 @@ end
 
 function M.git_status()
 	local opts = themes.get_dropdown({
-		winblend = 10,
 		border = true,
-		path_display = { 'shorten' },
+		path_display = { shorten = 3 },
+		winblend = 10,
 	})
 
 	builtin.git_status(opts)
@@ -257,10 +255,16 @@ function M.project_search()
 	})
 end
 
+function M.symbols()
+	local opts = themes.get_cursor({
+		border = true,
+	})
+
+	builtin.symbols(opts)
+end
+
 return setmetatable({}, {
 	__index = function(_, k)
-		reloader()
-
 		if M[k] then
 			return M[k]
 		else

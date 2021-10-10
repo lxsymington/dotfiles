@@ -97,7 +97,7 @@ local theme = lush(function()
 		Directory({ fg = colours.lightBlue, gui = 'nocombine,bold' }),
 		EndOfBuffer({ fg = colours.lightGrey, gui = 'nocombine' }),
 		FoldColumn({ fg = colours.lightGrey, gui = 'nocombine' }),
-		Folded({ gui = 'nocombine,italic' }),
+		Folded({ fg = colours.lightPurple.desaturate(50), gui = 'nocombine,bold,italic' }),
 		PmenuThumb({ bg = colours.lightYellow, fg = colours.blue, gui = 'nocombine' }),
 		Question({ fg = colours.lightOrange, gui = 'nocombine' }),
 		Search({ bg = colours.green, fg = colours.white, gui = 'nocombine,bold,italic' }),

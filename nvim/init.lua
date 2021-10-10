@@ -11,10 +11,10 @@ cmd([[runtime plugin/astronauta.vim]])
 require('lxs.globals')
 
 -- Plugin Dependencies -----------------
-require('lxs.dependencies')
+require('lxs.dependencies').setup()
 
 -- Autocommands ------------------------
-require('lxs.autocommands.index')
+require('lxs.autocommands.index').setup()
 
 -- Config ------------------------------
-require('lxs.config.index')
+require('lxs.config.index').setup()

@@ -20,20 +20,17 @@ vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, config)
 end
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = function(...)
-	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		-- Enable underline, use default values
+	vim.lsp.with(require('lsp_extensions.workspace.diagnostic').handler, {
 		underline = true,
-		-- Enable virtual text, override spacing to 4
-		virtual_text = { spacing = 4, prefix = '🔎', source = 'always' },
-		require('lsp_extensions.workspace.diagnostic').handler,
-		{
-			signs = {
-				severity_limit = 'Error',
-			},
-		},
+		virtual_text = { prefix = '🔎', source = 'always' },
+		border = 'rounded',
 	})(...)
 	pcall(vim.lsp.diagnostic.set_loclist, { open = false })
 end
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = 'rounded',
+})
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = 'rounded',

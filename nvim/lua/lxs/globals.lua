@@ -1,13 +1,14 @@
-P = function(v)
+function _G.P(v)
 	print(vim.inspect(v))
 	return v
 end
 
-if pcall(require, 'plenary') then
-	RELOAD = require('plenary.reload').reload_module
-
-	R = function(name)
-		RELOAD(name)
-		return require(name)
+function _G.ReloadConfig()
+	for name, _ in pairs(package.loaded) do
+		if name:match('^lxs') then
+			package.loaded[name] = nil
+		end
 	end
+
+	dofile(vim.env.MYVIMRC)
 end

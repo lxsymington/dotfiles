@@ -1,63 +1,63 @@
 
 colors:
-  line_indicator:
-    foreground: "None"
-    background: "#50494E"
-  vi_mode_cursor:
+  cursor:
     cursor: "CellForeground"
     text: "CellBackground"
   normal:
-    cyan: "#6BC7BF"
-    black: "#281D30"
     magenta: "#561DC9"
-    blue: "#1D64C9"
-    green: "#36633D"
+    white: "#EBCCAD"
+    black: "#281D30"
     red: "#A3293D"
     yellow: "#FFBB33"
-    white: "#EBCCAD"
+    green: "#36633D"
+    cyan: "#6BC7BF"
+    blue: "#1D64C9"
+  vi_mode_cursor:
+    cursor: "CellForeground"
+    text: "CellBackground"
+  primary:
+    foreground: "#EBCCAD"
+    dim_foreground: "#A38FA0"
+    bright_foreground: "#FBF7E9"
+    background: "#1A141F"
   selection:
     background: "CellForeground"
     text: "CellBackground"
-  primary:
-    bright_foreground: "#FBF7E9"
-    dim_foreground: "#A38FA0"
-    foreground: "#EBCCAD"
-    background: "#1A141F"
+  dim:
+    magenta: "#412A6F"
+    white: "#E6BF99"
+    black: "#42334D"
+    red: "#AF6A75"
+    yellow: "#C38E22"
+    green: "#8AA88F"
+    cyan: "#50958F"
+    blue: "#506D95"
   hints:
-    end:
-      foreground: "#e9ff5e"
-      background: "#1d1f21"
     start:
       foreground: "#1d1f21"
       background: "#e9ff5e"
+    end:
+      foreground: "#e9ff5e"
+      background: "#1d1f21"
+  bright:
+    magenta: "#AF8FEF"
+    white: "#FBF7E9"
+    black: "#50494E"
+    red: "#FA9E9E"
+    yellow: "#FFD480"
+    green: "#789550"
+    cyan: "#D6F5F2"
+    blue: "#4C8CE6"
   search:
-    bar:
-      background: "#ebccad"
-      foreground: "#1a141f"
     focused_match:
       foreground: "CellBackground"
       background: "CellForeground"
     matches:
       foreground: "#000000"
       background: "#ffffff"
-  dim:
-    cyan: "#50958F"
-    black: "#42334D"
-    magenta: "#412A6F"
-    blue: "#506D95"
-    green: "#8AA88F"
-    red: "#AF6A75"
-    yellow: "#C38E22"
-    white: "#E6BF99"
-  cursor:
-    cursor: "CellForeground"
-    text: "CellBackground"
-  bright:
-    cyan: "#D6F5F2"
-    black: "#50494E"
-    magenta: "#AF8FEF"
-    blue: "#4C8CE6"
-    green: "#789550"
-    red: "#FA9E9E"
-    yellow: "#FFD480"
-    white: "#FBF7E9"
+    bar:
+      background: "#ebccad"
+      foreground: "#1a141f"
+  line_indicator:
+    foreground: "None"
+    background: "#50494E"

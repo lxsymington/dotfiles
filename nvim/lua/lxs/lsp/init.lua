@@ -370,7 +370,7 @@ function M.setup()
 	keymap(
 		'n',
 		']d',
-		'<Cmd>:lua vim.lsp.diagnostic.goto_next()<CR>',
+		'<Cmd>:lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "rounded" }})<CR>',
 		{ noremap = true, silent = true }
 	)
 
@@ -378,7 +378,7 @@ function M.setup()
 	keymap(
 		'n',
 		'[d',
-		'<Cmd>:lua vim.lsp.diagnostic.goto_prev()<CR>',
+		'<Cmd>:lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "rounded" }})<CR>',
 		{ noremap = true, silent = true }
 	)
 

@@ -1,5 +1,7 @@
+local M = {}
+
 -- Config Index ------------------------
-function config()
+function M.setup()
 	require('lxs.config.environment').setup()
 	require('lxs.config.external').setup()
 	require('lxs.config.base').setup()
@@ -9,4 +11,4 @@ function config()
 	require('lxs.config.utils').setup()
 end
 
-return config()
+return M

@@ -17,9 +17,6 @@ function M.setup()
 	-- Enables syntax highlighting
 	opt.syntax = 'enable'
 
-	-- Security
-	opt.modelines = 0
-
 	-- Sets the backspace behaviour to conventional
 	opt.backspace = { 'indent', 'eol', 'start' }
 
@@ -37,7 +34,7 @@ function M.setup()
 	opt.relativenumber = true
 
 	-- Force the cursor onto a new line after 120 characters
-	opt.textwidth = 120
+	opt.textwidth = 100
 
 	-- Creates a visual boundary
 	opt.colorcolumn = { '81', '+1' }
