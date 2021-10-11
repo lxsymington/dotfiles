@@ -20,10 +20,12 @@
     - see [this](https://learnvimscriptthehardway.stevelosh.com/chapters/14.html)
  - [x] Properly configure [dap-ui](https://github.com/rcarriga/nvim-dap-ui)
  - [x] Install [nvim-notify](https://github.com/rcarriga/nvim-notify)
+ - [x] Refactor Lsp configuration into smaller modules
+ - [x] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
+    - see [author's config](https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua)
 
 ## In progress
- - [ ] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
-    - see [author's config](https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua)
+ - [ ] Use telescope's file browser and the cursor theme to make a local directory browser
 
 ## Blocked
  - [ ] Orgmode

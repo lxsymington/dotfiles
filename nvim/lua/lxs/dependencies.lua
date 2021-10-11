@@ -38,15 +38,22 @@ function M.setup()
 		-- Packer can manage itself as an optional plugin
 		use({ 'wbthomason/packer.nvim', opt = true })
 
-		-- Config
-		use('tjdevries/astronauta.nvim')
-
 		-- Utilities
 		use('nvim-lua/popup.nvim')
 		use('nvim-lua/plenary.nvim')
+
+		-- LSP configurations
 		use({
 			'williamboman/nvim-lsp-installer',
-			config = function() end,
+			requires = {
+				'neovim/nvim-lspconfig',
+				'nvim-lua/lsp-status.nvim',
+				'nvim-lua/lsp_extensions.nvim',
+				'folke/lua-dev.nvim',
+			},
+			config = function()
+				require('lxs.lsp').setup()
+			end,
 		})
 
 		-- Highlighting
@@ -117,19 +124,6 @@ function M.setup()
 			},
 			config = function()
 				require('lxs.plugin_settings.cmp').setup()
-			end,
-		})
-
-		-- LSP configurations
-		use({
-			'neovim/nvim-lspconfig',
-			requires = {
-				'nvim-lua/lsp-status.nvim',
-				'nvim-lua/lsp_extensions.nvim',
-				'folke/lua-dev.nvim',
-			},
-			config = function()
-				require('lxs.lsp').setup()
 			end,
 		})
 

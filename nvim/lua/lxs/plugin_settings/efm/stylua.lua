@@ -7,6 +7,6 @@ return {
         ${--line-endings:line_endings}
         ${--quote-style:quote_style}
         --stdin-filepath ${INPUT} -
-    ]]):gsub("\n", ""),
+    ]]):gsub('\n', ''),
 	formatStdin = true,
 }
