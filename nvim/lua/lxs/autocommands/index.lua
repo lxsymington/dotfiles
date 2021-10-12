@@ -29,7 +29,7 @@ function M.setup()
 		[[
             augroup ReloadConfig
             autocmd!
-            autocmd BufWritePost */nvim/** ++once ReloadConfig
+            autocmd BufWritePost */nvim/lua/**,*/nvim/lush_theme/** ++once ReloadConfig
             augroup END
         ]],
 		false

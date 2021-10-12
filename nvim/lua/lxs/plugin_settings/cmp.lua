@@ -20,9 +20,9 @@ function M.setup()
 		},
 		sources = {
 			{ name = 'nvim_lsp' },
-			-- For luasnip user.
 			{ name = 'luasnip' },
 			{ name = 'buffer' },
+			{ name = 'org' },
 		},
 	})
 end

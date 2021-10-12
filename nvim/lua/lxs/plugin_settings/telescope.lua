@@ -1,9 +1,6 @@
 local util = require('lspconfig.util')
-local actions = require('telescope.actions')
-local sorters = require('telescope.sorters')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
-local previewers = require('telescope.previewers')
 local keymap = vim.api.nvim_set_keymap
 
 local M = {}
@@ -69,12 +66,6 @@ function M.setup()
 	pcall(require('telescope').load_extension, 'fzf')
 
 	-- Project
-	keymap(
-		'n',
-		'<Leader>p',
-		"<Cmd>:lua require('lxs.plugin_settings.telescope').file_browser()<CR>",
-		{ noremap = true, silent = true }
-	)
 	keymap('n', '<Leader>pf', "<Cmd>:lua require('lxs.plugin_settings.telescope').fd()<CR>", {
 		noremap = true,
 		silent = true,
@@ -85,10 +76,6 @@ function M.setup()
 		"<Cmd>:lua require('lxs.plugin_settings.telescope').project_search()<CR>",
 		{ noremap = true, silent = true }
 	)
-	keymap('n', '<Leader>p/', "<Cmd>:lua require('lxs.plugin_settings.telescope').live_grep()<CR>", {
-		noremap = true,
-		silent = true,
-	})
 
 	-- LSP
 	keymap(
@@ -162,6 +149,22 @@ function M.setup()
 	})
 
 	-- General
+	keymap(
+		'n',
+		'<Leader><Tab>',
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').file_browser()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		'n',
+		'<Leader><Leader>',
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').local_file_browser()<CR>",
+		{ noremap = true, silent = true }
+	)
+	keymap('n', '<Leader>/', "<Cmd>:lua require('lxs.plugin_settings.telescope').live_grep()<CR>", {
+		noremap = true,
+		silent = true,
+	})
 	keymap('n', '<Leader>;', "<Cmd>:lua require('lxs.plugin_settings.telescope').symbols()<CR>", {
 		noremap = true,
 		silent = true,
@@ -193,6 +196,18 @@ function M.file_browser()
 	builtin.file_browser(opts)
 end
 
+function M.local_file_browser()
+	local opts = themes.get_cursor({
+		cwd = vim.fn.expand('%:h'),
+		layout_config = {
+			mirror = true,
+			height = math.min(math.floor(vim.o.lines * 0.8), 30),
+		},
+	})
+
+	builtin.file_browser(opts)
+end
+
 function M.frecency()
 	local opts = themes.get_dropdown({
 		border = true,
@@ -200,42 +215,6 @@ function M.frecency()
 	})
 
 	require('telescope').extensions.frecency.frecency(opts)
-end
-
-function M.lsp_code_actions()
-	local opts = themes.get_cursor({
-		layout_strategy = vertical,
-	})
-
-	builtin.lsp_code_actions(opts)
-end
-
-function M.lsp_range_code_actions()
-	local opts = themes.get_cursor({
-		layout_strategy = vertical,
-	})
-
-	builtin.lsp_range_code_actions(opts)
-end
-
-function M.lsp_references()
-	local opts = themes.get_cursor({
-		layout_strategy = vertical,
-	})
-
-	builtin.lsp_references(opts)
-end
-
-function M.lsp_document_diagnostics()
-	local opts = themes.get_ivy({})
-
-	builtin.lsp_document_diagnostics(opts)
-end
-
-function M.lsp_workspace_diagnostics()
-	local opts = themes.get_ivy({})
-
-	builtin.lsp_workspace_diagnostics(opts)
 end
 
 function M.git_status()
@@ -246,6 +225,42 @@ function M.git_status()
 	})
 
 	builtin.git_status(opts)
+end
+
+function M.lsp_code_actions()
+	local opts = themes.get_cursor({
+		layout_strategy = 'vertical',
+	})
+
+	builtin.lsp_code_actions(opts)
+end
+
+function M.lsp_document_diagnostics()
+	local opts = themes.get_ivy({})
+
+	builtin.lsp_document_diagnostics(opts)
+end
+
+function M.lsp_range_code_actions()
+	local opts = themes.get_cursor({
+		layout_strategy = 'vertical',
+	})
+
+	builtin.lsp_range_code_actions(opts)
+end
+
+function M.lsp_references()
+	local opts = themes.get_cursor({
+		layout_strategy = 'vertical',
+	})
+
+	builtin.lsp_references(opts)
+end
+
+function M.lsp_workspace_diagnostics()
+	local opts = themes.get_ivy({})
+
+	builtin.lsp_workspace_diagnostics(opts)
 end
 
 function M.project_search()

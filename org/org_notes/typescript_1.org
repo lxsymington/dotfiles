@@ -1,0 +1,77 @@
+* TypeScript
+
+** Inference
+   Ideally the language we write would just know what we mean, not what we actually put down onto
+   pen & paper or bits and bytes. Unfortunately [or fortunately depending on your perspective]
+   languages don't quite yet have that capability
+
+** Discriminated Unions & Narrowing
+
+#+BEGIN_SRC typescript
+enum VehicleType {
+  CAR = 'Car',
+  MOTORBIKE = 'Motorbike',
+  BICYCLE = 'Bicycle',
+}
+
+enum FuelType {
+  PETROL = 'Petrol',
+  DIESEL = 'Diesel',
+  ELECTRIC = 'Electric',
+}
+
+interface IVehicleBase {
+  engine: boolean;
+  wheels: number;
+  type: VehicleType;
+}
+
+interface ICar extends IVehicleBase {
+  engine: true;
+  type: VehicleType.CAR;
+  doors: number;
+  fuelType: FuelType;
+}
+
+interface IMotorbike extends IVehicleBase {
+  engine: true;
+  type: VehicleType.MOTORBIKE;
+  fuelType: Omit<FuelType, 'DIESEL'>;
+}
+
+interface IBicycle extends IVehicleBase {
+  engine: false;
+  type: VehicleType.BICYCLE;
+}
+
+type IVehicle = ICar | IMotorbike | IBicycle;
+
+function demo(vehicle: IVehicle) {
+  switch (vehicle.type) {
+    case VehicleType.CAR: {
+      console.log(vehicle.doors);
+      break;
+    }
+    case VehicleType.BICYCLE: {
+      console.log(vehicle.doors);
+      break;
+    }
+    case VehicleType.MOTORBIKE: {
+      const isDieselMotorbike = vehicle.fuelType === FuelType.DIESEL;
+      console.log(isDieselMotorbike);
+      break;
+    }
+  }
+}
+
+const bicycle: IBicycle = {engine: false, type: VehicleType.BICYCLE, wheels: 2};
+const motorbike: IMotorbike = {
+  engine: true,
+  type: VehicleType.MOTORBIKE,
+  fuelType: FuelType.DIESEL,
+  wheels: 2,
+};
+
+demo(bicycle);
+demo(motorbike);
+#+END_SRC

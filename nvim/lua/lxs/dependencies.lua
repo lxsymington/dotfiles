@@ -1,39 +1,39 @@
 local M = {}
 
--- Only required if you have packer in your `opt` pack
-local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
+-- Packer ------------------------------
+function M.setup()
+	-- Only required if you have packer in your `opt` pack
+	local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
-if not packer_exists then
-	local directory = string.format('%s/site/pack/packer/opt/', vim.fn.stdpath('data'))
+	if not packer_exists then
+		local directory = string.format('%s/site/pack/packer/opt/', vim.fn.stdpath('data'))
 
-	vim.fn.mkdir(directory, 'p')
+		vim.fn.mkdir(directory, 'p')
 
-	local out = vim.fn.system(
-		string.format(
-			'git clone %s %s',
-			'https://github.com/wbthomason/packer.nvim',
-			directory .. 'packer.nvim'
+		local out = vim.fn.system(
+			string.format(
+				'git clone %s %s',
+				'https://github.com/wbthomason/packer.nvim',
+				directory .. 'packer.nvim'
+			)
 		)
-	)
 
-	P(out)
-	P('Downloading packer.nvim')
+		P(out)
+		P('Downloading packer.nvim')
 
-	return
-end
+		return
+	end
 
-vim.api.nvim_exec(
-	[[
+	vim.api.nvim_exec(
+		[[
         augroup Packer
         autocmd!
         autocmd BufWritePost dependencies.lua PackerCompile
         augroup END
     ]],
-	false
-)
+		false
+	)
 
--- Packer ------------------------------
-function M.setup()
 	require('packer').startup(function(use)
 		-- Packer can manage itself as an optional plugin
 		use({ 'wbthomason/packer.nvim', opt = true })
@@ -91,15 +91,12 @@ function M.setup()
 		})
 
 		-- Note taking
-		-- TODO: Config for orgmode
 		use({
 			'kristijanhusak/orgmode.nvim',
 			branch = 'tree-sitter',
+			requires = { 'lukas-reineke/headlines.nvim', 'akinsho/org-bullets.nvim' },
 			config = function()
-				require('orgmode').setup({
-					org_agenda_files = { '~/Documents/org_agenda' },
-					org_default_notes_files = { '~/Documents/org_notes' },
-				})
+				require('lxs.plugin_settings.orgmode').setup()
 			end,
 		})
 
@@ -210,10 +207,8 @@ function M.setup()
 			opt = true,
 			cmd = { 'Telescope', 'Octo' },
 			keys = {
-				{ 'n', '<Leader>p' },
 				{ 'n', '<Leader>pf' },
 				{ 'n', '<Leader>ps' },
-				{ 'n', '<Leader>p/' },
 				{ 'n', '<Leader>la' },
 				{ 'n', '<Leader>lar' },
 				{ 'n', '<Leader>lr' },
@@ -226,8 +221,10 @@ function M.setup()
 				{ 'n', '<Leader>vm' },
 				{ 'n', '<Leader>bf' },
 				{ 'n', '<Leader>b/' },
-				{ 'n', '<Leader>hz' },
+				{ 'n', '<Leader><Tab>' },
+				{ 'n', '<Leader><Leader>' },
 				{ 'n', '<Leader>;' },
+				{ 'n', '<Leader>hz' },
 			},
 		})
 
@@ -302,6 +299,25 @@ function M.setup()
 			after = { 'nvim-dap' },
 			config = function()
 				require('lxs.plugin_settings.dap_ui').setup()
+			end,
+		})
+
+		-- REPL / Runner
+		use({
+			'michaelb/sniprun',
+			run = 'bash ./install.sh',
+			config = function()
+				require('lxs.plugin_settings.sniprun').setup()
+			end,
+		})
+
+		-- Testing
+		use({
+			'rcarriga/vim-ultest',
+			requires = { 'vim-test/vim-test' },
+			run = ':UpdateRemotePlugins',
+			config = function()
+				require('lxs.plugin_settings.ultest').setup()
 			end,
 		})
 

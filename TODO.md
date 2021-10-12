@@ -23,9 +23,10 @@
  - [x] Refactor Lsp configuration into smaller modules
  - [x] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
     - see [author's config](https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua)
+ - [x] Investigate [vim-ultest](https://github.com/rcarriga/vim-ultest)
+ - [x] Use telescope's file browser and the cursor theme to make a local directory browser
 
 ## In progress
- - [ ] Use telescope's file browser and the cursor theme to make a local directory browser
 
 ## Blocked
  - [ ] Orgmode
@@ -48,9 +49,10 @@
     - [ ] Light theme refresh/update
 
 ## Backlog
- - [ ] Investigate [vim-ultest](https://github.com/rcarriga/vim-ultest)
  - [ ] Look into [rest.nvim](https://github.com/NTBBloodbath/rest.nvim)
  - [ ] Install [sniprun](https://github.com/michaelb/sniprun)
+ - [ ] Get vim-ultest to run typescript mocha test files
+    - [ ] This requires configuration of the underlying [vim-test](https://github.com/vim-test/vim-test/issues/209)
 
 ## Review
  - [ ] Install and configure [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
