@@ -1,44 +1,47 @@
 * Neovim todolist
-** Done
- - [X] LSP trouble
- - [X] Packer Compile autocommand
- - [X] TrueZen
- - [X] Indent blankline
- - [X] Statusline middle and right components
- - [X] Check the telescope-fzy-native configuration
- - [X] Neogit - NvimTree conflict
- - [X] Symbols outline
-    - [X] Look into the issues with this not behaving as expected
- - [X] Replace kommentary with [comment.nvim](https://github.com/numToStr/Comment.nvim)
- - [X] Install and configure [Telescope Symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)
- - [X] Get borders working on Diagnostics popups, see this [reddit thread](https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3)
- - [X] tree-sitter `foldexpr` see `:h nvim_treesitter#foldexpr()`
- - [X] tree-sitter `statsline` component see `:h nvim_treesitter#statsline()`
- - [X] Make neovim config reloadable
- - [X] Try [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) again
- - [X] Properly understand how removing an autocommand works
-    - see [this](https://learnvimscriptthehardway.stevelosh.com/chapters/14.html)
- - [X] Properly configure [dap-ui](https://github.com/rcarriga/nvim-dap-ui)
- - [X] Install [nvim-notify](https://github.com/rcarriga/nvim-notify)
- - [X] Refactor Lsp configuration into smaller modules
- - [X] Investigate [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
-    - see [author's config](https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua)
- - [X] Investigate [vim-ultest](https://github.com/rcarriga/vim-ultest)
- - [X] Use telescope's file browser and the cursor theme to make a local directory browser
- - [X] Telescope frecency workspaces
-    - [X] Check configuration
+** DONE Neovim plugins to trial :Plugins: 
+ + [X] LSP trouble
+ + [X] TrueZen
+ + [X] Indent blankline
+ + [X] Neogit
+    + [X] NvimTree conflict
+ + [X] Symbols outline
+    + [X] Look into the issues with this not behaving as expected
+ + [X] Replace kommentary with [[comment.nvim][https://github.com/numToStr/Comment.nvim]]
+ + [X] Install and configure [[Telescope Symbols][https://github.com/nvim-telescope/telescope-symbols.nvim]]
+ + [X] Try [[nvim-lightbulb][https://github.com/kosayoda/nvim-lightbulb]] again
+ + [X] Install [[nvim-notify][https://github.com/rcarriga/nvim-notify]]
+ + [X] Investigate [[nvim-lsp-installer][https://github.com/williamboman/nvim-lsp-installer]]
+    + see [[author's config][https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua]]
+ + [X] Investigate [[vim-ultest][https://github.com/rcarriga/vim-ultest]]
 
-** In progress
+** DONE Neovim config :Config:
+ + [X] Packer Compile autocommand
+ + [X] Statusline middle and right components
+ + [X] Check the telescope-fzy-native configuration
+ + [X] Get borders working on Diagnostics popups, see this [[reddit thread][https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3]]
+ + [X] tree-sitter `foldexpr` see `:h nvim_treesitter#foldexpr()`
+ + [X] tree-sitter `statsline` component see `:h nvim_treesitter#statsline()`
+ + [X] Make neovim config reloadable
+ + [X] Properly understand how removing an autocommand works
+    + see [[this][https://learnvimscriptthehardway.stevelosh.com/chapters/14.html]]
+ + [X] Properly configure [[dap-ui][https://github.com/rcarriga/nvim-dap-ui]]
+ + [X] Refactor Lsp configuration into smaller modules
+ + [X] Use telescope's file browser and the cursor theme to make a local directory browser
+ + [X] Telescope frecency workspaces
+    + [X] Check configuration
+
+** NEXT In progress :Active:
  - [ ] Move `typescript.ts` to an org file from the system tests repo
- - [ ] Install [sniprun](https://github.com/michaelb/sniprun)
+ - [ ] Install [[sniprun][https://github.com/michaelb/sniprun]]
 
-** Blocked
+** TODO Blocked :In_depth:
  - [ ] Orgmode
-    - [X] Install [Orgmode.nvim](https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter)
+    - [X] Install [[Orgmode.nvim][https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter]]
     - [X] Set up the [tree-sitter grammar](https://github.com/milisims/tree-sitter-org)
     - [X] Correctly configure it
     - [ ] Figure out how to integrate sniprun with the codeblocks
-    - [ ] Consider setting up [notifications](https://github.com/kristijanhusak/orgmode.nvim/blob/tree-sitter/DOCS.md#notifications-experimental)
+    - [ ] Consider setting up [[notifications][https://github.com/kristijanhusak/orgmode.nvim/blob/tree-sitter/DOCS.md#notifications-experimental]]
     - [ ] Possibly use Neorg instead
  - [ ] DenoLS
     - [x] Install DenoLS
@@ -50,19 +53,19 @@
     - [ ] Auto-switching
     - [ ] Light theme refresh/update
 
-** Backlog
- - [ ] Look into [rest.nvim](https://github.com/NTBBloodbath/rest.nvim)
+** TODO Backlog :Ready:
+ - [ ] Look into [[rest.nvim][https://github.com/NTBBloodbath/rest.nvim]]
  - [ ] Get vim-ultest to run typescript mocha test files
-    - [ ] This requires configuration of the underlying [vim-test](https://github.com/vim-test/vim-test/issues/209)
- - [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [language server](https://github.com/SonarSource/sonarlint-language-server)
+    - [ ] This requires configuration of the underlying [[vim-test][https://github.com/vim-test/vim-test/issues/209]]
+ - [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [[language server][https://github.com/SonarSource/sonarlint-language-server]]
 
-** Review
- - [ ] Install and configure [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
+** TODO Review :Not_ready:
+ - [ ] Install and configure [[refactoring.nvim][https://github.com/ThePrimeagen/refactoring.nvim]]
     - Looks as if this would be early adoption, revisit this later
- - [ ] Auto-documenting via [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs)
+ - [ ] Auto-documenting via [[nvim-tree-docs][https://github.com/nvim-treesitter/nvim-tree-docs]]
 
 * Tmux todolist
  - [x] Simplify the Statusline
 
 * Git todolist
- - [ ] Investigate [git bare repositories](https://www.atlassian.com/git/tutorials/dotfiles)
+ - [ ] Investigate [[git bare repositories][https://www.atlassian.com/git/tutorials/dotfiles]]

@@ -1,0 +1,194 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.019  000.019: --- NVIM STARTING ---
+005.062  005.043: locale set
+023.384  018.321: inits 1
+023.438  000.055: window checked
+028.938  005.499: parsing arguments
+029.712  000.774: expanding arguments
+029.807  000.095: inits 2
+030.521  000.714: init highlight
+030.527  000.006: waiting for UI
+035.967  005.440: done waiting for UI
+036.037  000.069: init screen for UI
+036.075  000.039: init default mappings
+037.855  001.780: init default autocommands
+051.073  000.166  000.166: sourcing /usr/local/share/nvim/runtime/ftplugin/man.vim
+054.904  000.041  000.041: sourcing /usr/local/share/nvim/runtime/macros/matchit.vim
+123.410  082.855  082.647: sourcing /Users/lukexaviersymington/.config/nvim/init.lua
+123.472  002.762: sourcing vimrc file(s)
+141.240  000.087  000.087: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/elixir.vim
+142.437  000.078  000.078: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/fish.vim
+143.051  000.069  000.069: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/gdresource.vim
+143.640  000.051  000.051: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/gdscript.vim
+144.237  000.066  000.066: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/gomod.vim
+144.715  000.099  000.099: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/graphql.vim
+145.340  000.070  000.070: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/hcl.vim
+145.936  000.060  000.060: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/heex.vim
+146.383  000.051  000.051: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/hjson.vim
+146.842  000.057  000.057: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/json5.vim
+147.363  000.056  000.056: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/julia.vim
+147.804  000.066  000.066: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/ledger.vim
+148.410  000.080  000.080: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/nix.vim
+148.828  000.056  000.056: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/ql.vim
+149.239  000.075  000.075: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/query.vim
+149.718  000.052  000.052: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/surface.vim
+150.179  000.050  000.050: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/teal.vim
+150.674  000.052  000.052: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/tlaplus.vim
+151.156  000.052  000.052: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/yang.vim
+151.688  000.057  000.057: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/zig.vim
+152.811  000.055  000.055: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/orgmode.nvim/ftdetect/org.vim
+153.321  000.051  000.051: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/orgmode.nvim/ftdetect/org_archive.vim
+154.856  000.074  000.074: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-fugitive/ftdetect/fugitive.vim
+158.273  000.097  000.097: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/autoload/nvim_treesitter.vim
+180.430  055.612  054.051: sourcing /usr/local/share/nvim/runtime/filetype.vim
+181.798  000.119  000.119: sourcing /usr/local/share/nvim/runtime/ftplugin.vim
+183.199  000.135  000.135: sourcing /usr/local/share/nvim/runtime/indent.vim
+185.583  000.273  000.273: sourcing /usr/local/share/nvim/runtime/syntax/synload.vim
+185.776  001.839  001.566: sourcing /usr/local/share/nvim/runtime/syntax/syntax.vim
+198.145  000.098  000.098: sourcing /usr/local/share/nvim/runtime/plugin/diagnostic.vim
+199.287  000.591  000.591: sourcing /usr/local/share/nvim/runtime/plugin/gzip.vim
+199.805  000.059  000.059: sourcing /usr/local/share/nvim/runtime/plugin/health.vim
+200.695  000.470  000.470: sourcing /usr/local/share/nvim/runtime/plugin/man.vim
+205.987  000.498  000.498: sourcing /usr/local/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+206.669  005.346  004.848: sourcing /usr/local/share/nvim/runtime/plugin/matchit.vim
+207.899  000.639  000.639: sourcing /usr/local/share/nvim/runtime/plugin/matchparen.vim
+210.175  001.797  001.797: sourcing /usr/local/share/nvim/runtime/plugin/netrwPlugin.vim
+228.535  000.469  000.469: sourcing /usr/local/share/nvim/runtime/autoload/remote/host.vim
+230.609  000.617  000.617: sourcing /usr/local/share/nvim/runtime/autoload/remote/define.vim
+231.844  018.616  017.531: sourcing /Users/lukexaviersymington/.local/share/nvim/rplugin.vim
+231.881  020.675  002.059: sourcing /usr/local/share/nvim/runtime/plugin/rplugin.vim
+232.897  000.447  000.447: sourcing /usr/local/share/nvim/runtime/plugin/shada.vim
+233.581  000.104  000.104: sourcing /usr/local/share/nvim/runtime/plugin/spellfile.vim
+234.766  000.616  000.616: sourcing /usr/local/share/nvim/runtime/plugin/tarPlugin.vim
+235.664  000.218  000.218: sourcing /usr/local/share/nvim/runtime/plugin/tohtml.vim
+236.198  000.069  000.069: sourcing /usr/local/share/nvim/runtime/plugin/tutor.vim
+237.255  000.604  000.604: sourcing /usr/local/share/nvim/runtime/plugin/zipPlugin.vim
+679.660  441.132  441.132: sourcing /Users/lukexaviersymington/.config/nvim/plugin/packer_compiled.lua
+682.644  028.601: loading rtp plugins
+687.410  000.449  000.449: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/diffview.nvim/plugin/diffview.vim
+689.565  000.617  000.617: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/editorconfig-vim/plugin/editorconfig.vim
+696.377  000.069  000.069: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim/autoload/indent_blankline.vim
+696.759  005.227  005.159: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim/plugin/indent_blankline.vim
+700.522  000.737  000.737: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+702.820  000.167  000.167: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/lush.nvim/plugin/lush.vim
+707.329  001.681  001.681: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+708.833  000.112  000.112: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua/plugin/colorizer.vim
+711.915  000.935  000.935: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text/plugin/nvim-dap-virtual-text.vim
+714.750  000.414  000.414: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer/plugin/nvim-lsp-installer.vim
+720.028  003.216  003.216: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+725.318  003.020  003.020: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
+734.276  006.455  006.455: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim
+736.532  000.224  000.224: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+739.170  000.107  000.107: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+741.588  000.085  000.085: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/sniprun/plugin/sniprun.vim
+743.949  000.112  000.112: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim/plugin/frecency.vim
+746.171  000.087  000.087: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/todo-comments.nvim/plugin/todo.vim
+748.045  000.109  000.109: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/twilight.nvim/plugin/twilight.vim
+751.210  001.297  001.297: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-abolish/plugin/abolish.vim
+755.700  002.354  002.354: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-fugitive/plugin/fugitive.vim
+760.677  000.868  000.868: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/operator/sandwich.vim
+761.688  000.313  000.313: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/sandwich.vim
+762.557  000.360  000.360: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/textobj/sandwich.vim
+766.039  000.265  000.265: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-startify/plugin/startify.vim
+770.152  000.194  000.194: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test.vim
+771.005  002.148  001.954: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/plugin/test.vim
+773.478  000.573  000.573: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator/plugin/tmux_navigator.vim
+776.603  001.296  001.296: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-ultest/plugin/ultest.vim
+778.536  000.077  000.077: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+780.425  000.081  000.081: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/zen-mode.nvim/plugin/zen-mode.vim
+781.502  065.469: loading packages
+787.307  002.334  002.334: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+790.433  002.053  002.053: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+792.998  001.566  001.566: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
+793.355  005.900: loading after plugins
+793.379  000.024: inits 3
+800.072  006.693: reading ShaDa
+803.050  002.977: opening buffers
+805.107  000.240  000.240: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/base.vim
+806.503  000.120  000.120: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/racket/rackunit.vim
+808.170  000.151  000.151: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/clojure/fireplacetest.vim
+809.708  000.116  000.116: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/elm/elmtest.vim
+811.514  000.140  000.140: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/codeception.vim
+812.803  000.154  000.154: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/dusk.vim
+814.284  000.245  000.245: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/pest.vim
+815.566  000.162  000.162: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/phpunit.vim
+816.772  000.125  000.125: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/behat.vim
+817.986  000.123  000.123: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/phpspec.vim
+819.140  000.114  000.114: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/kahlan.vim
+820.128  000.119  000.119: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/peridot.vim
+821.687  000.162  000.162: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/java/maventest.vim
+822.912  000.155  000.155: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/java/gradletest.vim
+824.310  000.105  000.105: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/themis.vim
+825.393  000.119  000.119: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/vspec.vim
+826.697  000.133  000.133: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/vader.vim
+827.898  000.075  000.075: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/testify.vim
+829.020  000.101  000.101: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/vroom.vim
+830.521  000.149  000.149: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/csharp/xunit.vim
+831.551  000.111  000.111: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/csharp/dotnettest.vim
+833.078  000.123  000.123: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/scala/sbttest.vim
+834.019  000.090  000.090: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/scala.vim
+835.256  000.242  000.242: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/scala/blooptest.vim
+836.766  000.110  000.110: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/elixir/exunit.vim
+838.005  000.120  000.120: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/elixir/espec.vim
+839.441  000.152  000.152: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/perl/prove.vim
+840.808  000.114  000.114: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/mint/minttest.vim
+842.256  000.145  000.145: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/haskell/stacktest.vim
+843.259  000.097  000.097: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/haskell.vim
+844.815  000.171  000.171: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/rails.vim
+846.089  000.132  000.132: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/m.vim
+847.702  000.225  000.225: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/minitest.vim
+849.024  000.123  000.123: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/rspec.vim
+850.228  000.133  000.133: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/cucumber.vim
+851.460  000.179  000.179: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/testbench.vim
+853.176  000.169  000.169: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/dart/darttest.vim
+854.270  000.180  000.180: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/dart.vim
+855.626  000.172  000.172: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/dart/fluttertest.vim
+857.294  000.179  000.179: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/shell/bats.vim
+858.894  000.179  000.179: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/swift/swiftpm.vim
+860.483  000.123  000.123: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/crystal/crystalspec.vim
+862.017  000.153  000.153: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/ava.vim
+863.433  000.162  000.162: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/cucumberjs.vim
+864.828  000.186  000.186: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/denotest.vim
+866.273  000.284  000.284: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/intern.vim
+867.981  000.382  000.382: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/tap.vim
+869.391  000.179  000.179: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/karma.vim
+870.645  000.181  000.181: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/lab.vim
+872.015  000.161  000.161: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/mocha.vim
+873.212  000.134  000.134: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/ngtest.vim
+874.642  000.145  000.145: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/jasmine.vim
+875.815  000.147  000.147: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/jest.vim
+877.043  000.210  000.210: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/reactscripts.vim
+878.390  000.133  000.133: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/webdriverio.vim
+879.591  000.160  000.160: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/cypress.vim
+880.879  000.122  000.122: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/vuetestutils.vim
+882.190  000.165  000.165: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/erlang/commontest.vim
+883.435  000.131  000.131: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/erlang/eunit.vim
+884.947  000.177  000.177: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/kotlin/gradletest.vim
+886.399  000.131  000.131: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/gotest.vim
+887.423  000.123  000.123: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go.vim
+888.680  000.169  000.169: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/ginkgo.vim
+889.848  000.124  000.124: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/richgo.vim
+891.119  000.155  000.155: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/delve.vim
+892.551  000.117  000.117: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/lua/busted.vim
+894.292  000.229  000.229: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/rust/cargotest.vim
+895.968  000.228  000.228: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/behave.vim
+897.321  000.173  000.173: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/djangotest.vim
+898.625  000.160  000.160: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/pytest.vim
+899.883  000.158  000.158: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/pyunit.vim
+901.231  000.131  000.131: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/nose.vim
+902.489  000.156  000.156: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/nose2.vim
+903.746  000.153  000.153: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/mamba.vim
+903.907  089.357: BufEnter autocommands
+903.912  000.005: editing files in windows
+937.533  001.300  001.300: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-startify/autoload/startify.vim
+994.872  000.560  000.560: sourcing /Users/lukexaviersymington/.local/share/nvim/site/pack/packer/start/vim-startify/syntax/startify.vim
+1013.562  107.790: VimEnter autocommands
+1013.575  000.012: UIEnter autocommands
+1013.578  000.004: before starting main loop
+1044.711  031.132: first screen update
+1044.725  000.014: --- NVIM STARTED ---
