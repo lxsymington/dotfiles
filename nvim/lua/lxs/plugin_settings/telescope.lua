@@ -8,11 +8,11 @@ local M = {}
 -- TELESCOPE ---------------------------
 function M.setup()
 	local workspaces = {
-		['conf'] = os.getenv('HOME') .. '/.config',
+		['conf'] = os.getenv('HOME') .. '/.dotfiles/nvim',
 		['development'] = os.getenv('HOME') .. '/Development',
 		['learning'] = os.getenv('HOME') .. '/Learning',
-		['notes'] = os.getenv('HOME') .. '/Documents/org_notes',
-		['agenda'] = os.getenv('HOME') .. '/Documents/org_agendanotes',
+		['notes'] = os.getenv('HOME') .. '/.dotfiles/org/org_notes',
+		['agenda'] = os.getenv('HOME') .. '/.dotfiles/org/org_agendanotes',
 	}
 
 	require('telescope').setup({
