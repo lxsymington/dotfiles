@@ -31,13 +31,13 @@
  + [X] Telescope frecency workspaces
    + [X] Check configuration
 
-** NEXT In progress :Active:
- + [ ] Move `typescript.ts` to an org file from the system tests repo
+** ACTIVE In progress :Active:
+ + [X] Move `typescript.ts` to an org file from the system tests repo
  + [ ] [[https://github.com/michaelb/sniprun][sniprun]]
    + [X] Install
    + [ ] Correctly configure
 
-** TODO Blocked :Plugins: :In_depth:
+** BLOCKED Blocked :Plugins: :In_depth:
  + [ ] Orgmode
     + [X] Install [[https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter][Orgmode.nvim]]
     + [X] Set up the [[https://github.com/milisims/tree-sitter-org][tree-sitter grammar]]
@@ -65,13 +65,15 @@
    + [ ] By making sure that it uses `fd` or similar to collate entries
  + [ ] Org formatter and linter? Possibly via `formatprg`
  + [ ] Org conceal for links and checkboxes
+ + [ ] Find out if [[https://github.com/mfussenegger/nvim-dap][nvim-dap]] supports pre-debug tasks
+   + see [[https://github.com/mfussenegger/nvim-dap/issues/191#issuecomment-853751519][this comment]]
  
-** TODO Review :Not_ready:
+** PLANNING Review :Not_ready:
  + [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [[https://github.com/SonarSource/sonarlint-language-server][language server]]
  + [ ] Install and configure [[https://github.com/ThePrimeagen/refactoring.nvim][refactoring.nvim]]
    + Looks as if this would be early adoption, revisit this later
  + [ ] Auto-documenting via [[https://github.com/nvim-treesitter/nvim-tree-docs][nvim-tree-docs]]
- + [ ] Lua version of vim-test 🤯
+ + [ ] Lua version of vim-test using tree-sitter to identify test cases/suites 🤯
 
 * Tmux todolist
  + [X] Simplify the Statusline

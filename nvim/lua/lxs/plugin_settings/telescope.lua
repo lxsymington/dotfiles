@@ -1,6 +1,8 @@
+local Job = require('plenary.job')
 local util = require('lspconfig.util')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
+local tbl_extend = vim.tbl_extend
 local keymap = vim.api.nvim_set_keymap
 
 local M = {}
@@ -9,11 +11,32 @@ local M = {}
 function M.setup()
 	local workspaces = {
 		['conf'] = os.getenv('HOME') .. '/.dotfiles/nvim',
-		['development'] = os.getenv('HOME') .. '/Development',
 		['learning'] = os.getenv('HOME') .. '/Learning',
 		['notes'] = os.getenv('HOME') .. '/.dotfiles/org/org_notes',
-		['agenda'] = os.getenv('HOME') .. '/.dotfiles/org/org_agendanotes',
+		['agenda'] = os.getenv('HOME') .. '/.dotfiles/org/org_agenda',
+		['work_notes'] = os.getenv('HOME') .. '/Documents/Org/Notes',
+		['work_agenda'] = os.getenv('HOME') .. '/Documents/Org/Agenda',
 	}
+
+	-- Using `ls -d */` errors at '*/' as it is treated as a string not a wildcard
+	local project_job = Job
+		:new({
+			command = 'exa',
+			args = { '-D' },
+			cwd = os.getenv('HOME') .. '/Development/',
+			on_stderr = function(_, err)
+				vim.notify(string.format('Unable to create project workspaces: %s', err), 'error')
+			end,
+		})
+		:sync(1000)
+
+	local project_tables = vim.tbl_map(function(project)
+		return { [project] = os.getenv('HOME') .. '/Development/' .. project }
+	end, project_job)
+
+	for _, project in ipairs(project_tables) do
+		workspaces = tbl_extend('keep', workspaces, project)
+	end
 
 	require('telescope').setup({
 		defaults = {
