@@ -8,7 +8,6 @@ local formatting = require('lxs.lsp.formatting')
 local handlers = require('lxs.lsp.handlers')
 local preview = require('lxs.lsp.preview')
 local signs = require('lxs.lsp.signs')
-local eslint = require('lxs.plugin_settings.efm.eslint')
 local prettier = require('lxs.plugin_settings.efm.prettier')
 local stylua = require('lxs.plugin_settings.efm.stylua')
 local tslint = require('lxs.plugin_settings.efm.tslint')
@@ -75,10 +74,10 @@ local function server_setup(server)
 					languages = {
 						lua = { stylua },
 						vim = { vint },
-						typescript = { prettier, tslint, eslint },
-						javascript = { prettier, eslint },
-						typescriptreact = { prettier, tslint, eslint },
-						javascriptreact = { prettier, eslint },
+						typescript = { prettier, tslint },
+						javascript = { prettier },
+						typescriptreact = { prettier, tslint },
+						javascriptreact = { prettier },
 						yaml = { prettier },
 						json = { prettier },
 						html = { prettier },
@@ -86,6 +85,18 @@ local function server_setup(server)
 						css = { prettier },
 						markdown = { prettier },
 					},
+				},
+			}, default_opts)
+		end,
+		['eslint'] = function()
+			return tbl_extend('keep', {
+				settings = {
+					cmd = vim.list_extend({ 'yarn', 'node' }, default_opts.cmd),
+					codeActionOnSave = {
+						enable = true,
+						mode = 'all',
+					},
+					format = { enable = true },
 				},
 			}, default_opts)
 		end,
@@ -104,12 +115,6 @@ local function server_setup(server)
 					},
 				},
 			}, default_opts)
-		end,
-		['eslintls'] = function()
-			default_opts.settings = {
-				format = { enable = true },
-			}
-			return default_opts
 		end,
 		['sumneko_lua'] = function()
 			return luadev.setup({

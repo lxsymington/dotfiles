@@ -7,19 +7,19 @@ local keymap = vim.api.nvim_set_keymap
 
 local M = {}
 
--- TELESCOPE ---------------------------
-function M.setup()
-	local workspaces = {
-		['conf'] = os.getenv('HOME') .. '/.dotfiles/nvim',
-		['learning'] = os.getenv('HOME') .. '/Learning',
-		['notes'] = os.getenv('HOME') .. '/.dotfiles/org/org_notes',
-		['agenda'] = os.getenv('HOME') .. '/.dotfiles/org/org_agenda',
-		['work_notes'] = os.getenv('HOME') .. '/Documents/Org/Notes',
-		['work_agenda'] = os.getenv('HOME') .. '/Documents/Org/Agenda',
-	}
+local workspaces = {
+	['conf'] = os.getenv('HOME') .. '/.dotfiles/nvim',
+	['learning'] = os.getenv('HOME') .. '/Learning',
+	['notes'] = os.getenv('HOME') .. '/.dotfiles/org/org_notes',
+	['agenda'] = os.getenv('HOME') .. '/.dotfiles/org/org_agenda',
+	['work_notes'] = os.getenv('HOME') .. '/Documents/Org/Notes',
+	['work_agenda'] = os.getenv('HOME') .. '/Documents/Org/Agenda',
+}
 
+local function initWorkspaces()
 	-- Using `ls -d */` errors at '*/' as it is treated as a string not a wildcard
-	local project_job = Job
+	-- It may be possible not to use the `sync` version but plenary's docs aren't terribly clear
+	local projects = Job
 		:new({
 			command = 'exa',
 			args = { '-D' },
@@ -30,14 +30,19 @@ function M.setup()
 		})
 		:sync(1000)
 
-	local project_tables = vim.tbl_map(function(project)
-		return { [project] = os.getenv('HOME') .. '/Development/' .. project }
-	end, project_job)
-
-	for _, project in ipairs(project_tables) do
-		workspaces = tbl_extend('keep', workspaces, project)
+	for _, project in ipairs(projects) do
+		workspaces = tbl_extend(
+			'keep',
+			workspaces,
+			{ [project] = os.getenv('HOME') .. '/Development/' .. project }
+		)
 	end
 
+	return workspaces
+end
+
+-- TELESCOPE ---------------------------
+function M.setup()
 	require('telescope').setup({
 		defaults = {
 			layout_strategy = 'flex',
@@ -74,7 +79,7 @@ function M.setup()
 			frecency = {
 				show_scores = true,
 				ignore_patterns = { '*.git/*', '*/node_modules/*', '*/tmp/*' },
-				workspaces = workspaces,
+				workspaces = initWorkspaces(),
 			},
 			fzf = {
 				fuzzy = true,
@@ -225,6 +230,8 @@ function M.local_file_browser()
 		layout_config = {
 			mirror = true,
 			height = math.min(math.floor(vim.o.lines * 0.8), 30),
+			preview_width = math.min(math.floor(vim.o.columns * 0.5), 80),
+			width = math.min(math.floor(vim.o.columns * 0.8), 140),
 		},
 	})
 
@@ -234,7 +241,6 @@ end
 function M.frecency()
 	local opts = themes.get_dropdown({
 		border = true,
-		winblend = 10,
 	})
 
 	require('telescope').extensions.frecency.frecency(opts)
@@ -251,9 +257,7 @@ function M.git_status()
 end
 
 function M.lsp_code_actions()
-	local opts = themes.get_cursor({
-		layout_strategy = 'vertical',
-	})
+	local opts = themes.get_cursor({})
 
 	builtin.lsp_code_actions(opts)
 end
@@ -265,17 +269,13 @@ function M.lsp_document_diagnostics()
 end
 
 function M.lsp_range_code_actions()
-	local opts = themes.get_cursor({
-		layout_strategy = 'vertical',
-	})
+	local opts = themes.get_cursor({})
 
 	builtin.lsp_range_code_actions(opts)
 end
 
 function M.lsp_references()
-	local opts = themes.get_cursor({
-		layout_strategy = 'vertical',
-	})
+	local opts = themes.get_ivy({})
 
 	builtin.lsp_references(opts)
 end

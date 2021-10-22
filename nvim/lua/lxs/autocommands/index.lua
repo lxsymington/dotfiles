@@ -9,8 +9,7 @@ function M.setup()
 		[[
             augroup Terminal
             autocmd!
-            autocmd TermOpen,TermEnter <buffer> TerminalStyle
-            autocmd BufNew term://* TerminalStyle
+            autocmd TermOpen,TermEnter * TerminalStyle
             augroup END
         ]],
 		false
