@@ -196,8 +196,6 @@ function M.setup()
 	})
 
 	lsp_installer.on_server_ready(server_setup)
-
-	-- local servers = { "cssls", "html", "jsonls", "rust_analyzer", "tsserver", "vimls", "yamlls" }
 end
 
 return M

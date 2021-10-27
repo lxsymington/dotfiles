@@ -8,23 +8,6 @@ local bo = vim.bo
 local b = vim.b
 local M = {}
 
-local vi_mode_colors = {
-	NORMAL = colours.yellow.hex,
-	OP = colours.lightYellow.hex,
-	INSERT = colours.green.hex,
-	VISUAL = colours.cyan.hex,
-	BLOCK = colours.lightCyan.hex,
-	REPLACE = colours.red.hex,
-	['V-REPLACE'] = colours.lightRed.hex,
-	ENTER = colours.lightPurple.hex,
-	MORE = colours.lightBlue.hex,
-	SELECT = colours.lightOrange.hex,
-	COMMAND = colours.orange.hex,
-	SHELL = colours.blue.hex,
-	TERM = colours.purple.hex,
-	NONE = colours.lightGreen.hex,
-}
-
 local mode_alias_map = {
 	[''] = {
 		name = 'Select-Block',
@@ -165,15 +148,6 @@ local buffer_not_empty = function()
 	return fn.empty(fn.expand('%:t')) ~= 1
 end
 
-local treesitter_status = function()
-	local ok, string = pcall(vim.fn['nvim_treesitter#statusline'], {
-		indicator_size = math.floor(vim.o.columns * 0.2),
-		separator = ' ⟫ ',
-	})
-
-	return ok and string ~= vim.NIL and string:gsub('function', '⒡ ') or '∅'
-end
-
 --[[
     Feline Separators
 
@@ -311,7 +285,10 @@ function M.setup()
 	})
 
 	table.insert(components.active[3], {
-		provider = treesitter_status,
+		provider = require('lsp-status').status,
+		enabled = function()
+			return #vim.lsp.buf_get_clients() > 0
+		end,
 		hl = { fg = colours.lightGrey.hex },
 	})
 
@@ -447,7 +424,7 @@ function M.setup()
 		right_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
 	})
 
-	require('feline').setup({
+	feline.setup({
 		colors = {
 			bg = colours.black.hex,
 			fg = colours.white.hex,

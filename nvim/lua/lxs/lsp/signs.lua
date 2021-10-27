@@ -3,24 +3,24 @@ local M = {}
 
 -- LSP Signs ---------------------------
 function M.setup()
-	sign_define('LspDiagnosticsSignError', {
+	sign_define('DiagnosticSignError', {
 		text = '',
-		texthl = 'LspDiagnosticsSignError',
+		texthl = 'DiagnosticSignError',
 	})
 
-	sign_define('LspDiagnosticsSignWarning', {
+	sign_define('DiagnosticSignWarn', {
 		text = '',
-		texthl = 'LspDiagnosticsSignWarning',
+		texthl = 'DiagnosticSignWarn',
 	})
 
-	sign_define('LspDiagnosticsSignInformation', {
+	sign_define('DiagnosticSignInfo', {
 		text = '',
-		texthl = 'LspDiagnosticsSignInformation',
+		texthl = 'DiagnosticSignInfo',
 	})
 
-	sign_define('LspDiagnosticsSignHint', {
+	sign_define('DiagnosticSignHint', {
 		text = '',
-		texthl = 'LspDiagnosticsSignHint',
+		texthl = 'DiagnosticSignHint',
 	})
 end
 

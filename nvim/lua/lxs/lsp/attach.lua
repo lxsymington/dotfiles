@@ -4,10 +4,10 @@ local api = vim.api
 local M = {}
 
 -- LSP Attach --------------------------
-function M.attach(client)
+function M.attach(client, bufnr)
 	api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-	lsp_keymaps.setup(bufnr, 'lsp')
+	lsp_keymaps.setup(bufnr)
 
 	lsp_status.on_attach(client)
 

@@ -101,24 +101,24 @@ local theme = lush.merge({
 			TSTypeBuiltin({ Typedef }),
 			TSText({ String }),
 			TSLiteral({ String }),
-			LspDiagnosticsVirtualTextError({
-				bg = colours.lightRed.abs_desaturate(45).abs_lighten(45),
-				fg = colours.lightRed,
+			DiagnosticVirtualTextError({
+				bg = colours.lightRed.saturation(36).lightness(88),
+				fg = colours.lightRed.saturation(60).lightness(48),
 				gui = 'nocombine,italic',
 			}),
-			LspDiagnosticsVirtualTextWarning({
-				bg = colours.lightYellow.abs_desaturate(60).abs_lighten(60),
-				fg = colours.lightYellow,
+			DiagnosticVirtualTextWarn({
+				bg = colours.lightYellow.saturation(36).lightness(88),
+				fg = colours.lightYellow.saturation(60).lightness(48),
 				gui = 'nocombine,italic',
 			}),
-			LspDiagnosticsVirtualTextInformation({
-				bg = colours.lightBlue.abs_desaturate(45).abs_lighten(45),
-				fg = colours.lightBlue,
+			DiagnosticVirtualTextInfo({
+				bg = colours.lightBlue.saturation(36).lightness(88),
+				fg = colours.lightBlue.saturation(60).lightness(48),
 				gui = 'nocombine,italic',
 			}),
-			LspDiagnosticsVirtualTextHint({
-				bg = colours.lightGreen.abs_desaturate(45).abs_lighten(45),
-				fg = colours.lightGreen,
+			DiagnosticVirtualTextHint({
+				bg = colours.lightGreen.saturation(36).lightness(88),
+				fg = colours.lightGreen.saturation(60).lightness(48),
 				gui = 'nocombine,italic',
 			}),
 			GitSignsAddSign({ SignColumn, fg = colours.lightGreen, gui = 'nocombine' }),

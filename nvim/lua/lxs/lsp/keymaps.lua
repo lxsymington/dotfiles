@@ -44,7 +44,7 @@ function M.setup(bufnr)
 	keymap(
 		'n',
 		']d',
-		'<Cmd>:lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "rounded" }})<CR>',
+		'<Cmd>:lua vim.lsp.diagnostic.goto_next({ float = { border = "rounded", source = "if_many" }})<CR>',
 		keymap_opts
 	)
 
@@ -52,7 +52,7 @@ function M.setup(bufnr)
 	keymap(
 		'n',
 		'[d',
-		'<Cmd>:lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "rounded" }})<CR>',
+		'<Cmd>:lua vim.lsp.diagnostic.goto_prev({ float = { border = "rounded", source = "if_many" }})<CR>',
 		keymap_opts
 	)
 

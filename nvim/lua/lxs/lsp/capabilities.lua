@@ -29,7 +29,7 @@ function M.create(opts)
 		}
 	)
 
-	return tbl_extend('keep', opts or {}, capabilities or {}, lsp_status.capabilities)
+	return tbl_extend('keep', opts or {}, lsp_status.capabilities, capabilities or {})
 end
 
 return M

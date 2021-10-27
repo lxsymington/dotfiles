@@ -139,6 +139,12 @@ function M.setup()
 		"<Cmd>:lua require('lxs.plugin_settings.telescope').lsp_workspace_diagnostics()<CR>",
 		{ noremap = true, silent = true }
 	)
+	keymap(
+		'n',
+		'<Leader>ls',
+		"<Cmd>:lua require('lxs.plugin_settings.telescope').lsp_dynamic_workspace_symbols()<CR>",
+		{ noremap = true, silent = true }
+	)
 
 	-- Git
 	keymap('n', '<Leader>gf', "<Cmd>:lua require('lxs.plugin_settings.telescope').git_files()<CR>", {
