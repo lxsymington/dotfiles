@@ -1,4 +1,5 @@
 local colours = require('lush_theme.crepuscular_colours')
+local lsp_status = require('lsp-status')
 local feline = require('feline')
 local lsp = require('feline.providers.lsp')
 local devicons = require('nvim-web-devicons')
@@ -285,7 +286,9 @@ function M.setup()
 	})
 
 	table.insert(components.active[3], {
-		provider = require('lsp-status').status,
+		provider = function()
+			return lsp_status.status()
+		end,
 		enabled = function()
 			return #vim.lsp.buf_get_clients() > 0
 		end,

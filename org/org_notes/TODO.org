@@ -1,82 +1,74 @@
 * Neovim todolist
-** DONE Neovim plugins to trial :Plugins:
- + [X] LSP trouble
- + [X] TrueZen
- + [X] Indent blankline
- + [X] Neogit
+** DONE LSP trouble :Plugins:
+** DONE TrueZen :Plugins:
+** DONE Indent blankline :Plugins:
+** DONE Neogit :Plugins
    + [X] NvimTree conflict
- + [X] Symbols outline
+** DONE Symbols outline :Plugins:
    + [X] Look into the issues with this not behaving as expected
- + [X] Replace kommentary with [[https://github.com/numToStr/Comment.nvim][comment.nvim]]
- + [X] Install and configure [[https://github.com/nvim-telescope/telescope-symbols.nvim][Telescope Symbols]]
- + [X] Try [[https://github.com/kosayoda/nvim-lightbulb][nvim-lightbulb]] again
- + [X] Install [[https://github.com/rcarriga/nvim-notify][nvim-notify]]
- + [X] Investigate [[https://github.com/williamboman/nvim-lsp-installer][nvim-lsp-installer]]
-   + see [[https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua][author's config]]
- + [X] Investigate [[https://github.com/rcarriga/vim-ultest][vim-ultest]]
-
-** DONE Neovim config :Config:
- + [X] Packer Compile autocommand
- + [X] Statusline middle and right components
- + [X] Check the telescope-fzy-native configuration
- + [X] Get borders working on Diagnostics popups, see this [[https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3][reddit thread]]
- + [X] tree-sitter `foldexpr` see `:h nvim_treesitter#foldexpr()`
- + [X] tree-sitter `statsline` component see `:h nvim_treesitter#statsline()`
- + [X] Make neovim config reloadable
- + [X] Properly understand how removing an autocommand works
+** DONE Replace kommentary with [[https://github.com/numToStr/Comment.nvim][comment.nvim]] :Plugins:
+** DONE Install and configure [[https://github.com/nvim-telescope/telescope-symbols.nvim][Telescope Symbols]] :Plugins:
+** DONE Try [[https://github.com/kosayoda/nvim-lightbulb][nvim-lightbulb]] again :Plugins:
+** DONE Install [[https://github.com/rcarriga/nvim-notify][nvim-notify]] :Plugins:
+** DONE Investigate [[https://github.com/williamboman/nvim-lsp-installer][nvim-lsp-installer]] :Plugins:
+   + [X] see [[https://github.com/williamboman/nvim-config/blob/main/lua/wb/lsp/init.lua][author's config]]
+** DONE Investigate [[https://github.com/rcarriga/vim-ultest][vim-ultest]]
+** DONE Packer Compile autocommand :Config:
+** DONE Statusline middle and right components :Config:
+** DONE Check the telescope-fzy-native configuration :Config:
+** DONE Get borders working on Diagnostics popups, see this [[https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3][reddit thread]] :Config:
+** DONE tree-sitter `foldexpr` see `:h nvim_treesitter#foldexpr()` :Config:
+** DONE tree-sitter `statsline` component see `:h nvim_treesitter#statsline()` :Config:
+** DONE Make neovim config reloadable :Config:
+** DONE Properly understand how removing an autocommand works :Config:
    + see [[https://learnvimscriptthehardway.stevelosh.com/chapters/14.html][this]]
- + [X] Properly configure [[https://github.com/rcarriga/nvim-dap-ui][dap-ui]]
- + [X] Refactor Lsp configuration into smaller modules
- + [X] Use telescope's file browser and the cursor theme to make a local directory browser
- + [X] Telescope frecency workspaces
+** DONE Properly configure [[https://github.com/rcarriga/nvim-dap-ui][dap-ui]] :Config:
+** DONE Refactor Lsp configuration into smaller modules :Config:
+** DONE Use telescope's file browser and the cursor theme to make a local directory browser :Config:
+** DONE Telescope frecency workspaces :Config:
    + [X] Check configuration
-
-** ACTIVE In progress :Active:
- + [X] Move `typescript.ts` to an org file from the system tests repo
- + [ ] [[https://github.com/michaelb/sniprun][sniprun]]
+** DONE Move `typescript.ts` to an org file from the system tests repo :Learning:
+** ACTIVE See if it's possible to speed up frecency :Plugins:
+   + [X] By splitting Development up into each of its subdirectories
+     + [X] with plenary and/or `vim.loop`
+   + [ ] By making sure that it uses `fd` or similar to collate entries
+** ACTIVE [[https://github.com/michaelb/sniprun][sniprun]] :Plugins:
    + [X] Install
    + [ ] Correctly configure
-
-** BLOCKED Blocked :Plugins: :In_depth:
- + [ ] Orgmode
-    + [X] Install [[https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter][Orgmode.nvim]]
-    + [X] Set up the [[https://github.com/milisims/tree-sitter-org][tree-sitter grammar]]
-    + [X] Correctly configure it
-    + [ ] Figure out how to integrate sniprun with the codeblocks
-    + [ ] Consider setting up [[https://github.com/kristijanhusak/orgmode.nvim/blob/tree-sitter/DOCS.md#notifications-experimental][notifications]]
-    + [ ] Possibly use Neorg instead
- + [ ] DenoLS
-    + [X] Install DenoLS
-    + [ ] Look into getting it to work with Node projects
- + [ ] Colourscheme
-    + [X] Diagnostics highlights background
-    + [X] Generate alacritty colour scheme from lush
-    + [X] Statusline colours
-    + [ ] Auto-switching
-    + [ ] Light theme refresh/update
-
-** TODO Backlog :Ready:
- + [ ] Look into [[https://github.com/NTBBloodbath/rest.nvim][rest.nvim]]
- + [ ] Get vim-ultest to run typescript mocha test files
+** BLOCKED Orgmode :Plugins:
+   + [X] Install [[https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter][Orgmode.nvim]]
+   + [X] Set up the [[https://github.com/milisims/tree-sitter-org][tree-sitter grammar]]
+   + [X] Correctly configure it
+   + [ ] Figure out how to integrate sniprun with the codeblocks
+   + [ ] Consider setting up [[https://github.com/kristijanhusak/orgmode.nvim/blob/tree-sitter/DOCS.md#notifications-experimental][notifications]]
+   + [ ] Possibly use Neorg instead
+** BLOCKED DenoLS :Plugins:
+   + [X] Install DenoLS
+   + [ ] Look into getting it to work with Node projects
+** BLOCKED Colourscheme :Config:
+   + [X] Diagnostics highlights background
+   + [X] Generate alacritty colour scheme from lush
+   + [X] Statusline colours
+   + [ ] Auto-switching
+   + [ ] Light theme refresh/update
+   + [ ] Look into lush author's [[https://github.com/rktjmp/shipwright.nvim][shipwright.nvim]]
+** TODO Look into [[https://github.com/NTBBloodbath/rest.nvim][rest.nvim]] :Plugins:
+** TODO Get vim-ultest to run typescript mocha test files :Config:
    + [ ] This requires configuration of the underlying [[https://github.com/vim-test/vim-test/issues/209][vim-test]]
- + [ ] See if it's possible to speed up frecency
-   + [ ] By splitting Development up into each of its subdirectories
-     + [ ] with plenary and/or `vim.loop`
-   + [ ] By making sure that it uses `fd` or similar to collate entries
- + [ ] Org formatter and linter? Possibly via `formatprg`
- + [ ] Org conceal for links and checkboxes
- + [ ] Find out if [[https://github.com/mfussenegger/nvim-dap][nvim-dap]] supports pre-debug tasks
+** PLANNING Org formatter and linter? Possibly via `formatprg`
+** PLANNING Org conceal for links and checkboxes
+** PLANNING Find out if [[https://github.com/mfussenegger/nvim-dap][nvim-dap]] supports pre-debug tasks
    + see [[https://github.com/mfussenegger/nvim-dap/issues/191#issuecomment-853751519][this comment]]
  
 ** PLANNING Review :Not_ready:
- + [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [[https://github.com/SonarSource/sonarlint-language-server][language server]]
- + [ ] Install and configure [[https://github.com/ThePrimeagen/refactoring.nvim][refactoring.nvim]]
-   + Looks as if this would be early adoption, revisit this later
- + [ ] Auto-documenting via [[https://github.com/nvim-treesitter/nvim-tree-docs][nvim-tree-docs]]
- + [ ] Lua version of vim-test using tree-sitter to identify test cases/suites 🤯
+   + [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [[https://github.com/SonarSource/sonarlint-language-server][language server]]
+   + [ ] Install and configure [[https://github.com/ThePrimeagen/refactoring.nvim][refactoring.nvim]]
+     + Looks as if this would be early adoption, revisit this later
+   + [ ] Auto-documenting via [[https://github.com/nvim-treesitter/nvim-tree-docs][nvim-tree-docs]]
+   + [ ] Lua version of vim-test using tree-sitter to identify test cases/suites 🤯
 
 * Tmux todolist
- + [X] Simplify the Statusline
+** DONE Simplify the Statusline
 
 * Git todolist
  + [ ] Investigate [[https://www.atlassian.com/git/tutorials/dotfiles][git bare repositories]]
