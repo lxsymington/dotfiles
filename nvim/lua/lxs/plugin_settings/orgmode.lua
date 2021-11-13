@@ -1,6 +1,4 @@
 local orgmode = require('orgmode')
-local headlines = require('headlines')
-local bullets = require('org-bullets')
 local colours = require('lush_theme.crepuscular_colours')
 local M = {}
 
@@ -57,9 +55,6 @@ function M.setup()
 			),
 		},
 	})
-
-	headlines.setup()
-	bullets.setup()
 end
 
 return M

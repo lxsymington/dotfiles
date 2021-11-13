@@ -9,7 +9,11 @@ function M.setup()
 			change = { hl = 'GitSignsChangeSign', text = '┊', numhl = 'GitSignsChangeNr' },
 			delete = { hl = 'GitSignsDeleteSign', text = '┴', numhl = 'GitSignsDeleteNr' },
 			topdelete = { hl = 'GitSignsDeleteSign', text = '┬', numhl = 'GitSignsDeleteNr' },
-			changedelete = { hl = 'GitSignsChangeSign', text = '├', numhl = 'GitSignsChangeNr' },
+			changedelete = {
+				hl = 'GitSignsChangeSign',
+				text = '├',
+				numhl = 'GitSignsChangeNr',
+			},
 		},
 		numhl = true,
 		current_line_blame = true,

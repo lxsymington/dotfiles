@@ -51,6 +51,14 @@ function M.setup()
 				'nvim-lua/lsp_extensions.nvim',
 				'folke/lua-dev.nvim',
 			},
+			opt = true,
+			cmd = {
+				'LspInstall',
+				'LspInstallInfo',
+				'LspInstallLog',
+				'LspUninstall',
+				'LspUninstallAll',
+			},
 			config = function()
 				require('lxs.lsp').setup()
 			end,
@@ -93,7 +101,24 @@ function M.setup()
 		-- Note taking
 		use({
 			'kristijanhusak/orgmode.nvim',
-			requires = { 'lukas-reineke/headlines.nvim', 'akinsho/org-bullets.nvim' },
+			requires = {
+				{
+					'lukas-reineke/headlines.nvim',
+					opt = true,
+					ft = { 'md', 'org' },
+					config = function()
+						require('headlines').setup()
+					end,
+				},
+				{
+					'akinsho/org-bullets.nvim',
+					opt = true,
+					ft = { 'org' },
+					config = function()
+						require('org-bullets').setup()
+					end,
+				},
+			},
 			config = function()
 				require('lxs.plugin_settings.orgmode').setup()
 			end,
@@ -182,23 +207,15 @@ function M.setup()
 
 		-- Search
 		use({
-			'nvim-telescope/telescope-fzf-native.nvim',
-			run = 'make',
-		})
-		use({
-			'nvim-telescope/telescope-frecency.nvim',
-			requires = { 'tami5/sqlite.lua' },
-		})
-		use({
 			'nvim-telescope/telescope.nvim',
-			after = {
-				'telescope-fzf-native.nvim',
-				'telescope-frecency.nvim',
-			},
 			requires = {
 				'nvim-lua/popup.nvim',
 				'nvim-lua/plenary.nvim',
+				'neovim/nvim-lspconfig',
+				'tami5/sqlite.lua',
 				'nvim-telescope/telescope-symbols.nvim',
+				'nvim-telescope/telescope-frecency.nvim',
+				{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 			},
 			config = function()
 				require('lxs.plugin_settings.telescope').setup()
@@ -213,6 +230,7 @@ function M.setup()
 				{ 'n', '<Leader>lr' },
 				{ 'n', '<Leader>ld' },
 				{ 'n', '<Leader>ldw' },
+				{ 'n', '<Leader>ls' },
 				{ 'n', '<Leader>gf' },
 				{ 'n', '<Leader>gs' },
 				{ 'n', '<Leader>gb' },
@@ -222,6 +240,7 @@ function M.setup()
 				{ 'n', '<Leader>b/' },
 				{ 'n', '<Leader><Tab>' },
 				{ 'n', '<Leader><Leader>' },
+				{ 'n', '<Leader>/' },
 				{ 'n', '<Leader>;' },
 				{ 'n', '<Leader>hz' },
 			},
@@ -230,6 +249,15 @@ function M.setup()
 		-- Version Control
 		use({
 			'sindrets/diffview.nvim',
+			opt = true,
+			cmd = {
+				'DiffviewOpen',
+				'DiffviewFileHistory',
+				'DiffviewClose',
+				'DiffviewToggleFiles',
+				'DiffviewFocusFiles',
+				'DiffviewRefresh',
+			},
 			config = function()
 				require('diffview').setup()
 			end,
@@ -281,23 +309,31 @@ function M.setup()
 		-- Debugger
 		use({
 			'mfussenegger/nvim-dap',
-			requires = { 'theHamsta/nvim-dap-virtual-text' },
+			requires = {
+				'theHamsta/nvim-dap-virtual-text',
+				{
+					'nvim-telescope/telescope-dap.nvim',
+					requires = { 'nvim-telescope/telescope.nvim' },
+					config = function()
+						require('lxs.plugin_settings.nvim_dap.telescope_integration').setup()
+					end,
+				},
+				{
+					'rcarriga/nvim-dap-ui',
+					config = function()
+						require('lxs.plugin_settings.dap_ui').setup()
+					end,
+				},
+			},
+			opt = true,
+			keys = {
+				{ 'n', '<F5>' },
+				{ 'n', '<Leader>b' },
+				{ 'n', '<Leader>B' },
+				{ 'n', '<Leader>lp' },
+			},
 			config = function()
 				require('lxs.plugin_settings.nvim_dap').setup()
-			end,
-		})
-		use({
-			'nvim-telescope/telescope-dap.nvim',
-			after = { 'telescope.nvim', 'nvim-dap' },
-			config = function()
-				require('lxs.plugin_settings.nvim_dap.telescope_integration').setup()
-			end,
-		})
-		use({
-			'rcarriga/nvim-dap-ui',
-			after = { 'nvim-dap' },
-			config = function()
-				require('lxs.plugin_settings.dap_ui').setup()
 			end,
 		})
 
@@ -305,6 +341,15 @@ function M.setup()
 		use({
 			'michaelb/sniprun',
 			run = 'bash ./install.sh',
+			opt = true,
+			cmd = {
+				'SnipRun',
+				'SnipReset',
+				'SnipReplMemoryClean',
+				'SnipTerminate',
+				'SnipInfo',
+				'SnipClose',
+			},
 			config = function()
 				require('lxs.plugin_settings.sniprun').setup()
 			end,
@@ -324,6 +369,8 @@ function M.setup()
 		use({
 			'euclio/vim-markdown-composer',
 			run = 'cargo build --release',
+			opt = true,
+			ft = { 'md' },
 		})
 
 		-- Databases
@@ -363,12 +410,19 @@ function M.setup()
 		})
 		use({
 			'folke/zen-mode.nvim',
+			opt = true,
+			cmd = { 'ZenMode' },
+			keys = {
+				{ 'n', '<leader>zm' },
+			},
 			config = function()
 				require('lxs.plugin_settings.zen_mode').setup()
 			end,
 		})
 		use({
 			'folke/twilight.nvim',
+			opt = true,
+			cmd = { 'colors' },
 			config = function()
 				require('twilight').setup()
 			end,

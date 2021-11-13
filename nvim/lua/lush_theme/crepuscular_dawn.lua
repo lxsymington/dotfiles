@@ -22,7 +22,11 @@ local theme = lush.merge({
 				fg = colours.cyan,
 				gui = 'nocombine,bold,undercurl',
 			}),
-			IncSearch({ bg = colours.lightGreen, fg = colours.lightBlack, gui = 'nocombine,bold' }),
+			IncSearch({
+				bg = colours.lightGreen,
+				fg = colours.lightBlack,
+				gui = 'nocombine,bold',
+			}),
 			LineNr({
 				bg = colours.white.abs_lighten(5),
 				fg = colours.white.abs_darken(40),

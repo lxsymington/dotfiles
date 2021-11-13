@@ -111,7 +111,11 @@ local theme = lush.merge({
 			}),
 			GitSignsAddSign({ SignColumn, fg = colours.lightGreen, gui = 'nocombine' }),
 			GitSignsChangeSign({ SignColumn, fg = colours.lightBlue, gui = 'nocombine' }),
-			GitSignsDeleteSign({ SignColumn, fg = colours.lightRed.darken(15), gui = 'nocombine' }),
+			GitSignsDeleteSign({
+				SignColumn,
+				fg = colours.lightRed.darken(15),
+				gui = 'nocombine',
+			}),
 			GitSignsAddNr({
 				bg = colours.lightGreen.abs_desaturate(30).abs_darken(30),
 				fg = colours.lightGreen,
