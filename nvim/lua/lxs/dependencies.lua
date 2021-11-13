@@ -44,6 +44,16 @@ function M.setup()
 
 		-- LSP configurations
 		use({
+			'neovim/nvim-lspconfig',
+			opt = true,
+			module = 'lspconfig',
+		})
+		use({
+			'nvim-lua/lsp-status.nvim',
+			opt = true,
+			module = 'lsp-status',
+		})
+		use({
 			'williamboman/nvim-lsp-installer',
 			requires = {
 				'neovim/nvim-lspconfig',
@@ -142,6 +152,7 @@ function M.setup()
 				'hrsh7th/cmp-nvim-lsp',
 				'hrsh7th/cmp-buffer',
 				'saadparwaiz1/cmp_luasnip',
+				'onsails/lspkind-nvim',
 			},
 			config = function()
 				require('lxs.plugin_settings.cmp').setup()
@@ -291,7 +302,10 @@ function M.setup()
 			after = {
 				'nvim-web-devicons',
 				'gitsigns.nvim',
-				'nvim-lspconfig',
+			},
+			requires = {
+				'neovim/nvim-lspconfig',
+				'nvim-lua/lsp-status.nvim',
 			},
 			config = function()
 				require('lxs.plugin_settings.feline').setup()
@@ -486,6 +500,7 @@ function M.setup()
 	end, {
 		display = {
 			open_fn = require('packer.util').float,
+			prompt_border = 'rounded',
 		},
 	})
 end

@@ -142,6 +142,17 @@ function M.setup()
 	-- Turn on status.
 	lsp_status.register_progress()
 
+	-- Configure Lsp status
+	lsp_status.config({
+		indicator_errors = '',
+		indicator_warnings = '',
+		indicator_info = '',
+		indicator_hint = '',
+		indicator_ok = '✔️',
+		component_separator = '‖',
+		indicator_separator = '⃒',
+	})
+
 	-- Setup formatting
 	formatting.setup()
 

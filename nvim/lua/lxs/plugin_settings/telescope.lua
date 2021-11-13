@@ -1,7 +1,7 @@
 local Job = require('plenary.job')
-local util = require('lspconfig.util')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
+local util = require('lspconfig.util')
 local tbl_extend = vim.tbl_extend
 local keymap = vim.api.nvim_set_keymap
 

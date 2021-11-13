@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 local M = {}
 
@@ -23,6 +24,9 @@ function M.setup()
 			{ name = 'luasnip' },
 			{ name = 'buffer' },
 			{ name = 'org' },
+		},
+		formatting = {
+			format = lspkind.cmp_format({ with_text = false, maxwidth = 60 }),
 		},
 	})
 end
