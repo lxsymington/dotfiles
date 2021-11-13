@@ -1,4 +1,5 @@
 local dap = require('dap')
+local dap_virtual_text = require('nvim-dap-virtual-text')
 local mochaConfigurator = require('lxs.plugin_settings.nvim_dap.configurations.mocha.configurator')
 local api = vim.api
 local keymap = api.nvim_set_keymap
@@ -194,7 +195,7 @@ function M.setup()
 	vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'Error' })
 
 	-- Show virtual text for current frame
-	vim.g.dap_virtual_text = true
+	dap_virtual_text.setup()
 end
 
 return M

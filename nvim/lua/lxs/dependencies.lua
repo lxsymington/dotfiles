@@ -93,7 +93,6 @@ function M.setup()
 		-- Note taking
 		use({
 			'kristijanhusak/orgmode.nvim',
-			branch = 'tree-sitter',
 			requires = { 'lukas-reineke/headlines.nvim', 'akinsho/org-bullets.nvim' },
 			config = function()
 				require('lxs.plugin_settings.orgmode').setup()
