@@ -28,7 +28,7 @@
 ** DONE Telescope frecency workspaces :Config:
    + [X] Check configuration
 ** DONE Move `typescript.ts` to an org file from the system tests repo :Learning:
-** ACTIVE Nvim Cmp :Plugins:
+** DONE Nvim Cmp :Plugins:
    + [[https://github.com/hrsh7th/nvim-cmp#highlights][highlights]] for [[https://github.com/hrsh7th/nvim-cmp][Nvim Cmp]]
 ** ACTIVE See if it's possible to speed up frecency :Plugins:
    + [X] By splitting Development up into each of its subdirectories

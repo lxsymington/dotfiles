@@ -89,6 +89,7 @@ local theme = lush.merge({
 			TSTypeBuiltin({ Typedef }),
 			TSText({ String }),
 			TSLiteral({ String }),
+
 			DiagnosticVirtualTextError({
 				bg = colours.lightRed.saturation(36).lightness(12),
 				fg = colours.lightRed.saturation(60).lightness(48),
@@ -109,6 +110,7 @@ local theme = lush.merge({
 				fg = colours.yellow.saturation(60).lightness(48),
 				gui = 'nocombine,italic',
 			}),
+
 			GitSignsAddSign({ SignColumn, fg = colours.lightGreen, gui = 'nocombine' }),
 			GitSignsChangeSign({ SignColumn, fg = colours.lightBlue, gui = 'nocombine' }),
 			GitSignsDeleteSign({
@@ -131,6 +133,13 @@ local theme = lush.merge({
 				fg = colours.lightRed.darken(15),
 				gui = 'nocombine',
 			}),
+
+            CmpItemAbbr({ fg = colours.white, gui = 'nocombine' }),
+            CmpItemAbbrDeprecated({ fg = colours.lightYellow, gui = 'nocombine,strikethrough' }),
+            CmpItemAbbrMatch({ fg = colours.orange, gui = 'nocombine,bold' }),
+            CmpItemAbbrMatchFuzzy({ fg = colours.lightOrange, gui = 'nocombine,bold' }),
+            CmpItemKind({ fg = colours.lightBlue }),
+            CmpItemMenu({ Comment })
 		}
 	end),
 })

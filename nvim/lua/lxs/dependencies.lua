@@ -44,30 +44,12 @@ function M.setup()
 
 		-- LSP configurations
 		use({
-			'neovim/nvim-lspconfig',
-			opt = true,
-			module = 'lspconfig',
-		})
-		use({
-			'nvim-lua/lsp-status.nvim',
-			opt = true,
-			module = 'lsp-status',
-		})
-		use({
 			'williamboman/nvim-lsp-installer',
 			requires = {
 				'neovim/nvim-lspconfig',
 				'nvim-lua/lsp-status.nvim',
 				'nvim-lua/lsp_extensions.nvim',
 				'folke/lua-dev.nvim',
-			},
-			opt = true,
-			cmd = {
-				'LspInstall',
-				'LspInstallInfo',
-				'LspInstallLog',
-				'LspUninstall',
-				'LspUninstallAll',
 			},
 			config = function()
 				require('lxs.lsp').setup()

@@ -2,7 +2,7 @@ local lsp_installer = require('nvim-lsp-installer')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
 local luadev = require('lua-dev')
-local kind_symbols = require('lxs.config.constants').kind_symbols
+local constants = require('lxs.config.constants')
 local attach = require('lxs.lsp.attach')
 local capabilities = require('lxs.lsp.capabilities')
 local formatting = require('lxs.lsp.formatting')
@@ -145,7 +145,7 @@ function M.setup()
 
 	-- Configure Lsp status
 	lsp_status.config({
-	    kind_labels = kind_symbols,
+		kind_labels = constants.kind_symbols,
 		indicator_errors = '',
 		indicator_warnings = '',
 		indicator_info = '',
@@ -168,7 +168,7 @@ function M.setup()
 	signs.setup()
 
 	-- Pretty icons
-	vim.lsp.protocol.CompletionItemKind = kind_symbols.items
+	vim.lsp.protocol.CompletionItemKind = constants.kind_labels
 
 	-- Configure `nvim-lsp-installer`
 	lsp_installer.settings({
