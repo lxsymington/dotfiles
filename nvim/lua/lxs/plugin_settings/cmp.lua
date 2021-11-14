@@ -17,17 +17,37 @@ function M.setup()
 			['<C-f>'] = cmp.mapping.scroll_docs(4),
 			['<C-Space>'] = cmp.mapping.complete(),
 			['<C-e>'] = cmp.mapping.close(),
-			['<CR>'] = cmp.mapping.confirm({ select = true }),
+			['<C-y>'] = cmp.mapping.confirm({
+			    behaviour = cmp.ConfirmBehavior.Insert,
+			    select = true
+			}),
 		},
 		sources = {
+			{ name = 'org' },
+			{ name = 'nvim_lua' },
 			{ name = 'nvim_lsp' },
 			{ name = 'luasnip' },
-			{ name = 'buffer' },
-			{ name = 'org' },
+			{ name = 'path' },
+			{ name = 'buffer', keyword_length = 4 },
 		},
 		formatting = {
-			format = lspkind.cmp_format({ with_text = false, maxwidth = 60 }),
+			format = lspkind.cmp_format({
+			    with_text = false,
+			    menu = {
+			        org = '⎨ 🦄',
+			        nvim_lua = '⎨ ',
+			        nvim_lsp = '⎨ ',
+			        luasnip = '⎨ ✂️',
+			        path = '⎨ 🌲',
+			        buffer = '⎨ 📄',
+			    },
+			    maxwidth = 60
+            }),
 		},
+		experimental = {
+		    native_menu = false,
+		    ghost_text = true,
+		}
 	})
 end
 

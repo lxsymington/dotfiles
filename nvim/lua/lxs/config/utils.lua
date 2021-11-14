@@ -106,9 +106,9 @@ function M.foldtext()
 	local text_length = #fn.substitute(fold_start .. fold_end, '.', 'x', 'g') + column_size
 	return fold_start .. string.rep(' ', api.nvim_win_get_width(0) - text_length - 7) .. fold_end
 end
-
 -- CREDIT: https://coderwall.com/p/usd_cw/a-pretty-vim-foldtext-function
 -- CREDIT: @akinsho https://github.com/akinsho/dotfiles
+
 function M.numberToggle()
 	opt.nu = true
 

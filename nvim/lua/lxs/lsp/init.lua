@@ -2,6 +2,7 @@ local lsp_installer = require('nvim-lsp-installer')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
 local luadev = require('lua-dev')
+local kind_symbols = require('lxs.config.constants').kind_symbols
 local attach = require('lxs.lsp.attach')
 local capabilities = require('lxs.lsp.capabilities')
 local formatting = require('lxs.lsp.formatting')
@@ -144,6 +145,7 @@ function M.setup()
 
 	-- Configure Lsp status
 	lsp_status.config({
+	    kind_labels = kind_symbols,
 		indicator_errors = '',
 		indicator_warnings = '',
 		indicator_info = '',
@@ -166,33 +168,7 @@ function M.setup()
 	signs.setup()
 
 	-- Pretty icons
-	vim.lsp.protocol.CompletionItemKind = {
-		' [text]',
-		' [method]',
-		' [function]',
-		' [constructor]',
-		'ﰠ [field]',
-		' [variable]',
-		' [class]',
-		' [interface]',
-		' [module]',
-		' [property]',
-		' [unit]',
-		' [value]',
-		' [enum]',
-		' [key]',
-		'﬌ [snippet]',
-		' [color]',
-		' [file]',
-		' [reference]',
-		' [folder]',
-		' [enum member]',
-		' [constant]',
-		' [struct]',
-		'⌘ [event]',
-		' [operator]',
-		' [type]',
-	}
+	vim.lsp.protocol.CompletionItemKind = kind_symbols.items
 
 	-- Configure `nvim-lsp-installer`
 	lsp_installer.settings({
