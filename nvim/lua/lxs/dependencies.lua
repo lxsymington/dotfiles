@@ -42,6 +42,14 @@ function M.setup()
 		use('nvim-lua/popup.nvim')
 		use('nvim-lua/plenary.nvim')
 
+		-- Keybindings
+		use({
+			'folke/which-key.nvim',
+			config = function()
+				require('which-key').setup({ window = { winblend = 10 } })
+			end,
+		})
+
 		-- LSP configurations
 		use({
 			'williamboman/nvim-lsp-installer',
@@ -423,12 +431,6 @@ function M.setup()
 			cmd = { 'colors' },
 			config = function()
 				require('twilight').setup()
-			end,
-		})
-		use({
-			'folke/which-key.nvim',
-			config = function()
-				require('which-key').setup()
 			end,
 		})
 		use({
