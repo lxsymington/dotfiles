@@ -2,7 +2,7 @@ local wk = require('which-key')
 local M = {}
 
 -- LSP Keymaps -------------------------
----@param bufnr (number)
+---@param bufnr buffer number (number)
 function M.setup(bufnr)
 	wk.register({
 		['<Leader>'] = {

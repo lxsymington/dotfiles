@@ -6,6 +6,13 @@ local lspkind = require('lspkind')
 local M = {}
 
 -- CMP ---------------------------------
+local function has_words_before()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0
+		and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s')
+			== nil
+end
+
 function M.setup()
 	ls.config.set_config({
 		history = true,
@@ -26,6 +33,28 @@ function M.setup()
 		},
 	})
 
+	local function prevOption(fallback)
+		if cmp.visible() then
+			cmp.select_prev_item()
+		elseif ls.jumpable(-1) then
+			ls.jump(-1)
+		else
+			fallback()
+		end
+	end
+
+	local function nextOption(fallback)
+		if cmp.visible() then
+			cmp.select_next_item()
+		elseif ls.expand_or_jumpable() then
+			ls.expand_or_jump()
+		elseif has_words_before() then
+			cmp.complete()
+		else
+			fallback()
+		end
+	end
+
 	cmp.setup({
 		snippet = {
 			expand = function(args)
@@ -34,9 +63,11 @@ function M.setup()
 			end,
 		},
 		mapping = {
-			['<C-d>'] = cmp.mapping.scroll_docs(-4),
-			['<C-f>'] = cmp.mapping.scroll_docs(4),
+			['<C-u>'] = cmp.mapping.scroll_docs(-4),
+			['<C-d>'] = cmp.mapping.scroll_docs(4),
 			['<C-Space>'] = cmp.mapping.complete(),
+			['<C-p>'] = cmp.mapping(prevOption, { 'i', 's' }),
+			['<C-n>'] = cmp.mapping(nextOption, { 'i', 's' }),
 			['<C-e>'] = cmp.mapping.close(),
 			['<C-y>'] = cmp.mapping.confirm({
 				behaviour = cmp.ConfirmBehavior.Insert,
