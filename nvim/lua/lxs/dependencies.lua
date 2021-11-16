@@ -127,14 +127,6 @@ function M.setup()
 		-- Icons
 		use({ 'kyazdani42/nvim-web-devicons' })
 
-		-- Snippets
-		use({
-			'L3MON4D3/LuaSnip',
-			config = function()
-				require('lxs.plugin_settings.snippets').setup()
-			end,
-		})
-
 		-- Completion
 		use({
 			'hrsh7th/nvim-cmp',
@@ -143,6 +135,7 @@ function M.setup()
 				'hrsh7th/cmp-nvim-lua',
 				'hrsh7th/cmp-path',
 				'hrsh7th/cmp-buffer',
+				'L3MON4D3/LuaSnip',
 				'saadparwaiz1/cmp_luasnip',
 				'onsails/lspkind-nvim',
 			},

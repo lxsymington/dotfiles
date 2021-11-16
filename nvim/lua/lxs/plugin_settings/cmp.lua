@@ -1,15 +1,36 @@
 local cmp = require('cmp')
+local ls = require('luasnip')
+local types = require('luasnip.util.types')
 local lspkind = require('lspkind')
 
 local M = {}
 
 -- CMP ---------------------------------
 function M.setup()
+	ls.config.set_config({
+		history = true,
+	})
+
+	ls.config.setup({
+		ext_opts = {
+			[types.choiceNode] = {
+				active = {
+					virt_text = { { '●', 'Orange' } },
+				},
+			},
+			[types.insertNode] = {
+				active = {
+					virt_text = { { '●', 'LightBlue' } },
+				},
+			},
+		},
+	})
+
 	cmp.setup({
 		snippet = {
 			expand = function(args)
 				-- For `luasnip` user.
-				require('luasnip').lsp_expand(args.body)
+				ls.lsp_expand(args.body)
 			end,
 		},
 		mapping = {
@@ -18,8 +39,8 @@ function M.setup()
 			['<C-Space>'] = cmp.mapping.complete(),
 			['<C-e>'] = cmp.mapping.close(),
 			['<C-y>'] = cmp.mapping.confirm({
-			    behaviour = cmp.ConfirmBehavior.Insert,
-			    select = true
+				behaviour = cmp.ConfirmBehavior.Insert,
+				select = true,
 			}),
 		},
 		sources = {
@@ -32,22 +53,22 @@ function M.setup()
 		},
 		formatting = {
 			format = lspkind.cmp_format({
-			    with_text = false,
-			    menu = {
-			        org = '⎨ 🦄',
-			        nvim_lua = '⎨ ',
-			        nvim_lsp = '⎨ ',
-			        luasnip = '⎨ ✂️',
-			        path = '⎨ 🌲',
-			        buffer = '⎨ 📄',
-			    },
-			    maxwidth = 60
-            }),
+				with_text = false,
+				menu = {
+					org = '⎨ 🦄',
+					nvim_lua = '⎨ ',
+					nvim_lsp = '⎨ ',
+					luasnip = '⎨ ✂️',
+					path = '⎨ 🌲',
+					buffer = '⎨ 📄',
+				},
+				maxwidth = 60,
+			}),
 		},
 		experimental = {
-		    native_menu = false,
-		    ghost_text = true,
-		}
+			native_menu = false,
+			ghost_text = true,
+		},
 	})
 end
 
