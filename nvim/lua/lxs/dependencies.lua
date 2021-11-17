@@ -266,7 +266,7 @@ function M.setup()
 				end,
 				opt = true,
 				cmd = { 'Neogit' },
-				keys = { 'n', '<Leader>g' },
+				keys = { 'n', '<Leader>ng' },
 			})
 			use({
 				'tpope/vim-fugitive',
