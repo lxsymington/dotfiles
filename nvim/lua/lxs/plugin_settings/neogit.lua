@@ -16,12 +16,16 @@ function M.setup()
 		},
 	})
 
-    wk.register({
-        ['<Leader>ng'] = {
-            '<cmd>Neogit<cr>',
-            'Launch Neogit'
-        }
-    }, { mode = 'n', silent = true, noremap = true })
+	wk.register({
+		['<Leader>ng'] = {
+			'<cmd>Neogit<cr>',
+			'Launch Neogit',
+		},
+	}, {
+		mode = 'n',
+		silent = true,
+		noremap = true,
+	})
 end
 
 return M

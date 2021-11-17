@@ -327,10 +327,10 @@ function M.setup()
 				},
 				opt = true,
 				keys = {
-					{ 'n', '<F5>' },
-					{ 'n', '<Leader>b' },
-					{ 'n', '<Leader>B' },
-					{ 'n', '<Leader>lp' },
+					{ 'n', '<Leader>D=' },
+					{ 'n', '<Leader>D?' },
+					{ 'n', '<Leader>Db' },
+					{ 'n', '<Leader>Dc' },
 				},
 				config = function()
 					require('lxs.plugin_settings.nvim_dap').setup()

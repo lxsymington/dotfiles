@@ -1,5 +1,5 @@
 local zen_mode = require('zen-mode')
-local keymap = vim.api.nvim_set_keymap
+local wk = require('which-key')
 local o = vim.o
 local M = {}
 
@@ -12,7 +12,19 @@ function M.setup()
 		},
 	})
 
-	keymap('n', '<Leader>zm', '<cmd>ZenMode<cr>', { silent = true, noremap = true })
+	wk.register({
+		['<Leader>z'] = {
+			name = 'Zen mode',
+			m = {
+				'<cmd>ZenMode<cr>',
+				'toggle',
+			},
+		},
+	}, {
+		mode = 'n',
+		silent = true,
+		noremap = true,
+	})
 end
 
 return M

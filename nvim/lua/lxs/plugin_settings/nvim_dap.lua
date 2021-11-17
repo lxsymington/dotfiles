@@ -1,8 +1,8 @@
 local dap = require('dap')
 local dap_virtual_text = require('nvim-dap-virtual-text')
+local wk = require('which-key')
 local mochaConfigurator = require('lxs.plugin_settings.nvim_dap.configurations.mocha.configurator')
 local api = vim.api
-local keymap = api.nvim_set_keymap
 local keymap_restore = {}
 local M = {}
 
@@ -30,7 +30,15 @@ function M.setup()
 			end
 		end
 
-		keymap('n', 'K', '<Cmd>lua require("dap.ui.variables").hover()<CR>', { silent = true })
+		wk.register({
+			K = {
+				'<Cmd>lua require("dap.ui.variables").hover()<CR>',
+				'DAP hover',
+			},
+		}, {
+			mode = 'n',
+			silent = true,
+		})
 	end
 
 	dap.listeners.after['event_terminated']['me'] = function()
@@ -117,81 +125,57 @@ function M.setup()
 	vim.cmd([[command! DebugLoadLaunchJS lua require('dap.ext.vscode').load_launchjs()]])
 
 	-- Set up mappings for `nvim-dap`
-	-- CONTINUE
-	keymap(
-		'n',
-		'<F5>',
-		"<Cmd>:lua require('dap').continue()<CR>",
-		{ noremap = true, silent = true }
-	)
-	-- STEP OVER
-	keymap(
-		'n',
-		'<F10>',
-		"<Cmd>:lua require('dap').step_over()<CR>",
-		{ noremap = true, silent = true }
-	)
-	-- STEP INTO
-	keymap(
-		'n',
-		'<F11>',
-		"<Cmd>:lua require('dap').step_into()<CR>",
-		{ noremap = true, silent = true }
-	)
-	-- STEP OUT
-	keymap(
-		'n',
-		'<F12>',
-		"<Cmd>:lua require('dap').step_out()<CR>",
-		{ noremap = true, silent = true }
-	)
-	-- TOGGLE BREAKPOINT
-	keymap(
-		'n',
-		'<Leader>b',
-		"<Cmd>:lua require('dap').toggle_breakpoint()<CR>",
-		{ noremap = true, silent = true }
-	)
-	-- SET CONDITIONAL BREAKPOINT
-	keymap(
-		'n',
-		'<Leader>B',
-		"<Cmd>:lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-		{
-			noremap = true,
-			silent = true,
-		}
-	)
-	-- SET LOGPOINT
-	keymap(
-		'n',
-		'<Leader>lp',
-		"<Cmd>:lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-		{
-			noremap = true,
-			silent = true,
-		}
-	)
-	-- OPEN DEBUGGER CONSOLE
-	keymap(
-		'n',
-		'<Leader>dr',
-		"<Cmd>:lua require('dap').repl.open()<CR>",
-		{ noremap = true, silent = true }
-	)
-	-- RE-RUN LAST DEBUGGING SESSION
-	keymap(
-		'n',
-		'<Leader>dl',
-		"<Cmd>:lua require('dap').run_last()<CR>",
-		{ noremap = true, silent = true }
-	)
+	wk.register({
+		['<Leader>D'] = {
+			name = 'DAP',
+			['='] = {
+				'<Cmd>:lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
+				'toggle log point',
+			},
+			['?'] = {
+				'<Cmd>:lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+				'toggle conditional breakpoint',
+			},
+			b = {
+				'<Cmd>:lua require("dap").toggle_breakpoint()<CR>',
+				'toggle breakpoint',
+			},
+			c = {
+				'<Cmd>:lua require("dap").continue()<CR>',
+				'launch/continue',
+			},
+			i = {
+				'<Cmd>:lua require("dap").step_into()<CR>',
+				'step into',
+			},
+			l = {
+				'<Cmd>:lua require("dap").run_last()<CR>',
+				're-run last session',
+			},
+			o = {
+				'<Cmd>:lua require("dap").step_out()<CR>',
+				'step out',
+			},
+			r = {
+				'<Cmd>:lua require("dap").repl.open()<CR>',
+				'open REPL',
+			},
+			s = {
+				'<Cmd>:lua require("dap").step_over()<CR>',
+				'step over',
+			},
+		},
+	}, {
+		mode = 'n',
+		noremap = true,
+		silent = true,
+	})
 
 	-- Signs
-	vim.fn.sign_define('DapBreakpoint', { text = 'ﱏ', texthl = '' })
-	vim.fn.sign_define('DapBreakpointCondition', { text = '﯆', texthl = '' })
-	vim.fn.sign_define('DapLogPoint', { text = '', texthl = '' })
-	vim.fn.sign_define('DapStopped', { text = '', texthl = '' })
+	vim.fn.sign_define('DapBreakpoint', { text = 'ﱏ', texthl = 'Normal' })
+	vim.fn.sign_define('DapBreakpointCondition', { text = '﯆', texthl = 'Conditional' })
+	vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'Todo' })
+	vim.fn.sign_define('DapStopped', { text = '', texthl = 'WarningMsg' })
 	vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'Error' })
 
 	-- Show virtual text for current frame

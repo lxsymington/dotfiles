@@ -1,5 +1,5 @@
 local dap_ui = require('dapui')
-local keymap = vim.api.nvim_set_keymap
+local wk = require('which-key')
 local M = {}
 
 -- DAP UI ------------------------------
@@ -21,7 +21,18 @@ function M.setup()
 		},
 	})
 
-	keymap('n', '<Leader>du', '<Cmd>lua require("dapui").toggle()<CR>', { silent = true })
+	wk.register({
+		['<Leader>D'] = {
+			name = 'DAP',
+			u = {
+				'<Cmd>lua require("dapui").toggle()<CR>',
+				'toggle UI',
+			},
+		},
+	}, {
+		mode = 'n',
+		silent = true,
+	})
 end
 
 return M

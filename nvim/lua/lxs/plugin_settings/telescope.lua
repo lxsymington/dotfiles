@@ -4,7 +4,6 @@ local builtin = require('telescope.builtin')
 local util = require('lspconfig.util')
 local wk = require('which-key')
 local tbl_extend = vim.tbl_extend
-local keymap = vim.api.nvim_set_keymap
 
 local M = {}
 
