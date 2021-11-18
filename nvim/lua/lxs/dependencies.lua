@@ -370,7 +370,7 @@ function M.setup()
 				'euclio/vim-markdown-composer',
 				run = 'cargo build --release',
 				opt = true,
-				ft = { 'md' },
+				ft = { 'markdown', 'md' },
 			})
 
 			-- Databases

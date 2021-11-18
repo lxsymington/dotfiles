@@ -119,6 +119,19 @@ function M.numberToggle()
 	end
 end
 
+function M.highlightInfo()
+	local syntax = vim.cmd('synID(line("."), col("."), 1)')
+	local name = vim.cmd(string.format('synIDattr(%s, "name")', syntax))
+	local fg = vim.cmd(string.format('synIDattr(%s, "fg")', syntax))
+	local bg = vim.cmd(string.format('synIDattr(%s, "bg")', syntax))
+
+	vim.notify(
+		string.format('Name: %s, Foreground: %s, Background: %s', name, fg, bg),
+		'info',
+		{ title = 'Highlights' }
+	)
+end
+
 function M.setup()
 	-- Toggle betwen normal and relative line numbers
 	api.nvim_command([[ command! NumberToggle lua require('lxs.config.utils').numberToggle() ]])
@@ -126,8 +139,14 @@ function M.setup()
 	-- Save and execute the current file
 	api.nvim_command([[ command! ReloadConfig lua ReloadConfig() ]])
 
+	-- Show information about the Highlight under the cursor
+	api.nvim_command([[ command! CursorHighlight lua require('lxs.config.utils').highlightInfo() ]])
+
 	-- Keymap to quickly save and execute
 	keymap('n', '<Leader>R', '<cmd>ReloadConfig<cr>', { silent = true, noremap = true })
+
+	-- Keymap to show information about the Highlight under the cursor
+	keymap('n', '<Leader>H', '<cmd>CursorHighlight<cr>', { silent = true, noremap = true })
 end
 
 return M
