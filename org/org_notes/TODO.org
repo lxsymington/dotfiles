@@ -16,9 +16,12 @@
 ** DONE Packer Compile autocommand :Config:
 ** DONE Statusline middle and right components :Config:
 ** DONE Check the telescope-fzy-native configuration :Config:
-** DONE Get borders working on Diagnostics popups, see this [[https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3][reddit thread]] :Config:
-** DONE tree-sitter `foldexpr` see `:h nvim_treesitter#foldexpr()` :Config:
-** DONE tree-sitter `statsline` component see `:h nvim_treesitter#statsline()` :Config:
+** DONE Get borders working on Diagnostics popups :Config:
+   + see this [[https://www.reddit.com/r/neovim/comments/ovbje7/comment/h789qdh/?utm_source=share&utm_medium=web2x&context=3][reddit thread]]
+** DONE tree-sitter `foldexpr` :Config:
+   + see `:h nvim_treesitter#foldexpr()`
+** DONE tree-sitter `statsline` component :Config:
+   + see `:h nvim_treesitter#statsline()`
 ** DONE Make neovim config reloadable :Config:
 ** DONE Properly understand how removing an autocommand works :Config:
    + see [[https://learnvimscriptthehardway.stevelosh.com/chapters/14.html][this]]
@@ -30,10 +33,11 @@
 ** DONE Move `typescript.ts` to an org file from the system tests repo :Learning:
 ** DONE Nvim Cmp :Plugins:
    + [[https://github.com/hrsh7th/nvim-cmp#highlights][highlights]] for [[https://github.com/hrsh7th/nvim-cmp][Nvim Cmp]]
-** ACTIVE See if it's possible to speed up frecency :Plugins:
+** DONE See if it's possible to speed up frecency :Plugins:
+   CLOSED: [2021-11-30 Tue 09:25]
    + [X] By splitting Development up into each of its subdirectories
      + [X] with plenary and/or `vim.loop`
-   + [ ] By making sure that it uses `fd` or similar to collate entries
+   + [X] ~By making sure that it uses `fd` or similar to collate entries~
 ** ACTIVE [[https://github.com/michaelb/sniprun][sniprun]] :Plugins:
    + [X] Install
    + [ ] Correctly configure
@@ -54,19 +58,25 @@
    + [ ] Auto-switching
    + [ ] Light theme refresh/update
    + [ ] Look into lush author's [[https://github.com/rktjmp/shipwright.nvim][shipwright.nvim]]
+** TODO Trial [[https://gitlab.com/yorickpeterse/nvim-window][nvim-window]] for window navigation
 ** TODO Look into [[https://github.com/NTBBloodbath/rest.nvim][rest.nvim]] :Plugins:
 ** TODO Get vim-ultest to run typescript mocha test files :Config:
    + [ ] This requires configuration of the underlying [[https://github.com/vim-test/vim-test/issues/209][vim-test]]
+** TODO Trial [[https://github.com/jbyuki/venn.nvim][venn.nvim]] for documentation
 ** PLANNING Org formatter and linter? Possibly via `formatprg`
 ** PLANNING Org conceal for links and checkboxes
 ** PLANNING Find out if [[https://github.com/mfussenegger/nvim-dap][nvim-dap]] supports pre-debug tasks
    + see [[https://github.com/mfussenegger/nvim-dap/issues/191#issuecomment-853751519][this comment]]
- 
-** PLANNING Review :Not_ready:
+** PLANNING Sonarlint :Plugins: :Linting:
    + [ ] Figure out how to get Sonarlint to play nicely with Neovim, possibly via the [[https://github.com/SonarSource/sonarlint-language-server][language server]]
+   + [ ] Check out the [[https://github.com/SonarSource/eslint-plugin-sonarjs][eslint rules]]
+   + [ ] See what other people have attempted in [[https://community.sonarsource.com/t/running-sonarlint-language-server-from-shell/24440/2][this thread]]
+** PLANNING refactoring.nvim :Plugins:
    + [ ] Install and configure [[https://github.com/ThePrimeagen/refactoring.nvim][refactoring.nvim]]
      + Looks as if this would be early adoption, revisit this later
+** PLANNING nvim-tree-docs :Plugins:
    + [ ] Auto-documenting via [[https://github.com/nvim-treesitter/nvim-tree-docs][nvim-tree-docs]]
+** PLANNING Test-runner
    + [ ] Lua version of vim-test using tree-sitter to identify test cases/suites 🤯
 
 * Tmux todolist

@@ -214,9 +214,6 @@ function M.setup()
 					'nvim-telescope/telescope-frecency.nvim',
 					{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 				},
-				config = function()
-					require('lxs.plugin_settings.telescope').setup()
-				end,
 				opt = true,
 				cmd = { 'Telescope', 'Octo' },
 				keys = {
@@ -241,6 +238,9 @@ function M.setup()
 					{ 'n', '<Leader>;' },
 					{ 'n', '<Leader>hz' },
 				},
+				config = function()
+					require('lxs.plugin_settings.telescope').setup()
+				end,
 			})
 
 			-- Version Control
@@ -314,6 +314,7 @@ function M.setup()
 					{
 						'nvim-telescope/telescope-dap.nvim',
 						requires = { 'nvim-telescope/telescope.nvim' },
+						wants = { 'telescope.nvim' },
 						config = function()
 							require('lxs.plugin_settings.nvim_dap.telescope_integration').setup()
 						end,
@@ -325,6 +326,7 @@ function M.setup()
 						end,
 					},
 				},
+				wants = { 'nvim-dap-virtual-text', 'telescope-dap.nvim', 'nvim-dap-ui' },
 				opt = true,
 				keys = {
 					{ 'n', '<Leader>D=' },
@@ -448,7 +450,10 @@ function M.setup()
 			})
 
 			-- Colorscheme builder
-			use('rktjmp/lush.nvim')
+			use({
+				'rktjmp/lush.nvim',
+				requires = { 'rktjmp/shipwright.nvim' },
+			})
 
 			-- Usability
 			use('tpope/vim-abolish')
