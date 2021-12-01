@@ -118,31 +118,6 @@ function M.numberToggle()
 	end
 end
 
-function M.highlightInfo()
-	local line = vim.fn.line('.')
-	P(line)
-	local col = vim.fn.col('.')
-	P(col)
-	local syntax = vim.fn.synID(line, col, true)
-	P(syntax)
-	local own_syntax = vim.fn.synID(line, col, false)
-	P(own_syntax)
-	local test = vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name')
-	P(test)
-	local name = vim.fn.synIDattr(syntax, 'name')
-	P(name)
-	local fg = vim.fn.synIDattr(syntax, 'fg')
-	P(fg)
-	local bg = vim.fn.synIDattr(syntax, 'bg')
-	P(bg)
-
-	vim.notify(
-		string.format('Name: %s, Foreground: %s, Background: %s', name, fg, bg),
-		'info',
-		{ title = 'Highlights' }
-	)
-end
-
 function M.setup()
 	-- Toggle betwen normal and relative line numbers
 	api.nvim_command([[ command! NumberToggle lua require('lxs.config.utils').numberToggle() ]])
@@ -150,14 +125,16 @@ function M.setup()
 	-- Save and execute the current file
 	api.nvim_command([[ command! ReloadConfig lua ReloadConfig() ]])
 
-	-- Show information about the Highlight under the cursor
-	api.nvim_command([[ command! CursorHighlight lua require('lxs.config.utils').highlightInfo() ]])
-
 	-- Keymap to quickly save and execute
 	keymap('n', '<Leader>R', '<cmd>ReloadConfig<cr>', { silent = true, noremap = true })
 
 	-- Keymap to show information about the Highlight under the cursor
-	keymap('n', '<Leader>H', '<cmd>CursorHighlight<cr>', { silent = true, noremap = true })
+	keymap(
+		'n',
+		'<Leader>H',
+		'<cmd>TSHighlightCapturesUnderCursor<cr>',
+		{ silent = true, noremap = true }
+	)
 end
 
 return M
