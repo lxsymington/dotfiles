@@ -23,14 +23,14 @@ local function server_setup(server)
 	}
 
 	local server_opts = {
-		--[[ ["denols"] = function()
-            return tbl_extend("keep", {
-                init_options = {
-                    enable = true,
-                    lint = true,
-                },
-            }, default_opts)
-        end, ]]
+		['denols'] = function()
+			return tbl_extend('keep', {
+				init_options = {
+					lint = true,
+				},
+				root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
+			}, default_opts)
+		end,
 		['efm'] = function()
 			return tbl_extend('keep', {
 				cmd = {
@@ -67,9 +67,9 @@ local function server_setup(server)
 				},
 				log_level = vim.lsp.protocol.MessageType.Log,
 				message_level = vim.lsp.protocol.MessageType.Log,
-				root_dir = util.root_pattern('package.json', '.git/'),
+				root_dir = util.root_pattern('package.json', '.git'),
 				settings = {
-					rootMarkers = { 'package.json', '.git/' },
+					rootMarkers = { 'package.json', '.git' },
 					lintDebounce = '300ms',
 					formatDebounce = '1200ms',
 					languages = {
@@ -126,6 +126,14 @@ local function server_setup(server)
 				}, default_opts),
 			})
 		end,
+		['tsserver'] = function()
+			return tbl_extend('keep', {
+				init_options = {
+					lint = true,
+				},
+				root_dir = util.root_pattern('tsconfig.json', 'package.json'),
+			}, default_opts)
+		end,
 	}
 
 	server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
@@ -152,7 +160,7 @@ function M.setup()
 		indicator_hint = '',
 		indicator_ok = '✔️',
 		component_separator = '‖',
-		indicator_separator = '⃒',
+		indicator_separator = '⃒ ',
 	})
 
 	-- Setup formatting
