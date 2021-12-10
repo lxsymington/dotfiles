@@ -101,6 +101,44 @@ local function server_setup(server)
 				},
 			}, default_opts)
 		end,
+		['jsonls'] = function()
+			return tbl_extend('keep', {
+				settings = {
+					json = {
+						schemas = {
+							{
+								fileMatch = { 'package.json' },
+								url = 'https://json.schemastore.org/package.json',
+							},
+							{
+								fileMatch = { 'tsconfig.json', 'tsconfig.*.json' },
+								url = 'https://json.schemastore.org/tsconfig',
+							},
+							{
+								fileMatch = { 'lerna.json' },
+								url = 'https://json.schemastore.org/lerna',
+							},
+							{
+								fileMatch = { '.eslintrc.json', '.eslintrc' },
+								url = 'https://json.schemastore.org/eslintrc',
+							},
+							{
+								fileMatch = {
+									'.prettierrc',
+									'.prettierrc.json',
+									'prettier.config.json',
+								},
+								url = 'https://json.schemastore.org/prettierrc',
+							},
+							{
+								fileMatch = { 'deno.json', 'deno.jsonc' },
+								url = 'https://cdn.deno.land/deno/versions/v1.16.4/raw/cli/schemas/config-file.v1.json',
+							},
+						},
+					},
+				},
+			}, default_opts)
+		end,
 		['gopls'] = function()
 			return tbl_extend('keep', {
 				cmd = { 'gopls', 'serve' },
