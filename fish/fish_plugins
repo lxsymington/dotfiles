@@ -1,8 +1,6 @@
-edc/bass
-lilyball/nix-env.fish
-laughedelic/pisces
 danhper/fish-ssh-agent
 jethrokuan/fzf
+laughedelic/pisces
 franciscolourenco/done
 jorgebucaran/replay.fish
-FabioAntunes/fish-nvm
+edc/bass

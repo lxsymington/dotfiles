@@ -214,8 +214,8 @@ function M.setup()
 					'nvim-telescope/telescope-frecency.nvim',
 					{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 				},
-				opt = true,
-				cmd = { 'Telescope', 'Octo' },
+				-- opt = true,
+				--[[ cmd = { 'Telescope', 'Octo' },
 				keys = {
 					{ 'n', '<Leader>pf' },
 					{ 'n', '<Leader>ps' },
@@ -237,7 +237,7 @@ function M.setup()
 					{ 'n', '<Leader>/' },
 					{ 'n', '<Leader>;' },
 					{ 'n', '<Leader>hz' },
-				},
+				}, ]]
 				config = function()
 					require('lxs.plugin_settings.telescope').setup()
 				end,
@@ -326,14 +326,14 @@ function M.setup()
 						end,
 					},
 				},
-				wants = { 'nvim-dap-virtual-text', 'telescope-dap.nvim', 'nvim-dap-ui' },
-				opt = true,
-				keys = {
+				-- wants = { 'nvim-dap-virtual-text', 'telescope-dap.nvim', 'nvim-dap-ui' },
+				-- opt = true,
+				--[[ keys = {
 					{ 'n', '<Leader>D=' },
 					{ 'n', '<Leader>D?' },
 					{ 'n', '<Leader>Db' },
 					{ 'n', '<Leader>Dc' },
-				},
+				}, ]]
 				config = function()
 					require('lxs.plugin_settings.nvim_dap').setup()
 				end,

@@ -26,11 +26,6 @@ if type -q keychain && status is-interactive
     end
 end
 
-# Enable use of node version manager
-if test -d ~/.nvm && type -q nvm
-    load_nvm
-end
-
 # Seccl specific
 if type -q replay && test -d ~/.seccl
     replay source ~/.seccl/env.sh
