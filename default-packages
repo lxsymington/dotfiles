@@ -1,6 +1,6 @@
 @seccl/auto-ops
-eslintme
-prettierme
+eslint
+@fsouza/prettierd
 tslint
 neovim
 npm-check
