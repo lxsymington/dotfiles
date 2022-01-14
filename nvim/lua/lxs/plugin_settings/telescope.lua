@@ -76,6 +76,9 @@ function M.setup()
 			winblend = 10,
 		},
 		extensions = {
+			file_browser = {
+				theme = 'ivy',
+			},
 			frecency = {
 				show_scores = true,
 				ignore_patterns = { '*.git/*', '*/node_modules/*', '*/tmp/*' },
@@ -92,6 +95,7 @@ function M.setup()
 
 	pcall(require('telescope').load_extension, 'frecency')
 	pcall(require('telescope').load_extension, 'fzf')
+	pcall(require('telescope').load_extension, 'file_browser')
 
 	wk.register({
 		['<Leader>'] = {
@@ -219,7 +223,7 @@ function M.file_browser()
 		cwd = util.root_pattern('.git')(vim.fn.expand('%')),
 	})
 
-	builtin.file_browser(opts)
+	require('telescope').extensions.file_browser.file_browser(opts)
 end
 
 function M.local_file_browser()
@@ -233,7 +237,7 @@ function M.local_file_browser()
 		},
 	})
 
-	builtin.file_browser(opts)
+	require('telescope').extensions.file_browser.file_browser(opts)
 end
 
 function M.frecency()

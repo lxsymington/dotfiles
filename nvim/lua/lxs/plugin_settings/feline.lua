@@ -298,7 +298,7 @@ function M.setup()
 	table.insert(components.active[3], {
 		provider = 'diagnostic_errors',
 		enabled = function()
-			return lsp.diagnostics_exist('Error')
+			return lsp.diagnostics_exist(vim.diagnostic.severity.Error)
 		end,
 		hl = { fg = colours.red.hex },
 	})
@@ -306,7 +306,7 @@ function M.setup()
 	table.insert(components.active[3], {
 		provider = 'diagnostic_warnings',
 		enabled = function()
-			return lsp.diagnostics_exist('Warning')
+			return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
 		end,
 		hl = { fg = colours.yellow.hex },
 	})
@@ -314,7 +314,7 @@ function M.setup()
 	table.insert(components.active[3], {
 		provider = 'diagnostic_hints',
 		enabled = function()
-			return lsp.diagnostics_exist('Hint')
+			return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
 		end,
 		hl = { fg = colours.cyan.hex },
 	})
@@ -322,7 +322,7 @@ function M.setup()
 	table.insert(components.active[3], {
 		provider = 'diagnostic_info',
 		enabled = function()
-			return lsp.diagnostics_exist('Information')
+			return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
 		end,
 		hl = { fg = colours.lightBlue.hex },
 	})

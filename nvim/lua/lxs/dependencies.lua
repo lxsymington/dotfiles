@@ -213,6 +213,7 @@ function M.setup()
 					'nvim-telescope/telescope-symbols.nvim',
 					'nvim-telescope/telescope-frecency.nvim',
 					{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+					'nvim-telescope/telescope-file-browser.nvim',
 				},
 				-- opt = true,
 				--[[ cmd = { 'Telescope', 'Octo' },
