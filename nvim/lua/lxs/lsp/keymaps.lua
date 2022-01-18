@@ -55,13 +55,13 @@ function M.setup(bufnr)
 		},
 		['['] = {
 			d = {
-				'<Cmd>:lua vim.lsp.diagnostic.goto_next({ float = { border = "rounded", source = "if_many" }})<CR>',
+				'<Cmd>:lua vim.diagnostic.goto_next({ float = { border = "rounded", source = "if_many" }})<CR>',
 				'Previous diagnostic',
 			},
 		},
 		[']'] = {
 			d = {
-				'<Cmd>:lua vim.lsp.diagnostic.goto_next({ float = { border = "rounded", source = "if_many" }})<CR>',
+				'<Cmd>:lua vim.diagnostic.goto_next({ float = { border = "rounded", source = "if_many" }})<CR>',
 				'Next diagnostic',
 			},
 		},

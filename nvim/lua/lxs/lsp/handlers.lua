@@ -29,7 +29,7 @@ function M.setup()
 			virtual_text = { prefix = '🔎', source = 'always' },
 			border = 'rounded',
 		})(...)
-		pcall(vim.lsp.diagnostic.set_loclist, { open = false })
+		pcall(vim.diagnostic.setloclist, { open = false })
 	end
 
 	vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
