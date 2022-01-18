@@ -51,6 +51,14 @@ function M.setup()
 				end,
 			})
 
+			-- Vim UI Extensions
+			use({
+				'rcarriga/nvim-notify',
+				config = function()
+					require('lxs.plugin_settings.notify').setup()
+				end,
+			})
+
 			-- LSP configurations
 			use({
 				'williamboman/nvim-lsp-installer',
@@ -434,12 +442,6 @@ function M.setup()
 				'kosayoda/nvim-lightbulb',
 				config = function()
 					require('lxs.plugin_settings.lightbulb').setup()
-				end,
-			})
-			use({
-				'rcarriga/nvim-notify',
-				config = function()
-					require('lxs.plugin_settings.notify').setup()
 				end,
 			})
 
