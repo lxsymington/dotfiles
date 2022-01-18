@@ -4,7 +4,7 @@ local M = {}
 function M.setup()
 	vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, config)
 		if err ~= nil or result == nil then
-			vim.notify(err, vim.log.levels.ERROR)
+			vim.notify(tostring(err) or 'no result available', vim.log.levels.ERROR)
 			return
 		end
 
