@@ -230,7 +230,6 @@ function M.local_file_browser()
 	local opts = themes.get_cursor({
 		cwd = vim.fn.expand('%:h'),
 		layout_config = {
-			mirror = true,
 			height = math.min(math.floor(vim.o.lines * 0.8), 30),
 			preview_width = math.min(math.floor(vim.o.columns * 0.5), 80),
 			width = math.min(math.floor(vim.o.columns * 0.8), 140),

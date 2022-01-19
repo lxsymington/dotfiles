@@ -67,7 +67,10 @@ function M.setup()
 					'nvim-lua/lsp-status.nvim',
 					'nvim-lua/lsp_extensions.nvim',
 					'folke/lua-dev.nvim',
+					'jose-elias-alvarez/null-ls.nvim',
+					'hrsh7th/cmp-nvim-lsp',
 				},
+				wants = { 'plenary.nvim', 'cmp-nvim-lsp' },
 				config = function()
 					require('lxs.lsp').setup()
 				end,
@@ -148,6 +151,9 @@ function M.setup()
 					'saadparwaiz1/cmp_luasnip',
 					'onsails/lspkind-nvim',
 				},
+				wants = {
+				    'cmp-nvim-lsp'
+				},
 				config = function()
 					require('lxs.plugin_settings.cmp').setup()
 				end,
@@ -156,7 +162,7 @@ function M.setup()
 			-- LSP workspace diagnostics
 			use({
 				'folke/lsp-trouble.nvim',
-				after = 'nvim-web-devicons',
+				wants = { 'nvim-web-devicons' },
 				config = function()
 					require('lxs.plugin_settings.lsp_trouble').setup()
 				end,
@@ -213,10 +219,12 @@ function M.setup()
 			-- Search
 			use({
 				'nvim-telescope/telescope.nvim',
+				wants = {
+					'popup.nvim',
+					'plenary.nvim',
+					'nvim-lspconfig',
+				},
 				requires = {
-					'nvim-lua/popup.nvim',
-					'nvim-lua/plenary.nvim',
-					'neovim/nvim-lspconfig',
 					'tami5/sqlite.lua',
 					'nvim-telescope/telescope-symbols.nvim',
 					'nvim-telescope/telescope-frecency.nvim',
@@ -285,7 +293,7 @@ function M.setup()
 			})
 			use({
 				'lewis6991/gitsigns.nvim',
-				after = { 'plenary.nvim' },
+				wants = { 'plenary.nvim' },
 				config = function()
 					require('lxs.plugin_settings.gitsigns').setup()
 				end,
@@ -294,12 +302,12 @@ function M.setup()
 			-- Statusline
 			use({
 				'famiu/feline.nvim',
-				after = {
+				wants = {
+					'nvim-lspconfig',
 					'nvim-web-devicons',
 					'gitsigns.nvim',
 				},
 				requires = {
-					'neovim/nvim-lspconfig',
 					'nvim-lua/lsp-status.nvim',
 				},
 				config = function()
@@ -403,7 +411,7 @@ function M.setup()
 			-- Github
 			use({
 				'pwntester/octo.nvim',
-				after = { 'telescope.nvim' },
+				wants = { 'telescope.nvim' },
 				opt = true,
 				cmd = { 'Octo' },
 				config = function()
@@ -414,7 +422,7 @@ function M.setup()
 			-- UI tweaks
 			use({
 				'folke/todo-comments.nvim',
-				requires = 'nvim-lua/plenary.nvim',
+				wants = { 'plenary.nvim' },
 				config = function()
 					require('todo-comments').setup()
 				end,
@@ -489,7 +497,7 @@ function M.setup()
 		config = {
 			display = {
 				open_fn = function()
-					return require('packer.util').float({ border = 'single' })
+					return require('packer.util').float({ border = 'rounded' })
 				end,
 				prompt_border = 'rounded',
 			},

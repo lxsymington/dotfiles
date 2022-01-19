@@ -9,10 +9,7 @@ local formatting = require('lxs.lsp.formatting')
 local handlers = require('lxs.lsp.handlers')
 local preview = require('lxs.lsp.preview')
 local signs = require('lxs.lsp.signs')
-local prettier = require('lxs.plugin_settings.efm.prettier')
-local stylua = require('lxs.plugin_settings.efm.stylua')
-local tslint = require('lxs.plugin_settings.efm.tslint')
-local vint = require('lxs.plugin_settings.efm.vint')
+local null_ls = require('null-ls')
 local tbl_extend = vim.tbl_extend
 local M = {}
 
@@ -29,64 +26,6 @@ local function server_setup(server)
 					lint = true,
 				},
 				root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
-			}, default_opts)
-		end,
-		['efm'] = function()
-			return tbl_extend('keep', {
-				cmd = {
-					'efm-langserver',
-					'-loglevel',
-					'2',
-					'-logfile',
-					os.getenv('HOME') .. '/efm.log',
-				},
-				filetypes = {
-					'lua',
-					'vim',
-					'javascript',
-					'javascriptreact',
-					'javascript.jsx',
-					'typescript',
-					'typescriptreact',
-					'typescript.tsx',
-					'yaml',
-					'json',
-					'html',
-					'scss',
-					'css',
-					'markdown',
-				},
-				flags = { debounce_text_changes = 1200 },
-				init_options = {
-					codeAction = false,
-					completion = false,
-					documentFormatting = true,
-					documentSymbol = false,
-					document_formatting = true,
-					hover = false,
-				},
-				log_level = vim.lsp.protocol.MessageType.Log,
-				message_level = vim.lsp.protocol.MessageType.Log,
-				root_dir = util.root_pattern('package.json', '.git'),
-				settings = {
-					rootMarkers = { 'package.json', '.git' },
-					lintDebounce = '300ms',
-					formatDebounce = '1200ms',
-					languages = {
-						lua = { stylua },
-						vim = { vint },
-						typescript = { prettier, tslint },
-						javascript = { prettier },
-						typescriptreact = { prettier, tslint },
-						javascriptreact = { prettier },
-						yaml = { prettier },
-						json = { prettier },
-						html = { prettier },
-						scss = { prettier },
-						css = { prettier },
-						markdown = { prettier },
-					},
-				},
 			}, default_opts)
 		end,
 		['eslint'] = function()
@@ -229,6 +168,16 @@ function M.setup()
 	})
 
 	lsp_installer.on_server_ready(server_setup)
+
+	null_ls.setup({
+		sources = {
+			null_ls.builtins.formatting.stylua,
+			null_ls.builtins.formatting.prettierd,
+			null_ls.builtins.formatting.stylelint,
+			null_ls.builtins.diagnostics.vint,
+			null_ls.builtins.diagnostics.stylelint,
+		},
+	})
 end
 
 return M

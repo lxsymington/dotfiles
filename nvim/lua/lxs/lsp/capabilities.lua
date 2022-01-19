@@ -1,4 +1,5 @@
 local lsp_status = require('lsp-status')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local lsp = vim.lsp
 local tbl_extend = vim.tbl_extend
 local M = {}
@@ -6,6 +7,7 @@ local M = {}
 -- LSP Capabilities --------------------
 function M.create(opts)
 	local capabilities = lsp.protocol.make_client_capabilities()
+	capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 	capabilities.textDocument.completion.completionItem = tbl_extend(
 		'keep',
@@ -29,7 +31,7 @@ function M.create(opts)
 		}
 	)
 
-	return tbl_extend('keep', opts or {}, lsp_status.capabilities, capabilities or {})
+	return tbl_extend('keep', opts or {},  capabilities or {}, lsp_status.capabilities)
 end
 
 return M
