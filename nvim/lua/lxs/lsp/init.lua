@@ -172,7 +172,22 @@ function M.setup()
 	null_ls.setup({
 		sources = {
 			null_ls.builtins.formatting.stylua,
-			null_ls.builtins.formatting.prettierd,
+			null_ls.builtins.formatting.prettierd.with({
+				condition = function(utils)
+					return utils.root_has_file({
+						'.prettierrc',
+						'.prettierrc.json',
+						'.prettierrc.json5',
+						'.prettierrc.yml',
+						'.prettierrc.yaml',
+						'.prettierrc.js',
+						'.prettierrc.cjs',
+						'.prettierrc.config.js',
+						'.prettierrc.config.cjs',
+						'.prettierrc.toml',
+					})
+				end,
+			}),
 			null_ls.builtins.formatting.stylelint,
 			null_ls.builtins.diagnostics.vint,
 			null_ls.builtins.diagnostics.stylelint,

@@ -152,7 +152,7 @@ function M.setup()
 					'onsails/lspkind-nvim',
 				},
 				wants = {
-				    'cmp-nvim-lsp'
+					'cmp-nvim-lsp',
 				},
 				config = function()
 					require('lxs.plugin_settings.cmp').setup()

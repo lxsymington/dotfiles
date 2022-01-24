@@ -14,7 +14,7 @@ function M.setup()
 		then
 			local view = vim.fn.winsaveview()
 			local buffer_clients = vim.lsp.buf_get_clients(ctx.bufnr)
-			local current_client = (buffer_clients[ctx.client_id])
+			local current_client = buffer_clients[ctx.client_id]
 			vim.lsp.util.apply_text_edits(result, ctx.bufnr, current_client.offset_encoding)
 			vim.fn.winrestview(view)
 			if ctx.bufnr == vim.api.nvim_get_current_buf() then

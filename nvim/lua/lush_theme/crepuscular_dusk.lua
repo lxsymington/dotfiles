@@ -134,12 +134,12 @@ local theme = lush.merge({
 				gui = 'nocombine',
 			}),
 
-            CmpItemAbbr({ fg = colours.white, gui = 'nocombine' }),
-            CmpItemAbbrDeprecated({ fg = colours.lightYellow, gui = 'nocombine,strikethrough' }),
-            CmpItemAbbrMatch({ fg = colours.orange, gui = 'nocombine,bold' }),
-            CmpItemAbbrMatchFuzzy({ fg = colours.lightOrange, gui = 'nocombine,bold' }),
-            CmpItemKind({ fg = colours.lightBlue }),
-            CmpItemMenu({ Comment })
+			CmpItemAbbr({ fg = colours.white, gui = 'nocombine' }),
+			CmpItemAbbrDeprecated({ fg = colours.lightYellow, gui = 'nocombine,strikethrough' }),
+			CmpItemAbbrMatch({ fg = colours.orange, gui = 'nocombine,bold' }),
+			CmpItemAbbrMatchFuzzy({ fg = colours.lightOrange, gui = 'nocombine,bold' }),
+			CmpItemKind({ fg = colours.lightBlue }),
+			CmpItemMenu({ Comment }),
 		}
 	end),
 })
