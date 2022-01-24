@@ -55,7 +55,7 @@ function M.setup(bufnr)
 		},
 		['['] = {
 			d = {
-				'<Cmd>:lua vim.diagnostic.goto_next({ float = { border = "rounded", source = "if_many" }})<CR>',
+				'<Cmd>:lua vim.diagnostic.goto_prev({ float = { border = "rounded", source = "if_many" }})<CR>',
 				'Previous diagnostic',
 			},
 		},

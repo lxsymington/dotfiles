@@ -13,7 +13,9 @@ function M.setup()
 			== vim.api.nvim_buf_get_var(ctx.bufnr, 'changedtick')
 		then
 			local view = vim.fn.winsaveview()
-			vim.lsp.util.apply_text_edits(result, ctx.bufnr)
+			local buffer_clients = vim.lsp.buf_get_clients(ctx.bufnr)
+			local current_client = (buffer_clients[ctx.client_id])
+			vim.lsp.util.apply_text_edits(result, ctx.bufnr, current_client.offset_encoding)
 			vim.fn.winrestview(view)
 			if ctx.bufnr == vim.api.nvim_get_current_buf() then
 				vim.b.saving_format = true
