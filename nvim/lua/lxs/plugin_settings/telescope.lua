@@ -264,9 +264,11 @@ function M.lsp_code_actions()
 end
 
 function M.lsp_document_diagnostics()
-	local opts = themes.get_ivy({})
+	local opts = themes.get_ivy({
+		bufnr = 0
+	})
 
-	builtin.lsp_document_diagnostics(opts)
+	builtin.diagnostics(opts)
 end
 
 function M.lsp_range_code_actions()
@@ -284,7 +286,7 @@ end
 function M.lsp_workspace_diagnostics()
 	local opts = themes.get_ivy({})
 
-	builtin.lsp_workspace_diagnostics(opts)
+	builtin.diagnostics(opts)
 end
 
 function M.project_search()

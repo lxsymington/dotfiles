@@ -6,7 +6,6 @@
    languages don't quite yet have that capability
 
 ** Discriminated Unions & Narrowing
-
 #+BEGIN_SRC typescript
 enum VehicleType {
   CAR = 'Car',
@@ -74,4 +73,24 @@ const motorbike: IMotorbike = {
 
 demo(bicycle);
 demo(motorbike);
+#+END_SRC
+
+** Map leaf nodes draft
+#+BEGIN_SRC typescript
+export const pathLookup = (path: string) => <
+    K extends Extract<string, keyof T>,
+    T extends { [Key in K]: T[K] }
+>(object: T): Option<T[K]> => {
+    const [
+        currentNode,
+        ...pathRemainder
+    ] = path.split('.').filter(string => !!string.length)
+
+    const nextNode = lookup(currentNode, object)
+
+    return nextNode
+        .filter(isObject)
+        .chain(pathLookup(pathRemainder.join('.')))
+        .alt(nextNode) as Option<T[K]>
+}
 #+END_SRC
