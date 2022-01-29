@@ -38,6 +38,8 @@
    + [X] By splitting Development up into each of its subdirectories
      + [X] with plenary and/or `vim.loop`
    + [X] ~By making sure that it uses `fd` or similar to collate entries~
+** ACTIVE [[https://github.com/danymat/neogen][neogen]] :Plugins:
+   + [ ] install
 ** ACTIVE [[https://github.com/michaelb/sniprun][sniprun]] :Plugins:
    + [X] Install
    + [ ] Correctly configure
@@ -47,10 +49,10 @@
    + [X] Correctly configure it
    + [ ] Figure out how to integrate sniprun with the codeblocks
    + [ ] Consider setting up [[https://github.com/kristijanhusak/orgmode.nvim/blob/tree-sitter/DOCS.md#notifications-experimental][notifications]]
-   + [ ] Possibly use Neorg instead
+   + [ ] ~Possibly use Neorg instead~
 ** BLOCKED DenoLS :Plugins:
    + [X] Install DenoLS
-   + [ ] Look into getting it to work with Node projects
+   + [-] ~Look into getting it to work with Node projects~
 ** BLOCKED Colourscheme :Config:
    + [X] Diagnostics highlights background
    + [X] Generate alacritty colour scheme from lush

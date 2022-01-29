@@ -265,7 +265,7 @@ end
 
 function M.lsp_document_diagnostics()
 	local opts = themes.get_ivy({
-		bufnr = 0
+		bufnr = 0,
 	})
 
 	builtin.diagnostics(opts)

@@ -384,6 +384,15 @@ function M.setup()
 				end,
 			})
 
+			-- Documenting
+			use({
+				'danymat/neogen',
+				wants = { 'nvim-treesitter' },
+				config = function()
+					require('lxs.plugin_settings.neogen').setup()
+				end,
+			})
+
 			-- Markdown Preview
 			use({
 				'euclio/vim-markdown-composer',

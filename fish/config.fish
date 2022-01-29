@@ -41,6 +41,11 @@ if type -q zoxide
     zoxide init fish | source
 end
 
+# Use fnm as a node version manager when it is available
+if type -q fnm
+    fnm env --use-on-cd | source
+end
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [ -f /Users/lukexaviersymington/.nvm/versions/node/v12.19.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/lukexaviersymington/.nvm/versions/node/v12.19.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish
