@@ -41,9 +41,9 @@ if type -q zoxide
     zoxide init fish | source
 end
 
-# Use fnm as a node version manager when it is available
-if type -q fnm
-    fnm env --use-on-cd | source
+# Use Neovim as the man pager
+if type -q nvim && test -n "$MANPAGER"
+    set -Ux MANPAGER "nvim +Man!"
 end
 
 # tabtab source for serverless package
