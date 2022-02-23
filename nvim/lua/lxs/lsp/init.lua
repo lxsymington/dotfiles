@@ -137,7 +137,7 @@ function M.setup()
 		indicator_hint = '',
 		indicator_ok = '✔️',
 		component_separator = '‖',
-		indicator_separator = '⃒ ',
+		indicator_separator = ' ',
 	})
 
 	-- Setup formatting

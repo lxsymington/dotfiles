@@ -4,6 +4,8 @@ local M = {}
 
 -- Orgmode -----------------------------
 function M.setup()
+    orgmode.setup_ts_grammar()
+
 	orgmode.setup({
 		org_agenda_files = { '~/.dotfiles/org/org_agenda', '~/Documents/Org/Agenda' },
 		org_default_notes_files = { '~/.dotfiles/org/org_notes', '~/Documents/Org/Notes' },
