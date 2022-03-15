@@ -1,31 +1,31 @@
-local wk = require("which-key")
+local wk = require('which-key')
 local M = {}
 
 -- Notify ------------------------------
 function M.notifications()
-	local telescope_available, _ = pcall(require, "telescope")
+	local telescope_available, _ = pcall(require, 'telescope')
 
 	if telescope_available then
-		local opts = require("telescope.themes").get_dropdown({
+		local opts = require('telescope.themes').get_dropdown({
 			border = true,
 		})
 
-		require("telescope").extensions.notify.notify(opts)
+		require('telescope').extensions.notify.notify(opts)
 	else
-		vim.cmd("Notifications")
+		vim.cmd('Notifications')
 	end
 end
 
 function M.setup()
-	vim.notify = require("notify")
+	vim.notify = require('notify')
 
 	wk.register({
-		["<Leader>N"] = {
+		['<Leader>N'] = {
 			'<Cmd>lua require("lxs.plugin_settings.notify").notifications()<CR>',
-			"Notifications",
+			'Notifications',
 		},
 	}, {
-		mode = "n",
+		mode = 'n',
 		noremap = true,
 		silent = true,
 	})

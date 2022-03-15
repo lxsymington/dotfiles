@@ -1,4 +1,4 @@
-local lsp_format = require("lsp-format")
+local lsp_format = require('lsp-format')
 local M = {}
 
 -- Formatting
@@ -6,16 +6,16 @@ function M.setup()
 	local format_options_prettier = {
 		tabWidth = 4,
 		singleQuote = true,
-		trailingComma = "all",
-		configPrecedence = "prefer-file",
+		trailingComma = 'all',
+		configPrecedence = 'prefer-file',
 	}
 
 	local format_options_stylua = {
 		column_width = 100,
-		indent_type = "Tabs",
+		indent_type = 'Tabs',
 		indent_width = 4,
-		line_endings = "Unix",
-		quote_style = "AutoPreferSingle",
+		line_endings = 'Unix',
+		quote_style = 'AutoPreferSingle',
 	}
 
 	lsp_format.setup({

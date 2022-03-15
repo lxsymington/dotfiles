@@ -1,5 +1,5 @@
-local neogen = require("neogen")
-local wk = require("which-key")
+local neogen = require('neogen')
+local wk = require('which-key')
 local M = {}
 
 -- NEOGEN ------------------------------
@@ -9,29 +9,29 @@ function M.setup()
 	})
 
 	wk.register({
-		["["] = {
+		['['] = {
 			a = {
 				'<Cmd>lua require("neogen").jump_prev()<CR>',
-				"Previous annotation",
+				'Previous annotation',
 			},
 		},
-		["]"] = {
+		[']'] = {
 			a = {
 				'<Cmd>lua require("neogen").jump_next()<CR>',
-				"Next annotation",
+				'Next annotation',
 			},
 		},
-		["<Leader>"] = {
+		['<Leader>'] = {
 			a = {
-				name = "Annotate",
+				name = 'Annotate',
 				d = {
 					'<cmd>lua require("neogen").generate()<CR>',
-					"Documentation",
+					'Documentation',
 				},
 			},
 		},
 	}, {
-		mode = "n",
+		mode = 'n',
 		silent = true,
 		noremap = true,
 	})

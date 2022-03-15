@@ -1,4 +1,4 @@
-local wk = require("which-key")
+local wk = require('which-key')
 local M = {}
 
 -- TROUBLE -----------------------------
@@ -6,19 +6,19 @@ function M.setup()
 	wk.register({
 		m = {
 			'<cmd><C-U>lua require("tsht").nodes()<CR>',
-			"Treesitter hop",
+			'Treesitter hop',
 		},
 	}, {
-		mode = "o",
+		mode = 'o',
 		silent = true,
 	})
 	wk.register({
 		m = {
 			'<cmd>lua require("tsht").nodes()<CR>',
-			"Treesitter hop",
+			'Treesitter hop',
 		},
 	}, {
-		mode = "v",
+		mode = 'v',
 		silent = true,
 		noremap = true,
 	})

@@ -3,7 +3,9 @@ local M = {}
 
 -- TERMINAL
 function M.setup()
-	api.nvim_command([[ command! TerminalStyle lua require('lxs.autocommands.terminal').terminalStyle()]])
+	api.nvim_command(
+		[[ command! TerminalStyle lua require('lxs.autocommands.terminal').terminalStyle()]]
+	)
 end
 
 function M.terminalStyle()
@@ -12,10 +14,10 @@ function M.terminalStyle()
 	vim.opt.relativenumber = false
 
 	-- Remove the signcolumn
-	vim.opt.signcolumn = "no"
+	vim.opt.signcolumn = 'no'
 
 	-- Remove the foldcolumn
-	vim.opt.foldcolumn = "0"
+	vim.opt.foldcolumn = '0'
 end
 
 return M

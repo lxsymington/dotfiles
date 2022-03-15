@@ -5,13 +5,13 @@ cmd([[runtime ftplugin/man.vim]])
 cmd([[runtime macros/matchit.vim]])
 
 -- Globals -----------------------------
-require("lxs.globals")
+require('lxs.globals')
 
 -- Plugin Dependencies -----------------
-require("lxs.dependencies").setup()
+require('lxs.dependencies').setup()
 
 -- Autocommands ------------------------
-require("lxs.autocommands").setup()
+require('lxs.autocommands').setup()
 
 -- Config ------------------------------
-require("lxs.config").setup()
+require('lxs.config').setup()

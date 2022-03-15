@@ -1,5 +1,5 @@
-local lsp_status = require("lsp-status")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local lsp_status = require('lsp-status')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local lsp = vim.lsp
 local tbl_extend = vim.tbl_extend
 local M = {}
@@ -10,12 +10,12 @@ function M.create(opts)
 	capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 	capabilities.textDocument.completion.completionItem = tbl_extend(
-		"keep",
+		'keep',
 		capabilities.textDocument.completion.completionItem,
 		{
 			commitCharactersSupport = true,
 			deprecatedSupport = true,
-			documentationFormat = { "markdown", "plaintext" },
+			documentationFormat = { 'markdown', 'plaintext' },
 			insertReplaceSupport = true,
 			labelDetailsSupport = true,
 			preselectSupport = true,
@@ -23,15 +23,15 @@ function M.create(opts)
 			tagSupport = { valueSet = { 1 } },
 			resolveSupport = {
 				properties = {
-					"documentation",
-					"detail",
-					"additionalTextEdits",
+					'documentation',
+					'detail',
+					'additionalTextEdits',
 				},
 			},
 		}
 	)
 
-	return tbl_extend("keep", opts or {}, capabilities or {}, lsp_status.capabilities)
+	return tbl_extend('keep', opts or {}, capabilities or {}, lsp_status.capabilities)
 end
 
 return M

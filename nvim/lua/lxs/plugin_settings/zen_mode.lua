@@ -1,5 +1,5 @@
-local zen_mode = require("zen-mode")
-local wk = require("which-key")
+local zen_mode = require('zen-mode')
+local wk = require('which-key')
 local o = vim.o
 local M = {}
 
@@ -13,15 +13,15 @@ function M.setup()
 	})
 
 	wk.register({
-		["<Leader>z"] = {
-			name = "Zen mode",
+		['<Leader>z'] = {
+			name = 'Zen mode',
 			m = {
-				"<cmd>ZenMode<cr>",
-				"toggle",
+				'<cmd>ZenMode<cr>',
+				'toggle',
 			},
 		},
 	}, {
-		mode = "n",
+		mode = 'n',
 		silent = true,
 		noremap = true,
 	})

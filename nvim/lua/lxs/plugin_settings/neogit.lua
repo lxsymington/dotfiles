@@ -1,5 +1,5 @@
-local neogit = require("neogit")
-local wk = require("which-key")
+local neogit = require('neogit')
+local wk = require('which-key')
 local M = {}
 
 -- NEOGIT ------------------------------
@@ -7,9 +7,9 @@ function M.setup()
 	neogit.setup({
 		signs = {
 			-- { CLOSED, OPENED }
-			section = { "▶", "▼" },
-			item = { "▷", "▽" },
-			hunk = { "▸", "▾" },
+			section = { '▶', '▼' },
+			item = { '▷', '▽' },
+			hunk = { '▸', '▾' },
 		},
 		integrations = {
 			diffview = true,
@@ -17,12 +17,12 @@ function M.setup()
 	})
 
 	wk.register({
-		["<Leader>ng"] = {
-			"<cmd>Neogit<cr>",
-			"Launch Neogit",
+		['<Leader>ng'] = {
+			'<cmd>Neogit<cr>',
+			'Launch Neogit',
 		},
 	}, {
-		mode = "n",
+		mode = 'n',
 		silent = true,
 		noremap = true,
 	})

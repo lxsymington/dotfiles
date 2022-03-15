@@ -1,5 +1,5 @@
-local shipwright_config = require("lxs.plugin_settings.shipwright")
-local colourscheme = require(vim.g.colors_name .. ".colours")
+local shipwright_config = require('lxs.plugin_settings.shipwright')
+local colourscheme = require(vim.g.colors_name .. '.colours')
 
 local function alacritty(colours)
 	local template = {
@@ -27,8 +27,8 @@ local function alacritty(colours)
                 affected cell, or hexadecimal colors like #ff00ff.
             ]]
 			cursor = {
-				text = "CellBackground",
-				cursor = "CellForeground",
+				text = 'CellBackground',
+				cursor = 'CellForeground',
 			},
 			--[[
                 Vi mode cursor colors
@@ -39,8 +39,8 @@ local function alacritty(colours)
                 affected cell, or hexadecimal colors like #ff00ff.
             ]]
 			vi_mode_cursor = {
-				text = "CellBackground",
-				cursor = "CellForeground",
+				text = 'CellBackground',
+				cursor = 'CellForeground',
 			},
 			--[[
                 Selection colors
@@ -51,8 +51,8 @@ local function alacritty(colours)
                 affected cell, or hexadecimal colors like #ff00ff.
             ]]
 			selection = {
-				text = "CellBackground",
-				background = "CellForeground",
+				text = 'CellBackground',
+				background = 'CellForeground',
 			},
 			--[[
                 Search colors
@@ -65,16 +65,16 @@ local function alacritty(colours)
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
 				matches = {
-					foreground = "#000000",
-					background = "#ffffff",
+					foreground = '#000000',
+					background = '#ffffff',
 				},
 				focused_match = {
-					foreground = "CellBackground",
-					background = "CellForeground",
+					foreground = 'CellBackground',
+					background = 'CellForeground',
 				},
 				bar = {
-					background = "#ebccad",
-					foreground = "#1a141f",
+					background = '#ebccad',
+					foreground = '#1a141f',
 				},
 			},
 			-- Keyboard regex hints
@@ -86,8 +86,8 @@ local function alacritty(colours)
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
 				start = {
-					foreground = "#1d1f21",
-					background = "#e9ff5e",
+					foreground = '#1d1f21',
+					background = '#e9ff5e',
 				},
 				--[[
                     All characters after the first one in the hint label
@@ -95,9 +95,9 @@ local function alacritty(colours)
                     Allowed values are CellForeground/CellBackground, which reference the
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
-				["end"] = {
-					foreground = "#e9ff5e",
-					background = "#1d1f21",
+				['end'] = {
+					foreground = '#e9ff5e',
+					background = '#1d1f21',
 				},
 			},
 			--[[
@@ -109,7 +109,7 @@ local function alacritty(colours)
                 By default, these will use the opposing primary color.
             ]]
 			line_indicator = {
-				foreground = "None",
+				foreground = 'None',
 				background = colours.grey.hex,
 			},
 			-- Normal colours
@@ -158,17 +158,14 @@ local function alacritty(colours)
 	local template_string = string.format('%s', template)
 	local lines = {}
 
-	for s in template_string:gmatch("[^\r\n]+") do
-        table.insert(lines, s)
-    end
+	for s in template_string:gmatch('[^\r\n]+') do
+		table.insert(lines, s)
+	end
 
 	return lines
 end
 
-run(colourscheme, alacritty, function(arg)
-	P(arg)
-	return arg
-end, {
+run(colourscheme, alacritty, {
 	overwrite,
-	os.getenv("HOME") .. "/.config/alacritty/alacritty.colours.yml",
+	os.getenv('HOME') .. '/.config/alacritty/alacritty.colours.yml',
 })

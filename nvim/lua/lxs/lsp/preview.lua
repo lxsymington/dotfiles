@@ -9,7 +9,7 @@ local function preview_location_callback(_, result)
 		return nil
 	end
 
-	lsp.util.preview_location(result[1], { border = "rounded" })
+	lsp.util.preview_location(result[1], { border = 'rounded' })
 end
 
 function M.setup()
@@ -18,7 +18,7 @@ end
 
 function M.preview()
 	local params = lsp.util.make_position_params()
-	return lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
+	return lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
 end
 
 return M
