@@ -8,12 +8,12 @@ local M = {}
 function M.setup()
 	-- Establish which environment vim/neovim is running in.
 	if g.env == nil then
-		if has('win64') + has('win32') + has('win16') > 0 then
-			g.env = 'WINDOWS'
-		elseif has('macunix') then
-			g.env = 'MACOS'
-		elseif has('unix') then
-			g.env = 'UNX'
+		if has("win64") + has("win32") + has("win16") > 0 then
+			g.env = "WINDOWS"
+		elseif has("macunix") then
+			g.env = "MACOS"
+		elseif has("unix") then
+			g.env = "UNX"
 		else
 			g.env = vim.cmd([[toupper(substitute(system('uname'), '\n', '', ''))]])
 		end
@@ -37,17 +37,17 @@ function M.setup()
 	-- end
 
 	-- ENVIRONMENT -------------------------
-	if g.env == 'WINDOWS' then
-		g.behave = 'mswin'
-		opt.shell = 'powershell.exe'
+	if g.env == "WINDOWS" then
+		g.behave = "mswin"
+		opt.shell = "powershell.exe"
 		opt.shellcmdflag = [[ -NoLogo -ExecutionPolicy RemoteSigned -Command]]
 		opt.shellquote = [[shellpipe=| shellxquote=]]
 		opt.shellredir = [[| Out-File -Encoding UTF8]]
-		g.python_host_prog = 'C:\\Users\\lsymington\\scoop\\shims\\python2.EXE'
-		g.python3_host_prog = 'C:\\Users\\lsymington\\scoop\\shims\\python3.EXE'
-	elseif g.env == 'DARWIN' then
+		g.python_host_prog = "C:\\Users\\lsymington\\scoop\\shims\\python2.EXE"
+		g.python3_host_prog = "C:\\Users\\lsymington\\scoop\\shims\\python3.EXE"
+	elseif g.env == "DARWIN" then
 		opt.shell = [[/usr/local/bin/fish]]
-	elseif g.env == 'LINUX' then
+	elseif g.env == "LINUX" then
 		opt.shell = [[/usr/bin/fish]]
 	end
 end

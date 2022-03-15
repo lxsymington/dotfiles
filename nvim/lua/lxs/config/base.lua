@@ -6,22 +6,22 @@ local M = {}
 -- GENERAL
 function M.setup()
 	-- Sets encoding to UTF-8
-	opt.fileencoding = 'utf-8'
+	opt.fileencoding = "utf-8"
 
 	-- Do not add BOM marks
 	opt.bomb = false
 
 	-- Use host system format
-	opt.fileformats = { 'unix', 'dos', 'mac' }
+	opt.fileformats = { "unix", "dos", "mac" }
 
 	-- Enables syntax highlighting
-	opt.syntax = 'enable'
+	opt.syntax = "enable"
 
 	-- Sets the backspace behaviour to conventional
-	opt.backspace = { 'indent', 'eol', 'start' }
+	opt.backspace = { "indent", "eol", "start" }
 
 	-- Change the default leader ('\') character for custom mappings
-	g.mapleader = ','
+	g.mapleader = ","
 
 	-- When a new horizontal split is opened it is opened below
 	opt.splitbelow = true
@@ -37,29 +37,29 @@ function M.setup()
 	opt.textwidth = 100
 
 	-- Creates a visual boundary
-	opt.colorcolumn = { '81', '+1' }
+	opt.colorcolumn = { "81", "+1" }
 
 	-- Displays invisibles
 	opt.list = true
 
 	-- Sets characters to display for invisible characters
 	opt.listchars = {
-		space = '⎯',
-		tab = '» ',
-		eol = '␤',
-		nbsp = '⎽',
-		extends = '↩',
-		precedes = '↪',
+		space = "⎯",
+		tab = "» ",
+		eol = "␤",
+		nbsp = "⎽",
+		extends = "↩",
+		precedes = "↪",
 	}
 
 	-- Sets ambiguous width characters to be double width
-	opt.ambiwidth = 'single'
+	opt.ambiwidth = "single"
 
 	-- Hide the default mode text (e.g. -- INSERT -- below the statusline)
 	opt.showmode = false
 
 	-- Enable the mouse
-	opt.mouse = 'a'
+	opt.mouse = "a"
 
 	-- Set the chord timeout length to 100ms
 	opt.timeoutlen = 1000
@@ -70,9 +70,9 @@ function M.setup()
 
 	-- Set breakindent options
 	opt.breakindentopt = {
-		min = '20',
-		shift = '0',
-		'sbr',
+		min = "20",
+		shift = "0",
+		"sbr",
 	}
 
 	-- Hide abandoned buffers instead of unloading them
@@ -95,13 +95,13 @@ function M.setup()
 	opt.updatetime = 300
 
 	-- Don't show |ins-completion-menu| messages
-	opt.shortmess:append('c')
+	opt.shortmess:append("c")
 
 	-- Improve mergetool and diff experience by using git's built in diff
-	opt.diffopt = { 'filler', 'iblank', 'iwhite', 'indent-heuristic', algorithm = 'patience' }
+	opt.diffopt = { "filler", "iblank", "iwhite", "indent-heuristic", algorithm = "patience" }
 
 	-- Keep an undo file (undo changes after closing)
-	if fn.has('persistent_undo') then
+	if fn.has("persistent_undo") then
 		opt.undofile = true
 	end
 

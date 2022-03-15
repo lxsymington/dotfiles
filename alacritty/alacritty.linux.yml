@@ -10,9 +10,9 @@
 #  - /path/to/alacritty.yml
 import:
   # Import platform agnostic config
-  - ~/.config/alacritty/.alacritty.base.yml
+  - ~/.config/alacritty/alacritty.base.yml
   # Import dark colourscheme
-  - ~/.config/alacritty/.alacritty.colours.yml
+  - ~/.config/alacritty/alacritty.colours.yml
 
 window:
   # Window class (Linux/BSD only):

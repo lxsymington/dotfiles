@@ -30,16 +30,16 @@ function M.setup()
 	opt.incsearch = true
 
 	-- Preview effects of :s as you type
-	opt.inccommand = 'split'
+	opt.inccommand = "split"
 
 	-- Visual autocomplete of command menu
 	opt.wildmenu = true
 
 	-- Wildmode settings
-	opt.wildmode = { longest = 'full', 'full' }
+	opt.wildmode = { longest = "full", "full" }
 
 	-- Wild options
-	opt.wildoptions = 'pum'
+	opt.wildoptions = "pum"
 
 	-- Highlights the current line
 	opt.cursorline = true
@@ -51,14 +51,14 @@ function M.setup()
 	opt.history = 50
 
 	-- Always show the sign column
-	opt.signcolumn = 'yes:2'
+	opt.signcolumn = "yes:2"
 
 	-- Make splits remain equal
 	opt.equalalways = true
-	opt.eadirection = 'both'
+	opt.eadirection = "both"
 
 	-- Display the foldcolumn
-	opt.foldcolumn = '1'
+	opt.foldcolumn = "1"
 
 	-- Enable folding by default
 	opt.foldenable = true
@@ -67,10 +67,10 @@ function M.setup()
 	opt.foldlevelstart = 0
 
 	-- Use an expression for the foldmethod
-	opt.foldmethod = 'expr'
+	opt.foldmethod = "expr"
 
 	-- Use tree-sitter for the foldexpr
-	opt.foldexpr = 'nvim_treesitter#foldexpr()'
+	opt.foldexpr = "nvim_treesitter#foldexpr()"
 
     -- stylua: ignore
 	-- Match the indent for the fold display
@@ -89,20 +89,20 @@ function M.setup()
 	opt.winblend = 10
 
 	-- Set completeopt to have a better completion experience
-	opt.completeopt = { 'menuone', 'noselect' }
+	opt.completeopt = { "menuone", "noselect" }
 
 	-- Set characters to fill the statuslines and vertical separators.
 	opt.fillchars = {
-		stl = ' ', -- ' ' or '^' statusline of the current window
-		stlnc = ' ', -- ' ' or '=' statusline of the non-current windows
-		vert = '│', -- '│' or '|' vertical separators |:vsplit|
-		fold = ' ', -- '·' or '-' filling 'foldtext'
-		foldopen = '▽', -- '-' mark the beginning of a fold
-		foldclose = '▶', -- '+' show a closed fold
-		foldsep = '│', -- '│' or '|' open fold middle marker
-		diff = '╳', -- '-' deleted lines of the 'diff' option | alternatives = ⣿ ░ ─ ╱
-		msgsep = '╌', -- ' ' message separator 'display'
-		eob = '∅', -- '~' empty lines at the end of a buffer
+		stl = " ", -- ' ' or '^' statusline of the current window
+		stlnc = " ", -- ' ' or '=' statusline of the non-current windows
+		vert = "│", -- '│' or '|' vertical separators |:vsplit|
+		fold = " ", -- '·' or '-' filling 'foldtext'
+		foldopen = "▽", -- '-' mark the beginning of a fold
+		foldclose = "▶", -- '+' show a closed fold
+		foldsep = "│", -- '│' or '|' open fold middle marker
+		diff = "╳", -- '-' deleted lines of the 'diff' option | alternatives = ⣿ ░ ─ ╱
+		msgsep = "╌", -- ' ' message separator 'display'
+		eob = "∅", -- '~' empty lines at the end of a buffer
 	}
 end
 

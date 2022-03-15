@@ -1,5 +1,5 @@
-local zen_mode = require('zen-mode')
-local wk = require('which-key')
+local zen_mode = require("zen-mode")
+local wk = require("which-key")
 local o = vim.o
 local M = {}
 
@@ -7,21 +7,21 @@ local M = {}
 function M.setup()
 	zen_mode.setup({
 		window = {
-			width = math.min(math.floor(o.columns * 0.8), 120),
-			height = math.min(math.floor(o.lines * 0.67), 400),
+			width = math.min(math.floor(o.columns * 0.8), 150),
+			height = math.min(o.lines, 400),
 		},
 	})
 
 	wk.register({
-		['<Leader>z'] = {
-			name = 'Zen mode',
+		["<Leader>z"] = {
+			name = "Zen mode",
 			m = {
-				'<cmd>ZenMode<cr>',
-				'toggle',
+				"<cmd>ZenMode<cr>",
+				"toggle",
 			},
 		},
 	}, {
-		mode = 'n',
+		mode = "n",
 		silent = true,
 		noremap = true,
 	})

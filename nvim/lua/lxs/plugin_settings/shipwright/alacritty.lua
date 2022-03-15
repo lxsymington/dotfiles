@@ -1,47 +1,7 @@
-local uv = vim.loop
-local api = vim.api
-local lush = require('lush')
+local shipwright_config = require("lxs.plugin_settings.shipwright")
+local colourscheme = require(vim.g.colors_name .. ".colours")
 
-local targets = {}
-local M = {}
-
-local YamlTable = {
-	__tostring = function(table)
-		local yaml = ''
-		local indent_level = 0
-
-		local function yamlRecurse(tableSection, indent_level)
-			local result = ''
-
-			for key, value in pairs(tableSection, indent_level) do
-				-- TODO: handle list-like tables
-				if type(value) == 'table' then
-					result = string.format(
-						'%s\n%s%s:%s',
-						result,
-						string.rep(' ', 2 * indent_level),
-						key,
-						yamlRecurse(value, indent_level + 1)
-					)
-				else
-					result = string.format(
-						'%s\n%s%s: %q',
-						result,
-						string.rep(' ', 2 * indent_level),
-						key,
-						value
-					)
-				end
-			end
-
-			return result
-		end
-
-		return yamlRecurse(table, indent_level)
-	end,
-}
-
-function targets.alacritty(colours)
+local function alacritty(colours)
 	local template = {
 		colors = {
 			primary = {
@@ -64,11 +24,11 @@ function targets.alacritty(colours)
                 Colors which should be used to draw the terminal cursor.
 
                 Allowed values are CellForeground and CellBackground, which reference the
-                affected cell, or hexadecimal colors like #ff00ff. 
+                affected cell, or hexadecimal colors like #ff00ff.
             ]]
 			cursor = {
-				text = 'CellBackground',
-				cursor = 'CellForeground',
+				text = "CellBackground",
+				cursor = "CellForeground",
 			},
 			--[[
                 Vi mode cursor colors
@@ -76,11 +36,11 @@ function targets.alacritty(colours)
                 Colors for the cursor when the vi mode is active.
 
                 Allowed values are CellForeground and CellBackground, which reference the
-                affected cell, or hexadecimal colors like #ff00ff. 
+                affected cell, or hexadecimal colors like #ff00ff.
             ]]
 			vi_mode_cursor = {
-				text = 'CellBackground',
-				cursor = 'CellForeground',
+				text = "CellBackground",
+				cursor = "CellForeground",
 			},
 			--[[
                 Selection colors
@@ -88,11 +48,11 @@ function targets.alacritty(colours)
                 Colors which should be used to draw the selection area.
 
                 Allowed values are CellForeground and CellBackground, which reference the
-                affected cell, or hexadecimal colors like #ff00ff. 
+                affected cell, or hexadecimal colors like #ff00ff.
             ]]
 			selection = {
-				text = 'CellBackground',
-				background = 'CellForeground',
+				text = "CellBackground",
+				background = "CellForeground",
 			},
 			--[[
                 Search colors
@@ -105,16 +65,16 @@ function targets.alacritty(colours)
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
 				matches = {
-					foreground = '#000000',
-					background = '#ffffff',
+					foreground = "#000000",
+					background = "#ffffff",
 				},
 				focused_match = {
-					foreground = 'CellBackground',
-					background = 'CellForeground',
+					foreground = "CellBackground",
+					background = "CellForeground",
 				},
 				bar = {
-					background = '#ebccad',
-					foreground = '#1a141f',
+					background = "#ebccad",
+					foreground = "#1a141f",
 				},
 			},
 			-- Keyboard regex hints
@@ -126,8 +86,8 @@ function targets.alacritty(colours)
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
 				start = {
-					foreground = '#1d1f21',
-					background = '#e9ff5e',
+					foreground = "#1d1f21",
+					background = "#e9ff5e",
 				},
 				--[[
                     All characters after the first one in the hint label
@@ -135,9 +95,9 @@ function targets.alacritty(colours)
                     Allowed values are CellForeground/CellBackground, which reference the
                     affected cell, or hexadecimal colors like #ff00ff.
                 ]]
-				['end'] = {
-					foreground = '#e9ff5e',
-					background = '#1d1f21',
+				["end"] = {
+					foreground = "#e9ff5e",
+					background = "#1d1f21",
 				},
 			},
 			--[[
@@ -146,10 +106,10 @@ function targets.alacritty(colours)
                 Color used for the indicator displaying the position in history during
                 search and vi mode.
 
-                By default, these will use the opposing primary color. 
+                By default, these will use the opposing primary color.
             ]]
 			line_indicator = {
-				foreground = 'None',
+				foreground = "None",
 				background = colours.grey.hex,
 			},
 			-- Normal colours
@@ -178,7 +138,7 @@ function targets.alacritty(colours)
                 Dim colors
 
                 If the dim colors are not set, they will be calculated automatically based
-                on the `normal` colors. 
+                on the `normal` colors.
             ]]
 			dim = {
 				white = colours.white.abs_darken(5).hex,
@@ -193,51 +153,22 @@ function targets.alacritty(colours)
 		},
 	}
 
-	setmetatable(template, YamlTable)
+	setmetatable(template, shipwright_config.YamlTable)
 
-	return string.format('%s', template)
+	local template_string = string.format('%s', template)
+	local lines = {}
+
+	for s in template_string:gmatch("[^\r\n]+") do
+        table.insert(lines, s)
+    end
+
+	return lines
 end
 
-local function write_file(file, buf)
-	local fd = assert(uv.fs_open(file, 'w', 420))
-	uv.fs_write(fd, buf, -1)
-	assert(uv.fs_close(fd))
-end
-
-function M.build()
-	local crepuscular
-
-	for _, variant in ipairs({ 'dark', 'light' }) do
-		package.loaded['lush_theme.crepuscular_colours'] = nil
-		vim.opt.background = variant
-		crepuscular = require('lush_theme.crepuscular_colours')
-
-		write_file(
-			string.format(
-				os.getenv('HOME') .. '/.dotfiles/alacritty/.alacritty.colours.%s.yml',
-				variant
-			),
-			targets.alacritty(crepuscular)
-		)
-	end
-end
-
-function M.setup()
-	api.nvim_command(
-		[[ command! CrepuscularBuild lua require('lush_theme.crepuscular_build').build() ]]
-	)
-
-	api.nvim_exec(
-		[[
-            augroup LushBuild
-            autocmd! * <buffer>
-            autocmd BufWritePost crepuscular_build.lua require('lush_theme.crepuscular_build').build()
-            augroup end
-        ]],
-		false
-	)
-
-	lush(require('lush_theme.' .. vim.g.colors_name))
-end
-
-return M
+run(colourscheme, alacritty, function(arg)
+	P(arg)
+	return arg
+end, {
+	overwrite,
+	os.getenv("HOME") .. "/.config/alacritty/alacritty.colours.yml",
+})

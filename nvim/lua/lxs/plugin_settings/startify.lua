@@ -9,30 +9,30 @@ function M.setup()
 	vim.g.startify_session_sort = 0
 
 	-- Set the session directory
-	vim.g.startify_session_dir = '~/.local/share/nvim/sessions'
+	vim.g.startify_session_dir = "~/.local/share/nvim/sessions"
 
 	-- Custom header
 	vim.g.startify_custom_header = {
-		'   ███╗░░██╗███████╗░█████╗░██╗░░░██╗██╗███╗░░░███╗   ',
-		'   ████╗░██║██╔════╝██╔══██╗██║░░░██║██║████╗░████║   ',
-		'   ██╔██╗██║█████╗░░██║░░██║╚██╗░██╔╝██║██╔████╔██║   ',
-		'   ██║╚████║██╔══╝░░██║░░██║░╚████╔╝░██║██║╚██╔╝██║   ',
-		'   ██║░╚███║███████╗╚█████╔╝░░╚██╔╝░░██║██║░╚═╝░██║   ',
-		'   ╚═╝░░╚══╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝   ',
+		"   ███╗░░██╗███████╗░█████╗░██╗░░░██╗██╗███╗░░░███╗   ",
+		"   ████╗░██║██╔════╝██╔══██╗██║░░░██║██║████╗░████║   ",
+		"   ██╔██╗██║█████╗░░██║░░██║╚██╗░██╔╝██║██╔████╔██║   ",
+		"   ██║╚████║██╔══╝░░██║░░██║░╚████╔╝░██║██║╚██╔╝██║   ",
+		"   ██║░╚███║███████╗╚█████╔╝░░╚██╔╝░░██║██║░╚═╝░██║   ",
+		"   ╚═╝░░╚══╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝   ",
 	}
 
 	-- Start lists
 	vim.g.startify_lists = {
-		{ type = 'sessions', header = { '   Sessions' } },
-		{ type = 'dir', header = { '   MRU ' .. vim.fn.getcwd() } },
-		{ type = 'files', header = { '   MRU' } },
-		{ type = 'commands', header = { '   Commands' } },
+		{ type = "sessions", header = { "   Sessions" } },
+		{ type = "dir", header = { "   MRU " .. vim.fn.getcwd() } },
+		{ type = "files", header = { "   MRU" } },
+		{ type = "commands", header = { "   Commands" } },
 	}
 
 	-- Close LuaTree
 	vim.g.startify_session_before_save = {
 		'echo "Cleaning up before saving.."',
-		'silent! NvimTreeClose',
+		"silent! NvimTreeClose",
 	}
 end
 
