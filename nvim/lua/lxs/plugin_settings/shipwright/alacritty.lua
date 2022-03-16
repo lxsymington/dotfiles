@@ -155,14 +155,6 @@ local function alacritty(colours)
 
     local yamlTemplate = YamlTable.new(template)
 
-    print('template')
-    P(yamlTemplate)
-    print('template to lines result')
-    P(yamlTemplate:tolines())
-    local lines = yamlTemplate:tolines()
-    P(lines)
-
-    print('return alacritty')
     return yamlTemplate:tolines()
 end
 

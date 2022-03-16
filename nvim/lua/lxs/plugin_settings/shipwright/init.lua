@@ -3,29 +3,36 @@ local lush = require('lush')
 
 local M = {}
 
-local function yamlRecurse(tableSection, indent_level)
+local function yaml_recurse(table_section, indent_level)
 	local lines = {}
+	local ordered_keys = {}
 
-	P(ipairs(tableSection))
+    for k in pairs(table_section) do
+        table.insert(ordered_keys, k)
+    end
 
-	for key, value in ipairs(tableSection) do
+    table.sort(ordered_keys)
+
+	for i = 1, #ordered_keys do
 		-- TODO: handle list-like tables
+		local key, value = ordered_keys[i], table_section[ordered_keys[i]]
 		if type(value) == 'table' then
 			local line = string.format(
-				'%s%s:%s',
+				'%s%s:',
 				string.rep(' ', 2 * indent_level),
-				key,
-				yamlRecurse(value, indent_level + 1)
+				key
 			)
-			P(line)
 			table.insert(lines, line)
+
+		    local table_section_lines = yaml_recurse(value, indent_level + 1)
+
+		    for i, section_line in ipairs(table_section_lines) do
+		        table.insert(lines, section_line)
+		    end
 		else
 			local line = string.format('%s%s: %q', string.rep(' ', 2 * indent_level), key, value)
-			P(line)
 			table.insert(lines, line)
 		end
-
-        P(key, value, line)
 	end
 
 	return lines
@@ -40,9 +47,8 @@ local YamlLines = {
 
 YamlTable.prototype = {
 	tolines = function(self)
-		local yaml_lines = yamlRecurse(self, 0)
+		local yaml_lines = yaml_recurse(self, 0)
 
-		P(yaml_lines)
 		setmetatable(yaml_lines, YamlLines)
 
 		return yaml_lines
@@ -50,8 +56,8 @@ YamlTable.prototype = {
 }
 
 YamlTable.mt = {
-	__tostring = function(table)
-		local lines = table:tolines()
+	__tostring = function(self)
+		local lines = self:tolines()
 
 		return table.concat(lines, '\n')
 	end,
