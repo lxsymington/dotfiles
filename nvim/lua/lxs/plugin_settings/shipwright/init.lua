@@ -3,6 +3,12 @@ local lush = require('lush')
 
 local M = {}
 
+--- Format prose as code comments
+---@param prose string the text to be formatted
+---@param characters number the maximum number of characters per line
+---@param indent_level number the number of indents the lines should have
+---@param comment_chars string the characters that will prefix each line to comment it out.
+---@return string list a list of lines
 local function format_prose(prose, characters, indent_level, comment_chars)
 	local lines = {}
 	local line = string.format('%s%s', string.rep(' ', 2 * indent_level), comment_chars)
@@ -19,6 +25,10 @@ local function format_prose(prose, characters, indent_level, comment_chars)
 	return lines
 end
 
+--- Convert lua tables to lines of yaml
+---@param table_section table the table to convert to lines of yaml
+---@param indent_level number the number of indents the line should have
+---@return string list a list of yaml lines
 local function yaml_recurse(table_section, indent_level)
 	local lines = {}
 	local ordered_keys = {}
@@ -73,6 +83,9 @@ end
 
 local YamlTable = {}
 local YamlLines = {
+    --- The tostring method for YamlLines
+    ---@param self 
+    ---@return 
 	__tostring = function(self)
 		return table.concat(self, '\n')
 	end,
