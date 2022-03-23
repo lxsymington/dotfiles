@@ -1,5 +1,5 @@
 if type -q fnm
-    fnm env --use-on-cd | source
+    fnm env --use-on-cd --version-file-strategy=recursive | source
     set -l FNM_BIN $FNM_DIR/node-versions/(fnm current)/installation/bin
     set -l FNM_LIB $FNM_DIR/node-versions/(fnm current)/installation/lib
 
