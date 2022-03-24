@@ -1,3 +1,4 @@
+local wk = require('which-key')
 local keymap = vim.api.nvim_set_keymap
 local M = {}
 
@@ -9,10 +10,20 @@ function M.setup()
 		borders = 'rounded',
 	})
 
-	local keymap_opts = { noremap = true, silent = true }
+	wk.register({
+	    ['<Leader>'] = {
+	        e = {
+	            '<Plug>SnipRunOperator',
+	            'Sniprun execute over operator'
+            },
+	        E = {
+                '<Plug>Sniprun',
+	            'Sniprun execute file'
+            },
+        },
+	}, { mode = 'n', noremap = true, silent = true })
+	local keymap_opts = {}
 	keymap('v', '<Tab>', '<Plug>Sniprun', keymap_opts)
-	keymap('n', '<Leader>e', '<Plug>SnipRunOperator', keymap_opts)
-	keymap('n', '<Leader>E', '<Plug>Sniprun', keymap_opts)
 end
 
 return M

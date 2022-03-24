@@ -140,7 +140,7 @@ function M.setup()
 		end,
 	})
 	api.nvim_create_autocmd('BufWritePost', {
-		pattern = '*/crepuscular/**',
+		pattern = string.format('*/%s/**', vim.g.colors_name),
 		callback = function()
 			M.shipwright_build(true)
 		end,
