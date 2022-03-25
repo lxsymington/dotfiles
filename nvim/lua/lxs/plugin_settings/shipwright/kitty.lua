@@ -1,9 +1,8 @@
-local YamlTable = require('lxs.plugin_settings.shipwright').YamlTable
-local OrderedTable = require('lxs.plugin_settings.shipwright.utils').OrderedTable
+local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
 local colourscheme = require(vim.g.colors_name .. '.colours')
 
 local function kitty(colours)
-    local template = OrderedTable:new()
+    local template = YamlTable:new()
     template:add('#> Vim Filetype', { comment_chars = '#', copy = 'vim:ft=kitty' })
     template:add('#> Template Info', {
         comment_chars = '#:',
@@ -149,11 +148,9 @@ local function kitty(colours)
     template:add('color7', colours.white.hex)
     template:add('color15', colours.lightWhite.hex)
 
-    P(template)
+    print("template has " .. #template .. " lines")
 
-    local yamlTemplate = YamlTable.new(template)
-
-    return yamlTemplate:tolines()
+    return template:tolines()
 end
 
 run(colourscheme, kitty, {
