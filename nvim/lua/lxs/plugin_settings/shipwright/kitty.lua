@@ -150,6 +150,16 @@ local function kitty(colours)
 
     print("template has " .. #template .. " lines")
 
+    for index, entry in template:ipairs() do
+        print("index: " .. vim.inspect(index))
+        print("entry: " .. vim.inspect(entry))
+    end
+
+    for key, value in template:pairs() do
+        print("key: " .. vim.inspect(key))
+        print("value: " .. vim.inspect(value))
+    end
+
     return template:tolines()
 end
 

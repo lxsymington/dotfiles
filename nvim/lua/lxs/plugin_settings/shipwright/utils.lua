@@ -13,6 +13,18 @@ OrderedTable.prototype = {
     ---@param value any the value of the entry to be created
     add = function (self, key, value)
         self[key] = value
+    end,
+    ---A custom pairs iterator for OrderedTables
+    ---@param self OrderedTable an ordered table to iterate over
+    ---@return function a `pairs` iterator
+    pairs = function (self)
+        return pairs(self[proxy_key])
+    end,
+    --- A custom ipairs iterated for OrderedTables
+    ---@param self OrderedTable an ordered table to iterate over
+    ---@return function an `ipairs` iterator
+    ipairs = function (self)
+        return ipairs(self[index_key])
     end
 }
 
@@ -27,12 +39,14 @@ OrderedTable.mt = {
         end
 
         if type(key) == "table" then
-            return self[key]
+            return rawget(self, key)
         end
 
         if type(key) == "number" then
-            local store_key = self[index_key][key]
-            return store_key, self[proxy_key][store_key]
+            local indices = rawget(self, index_key)
+            local proxy = rawget(self, proxy_key)
+            local store_key = rawget(indices, key)
+            return store_key, rawget(proxy, store_key)
         end
 
         return self[proxy_key][key]
@@ -47,11 +61,6 @@ OrderedTable.mt = {
         self[index_key][next_key] = key
         self[proxy_key][key] = value
     end,
-    __len = function (self)
-        local indices = self[index_key]
-        print(indices, #indices)
-        return #indices
-    end
 }
 
 ---The constructor function for OrderedTables
@@ -206,7 +215,6 @@ YamlTable.mt = {
         end
     end,
     __newindex = OrderedTable.mt.__newindex,
-    __len = OrderedTable.mt.__len,
     ---Inherit from OrderedTable
     __metatable = OrderedTable
 }
