@@ -1,191 +1,204 @@
-local YamlTable = require('lxs.plugin_settings.shipwright').YamlTable
+local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
 local colourscheme = require(vim.g.colors_name .. '.colours')
 
 local function alacritty(colours)
-	local template = {
-		colors = {
-			primary = {
-				foreground = colours.white.hex,
-				background = colours.black.hex,
-				['#> Foreground'] = {
-					comment_chars = '#',
-					copy = [[
-                        Bright and dim foreground colors
+    local primary = YamlTable:new()
+    primary:add('foreground', colours.white.hex)
+	primary:add('background', colours.black.hex)
+	primary:add('#> Foreground', {
+        comment_chars = '#',
+        copy = [[
+            Bright and dim foreground colors
 
-                        The dimmed foreground color is calculated automatically if it is not
-                        present. If the bright foreground color is not set, or
-                        `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-                        color will be used.
-                    ]],
-				},
-				dim_foreground = colours.lightGrey.hex,
-				bright_foreground = colours.lightWhite.hex,
-			},
-			['#> Cursor'] = {
-				comment_chars = '#',
-				copy = [[
-                    Cursor colors
+            The dimmed foreground color is calculated automatically if it is not
+            present. If the bright foreground color is not set, or
+            `draw_bold_text_with_bright_colors` is `false`, the normal foreground
+            color will be used.
+        ]],
+    })
+    primary:add('dim_foreground', colours.lightGrey.hex)
+	primary:add('bright_foreground', colours.lightWhite.hex)
 
-                    Colors which should be used to draw the terminal cursor.
+    local cursor = YamlTable:new()
+    cursor:add('text', 'CellBackground')
+	cursor:add('cursor', 'CellForeground')
 
-                    Allowed values are CellForeground and CellBackground, which reference the
-                    affected cell, or hexadecimal colors like #ff00ff.
-                ]],
-			},
-			cursor = {
-				text = 'CellBackground',
-				cursor = 'CellForeground',
-			},
-			['#> Vi Mode'] = {
-				comment_chars = '#',
-				copy = [[
-                    Vi mode cursor colors
+    local vi_mode_cursor = YamlTable:new()
+    vi_mode_cursor:add('text', 'CellBackground')
+	vi_mode_cursor:add('cursor', 'CellForeground')
 
-                    Colors for the cursor when the vi mode is active.
+    local selection = YamlTable:new()
+    selection:add('text', 'CellBackground')
+	selection:add('background', 'CellForeground')
 
-                    Allowed values are CellForeground and CellBackground, which reference the
-                    affected cell, or hexadecimal colors like #ff00ff.
-                ]],
-			},
-			vi_mode_cursor = {
-				text = 'CellBackground',
-				cursor = 'CellForeground',
-			},
-			['#> Selection'] = {
-				comment_chars = '#',
-				copy = [[
-                    Selection colors
+    local search_matches = YamlTable:new()
+    search_matches:add('foreground', '#000000')
+	search_matches:add('background', '#ffffff')
 
-                    Colors which should be used to draw the selection area.
+    local search_focused_match = YamlTable:new()
+    search_focused_match:add('foreground', 'CellBackground')
+	search_focused_match:add('background', 'CellForeground')
 
-                    Allowed values are CellForeground and CellBackground, which reference the
-                    affected cell, or hexadecimal colors like #ff00ff.
-                ]],
-			},
-			selection = {
-				text = 'CellBackground',
-				background = 'CellForeground',
-			},
-			['#> Search'] = {
-				comment_chars = '#',
-				copy = [[
-                    Search colors
+    local search_bar = YamlTable:new()
+    search_bar:add('foreground', '#1a141f')
+	search_bar:add('background', '#ebccad')
 
-                    Colors used for the search bar and match highlighting.
-                ]],
-			},
-			search = {
-				['#> CellForeground'] = {
-					comment_chars = '#',
-					copy = [[
-                        Allowed values are CellForeground and CellBackground, which reference the
-                        affected cell, or hexadecimal colors like #ff00ff.
-                    ]],
-				},
-				matches = {
-					foreground = '#000000',
-					background = '#ffffff',
-				},
-				focused_match = {
-					foreground = 'CellBackground',
-					background = 'CellForeground',
-				},
-				bar = {
-					background = '#ebccad',
-					foreground = '#1a141f',
-				},
-			},
-			-- Keyboard regex hints
-			hints = {
-				['#> Hint Head'] = {
-					comment_chars = '#',
-					copy = [[
-                        First character in the hint label
+    local search = YamlTable:new()
+    search:add('#> CellForeground', {
+        comment_chars = '#',
+        copy = [[
+            Allowed values are CellForeground and CellBackground, which reference the
+            affected cell, or hexadecimal colors like #ff00ff.
+        ]],
+    })
+    search:add('matches', search_matches)
+    search:add('focused_match', search_focused_match)
+    search:add('bar', search_bar)
 
-                        Allowed values are CellForeground/CellBackground, which reference the
-                        affected cell, or hexadecimal colors like #ff00ff.
-                    ]],
-				},
-				start = {
-					foreground = '#1d1f21',
-					background = '#e9ff5e',
-				},
-				['#> Hint Tail'] = {
-					comment_chars = '#',
-					copy = [[
-                        All characters after the first one in the hint label
+    local hints_start = YamlTable:new()
+    hints_start:add('foreground', '#1d1f21')
+    hints_start:add('background', '#e9ff5e')
 
-                        Allowed values are CellForeground/CellBackground, which reference the
-                        affected cell, or hexadecimal colors like #ff00ff.
-                    ]],
-				},
-				['end'] = {
-					foreground = '#e9ff5e',
-					background = '#1d1f21',
-				},
-			},
-			['#> Line Indicator'] = {
-				comment_chars = '#',
-				copy = [[
-                    Line indicator
+    local hints_end = YamlTable:new()
+    hints_end:add('foreground', '#e9ff5e')
+    hints_end:add('background', '#1d1f21')
 
-                    Color used for the indicator displaying the position in history during
-                    search and vi mode.
+	local hints = YamlTable:new()
+    hints:add('#> Hint Head', {
+        comment_chars = '#',
+        copy = [[
+            First character in the hint label
 
-                    By default, these will use the opposing primary color.
-                ]],
-			},
-			line_indicator = {
-				foreground = 'None',
-				background = colours.grey.hex,
-			},
-			['#> Normal'] = { comment_chars = '#', copy = 'Normal colours' },
-			normal = {
-				white = colours.white.hex,
-				black = colours.lightBlack.hex,
-				red = colours.red.hex,
-				yellow = colours.yellow.hex,
-				green = colours.green.hex,
-				cyan = colours.cyan.hex,
-				blue = colours.blue.hex,
-				magenta = colours.purple.hex,
-			},
-			['#> Bright'] = { comment_chars = '#', copy = 'Bright colours' },
-			bright = {
-				white = colours.lightWhite.hex,
-				black = colours.grey.hex,
-				red = colours.lightRed.hex,
-				yellow = colours.lightYellow.hex,
-				green = colours.lightGreen.hex,
-				cyan = colours.lightCyan.hex,
-				blue = colours.lightBlue.hex,
-				magenta = colours.lightPurple.hex,
-			},
-			['#> Dim'] = {
-				comment_chars = '#',
-				copy = [[
-                    Dim colors
+            Allowed values are CellForeground/CellBackground, which reference the
+            affected cell, or hexadecimal colors like #ff00ff.
+        ]],
+    })
+    hints:add('start', hints_start)
+    hints:add('#> Hint Tail', {
+        comment_chars = '#',
+        copy = [[
+            All characters after the first one in the hint label
 
-                    If the dim colors are not set, they will be calculated automatically based
-                    on the `normal` colors.
-                ]],
-			},
-			dim = {
-				white = colours.white.abs_darken(5).hex,
-				black = colours.black.abs_lighten(15).hex,
-				red = colours.red.abs_lighten(15).abs_desaturate(30).hex,
-				yellow = colours.yellow.abs_darken(15).abs_desaturate(30).hex,
-				green = colours.green.abs_lighten(30).abs_desaturate(15).hex,
-				cyan = colours.cyan.abs_darken(15).abs_desaturate(15).hex,
-				blue = colours.blue.abs_desaturate(45).hex,
-				magenta = colours.purple.abs_darken(15).abs_desaturate(30).hex,
-			},
-		},
-	}
+            Allowed values are CellForeground/CellBackground, which reference the
+            affected cell, or hexadecimal colors like #ff00ff.
+        ]],
+    })
+    hints:add('end', hints_end)
 
-	local yamlTemplate = YamlTable.new(template)
+	local line_indicator = YamlTable:new()
+	line_indicator:add('foreground', 'None')
+	line_indicator:add('background', colours.grey.hex)
 
-	return yamlTemplate:tolines()
+	local normal = YamlTable:new()
+	normal:add('white', colours.white.hex)
+	normal:add('black', colours.lightBlack.hex)
+	normal:add('red', colours.red.hex)
+	normal:add('yellow', colours.yellow.hex)
+	normal:add('green', colours.green.hex)
+	normal:add('cyan', colours.cyan.hex)
+	normal:add('blue', colours.blue.hex)
+	normal:add('magenta', colours.purple.hex)
+
+	local bright = YamlTable:new()
+	bright:add('white', colours.lightWhite.hex)
+	bright:add('black', colours.grey.hex)
+	bright:add('red', colours.lightRed.hex)
+	bright:add('yellow', colours.lightYellow.hex)
+	bright:add('green', colours.lightGreen.hex)
+	bright:add('cyan', colours.lightCyan.hex)
+	bright:add('blue', colours.lightBlue.hex)
+	bright:add('magenta', colours.lightPurple.hex)
+
+	local dim =  YamlTable:new()
+	dim:add('white', colours.white.abs_darken(5).hex)
+	dim:add('black', colours.black.abs_lighten(15).hex)
+	dim:add('red', colours.red.abs_lighten(15).abs_desaturate(30).hex)
+	dim:add('yellow', colours.yellow.abs_darken(15).abs_desaturate(30).hex)
+	dim:add('green', colours.green.abs_lighten(30).abs_desaturate(15).hex)
+	dim:add('cyan', colours.cyan.abs_darken(15).abs_desaturate(15).hex)
+	dim:add('blue', colours.blue.abs_desaturate(45).hex)
+	dim:add('magenta', colours.purple.abs_darken(15).abs_desaturate(30).hex)
+
+	local colors = YamlTable:new()
+	colors:add('primary', primary)
+	colors:add('#> Cursor', {
+        comment_chars = '#',
+        copy = [[
+            Cursor colors
+
+            Colors which should be used to draw the terminal cursor.
+
+            Allowed values are CellForeground and CellBackground, which reference the
+            affected cell, or hexadecimal colors like #ff00ff.
+        ]],
+    })
+    colors:add('cursor', cursor)
+    colors:add('#> Vi Mode', {
+        comment_chars = '#',
+        copy = [[
+            Vi mode cursor colors
+
+            Colors for the cursor when the vi mode is active.
+
+            Allowed values are CellForeground and CellBackground, which reference the
+            affected cell, or hexadecimal colors like #ff00ff.
+        ]],
+    })
+    colors:add('vi_mode_cursor', vi_mode_cursor)
+    colors:add('#> Selection', {
+        comment_chars = '#',
+        copy = [[
+            Selection colors
+
+            Colors which should be used to draw the selection area.
+
+            Allowed values are CellForeground and CellBackground, which reference the
+            affected cell, or hexadecimal colors like #ff00ff.
+        ]],
+    })
+    colors:add('selection', selection)
+    colors:add('#> Search', {
+        comment_chars = '#',
+        copy = [[
+            Search colors
+
+            Colors used for the search bar and match highlighting.
+        ]],
+    })
+    colors:add('search', search)
+	colors:add('#> Hints', { comment_chars ='#', copy = 'Keyboard regex hints' })
+    colors:add('hints', hints)
+    colors:add('#> Line Indicator', {
+        comment_chars = '#',
+        copy = [[
+            Line indicator
+
+            Color used for the indicator displaying the position in history during
+            search and vi mode.
+
+            By default, these will use the opposing primary color.
+        ]],
+    })
+    colors:add('line_indicator', line_indicator)
+    colors:add('#> Normal', { comment_chars = '#', copy = 'Normal colours' })
+    colors:add('normal', normal)
+    colors:add('#> Bright', { comment_chars = '#', copy = 'Bright colours' })
+    colors:add('bright', bright)
+    colors:add('#> Dim', {
+        comment_chars = '#',
+        copy = [[
+            Dim colors
+
+            If the dim colors are not set, they will be calculated automatically based
+            on the `normal` colors.
+        ]],
+    })
+    colors:add('dim', dim)
+
+	local template = YamlTable:new()
+	template:add('colors', colors)
+
+	return template:tolines()
 end
 
 run(colourscheme, alacritty, {

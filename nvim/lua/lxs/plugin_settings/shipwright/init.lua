@@ -8,7 +8,7 @@ function M.shipwright_build(should_set_colourscheme)
 		lush(require(vim.g.colors_name))
 	end
 
-	-- vim.cmd('Shipwright ~/.dotfiles/nvim/lua/lxs/plugin_settings/shipwright/alacritty.lua')
+	vim.cmd('Shipwright ~/.dotfiles/nvim/lua/lxs/plugin_settings/shipwright/alacritty.lua')
 	vim.cmd('Shipwright ~/.dotfiles/nvim/lua/lxs/plugin_settings/shipwright/kitty.lua')
 end
 

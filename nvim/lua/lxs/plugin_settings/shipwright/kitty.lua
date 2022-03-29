@@ -60,7 +60,7 @@ local function kitty(colours)
         comment_chars = '#:',
         copy = 'URL underline color when hovering with mouse',
     })
-    template:add('url_color', colours.orange)
+    template:add('url_color', colours.orange.hex)
     template:add('#> Border & Terminal Bell', {
         comment_chars = '#:',
         copy = 'kitty window border colors and terminal bell colors',
@@ -147,18 +147,6 @@ local function kitty(colours)
     })
     template:add('color7', colours.white.hex)
     template:add('color15', colours.lightWhite.hex)
-
-    print("template has " .. #template .. " lines")
-
-    for index, entry in template:ipairs() do
-        print("index: " .. vim.inspect(index))
-        print("entry: " .. vim.inspect(entry))
-    end
-
-    for key, value in template:pairs() do
-        print("key: " .. vim.inspect(key))
-        print("value: " .. vim.inspect(value))
-    end
 
     return template:tolines()
 end

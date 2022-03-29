@@ -1,9 +1,13 @@
 local M = {}
 
+---A unique key under which the OrderedTable indices are stored
 local index_key = {}
+---A unique key under which the OrderedTable entries are stored
 local proxy_key = {}
 
 ---@class OrderedTable an object-like table that can be iterated over in order
+---@field public add function add an entry to this `OrderedTable`
+---@field public iter function iterates over the entries in the `OrderedTable` in order
 local OrderedTable = {}
 
 OrderedTable.prototype = {
@@ -14,17 +18,27 @@ OrderedTable.prototype = {
     add = function (self, key, value)
         self[key] = value
     end,
-    ---A custom pairs iterator for OrderedTables
+    ---A custom iterator for OrderedTables
     ---@param self OrderedTable an ordered table to iterate over
-    ---@return function a `pairs` iterator
-    pairs = function (self)
-        return pairs(self[proxy_key])
-    end,
-    --- A custom ipairs iterated for OrderedTables
-    ---@param self OrderedTable an ordered table to iterate over
-    ---@return function an `ipairs` iterator
-    ipairs = function (self)
-        return ipairs(self[index_key])
+    ---@return function, OrderedTable, number - the iterator, ordered table and index
+    iter = function (self)
+        ---Internal iterator function
+        ---@param _self OrderedTable the ordered table being iterated over
+        ---@param index number the current index
+        ---@return string, any entry the key and value
+        local function _iter(_self, index)
+            index = index + 1
+            local indices = rawget(_self, index_key)
+            local proxy = rawget(_self, proxy_key)
+            local key = rawget(indices, index)
+            local value = rawget(proxy, key)
+
+            if key and value then
+                return index, key, value
+            end
+        end
+
+        return _iter, self, 0
     end
 }
 
@@ -107,17 +121,8 @@ local function to_yaml_lines(table_section, indent_level)
 	local lines = {}
 	local characters = 80
 
-    P(table_section)
-
-	for i = 1, #table_section do
-		local key, value = table_section[i]
-
-        print("key")
-        P(key)
-        print("value")
-        P(value)
-
-        if type(key) == string then
+	for _, key, value in table_section:iter() do
+        if type(key) == 'string' then
             if string.match(key, '^#>') then
                 if string.len(value.comment_chars .. ' ' .. value.copy) > characters then
                     local prose_lines = format_prose(
@@ -156,9 +161,6 @@ local function to_yaml_lines(table_section, indent_level)
         end
 	end
 
-    print("lines")
-    P(lines)
-
 	return lines
 end
 
@@ -175,7 +177,6 @@ local YamlLines = {
 
 ---@class YamlTable:OrderedTable a table that can be converted to yaml or lines of yaml
 ---@field public tolines function get the YamlLines for this YamlTable
----@field public add function add an entry to this YamlTable
 local YamlTable = {}
 
 YamlTable.prototype = {
