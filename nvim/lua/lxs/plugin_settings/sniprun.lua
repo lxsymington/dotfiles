@@ -11,17 +11,21 @@ function M.setup()
 	})
 
 	wk.register({
-	    ['<Leader>'] = {
-	        e = {
-	            '<Plug>SnipRunOperator',
-	            'Sniprun execute over operator'
-            },
-	        E = {
-                '<Plug>Sniprun',
-	            'Sniprun execute file'
-            },
-        },
-	}, { mode = 'n', noremap = true, silent = true })
+		['<Leader>'] = {
+			e = {
+				'<Plug>SnipRunOperator',
+				'Sniprun execute over operator',
+			},
+			E = {
+				'<Plug>Sniprun',
+				'Sniprun execute file',
+			},
+		},
+	}, {
+		mode = 'n',
+		noremap = true,
+		silent = true,
+	})
 	local keymap_opts = {}
 	keymap('v', '<Tab>', '<Plug>Sniprun', keymap_opts)
 end

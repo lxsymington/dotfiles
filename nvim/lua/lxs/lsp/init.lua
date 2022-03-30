@@ -170,8 +170,8 @@ function M.setup()
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.prettierd.with({
 				runtime_condition = function()
-				    local project_dir = util.find_git_ancestor()
-                    local configFiles = {
+					local project_dir = util.find_git_ancestor()
+					local configFiles = {
 						'.prettierrc',
 						'.prettierrc.json',
 						'.prettierrc.json5',
@@ -185,11 +185,11 @@ function M.setup()
 					}
 
 					for _, configFile in ipairs(configFiles) do
-					    local fullPath = util.path.join(project_dir, configFile)
+						local fullPath = util.path.join(project_dir, configFile)
 
-					    if util.path.is_file(fullPath) then
-					       return true
-					    end
+						if util.path.is_file(fullPath) then
+							return true
+						end
 					end
 
 					return false

@@ -429,8 +429,10 @@ function M.setup()
 
 	feline.setup({
 		colors = {
-			bg = colours.black.hex,
-			fg = colours.white.hex,
+			bg = api.nvim_get_option('background') == 'dark' and colours.black.hex
+				or colours.lightWhite.hex,
+			fg = api.nvim_get_option('background') == 'dark' and colours.white.hex
+				or colours.lightBlack.hex,
 		},
 		components = components,
 	})

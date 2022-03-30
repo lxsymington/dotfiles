@@ -939,8 +939,6 @@ window_padding_width 20
 
 #: }}}
 
-include ./kitty.colours.conf
-
 #: Advanced {{{
 
 # shell .
@@ -1912,6 +1910,6 @@ include ./kitty.colours.conf
 
 
 # BEGIN_KITTY_THEME
-# Aquarium Dark
-include themes/crepuscular.conf
+# crepuscular
+include current-theme.conf
 # END_KITTY_THEME

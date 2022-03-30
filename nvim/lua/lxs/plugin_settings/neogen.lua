@@ -7,7 +7,7 @@ function M.setup()
 	neogen.setup({
 		enable = true,
 		input_after_comment = true,
-		snippet_engine = 'luasnip'
+		snippet_engine = 'luasnip',
 	})
 
 	wk.register({
