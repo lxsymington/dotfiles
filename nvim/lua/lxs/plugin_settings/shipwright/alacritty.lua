@@ -1,10 +1,10 @@
 local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
-local colourscheme = require(vim.g.colors_name .. '.colours')
+local theme = require('lxs.plugin_settings.shipwright.theme').current
 
 local function alacritty(colours)
     local primary = YamlTable:new()
-    primary:add('foreground', colours.white.hex)
-	primary:add('background', colours.black.hex)
+    primary:add('foreground', theme.foreground)
+	primary:add('background', theme.background)
 	primary:add('#> Foreground', {
         comment_chars = '#',
         copy = [[
@@ -16,8 +16,8 @@ local function alacritty(colours)
             color will be used.
         ]],
     })
-    primary:add('dim_foreground', colours.lightGrey.hex)
-	primary:add('bright_foreground', colours.lightWhite.hex)
+    primary:add('dim_foreground', theme.grey)
+	primary:add('bright_foreground', theme.foreground_alt)
 
     local cursor = YamlTable:new()
     cursor:add('text', 'CellBackground')
@@ -32,16 +32,16 @@ local function alacritty(colours)
 	selection:add('background', 'CellForeground')
 
     local search_matches = YamlTable:new()
-    search_matches:add('foreground', '#000000')
-	search_matches:add('background', '#ffffff')
+    search_matches:add('foreground', theme.background)
+	search_matches:add('background', theme.green)
 
     local search_focused_match = YamlTable:new()
     search_focused_match:add('foreground', 'CellBackground')
 	search_focused_match:add('background', 'CellForeground')
 
     local search_bar = YamlTable:new()
-    search_bar:add('foreground', '#1a141f')
-	search_bar:add('background', '#ebccad')
+    search_bar:add('foreground', theme.foreground_alt)
+	search_bar:add('background', theme.background_alt)
 
     local search = YamlTable:new()
     search:add('#> CellForeground', {
@@ -56,12 +56,12 @@ local function alacritty(colours)
     search:add('bar', search_bar)
 
     local hints_start = YamlTable:new()
-    hints_start:add('foreground', '#1d1f21')
-    hints_start:add('background', '#e9ff5e')
+    hints_start:add('foreground', theme.foreground_alt)
+    hints_start:add('background', theme.orange_alt)
 
     local hints_end = YamlTable:new()
-    hints_end:add('foreground', '#e9ff5e')
-    hints_end:add('background', '#1d1f21')
+    hints_end:add('foreground', theme.orange_alt)
+    hints_end:add('background', theme.foreground_alt)
 
 	local hints = YamlTable:new()
     hints:add('#> Hint Head', {
@@ -87,27 +87,27 @@ local function alacritty(colours)
 
 	local line_indicator = YamlTable:new()
 	line_indicator:add('foreground', 'None')
-	line_indicator:add('background', colours.grey.hex)
+	line_indicator:add('background', theme.grey)
 
 	local normal = YamlTable:new()
-	normal:add('white', colours.white.hex)
-	normal:add('black', colours.lightBlack.hex)
-	normal:add('red', colours.red.hex)
-	normal:add('yellow', colours.yellow.hex)
-	normal:add('green', colours.green.hex)
-	normal:add('cyan', colours.cyan.hex)
-	normal:add('blue', colours.blue.hex)
-	normal:add('magenta', colours.purple.hex)
+	normal:add('white', theme.white)
+	normal:add('black', theme.black_alt)
+	normal:add('red', theme.red)
+	normal:add('yellow', theme.yellow)
+	normal:add('green', theme.green)
+	normal:add('cyan', theme.cyan)
+	normal:add('blue', theme.blue)
+	normal:add('magenta', theme.magenta)
 
 	local bright = YamlTable:new()
-	bright:add('white', colours.lightWhite.hex)
-	bright:add('black', colours.grey.hex)
-	bright:add('red', colours.lightRed.hex)
-	bright:add('yellow', colours.lightYellow.hex)
-	bright:add('green', colours.lightGreen.hex)
-	bright:add('cyan', colours.lightCyan.hex)
-	bright:add('blue', colours.lightBlue.hex)
-	bright:add('magenta', colours.lightPurple.hex)
+	bright:add('white', theme.white_alt)
+	bright:add('black', theme.grey)
+	bright:add('red', theme.red_alt)
+	bright:add('yellow', theme.yellow_alt)
+	bright:add('green', theme.green_alt)
+	bright:add('cyan', theme.cyan_alt)
+	bright:add('blue', theme.blue_alt)
+	bright:add('magenta', theme.magenta_alt)
 
 	local dim =  YamlTable:new()
 	dim:add('white', colours.white.abs_darken(5).hex)
