@@ -1,8 +1,15 @@
 local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
-local theme = require('lxs.plugin_settings.shipwright.theme').current
+local current_theme = require('lxs.plugin_settings.shipwright.theme').current
 
-local function alacritty(colours)
-    local primary = YamlTable:new()
+local function alacritty(theme)
+    local config = {
+		characters = 80,
+		comment_prefix = '#>',
+		indent_char = ' ',
+		indent_size = 2,
+		separator = ':',
+	}
+    local primary = YamlTable:new(config)
     primary:add('foreground', theme.foreground)
 	primary:add('background', theme.background)
 	primary:add('#> Foreground', {
@@ -19,31 +26,31 @@ local function alacritty(colours)
     primary:add('dim_foreground', theme.grey)
 	primary:add('bright_foreground', theme.foreground_alt)
 
-    local cursor = YamlTable:new()
+    local cursor = YamlTable:new(config)
     cursor:add('text', 'CellBackground')
 	cursor:add('cursor', 'CellForeground')
 
-    local vi_mode_cursor = YamlTable:new()
+    local vi_mode_cursor = YamlTable:new(config)
     vi_mode_cursor:add('text', 'CellBackground')
 	vi_mode_cursor:add('cursor', 'CellForeground')
 
-    local selection = YamlTable:new()
+    local selection = YamlTable:new(config)
     selection:add('text', 'CellBackground')
 	selection:add('background', 'CellForeground')
 
-    local search_matches = YamlTable:new()
+    local search_matches = YamlTable:new(config)
     search_matches:add('foreground', theme.background)
 	search_matches:add('background', theme.green)
 
-    local search_focused_match = YamlTable:new()
+    local search_focused_match = YamlTable:new(config)
     search_focused_match:add('foreground', 'CellBackground')
 	search_focused_match:add('background', 'CellForeground')
 
-    local search_bar = YamlTable:new()
+    local search_bar = YamlTable:new(config)
     search_bar:add('foreground', theme.foreground_alt)
 	search_bar:add('background', theme.background_alt)
 
-    local search = YamlTable:new()
+    local search = YamlTable:new(config)
     search:add('#> CellForeground', {
         comment_chars = '#',
         copy = [[
@@ -55,15 +62,15 @@ local function alacritty(colours)
     search:add('focused_match', search_focused_match)
     search:add('bar', search_bar)
 
-    local hints_start = YamlTable:new()
+    local hints_start = YamlTable:new(config)
     hints_start:add('foreground', theme.foreground_alt)
     hints_start:add('background', theme.orange_alt)
 
-    local hints_end = YamlTable:new()
+    local hints_end = YamlTable:new(config)
     hints_end:add('foreground', theme.orange_alt)
     hints_end:add('background', theme.foreground_alt)
 
-	local hints = YamlTable:new()
+	local hints = YamlTable:new(config)
     hints:add('#> Hint Head', {
         comment_chars = '#',
         copy = [[
@@ -85,11 +92,11 @@ local function alacritty(colours)
     })
     hints:add('end', hints_end)
 
-	local line_indicator = YamlTable:new()
+	local line_indicator = YamlTable:new(config)
 	line_indicator:add('foreground', 'None')
 	line_indicator:add('background', theme.grey)
 
-	local normal = YamlTable:new()
+	local normal = YamlTable:new(config)
 	normal:add('white', theme.white)
 	normal:add('black', theme.black_alt)
 	normal:add('red', theme.red)
@@ -99,7 +106,7 @@ local function alacritty(colours)
 	normal:add('blue', theme.blue)
 	normal:add('magenta', theme.magenta)
 
-	local bright = YamlTable:new()
+	local bright = YamlTable:new(config)
 	bright:add('white', theme.white_alt)
 	bright:add('black', theme.grey)
 	bright:add('red', theme.red_alt)
@@ -109,17 +116,17 @@ local function alacritty(colours)
 	bright:add('blue', theme.blue_alt)
 	bright:add('magenta', theme.magenta_alt)
 
-	local dim =  YamlTable:new()
-	dim:add('white', colours.white.abs_darken(5).hex)
-	dim:add('black', colours.black.abs_lighten(15).hex)
-	dim:add('red', colours.red.abs_lighten(15).abs_desaturate(30).hex)
-	dim:add('yellow', colours.yellow.abs_darken(15).abs_desaturate(30).hex)
-	dim:add('green', colours.green.abs_lighten(30).abs_desaturate(15).hex)
-	dim:add('cyan', colours.cyan.abs_darken(15).abs_desaturate(15).hex)
-	dim:add('blue', colours.blue.abs_desaturate(45).hex)
-	dim:add('magenta', colours.purple.abs_darken(15).abs_desaturate(30).hex)
+	local dim =  YamlTable:new(config)
+	dim:add('white', theme.white_common)
+	dim:add('black', theme.black_common)
+	dim:add('red', theme.red_common)
+	dim:add('yellow', theme.yellow_common)
+	dim:add('green', theme.green_common)
+	dim:add('cyan', theme.cyan_common)
+	dim:add('blue', theme.blue_common)
+	dim:add('magenta', theme.magenta_common)
 
-	local colors = YamlTable:new()
+	local colors = YamlTable:new(config)
 	colors:add('primary', primary)
 	colors:add('#> Cursor', {
         comment_chars = '#',
@@ -195,13 +202,13 @@ local function alacritty(colours)
     })
     colors:add('dim', dim)
 
-	local template = YamlTable:new()
+	local template = YamlTable:new(config)
 	template:add('colors', colors)
 
 	return template:tolines()
 end
 
-run(colourscheme, alacritty, {
+run(current_theme, alacritty, {
 	overwrite,
 	os.getenv('HOME') .. '/.config/alacritty/alacritty.colours.yml',
 })

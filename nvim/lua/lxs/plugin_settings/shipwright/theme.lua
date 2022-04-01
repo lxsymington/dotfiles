@@ -5,43 +5,59 @@ local M = {}
 local light = {}
 ---A unique key under which a theme's dark colour values are stored
 local dark = {}
+---A unique key under which a theme's common colour values are stored
+local common = {}
 
 ---@class Theme an interface for accessing colour values
----@field add_variant function a method for adding variants of the `Theme`
+---@field public add_variant function a method for adding variants of the `Theme`
 ---@field public foreground string
----@field public background string
 ---@field public foreground_alt string
+---@field public background string
 ---@field public background_alt string
 ---@field public grey string
 ---@field public grey_alt string
+---@field public grey_common string
 ---@field public orange string
 ---@field public orange_alt string
+---@field public orange_common string
 ---@field public white string
 ---@field public white_alt string
+---@field public white_common string
 ---@field public black string
 ---@field public black_alt string
+---@field public black_common string
 ---@field public red string
 ---@field public red_alt string
+---@field public red_common string
 ---@field public yellow string
 ---@field public yellow_alt string
+---@field public yellow_common string
 ---@field public green string
 ---@field public green_alt string
+---@field public green_common string
 ---@field public cyan string
 ---@field public cyan_alt string
+---@field public cyan_common string
 ---@field public blue string
 ---@field public blue_alt string
+---@field public blue_common string
 ---@field public magenta string
 ---@field public magenta_alt string
+---@field public magenta_common string
 local Theme = {}
 
 Theme.prototype = {
     ---A method for adding variants of the `Theme`
     ---@param self Theme the theme itself
-    ---@param variant "'light'"|"'dark'" the name of the variant
+    ---@param variant "'light'"|"'dark'"|"'common'" the name of the variant
     ---@param colour_map table<string, string> a map of colour names to values
     add_variant = function (self, variant, colour_map)
-       local theme_key = variant == 'dark' and dark or light
-       rawset(self, theme_key, colour_map)
+        local variant_map = {
+            dark = dark,
+            light = light,
+            common = common,
+        }
+        rawset(self, variant_map[variant], colour_map)
     end
 }
 
@@ -55,6 +71,11 @@ Theme.mt = {
            return Theme.prototype[key]
         end
 
+        if key:gmatch('.*common$') then
+            local theme = rawget(self, common)
+            return rawget(theme, key)
+        end
+
         local theme_key = vim.api.nvim_get_option('background') == 'dark' and dark or light
         local theme = rawget(self, theme_key)
         return rawget(theme, key)
@@ -65,6 +86,8 @@ Theme.mt = {
 ---@return Theme a new Theme
 Theme.new = function ()
     local new = {}
+    new[light] = {}
+    new[dark] = {}
     setmetatable(new, Theme.mt)
     return new
 end
@@ -84,7 +107,7 @@ theme:add_variant('light', {
     orange_alt = colours.lightOrange.hex,
 	white = colours.white.hex,
 	white_alt = colours.lightWhite.hex,
-	black = colours.light.hex,
+	black = colours.black.hex,
 	black_alt = colours.lightBlack.hex,
 	red = colours.red.hex,
 	red_alt = colours.lightRed.hex,
@@ -112,7 +135,7 @@ theme:add_variant('dark', {
 	white = colours.lightWhite.hex,
 	white_alt = colours.white.hex,
 	black = colours.lightBlack.hex,
-	black_alt = colours.light.hex,
+	black_alt = colours.black.hex,
 	red = colours.lightRed.hex,
 	red_alt = colours.red.hex,
 	yellow = colours.lightYellow.hex,
@@ -125,6 +148,17 @@ theme:add_variant('dark', {
 	blue_alt = colours.blue.hex,
 	magenta = colours.lightPurple.hex,
 	magenta_alt = colours.purple.hex,
+})
+
+theme:add_variant('common', {
+	white_common = colours.white.abs_darken(5).hex,
+	black_common = colours.black.abs_lighten(15).hex,
+	red_common = colours.red.abs_lighten(15).abs_desaturate(30).hex,
+	yellow_common = colours.yellow.abs_darken(15).abs_desaturate(30).hex,
+	green_common = colours.green.abs_lighten(30).abs_desaturate(15).hex,
+	cyan_common = colours.cyan.abs_darken(15).abs_desaturate(15).hex,
+	blue_common = colours.blue.abs_desaturate(45).hex,
+	magenta_common = colours.purple.abs_darken(15).abs_desaturate(30).hex,
 })
 
 M.current = theme

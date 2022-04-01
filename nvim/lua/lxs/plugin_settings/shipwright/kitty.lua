@@ -1,7 +1,7 @@
 local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
-local colourscheme = require(vim.g.colors_name .. '.colours')
+local current_theme = require('lxs.plugin_settings.shipwright.theme').current
 
-local function kitty(colours)
+local function kitty(theme)
 	local template = YamlTable:new({
 		characters = 80,
 		comment_prefix = '#>',
@@ -52,36 +52,28 @@ local function kitty(colours)
 		comment_chars = '#:',
 		copy = 'The basic colors',
 	})
-	template:add(
-		'foreground',
-		vim.api.nvim_get_option('background') == 'dark' and colours.white.hex
-			or colours.lightBlack.hex
-	)
-	template:add(
-		'background',
-		vim.api.nvim_get_option('background') == 'dark' and colours.black.hex
-			or colours.lightWhite.hex
-	)
+	template:add('foreground', theme.foreground)
+	template:add('background', theme.background)
 	template:add('selection_foreground', 'none')
 	template:add('selection_background', 'none')
 	template:add('#> Cursor', {
 		comment_chars = '#:',
 		copy = 'Cursor colours',
 	})
-	template:add('cursor', colours.orange.hex)
-	template:add('cursor_text_color', colours.lightWhite.hex)
+	template:add('cursor', theme.orange)
+	template:add('cursor_text_color', theme.white_alt)
 	template:add('#> URL', {
 		comment_chars = '#:',
 		copy = 'URL underline color when hovering with mouse',
 	})
-	template:add('url_color', colours.orange.hex)
+	template:add('url_color', theme.orange)
 	template:add('#> Border & Terminal Bell', {
 		comment_chars = '#:',
 		copy = 'kitty window border colors and terminal bell colors',
 	})
-	template:add('active_border_color', colours.green.hex)
-	template:add('inactive_border_color', colours.lightGrey.hex)
-	template:add('bell_border_color', colours.lightOrange.hex)
+	template:add('active_border_color', theme.green)
+	template:add('inactive_border_color', theme.grey_alt)
+	template:add('bell_border_color', theme.orange_alt)
 	template:add('visual_bell_color', 'none')
 	template:add('#> Titlebars', {
 		comment_chars = '#:',
@@ -93,22 +85,22 @@ local function kitty(colours)
 		comment_chars = '#:',
 		copy = 'Tab bar colors',
 	})
-	template:add('active_tab_foreground', colours.black.hex)
-	template:add('active_tab_background', colours.white.hex)
-	template:add('inactive_tab_foreground', colours.grey.hex)
-	template:add('inactive_tab_background', colours.lightGrey.hex)
+	template:add('active_tab_foreground', theme.black)
+	template:add('active_tab_background', theme.white)
+	template:add('inactive_tab_foreground', theme.grey)
+	template:add('inactive_tab_background', theme.grey_alt)
 	template:add('tab_bar_background', 'none')
 	template:add('tab_bar_margin_color', 'none')
 	template:add('#> Marks', {
 		comment_chars = '#:',
 		copy = 'Colours for marks (marked text in the terminal)',
 	})
-	template:add('mark1_foreground', colours.black.hex)
-	template:add('mark1_background', colours.orange.hex)
-	template:add('mark2_foreground', colours.black.hex)
-	template:add('mark2_background', colours.lightOrange.hex)
-	template:add('mark3_foreground', colours.black.hex)
-	template:add('mark3_background', colours.lightGrey.hex)
+	template:add('mark1_foreground', theme.black)
+	template:add('mark1_background', theme.orange)
+	template:add('mark2_foreground', theme.black)
+	template:add('mark2_background', theme.orange_alt)
+	template:add('mark3_foreground', theme.black)
+	template:add('mark3_background', theme.grey_alt)
 	template:add('#> Standard', {
 		comment_chars = '#:',
 		copy = 'The basic 16 colours',
@@ -117,55 +109,55 @@ local function kitty(colours)
 		comment_chars = '#:',
 		copy = 'Black',
 	})
-	template:add('color8', colours.black.hex)
-	template:add('color0', colours.lightBlack.hex)
+	template:add('color8', theme.black)
+	template:add('color0', theme.black_alt)
 	template:add('#> Red', {
 		comment_chars = '#:',
 		copy = 'Red',
 	})
-	template:add('color1', colours.red.hex)
-	template:add('color9', colours.lightRed.hex)
+	template:add('color1', theme.red)
+	template:add('color9', theme.red_alt)
 	template:add('#> Green', {
 		comment_chars = '#:',
 		copy = 'Green',
 	})
-	template:add('color2', colours.green.hex)
-	template:add('color10', colours.lightGreen.hex)
+	template:add('color2', theme.green)
+	template:add('color10', theme.green_alt)
 	template:add('#> Yellow', {
 		comment_chars = '#:',
 		copy = 'Yellow',
 	})
-	template:add('color3', colours.yellow.hex)
-	template:add('color11', colours.lightYellow.hex)
+	template:add('color3', theme.yellow)
+	template:add('color11', theme.yellow_alt)
 	template:add('#> Blue', {
 		comment_chars = '#:',
 		copy = 'Blue',
 	})
-	template:add('color4', colours.blue.hex)
-	template:add('color12', colours.lightBlue.hex)
+	template:add('color4', theme.blue)
+	template:add('color12', theme.blue_alt)
 	template:add('#> Purple', {
 		comment_chars = '#:',
 		copy = 'Purple',
 	})
-	template:add('color5', colours.purple.hex)
-	template:add('color13', colours.lightPurple.hex)
+	template:add('color5', theme.purple)
+	template:add('color13', theme.purple_alt)
 	template:add('#> Cyan', {
 		comment_chars = '#:',
 		copy = 'Cyan',
 	})
-	template:add('color6', colours.cyan.hex)
-	template:add('color14', colours.lightCyan.hex)
+	template:add('color6', theme.cyan)
+	template:add('color14', theme.cyan_alt)
 	template:add('#> White', {
 		comment_chars = '#:',
 		copy = 'White',
 	})
-	template:add('color7', colours.white.hex)
-	template:add('color15', colours.lightWhite.hex)
+	template:add('color7', theme.white)
+	template:add('color15', theme.white_alt)
 
 	return template:tolines()
 end
 
-run(colourscheme, kitty, {
+run(current_theme, kitty, {
 	overwrite,
 	os.getenv('HOME') .. '/.dotfiles/kitty/themes/' .. vim.g.colors_name .. '.conf',
 })

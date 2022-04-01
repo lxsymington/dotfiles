@@ -1,4 +1,4 @@
-local colours = require(vim.g.colors_name .. '.colours')
+local theme = require('lxs.plugin_settings.shipwright.theme').current
 local feline = require('feline')
 local lsp = require('feline.providers.lsp')
 local devicons = require('nvim-web-devicons')
@@ -12,100 +12,100 @@ local M = {}
 local mode_alias_map = {
 	[''] = {
 		name = 'Select-Block',
-		fg = colours.black.hex,
-		bg = colours.lightPurple.hex,
+		fg = theme.black,
+		bg = theme.magenta_alt,
 	},
 	[''] = {
 		name = 'Visual-Block',
-		fg = colours.black.hex,
-		bg = colours.lightCyan.hex,
+		fg = theme.foreground,
+		bg = theme.cyan_alt,
 	},
-	['!'] = { name = 'Shell', fg = colours.black.hex, bg = colours.lightBlue.hex },
+	['!'] = { name = 'Shell', fg = theme.foreground, bg = theme.blue_alt },
 	['no'] = {
 		name = 'Operator-Pending',
-		fg = colours.black.hex,
-		bg = colours.lightGrey.hex,
+		fg = theme.foreground,
+		bg = theme.grey_alt,
 	},
-	['r?'] = { name = 'Confirm', fg = colours.black.hex, bg = colours.grey.hex },
-	c = { name = 'Command-Line', fg = colours.black.hex, bg = colours.orange.hex },
+	['r?'] = { name = 'Confirm', fg = theme.foreground, bg = theme.grey },
+	c = { name = 'Command-Line', fg = theme.foreground, bg = theme.orange },
 	ce = {
 		name = 'Normal-Ex',
-		fg = colours.black.hex,
-		bg = colours.lightOrange.hex,
+		fg = theme.foreground,
+		bg = theme.orange_alt,
 	},
-	cv = { name = 'Vim-Ex', fg = colours.black.hex, bg = colours.lightOrange.hex },
-	i = { name = 'Insert', fg = colours.black.hex, bg = colours.green.hex },
+	cv = { name = 'Vim-Ex', fg = theme.foreground, bg = theme.orange_alt },
+	i = { name = 'Insert', fg = theme.foreground, bg = theme.green },
 	ic = {
 		name = 'Insert-Completion',
-		fg = colours.black.hex,
-		bg = colours.lightGreen.hex,
+		fg = theme.foreground,
+		bg = theme.green_alt,
 	},
 	ix = {
 		name = 'Insert-Completion',
-		fg = colours.black.hex,
-		bg = colours.lightGreen.hex,
+		fg = theme.foreground,
+		bg = theme.green_alt,
 	},
-	n = { name = 'Normal', fg = colours.black.hex, bg = colours.yellow.hex },
+	n = { name = 'Normal', fg = theme.foreground, bg = theme.yellow },
 	niI = {
 		name = 'Normal-Insert',
-		fg = colours.black.hex,
-		bg = colours.lightYellow.hex,
+		fg = theme.foreground,
+		bg = theme.yellow_alt,
 	},
 	niR = {
 		name = 'Normal-Replace',
-		fg = colours.black.hex,
-		bg = colours.lightYellow.hex,
+		fg = theme.foreground,
+		bg = theme.yellow_alt,
 	},
 	niV = {
 		name = 'Normal-Virtual-Replace',
-		fg = colours.black.hex,
-		bg = colours.lightYellow.hex,
+		fg = theme.foreground,
+		bg = theme.yellow_alt,
 	},
 	no = {
 		name = 'Operator-Pending',
-		fg = colours.black.hex,
-		bg = colours.lightGrey.hex,
+		fg = theme.foreground,
+		bg = theme.grey_alt,
 	},
 	noV = {
 		name = 'Operator-Pending',
-		fg = colours.black.hex,
-		bg = colours.lightGrey.hex,
+		fg = theme.foreground,
+		bg = theme.grey_alt,
 	},
 	nov = {
 		name = 'Operator-Pending',
-		fg = colours.black.hex,
-		bg = colours.lightGrey.hex,
+		fg = theme.foreground,
+		bg = theme.grey_alt,
 	},
-	r = { name = 'Hit-Enter', fg = colours.black.hex, bg = colours.grey.hex },
-	R = { name = 'Replace', fg = colours.black.hex, bg = colours.red.hex },
+	r = { name = 'Hit-Enter', fg = theme.foreground, bg = theme.grey },
+	R = { name = 'Replace', fg = theme.foreground, bg = theme.red },
 	Rc = {
 		name = 'Replace-Completion',
-		fg = colours.black.hex,
-		bg = colours.lightRed.hex,
+		fg = theme.foreground,
+		bg = theme.red_alt,
 	},
-	rm = { name = '-- More --', fg = colours.black.hex, bg = colours.grey.hex },
+	rm = { name = '-- More --', fg = theme.foreground, bg = theme.grey },
 	Rv = {
 		name = 'Virtual-Replace',
-		fg = colours.black.hex,
-		bg = colours.lightRed.hex,
+		fg = theme.foreground,
+		bg = theme.red_alt,
 	},
 	Rx = {
 		name = 'Replace-Completion',
-		fg = colours.black.hex,
-		bg = colours.lightRed.hex,
+		fg = theme.foreground,
+		bg = theme.red_alt,
 	},
-	s = { name = 'Select', fg = colours.black.hex, bg = colours.purple.hex },
+	s = { name = 'Select', fg = theme.foreground, bg = theme.magenta },
 	S = {
 		name = 'Select-Line',
-		fg = colours.black.hex,
-		bg = colours.lightPurple.hex,
+		fg = theme.foreground,
+		bg = theme.magenta_alt,
 	},
-	t = { name = 'Terminal', fg = colours.black.hex, bg = colours.blue.hex },
-	v = { name = 'Visual', fg = colours.black.hex, bg = colours.cyan.hex },
+	t = { name = 'Terminal', fg = theme.foreground, bg = theme.blue },
+	v = { name = 'Visual', fg = theme.foreground, bg = theme.cyan },
 	V = {
 		name = 'Visual-Line',
-		fg = colours.black.hex,
-		bg = colours.lightCyan.hex,
+		fg = theme.foreground,
+		bg = theme.cyan_alt,
 	},
 }
 
@@ -205,8 +205,8 @@ function M.setup()
 		provider = file_namer,
 		enabled = buffer_not_empty,
 		hl = {
-			fg = colours.white.hex,
-			bg = colours.lightBlack.hex,
+			fg = theme.white,
+			bg = theme.background_alt,
 			style = 'bold',
 		},
 		left_sep = { 'block' },
@@ -216,25 +216,25 @@ function M.setup()
 		provider = 'file_size',
 		enabled = buffer_not_empty,
 		hl = {
-			fg = colours.lightGrey.hex,
-			bg = colours.lightBlack.hex,
+			fg = theme.grey_alt,
+			bg = theme.background_alt,
 			style = 'italic',
 		},
 		left_sep = {
 			{
 				str = 'vertical_bar',
-				hl = { fg = colours.orange.hex, bg = colours.lightBlack.hex },
+				hl = { fg = theme.orange, bg = theme.background_alt },
 			},
-			{ str = ' ', hl = { fg = 'NONE', bg = colours.lightBlack.hex } },
+			{ str = ' ', hl = { fg = 'NONE', bg = theme.background_alt } },
 		},
-		right_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.lightBlack.hex } },
+		right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.background_alt } },
 	})
 
 	table.insert(components.active[1], {
 		provider = 'git_branch',
 		hl = {
-			fg = colours.lightWhite.hex,
-			bg = colours.blue.hex,
+			fg = theme.white_alt,
+			bg = theme.blue,
 			style = 'bold',
 		},
 		left_sep = { 'block' },
@@ -242,7 +242,7 @@ function M.setup()
 			return {
 				str = 'right_rounded',
 				hl = {
-					fg = b.gitsigns_status_dict and colours.blue.hex or colours.lightBlack.hex,
+					fg = b.gitsigns_status_dict and theme.blue or theme.background_alt,
 				},
 			}
 		end,
@@ -250,22 +250,22 @@ function M.setup()
 
 	table.insert(components.active[1], {
 		provider = 'git_diff_added',
-		hl = { fg = colours.green.hex },
+		hl = { fg = theme.green },
 	})
 
 	table.insert(components.active[1], {
 		provider = 'git_diff_changed',
-		hl = { fg = colours.orange.hex },
+		hl = { fg = theme.orange },
 	})
 
 	table.insert(components.active[1], {
 		provider = 'git_diff_removed',
-		hl = { fg = colours.red.hex },
+		hl = { fg = theme.red },
 	})
 
 	table.insert(components.active[2], {
 		provider = '%n',
-		hl = { fg = colours.lightWhite.hex, bg = colours.purple.hex, style = 'bold' },
+		hl = { fg = theme.white_alt, bg = theme.magenta, style = 'bold' },
 		left_sep = { 'left_rounded_thin', 'left_rounded' },
 		right_sep = { 'block' },
 	})
@@ -292,7 +292,7 @@ function M.setup()
 		enabled = function()
 			return #vim.lsp.buf_get_clients() > 0
 		end,
-		hl = { fg = colours.lightGrey.hex },
+		hl = { fg = theme.grey_alt },
 	})
 
 	table.insert(components.active[3], {
@@ -300,7 +300,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.Error)
 		end,
-		hl = { fg = colours.red.hex },
+		hl = { fg = theme.red },
 	})
 
 	table.insert(components.active[3], {
@@ -308,7 +308,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
 		end,
-		hl = { fg = colours.yellow.hex },
+		hl = { fg = theme.yellow },
 	})
 
 	table.insert(components.active[3], {
@@ -316,7 +316,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
 		end,
-		hl = { fg = colours.cyan.hex },
+		hl = { fg = theme.cyan },
 	})
 
 	table.insert(components.active[3], {
@@ -324,7 +324,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
 		end,
-		hl = { fg = colours.lightBlue.hex },
+		hl = { fg = theme.blue_alt },
 	})
 
 	table.insert(components.active[3], {
@@ -336,62 +336,62 @@ function M.setup()
 			},
 			{
 				str = 'left_rounded',
-				hl = { fg = colours.lightPurple.hex },
+				hl = { fg = theme.magenta_alt },
 			},
 			{
 				str = 'left_rounded_thin',
-				hl = { bg = colours.lightPurple.hex, fg = 'bg' },
+				hl = { bg = theme.magenta_alt, fg = 'bg' },
 			},
 			{
 				str = 'left_rounded',
-				hl = { bg = colours.lightPurple.hex, fg = 'bg' },
+				hl = { bg = theme.magenta_alt, fg = 'bg' },
 			},
 			{
 				str = '  ',
-				hl = { fg = colours.purple.hex },
+				hl = { fg = theme.magenta },
 			},
 		},
 		right_sep = {
 			{
 				str = '  ',
-				hl = { fg = colours.purple.hex },
+				hl = { fg = theme.magenta },
 			},
 			{
 				str = 'right_rounded',
 				hl = {
-					bg = colours.lightPurple.hex,
+					bg = theme.magenta_alt,
 					fg = 'bg',
 				},
 			},
 			{
 				str = 'right_rounded_thin',
 				hl = {
-					bg = colours.lightPurple.hex,
+					bg = theme.magenta_alt,
 					fg = 'bg',
 				},
 			},
 		},
-		hl = { fg = colours.lightGrey.hex },
+		hl = { fg = theme.grey_alt },
 	})
 
 	table.insert(components.active[3], {
 		provider = 'line_percentage',
 		hl = {
-			bg = colours.lightPurple.hex,
+			bg = theme.magenta_alt,
 			fg = 'bg',
 			style = 'bold',
 		},
 		left_sep = {
 			str = ' ',
 			hl = {
-				bg = colours.lightPurple.hex,
+				bg = theme.magenta_alt,
 				fg = 'NONE',
 			},
 		},
 		right_sep = {
 			str = ' ',
 			hl = {
-				bg = colours.lightPurple.hex,
+				bg = theme.magenta_alt,
 				fg = 'NONE',
 			},
 		},
@@ -400,8 +400,8 @@ function M.setup()
 	table.insert(components.active[3], {
 		provider = 'scroll_bar',
 		hl = {
-			bg = colours.purple.hex,
-			fg = colours.black.hex,
+			bg = theme.magenta,
+			fg = theme.foreground,
 			style = 'bold',
 		},
 	})
@@ -410,8 +410,8 @@ function M.setup()
 		provider = file_namer,
 		enabled = buffer_not_empty,
 		hl = {
-			fg = colours.white.hex,
-			bg = colours.lightBlack.hex,
+			fg = theme.white,
+			bg = theme.background_alt,
 			style = 'bold',
 		},
 		left_sep = { 'block' },
@@ -419,20 +419,18 @@ function M.setup()
 
 	table.insert(components.inactive[3], {
 		provider = 'file_type',
-		hl = { fg = colours.white.hex, bg = colours.blue.hex, style = 'bold' },
+		hl = { fg = theme.white, bg = theme.blue, style = 'bold' },
 		left_sep = {
 			'left_rounded',
-			{ str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
+			{ str = ' ', hl = { fg = 'NONE', bg = theme.blue } },
 		},
-		right_sep = { str = ' ', hl = { fg = 'NONE', bg = colours.blue.hex } },
+		right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.blue } },
 	})
 
 	feline.setup({
 		colors = {
-			bg = api.nvim_get_option('background') == 'dark' and colours.black.hex
-				or colours.lightWhite.hex,
-			fg = api.nvim_get_option('background') == 'dark' and colours.white.hex
-				or colours.lightBlack.hex,
+			bg = theme.background,
+			fg = theme.foreground,
 		},
 		components = components,
 	})

@@ -305,6 +305,9 @@ function M.setup()
 					'nvim-web-devicons',
 					'gitsigns.nvim',
 				},
+				after = {
+				    'shipwright.nvim'
+				},
 				requires = {
 					'nvim-lua/lsp-status.nvim',
 				},
