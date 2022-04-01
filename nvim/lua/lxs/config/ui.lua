@@ -1,5 +1,4 @@
 local opt = vim.opt
-local fn = vim.fn
 local M = {}
 
 -- UI ----------------------------------
@@ -74,7 +73,7 @@ function M.setup()
 
     -- stylua: ignore
 	-- Match the indent for the fold display
-	opt.foldtext = 'v:lua.require(\"lxs.config.utils\").foldtext()'
+	opt.foldtext = 'v:lua.require(\"lxs.utils\").foldtext()'
 
 	-- Set maximum nesting of folds
 	opt.foldnestmax = 20

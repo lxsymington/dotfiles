@@ -1,5 +1,8 @@
-local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
-local current_theme = require('lxs.plugin_settings.shipwright.theme').current
+local YamlTable = require('lxs.utils').YamlTable
+local Theme = require('lxs.utils').Theme
+local colours = require(vim.g.colors_name .. '.colours')
+
+local theme_colours = Theme:new(colours)
 
 local function kitty(theme)
 	local template = YamlTable:new({
@@ -157,7 +160,7 @@ local function kitty(theme)
 	return template:tolines()
 end
 
-run(current_theme, kitty, {
+run(kitty(theme_colours), {
 	overwrite,
 	os.getenv('HOME') .. '/.dotfiles/kitty/themes/' .. vim.g.colors_name .. '.conf',
 })

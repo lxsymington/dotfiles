@@ -1,5 +1,8 @@
-local YamlTable = require('lxs.plugin_settings.shipwright.utils').YamlTable
-local current_theme = require('lxs.plugin_settings.shipwright.theme').current
+local YamlTable = require('lxs.utils').YamlTable
+local Theme = require('lxs.utils').Theme
+local colours = require(vim.g.colors_name .. '.colours')
+
+local theme_colours = Theme:new(colours)
 
 local function alacritty(theme)
     local config = {
@@ -208,7 +211,7 @@ local function alacritty(theme)
 	return template:tolines()
 end
 
-run(current_theme, alacritty, {
+run(alacritty(theme_colours), {
 	overwrite,
 	os.getenv('HOME') .. '/.config/alacritty/alacritty.colours.yml',
 })

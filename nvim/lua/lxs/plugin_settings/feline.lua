@@ -1,13 +1,16 @@
-local theme = require('lxs.plugin_settings.shipwright.theme').current
 local feline = require('feline')
 local lsp = require('feline.providers.lsp')
 local devicons = require('nvim-web-devicons')
 local lsp_status = require('lsp-status')
+local Theme = require('lxs.utils').Theme
+local colours = require(vim.g.colors_name .. '.colours')
 local fn = vim.fn
 local api = vim.api
 local bo = vim.bo
 local b = vim.b
 local M = {}
+
+local theme = Theme:new(colours)
 
 local mode_alias_map = {
 	[''] = {
@@ -189,23 +192,11 @@ function M.setup()
 		},
 	}
 
-	--[[ local force_inactive = {
-	  filetypes = {
-		'NvimTree',
-		'dbui',
-		'packer',
-		'startify',
-		'fugitive',
-		'fugitiveblame',
-      },
-      buftypes = { 'terminal' }
-	} ]]
-
 	table.insert(components.active[1], {
 		provider = file_namer,
 		enabled = buffer_not_empty,
 		hl = {
-			fg = theme.white,
+			fg = theme.foreground_alt,
 			bg = theme.background_alt,
 			style = 'bold',
 		},

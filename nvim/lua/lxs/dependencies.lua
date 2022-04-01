@@ -48,6 +48,17 @@ function M.setup()
 				end,
 			})
 
+			-- Colorscheme builder
+			use({
+				'rktjmp/shipwright.nvim',
+				requires = {
+					'rktjmp/lush.nvim',
+				},
+				config = function()
+					require('lxs.plugin_settings.shipwright').setup()
+				end,
+			})
+
 			-- Vim UI Extensions
 			use({
 				'rcarriga/nvim-notify',
@@ -305,9 +316,6 @@ function M.setup()
 					'nvim-web-devicons',
 					'gitsigns.nvim',
 				},
-				after = {
-				    'shipwright.nvim'
-				},
 				requires = {
 					'nvim-lua/lsp-status.nvim',
 				},
@@ -468,17 +476,6 @@ function M.setup()
 				'amadeus/vim-convert-color-to',
 				opt = true,
 				cmd = { 'ConvertColorTo' },
-			})
-
-			-- Colorscheme builder
-			use({
-				'rktjmp/shipwright.nvim',
-				requires = {
-					'rktjmp/lush.nvim',
-				},
-				config = function()
-					require('lxs.plugin_settings.shipwright').setup()
-				end,
 			})
 
 			-- Usability

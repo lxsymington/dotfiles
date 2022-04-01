@@ -8,7 +8,6 @@ function M.setup()
 	require('lxs.config.mappings').setup()
 	require('lxs.config.ui').setup()
 	require('lxs.config.theme').setup()
-	require('lxs.config.utils').setup()
 end
 
 return M
