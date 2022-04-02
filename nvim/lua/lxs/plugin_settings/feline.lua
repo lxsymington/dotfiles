@@ -15,7 +15,7 @@ local theme = Theme:new(colours)
 local mode_alias_map = {
 	[''] = {
 		name = 'Select-Block',
-		fg = theme.black,
+		fg = theme.foreground,
 		bg = theme.magenta_alt,
 	},
 	[''] = {
@@ -234,6 +234,7 @@ function M.setup()
 				str = 'right_rounded',
 				hl = {
 					fg = b.gitsigns_status_dict and theme.blue or theme.background_alt,
+					bg = theme.background
 				},
 			}
 		end,
@@ -241,23 +242,26 @@ function M.setup()
 
 	table.insert(components.active[1], {
 		provider = 'git_diff_added',
-		hl = { fg = theme.green },
+		hl = { fg = theme.green, bg = theme.background },
 	})
 
 	table.insert(components.active[1], {
 		provider = 'git_diff_changed',
-		hl = { fg = theme.orange },
+		hl = { fg = theme.orange, bg = theme.background },
 	})
 
 	table.insert(components.active[1], {
 		provider = 'git_diff_removed',
-		hl = { fg = theme.red },
+		hl = { fg = theme.red, bg = theme.background },
 	})
 
 	table.insert(components.active[2], {
 		provider = '%n',
 		hl = { fg = theme.white_alt, bg = theme.magenta, style = 'bold' },
-		left_sep = { 'left_rounded_thin', 'left_rounded' },
+		left_sep = {
+            { str = 'left_rounded_thin', hl = { fg = theme.magenta, bg = theme.background } },
+            { str = 'left_rounded', hl = { fg = theme.magenta, bg = theme.background } }
+		},
 		right_sep = { 'block' },
 	})
 
@@ -273,7 +277,26 @@ function M.setup()
 				style = 'bold',
 			}
 		end,
-		right_sep = { 'right_rounded', 'right_rounded_thin' },
+		right_sep = {
+            { str = 'right_rounded', hl = function()
+                local mode = fn.mode()
+
+                return {
+                    name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
+                    fg = mode_alias_map[mode].bg,
+                    bg = theme.background
+                }
+		end },
+            { str = 'right_rounded_thin', hl = function()
+                local mode = fn.mode()
+
+                return {
+                    name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
+                    fg = mode_alias_map[mode].bg,
+                    bg = theme.background
+                }
+		end }
+        },
 	})
 
 	table.insert(components.active[3], {
@@ -283,7 +306,7 @@ function M.setup()
 		enabled = function()
 			return #vim.lsp.buf_get_clients() > 0
 		end,
-		hl = { fg = theme.grey_alt },
+		hl = { fg = theme.grey_alt, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
@@ -291,7 +314,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.Error)
 		end,
-		hl = { fg = theme.red },
+		hl = { fg = theme.red, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
@@ -299,7 +322,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
 		end,
-		hl = { fg = theme.yellow },
+		hl = { fg = theme.yellow, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
@@ -307,7 +330,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
 		end,
-		hl = { fg = theme.cyan },
+		hl = { fg = theme.cyan, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
@@ -315,7 +338,7 @@ function M.setup()
 		enabled = function()
 			return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
 		end,
-		hl = { fg = theme.blue_alt },
+		hl = { fg = theme.blue_alt, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
@@ -323,53 +346,53 @@ function M.setup()
 		left_sep = {
 			{
 				str = ' ',
-				hl = { fg = 'NONE' },
+				hl = { fg = 'NONE', bg = theme.background },
 			},
 			{
 				str = 'left_rounded',
-				hl = { fg = theme.magenta_alt },
+				hl = { fg = theme.magenta_alt, bg = theme.background },
 			},
 			{
 				str = 'left_rounded_thin',
-				hl = { bg = theme.magenta_alt, fg = 'bg' },
+				hl = { bg = theme.magenta_alt, fg = theme.background },
 			},
 			{
 				str = 'left_rounded',
-				hl = { bg = theme.magenta_alt, fg = 'bg' },
+				hl = { bg = theme.magenta_alt, fg = theme.background },
 			},
 			{
 				str = '  ',
-				hl = { fg = theme.magenta },
+				hl = { fg = theme.magenta, bg = theme.background },
 			},
 		},
 		right_sep = {
 			{
 				str = '  ',
-				hl = { fg = theme.magenta },
+				hl = { fg = theme.magenta, bg = theme.background },
 			},
 			{
 				str = 'right_rounded',
 				hl = {
 					bg = theme.magenta_alt,
-					fg = 'bg',
+					fg = theme.background,
 				},
 			},
 			{
 				str = 'right_rounded_thin',
 				hl = {
 					bg = theme.magenta_alt,
-					fg = 'bg',
+					fg = theme.background,
 				},
 			},
 		},
-		hl = { fg = theme.grey_alt },
+		hl = { fg = theme.grey_alt, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
 		provider = 'line_percentage',
 		hl = {
 			bg = theme.magenta_alt,
-			fg = 'bg',
+			fg = theme.background,
 			style = 'bold',
 		},
 		left_sep = {
@@ -392,7 +415,7 @@ function M.setup()
 		provider = 'scroll_bar',
 		hl = {
 			bg = theme.magenta,
-			fg = theme.foreground,
+			fg = theme.background,
 			style = 'bold',
 		},
 	})
@@ -412,7 +435,7 @@ function M.setup()
 		provider = 'file_type',
 		hl = { fg = theme.white, bg = theme.blue, style = 'bold' },
 		left_sep = {
-			'left_rounded',
+            { str = 'left_rounded', hl = { fg = theme.blue, bg = theme.background_alt } },
 			{ str = ' ', hl = { fg = 'NONE', bg = theme.blue } },
 		},
 		right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.blue } },

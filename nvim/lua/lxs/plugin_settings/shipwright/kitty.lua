@@ -160,7 +160,13 @@ local function kitty(theme)
 	return template:tolines()
 end
 
-run(kitty(theme_colours), {
+P(kitty(theme_colours))
+
+run(kitty(theme_colours), function (one, two, three)
+   print("one: " .. vim.inspect(one))
+   print("two: " .. vim.inspect(two))
+   print("three: " .. vim.inspect(three))
+end, {
 	overwrite,
 	os.getenv('HOME') .. '/.dotfiles/kitty/themes/' .. vim.g.colors_name .. '.conf',
 })

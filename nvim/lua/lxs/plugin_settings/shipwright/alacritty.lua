@@ -211,7 +211,13 @@ local function alacritty(theme)
 	return template:tolines()
 end
 
-run(alacritty(theme_colours), {
+P(alacritty(theme_colours))
+
+run(alacritty(theme_colours), function (one, two, three)
+   print("one: " .. vim.inspect(one))
+   print("two: " .. vim.inspect(two))
+   print("three: " .. vim.inspect(three))
+end, {
 	overwrite,
 	os.getenv('HOME') .. '/.config/alacritty/alacritty.colours.yml',
 })

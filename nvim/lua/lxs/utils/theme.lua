@@ -70,12 +70,11 @@ Theme.mt = {
 
         local variant_map = rawget(self, variants)
 
-        local variant = key:match('common$') and 'common' or vim.api.nvim_get_option('background')
+        local background = vim.api.nvim_get_option('background')
+        local variant = key:match('common$') and 'common' or background
         local theme_key = rawget(variant_map, variant)
         local theme = rawget(self, theme_key)
-        local colour_value = rawget(theme, key)
-        print(key .. ": " .. colour_value)
-        return colour_value
+        return rawget(theme, key)
     end
 }
 
