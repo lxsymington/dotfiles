@@ -1,8 +1,4 @@
 local YamlTable = require('lxs.utils').YamlTable
-local Theme = require('lxs.utils').Theme
-local colours = require(vim.g.colors_name .. '.colours')
-
-local theme_colours = Theme:new(colours)
 
 local function alacritty(theme)
     local config = {
@@ -11,6 +7,7 @@ local function alacritty(theme)
 		indent_char = ' ',
 		indent_size = 2,
 		separator = ':',
+		quoted_values = true,
 	}
     local primary = YamlTable:new(config)
     primary:add('foreground', theme.foreground)
@@ -211,13 +208,4 @@ local function alacritty(theme)
 	return template:tolines()
 end
 
-P(alacritty(theme_colours))
-
-run(alacritty(theme_colours), function (one, two, three)
-   print("one: " .. vim.inspect(one))
-   print("two: " .. vim.inspect(two))
-   print("three: " .. vim.inspect(three))
-end, {
-	overwrite,
-	os.getenv('HOME') .. '/.config/alacritty/alacritty.colours.yml',
-})
+return alacritty

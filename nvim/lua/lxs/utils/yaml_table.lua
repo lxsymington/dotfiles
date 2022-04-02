@@ -1,10 +1,5 @@
 local OrderedTable = require('lxs.utils.ordered_table')
 
----A unique key under which the OrderedTable indices are stored
-local index_key = {}
----A unique key under which the OrderedTable entries are stored
-local proxy_key = {}
-
 ---@class YamlLines a list of lines of yaml
 ---@field concat function join all entries in the list with a string
 local YamlLines = {}
@@ -34,6 +29,7 @@ end
 ---@field separator string a string to be used as the separator betweens keys and values
 ---@field indent_char string a string to be used as the indent character
 ---@field indent_size number the number of `indent_char`s to use per indent_level
+---@field quoted_values boolean whether to wrap the values in quotes
 local YamlTableConfig = {}
 
 ---@class YamlTable:OrderedTable a table that can be converted to yaml or lines of yaml
@@ -122,8 +118,9 @@ YamlTable.prototype = {
 						lines:insert(section_line)
 					end
 				else
+				    local value_format = config.quoted_values and '%q' or '%s'
 					local line = string.format(
-						'%s%s%s %s',
+						'%s%s%s ' .. value_format,
 						string.rep(config.indent_char, config.indent_size * indent_level),
 						key,
 						config.separator,
@@ -170,11 +167,11 @@ YamlTable.mt = {
 ---@param config YamlTableConfig a configuration table for this YamlTable
 ---@return YamlTable a new YamlTable
 YamlTable.new = function(_, config)
+	local proxy = {}
 	local store = {}
 	local indices = {}
-	local proxy = {}
-	proxy[proxy_key] = store
-	proxy[index_key] = indices
+	proxy[OrderedTable.prototype.__proxy_key] = store
+	proxy[OrderedTable.prototype.__index_key] = indices
 	proxy.config = config
 	setmetatable(proxy, YamlTable.mt)
 	return proxy

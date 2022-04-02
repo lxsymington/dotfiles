@@ -1,8 +1,4 @@
 local YamlTable = require('lxs.utils').YamlTable
-local Theme = require('lxs.utils').Theme
-local colours = require(vim.g.colors_name .. '.colours')
-
-local theme_colours = Theme:new(colours)
 
 local function kitty(theme)
 	local template = YamlTable:new({
@@ -11,6 +7,7 @@ local function kitty(theme)
 		indent_char = ' ',
 		indent_size = 2,
 		separator = '',
+		quoted_values = false,
 	})
 	template:add('#> Vim Filetype', { comment_chars = '#', copy = 'vim:ft=kitty' })
 	template:add('#> Template Info', {
@@ -25,7 +22,6 @@ local function kitty(theme)
 		comment_chars = '##',
 		copy = 'name: ' .. vim.g.colors_name,
 	})
-
 	template:add('#> Meta Author', {
 		comment_chars = '##',
 		copy = 'author: Luke Xavier Symington',
@@ -142,8 +138,8 @@ local function kitty(theme)
 		comment_chars = '#:',
 		copy = 'Purple',
 	})
-	template:add('color5', theme.purple)
-	template:add('color13', theme.purple_alt)
+	template:add('color5', theme.magenta)
+	template:add('color13', theme.magenta_alt)
 	template:add('#> Cyan', {
 		comment_chars = '#:',
 		copy = 'Cyan',
@@ -160,13 +156,4 @@ local function kitty(theme)
 	return template:tolines()
 end
 
-P(kitty(theme_colours))
-
-run(kitty(theme_colours), function (one, two, three)
-   print("one: " .. vim.inspect(one))
-   print("two: " .. vim.inspect(two))
-   print("three: " .. vim.inspect(three))
-end, {
-	overwrite,
-	os.getenv('HOME') .. '/.dotfiles/kitty/themes/' .. vim.g.colors_name .. '.conf',
-})
+return kitty

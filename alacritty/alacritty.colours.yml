@@ -1,0 +1,82 @@
+colors:
+  primary:
+    foreground: "#281D30"
+    background: "#FBF7E9"
+    # Bright and dim foreground colors The dimmed foreground color is
+    # calculated automatically if it is not present. If the bright foreground
+    # color is not set, or `draw_bold_text_with_bright_colors` is `false`, the
+    dim_foreground: "#50494E"
+    bright_foreground: "#1A141F"
+  # Cursor colors Colors which should be used to draw the terminal cursor.
+  # Allowed values are CellForeground and CellBackground, which reference the
+  cursor:
+    text: "CellBackground"
+    cursor: "CellForeground"
+  # Vi mode cursor colors Colors for the cursor when the vi mode is active.
+  # Allowed values are CellForeground and CellBackground, which reference the
+  vi_mode_cursor:
+    text: "CellBackground"
+    cursor: "CellForeground"
+  # Selection colors Colors which should be used to draw the selection area.
+  # Allowed values are CellForeground and CellBackground, which reference the
+  selection:
+    text: "CellBackground"
+    background: "CellForeground"
+  search:
+    # Allowed values are CellForeground and CellBackground, which reference the
+    matches:
+      foreground: "#FBF7E9"
+      background: "#36633D"
+    focused_match:
+      foreground: "CellBackground"
+      background: "CellForeground"
+    bar:
+      foreground: "#1A141F"
+      background: "#EBCCAD"
+  # Keyboard regex hints
+  hints:
+    # First character in the hint label Allowed values are
+    # CellForeground/CellBackground, which reference the affected cell, or
+    start:
+      foreground: "#1A141F"
+      background: "#FF9D57"
+    # All characters after the first one in the hint label Allowed values are
+    # CellForeground/CellBackground, which reference the affected cell, or
+    end:
+      foreground: "#FF9D57"
+      background: "#1A141F"
+  # Line indicator Color used for the indicator displaying the position in
+  # history during search and vi mode. By default, these will use the opposing
+  line_indicator:
+    foreground: "None"
+    background: "#50494E"
+  # Normal colours
+  normal:
+    white: "#EBCCAD"
+    black: "#281D30"
+    red: "#A3293D"
+    yellow: "#FFBB33"
+    green: "#36633D"
+    cyan: "#6BC7BF"
+    blue: "#1D64C9"
+    magenta: "#561DC9"
+  # Bright colours
+  bright:
+    white: "#FBF7E9"
+    black: "#50494E"
+    red: "#FA9E9E"
+    yellow: "#FFD480"
+    green: "#789550"
+    cyan: "#D6F5F2"
+    blue: "#4C8CE6"
+    magenta: "#AF8FEF"
+  # Dim colors If the dim colors are not set, they will be calculated
+  dim:
+    white: "#E6BF99"
+    black: "#42334D"
+    red: "#AF6A75"
+    yellow: "#C38E22"
+    green: "#8AA88F"
+    cyan: "#50958F"
+    blue: "#506D95"
+    magenta: "#412A6F"

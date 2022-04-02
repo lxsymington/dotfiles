@@ -10,7 +10,7 @@ local bo = vim.bo
 local b = vim.b
 local M = {}
 
-local theme = Theme:new(colours)
+local theme = Theme.new(colours)
 
 local mode_alias_map = {
 	[''] = {

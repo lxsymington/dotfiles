@@ -81,7 +81,7 @@ Theme.mt = {
 ---The Theme constructor
 ---@param colours table<string, table> the colours the theme variants will reference
 ---@return Theme a new Theme
-Theme.new = function (_, colours)
+Theme.new = function (colours)
     local new = {}
     new[variants] = {
         dark = dark,
