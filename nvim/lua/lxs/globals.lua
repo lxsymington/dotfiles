@@ -12,11 +12,12 @@ function _G.ReloadConfig()
 	end
 
 	vim.api.nvim_exec([[ autocmd! * ]], false)
-	dofile(vim.env.MYVIMRC)
-
-	if not vim.fn.expand('%:t'):match('^dependencies.lua$') then
-		vim.cmd('PackerCompile')
+	local vimrc_ok, vimrc_ret = pcall(dofile, vim.env.MYVIMRC)
+	if not vimrc_ok then
+        vim.notify(vimrc_ret, 'error')
 	end
+    vim.cmd('PackerCompile')
+    vim.notify('Packer Recompiled', 'info')
 
 	-- Fix feline highlights
 	local ok, feline = pcall(require, 'feline')

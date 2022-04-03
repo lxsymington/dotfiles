@@ -1,4 +1,3 @@
-local api = vim.api
 local M = {}
 
 -- Packer ------------------------------
@@ -25,16 +24,20 @@ function M.setup()
 		return
 	end
 
-	local packer_group = api.nvim_create_augroup('Packer', { clear = true })
-	api.nvim_create_autocmd(
-		'BufWritePost',
-		{ pattern = 'dependencies.lua', command = 'PackerCompile', group = packer_group }
-	)
-
 	require('packer').startup({
 		function(use)
 			-- Packer can manage itself as an optional plugin
 			use({ 'wbthomason/packer.nvim', opt = true })
+
+            -- Performance
+            use({
+                'lewis6991/impatient.nvim',
+                config = function ()
+                    require('impatient')
+                end
+            })
+            use('nathom/filetype.nvim')
+            use('dstein64/vim-startuptime')
 
 			-- Utilities
 			use('nvim-lua/popup.nvim')
@@ -85,7 +88,7 @@ function M.setup()
 				end,
 			})
 
-			-- Highlighting
+			-- Treesitter
 			use({
 				'nvim-treesitter/nvim-treesitter',
 				requires = { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -100,8 +103,8 @@ function M.setup()
 				'mfussenegger/nvim-ts-hint-textobject',
 				opt = true,
 				keys = {
-					{ 'o', '<silent> m' },
-					{ 'v', '<silent> m' },
+					{ 'o', '<silent>m' },
+					{ 'v', '<silent>m' },
 				},
 				config = function()
 					require('lxs.plugin_settings.tsht').setup()
@@ -144,6 +147,10 @@ function M.setup()
 					require('lxs.plugin_settings.orgmode').setup()
 				end,
 			})
+
+			-- Help extensions
+            use('milisims/nvim-luaref')
+            use('nanotee/luv-vimdocs')
 
 			-- Icons
 			use({ 'kyazdani42/nvim-web-devicons' })
@@ -477,9 +484,6 @@ function M.setup()
 				opt = true,
 				cmd = { 'ConvertColorTo' },
 			})
-
-			-- Usability
-			use('tpope/vim-abolish')
 
 			-- Tmux
 			use('christoomey/vim-tmux-navigator')
