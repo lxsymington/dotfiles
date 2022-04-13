@@ -1,6 +1,8 @@
 [user]
 	name = Luke Xavier Symington
 	email = lukexaviersymington@gmail.com
+[includeIf "gitdir:~/Development/Seccl/"]
+    path = ~/.gitconfig.seccl
 [core]
 	autocrlf = input
 	trustctime = false
@@ -8,6 +10,8 @@
 	filemode = false
 	pager = delta
 	excludesfile = ~/.gitignore
+[init]
+	defaultBranch = main
 [interactive]
 	diffFilter = delta --color-only
 [alias]
@@ -80,5 +84,3 @@
 	line-numbers-right-style = black
 	line-numbers-minus-style = 124
 	line-numbers-plus-style = 28
-[init]
-	defaultBranch = main
