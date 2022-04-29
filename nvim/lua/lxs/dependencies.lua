@@ -1,3 +1,10 @@
+local api = vim.api
+local stdpath = vim.fn.stdpath
+local mkdir = vim.fn.mkdir
+local system = vim.fn.system
+local isdirectory = vim.fn.isdirectory
+local expand = vim.fn.expand
+
 local M = {}
 
 -- Packer ------------------------------
@@ -6,11 +13,11 @@ function M.setup()
     local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
     if not packer_exists then
-        local directory = string.format('%s/site/pack/packer/opt/', vim.fn.stdpath('data'))
+		local directory = string.format('%s/site/pack/packer/opt/', stdpath('data'))
 
-        vim.fn.mkdir(directory, 'p')
+		mkdir(directory, 'p')
 
-        local out = vim.fn.system(
+		local out = system(
             string.format(
                 'git clone %s %s',
                 'https://github.com/wbthomason/packer.nvim',
@@ -26,6 +33,22 @@ function M.setup()
 
     require('packer').startup({
         function(use)
+            local function local_use(author, package, opts)
+                if not isdirectory(expand('~/.dotfiles/plugins/')) then
+                    print('Could not find a local plugins directory')
+                    return
+                end
+
+                local plugin_name = author .. '/' .. package
+                local plugin_dir = expand('~/.dotfiles/plugins/' .. plugin_name)
+
+                if not isdirectory(plugin_dir) then
+                    print('Could not find plugin (' .. plugin_name .. ') in local plugins directory')
+                end
+
+                use()
+            end
+
             -- Packer can manage itself as an optional plugin
             use({ 'wbthomason/packer.nvim', opt = true })
 
@@ -552,6 +575,8 @@ function M.setup()
                     require('Comment').setup()
                 end,
             })
+
+			local_use('lxsymington', 'conscript')
         end,
         config = {
             display = {
