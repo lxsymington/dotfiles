@@ -14,10 +14,10 @@ function _G.ReloadConfig()
 	vim.api.nvim_exec([[ autocmd! * ]], false)
 	local vimrc_ok, vimrc_ret = pcall(dofile, vim.env.MYVIMRC)
 	if not vimrc_ok then
-        vim.notify(vimrc_ret, 'error')
+		vim.notify(vimrc_ret, 'error')
 	end
-    vim.cmd('PackerCompile')
-    vim.notify('Packer Recompiled', 'info')
+	vim.cmd('PackerCompile')
+	vim.notify('Packer Recompiled', 'info')
 
 	-- Fix feline highlights
 	local ok, feline = pcall(require, 'feline')

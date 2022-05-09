@@ -118,7 +118,7 @@ YamlTable.prototype = {
 						lines:insert(section_line)
 					end
 				else
-				    local value_format = config.quoted_values and '%q' or '%s'
+					local value_format = config.quoted_values and '%q' or '%s'
 					local line = string.format(
 						'%s%s%s ' .. value_format,
 						string.rep(config.indent_char, config.indent_size * indent_level),

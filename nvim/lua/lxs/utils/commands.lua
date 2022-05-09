@@ -13,7 +13,6 @@ function M.numberToggle()
 	end
 end
 
-
 function M.setup()
 	-- Toggle betwen normal and relative line numbers
 	api.nvim_command([[ command! NumberToggle lua require('lxs.utils').Commands.numberToggle() ]])

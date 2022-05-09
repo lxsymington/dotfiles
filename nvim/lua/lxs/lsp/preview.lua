@@ -1,4 +1,4 @@
-local cmd = vim.cmd
+local user_cmd = vim.api.nvim_create_user_command
 local lsp = vim.lsp
 local tbl_isempty = vim.tbl_isempty
 local M = {}
@@ -9,16 +9,18 @@ local function preview_location_callback(_, result)
 		return nil
 	end
 
-	lsp.util.preview_location(result[1], { border = 'rounded' })
-end
+	vim.pretty_print(result)
 
-function M.setup()
-	cmd([[command! PeekDefinition lua require('lxs.lsp.preview').preview()]])
+	lsp.util.preview_location(result[1], { border = 'rounded' })
 end
 
 function M.preview()
 	local params = lsp.util.make_position_params()
 	return lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+end
+
+function M.setup()
+	user_cmd('PeekDefinition', M.preview, {})
 end
 
 return M

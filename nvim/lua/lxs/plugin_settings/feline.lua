@@ -234,7 +234,7 @@ function M.setup()
 				str = 'right_rounded',
 				hl = {
 					fg = b.gitsigns_status_dict and theme.blue or theme.background_alt,
-					bg = theme.background
+					bg = theme.background,
 				},
 			}
 		end,
@@ -259,8 +259,8 @@ function M.setup()
 		provider = '%n',
 		hl = { fg = theme.white_alt, bg = theme.magenta, style = 'bold' },
 		left_sep = {
-            { str = 'left_rounded_thin', hl = { fg = theme.magenta, bg = theme.background } },
-            { str = 'left_rounded', hl = { fg = theme.magenta, bg = theme.background } }
+			{ str = 'left_rounded_thin', hl = { fg = theme.magenta, bg = theme.background } },
+			{ str = 'left_rounded', hl = { fg = theme.magenta, bg = theme.background } },
 		},
 		right_sep = { 'block' },
 	})
@@ -278,25 +278,39 @@ function M.setup()
 			}
 		end,
 		right_sep = {
-            { str = 'right_rounded', hl = function()
-                local mode = fn.mode()
+			{
+				str = 'right_rounded',
+				hl = function()
+					local mode = fn.mode()
 
-                return {
-                    name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
-                    fg = mode_alias_map[mode].bg,
-                    bg = theme.background
-                }
-		end },
-            { str = 'right_rounded_thin', hl = function()
-                local mode = fn.mode()
+					return {
+						name = string.gsub(
+							mode_alias_map[mode].name,
+							'(%a+)',
+							'FelineViModeHighlight%1'
+						),
+						fg = mode_alias_map[mode].bg,
+						bg = theme.background,
+					}
+				end,
+			},
+			{
+				str = 'right_rounded_thin',
+				hl = function()
+					local mode = fn.mode()
 
-                return {
-                    name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
-                    fg = mode_alias_map[mode].bg,
-                    bg = theme.background
-                }
-		end }
-        },
+					return {
+						name = string.gsub(
+							mode_alias_map[mode].name,
+							'(%a+)',
+							'FelineViModeHighlight%1'
+						),
+						fg = mode_alias_map[mode].bg,
+						bg = theme.background,
+					}
+				end,
+			},
+		},
 	})
 
 	table.insert(components.active[3], {
@@ -435,7 +449,7 @@ function M.setup()
 		provider = 'file_type',
 		hl = { fg = theme.white, bg = theme.blue, style = 'bold' },
 		left_sep = {
-            { str = 'left_rounded', hl = { fg = theme.blue, bg = theme.background_alt } },
+			{ str = 'left_rounded', hl = { fg = theme.blue, bg = theme.background_alt } },
 			{ str = ' ', hl = { fg = 'NONE', bg = theme.blue } },
 		},
 		right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.blue } },

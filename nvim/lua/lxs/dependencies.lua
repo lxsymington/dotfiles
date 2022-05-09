@@ -29,15 +29,15 @@ function M.setup()
 			-- Packer can manage itself as an optional plugin
 			use({ 'wbthomason/packer.nvim', opt = true })
 
-            -- Performance
-            use({
-                'lewis6991/impatient.nvim',
-                config = function ()
-                    require('impatient')
-                end
-            })
-            use('nathom/filetype.nvim')
-            use('dstein64/vim-startuptime')
+			-- Performance
+			use({
+				'lewis6991/impatient.nvim',
+				config = function()
+					require('impatient')
+				end,
+			})
+			use('nathom/filetype.nvim')
+			use('dstein64/vim-startuptime')
 
 			-- Utilities
 			use('nvim-lua/popup.nvim')
@@ -78,7 +78,7 @@ function M.setup()
 					'nvim-lua/lsp-status.nvim',
 					'nvim-lua/lsp_extensions.nvim',
 					'folke/lua-dev.nvim',
-					'jose-elias-alvarez/null-ls.nvim',
+					'b0o/SchemaStore.nvim',
 					'hrsh7th/cmp-nvim-lsp',
 					'lukas-reineke/lsp-format.nvim',
 				},
@@ -122,6 +122,20 @@ function M.setup()
 				end,
 			})
 
+			-- Code cleanliness
+			use({
+				'mfussenegger/nvim-lint',
+				config = function()
+					require('lxs.diagnostics.lint').setup()
+				end,
+			})
+			use({
+				'mhartington/formatter.nvim',
+				config = function()
+					require('lxs.diagnostics.formatter').setup()
+				end,
+			})
+
 			-- Note taking
 			use({
 				'kristijanhusak/orgmode.nvim',
@@ -149,8 +163,8 @@ function M.setup()
 			})
 
 			-- Help extensions
-            use('milisims/nvim-luaref')
-            use('nanotee/luv-vimdocs')
+			use('milisims/nvim-luaref')
+			use('nanotee/luv-vimdocs')
 
 			-- Icons
 			use({ 'kyazdani42/nvim-web-devicons' })
@@ -317,7 +331,7 @@ function M.setup()
 
 			-- Statusline
 			use({
-				'famiu/feline.nvim',
+				'feline-nvim/feline.nvim',
 				wants = {
 					'nvim-lspconfig',
 					'nvim-web-devicons',
@@ -445,6 +459,7 @@ function M.setup()
 			})
 
 			-- UI tweaks
+			use('stevearc/dressing.nvim')
 			use({
 				'folke/todo-comments.nvim',
 				wants = { 'plenary.nvim' },

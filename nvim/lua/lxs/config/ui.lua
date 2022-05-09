@@ -99,10 +99,21 @@ function M.setup()
 		foldopen = '▽', -- '-' mark the beginning of a fold
 		foldclose = '▶', -- '+' show a closed fold
 		foldsep = '│', -- '│' or '|' open fold middle marker
-		diff = '╳', -- '-' deleted lines of the 'diff' option | alternatives = ⣿ ░ ─ ╱
+		diff = '▚', -- '-' deleted lines of the 'diff' option | alternatives = ⣿ ▒ ░ ░ ▚ ▞ ─ ╱ ╳
 		msgsep = '╌', -- ' ' message separator 'display'
 		eob = '∅', -- '~' empty lines at the end of a buffer
 	}
+
+	vim.diagnostic.config({
+		virtual_text = {
+			prefix = '●',
+			source = 'always',
+		},
+		float = {
+			border = 'rounded',
+			source = 'always',
+		},
+	})
 end
 
 return M

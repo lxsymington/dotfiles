@@ -1,4 +1,5 @@
 local lsp_installer = require('nvim-lsp-installer')
+local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local lsp_status = require('lsp-status')
 local luadev = require('lua-dev')
@@ -8,114 +9,86 @@ local capabilities = require('lxs.lsp.capabilities')
 local handlers = require('lxs.lsp.handlers')
 local preview = require('lxs.lsp.preview')
 local signs = require('lxs.lsp.signs')
-local null_ls = require('null-ls')
 local tbl_extend = vim.tbl_extend
 local M = {}
 
-local function server_setup(server)
-	local default_opts = {
-		on_attach = attach.attach,
-		capabilities = capabilities.create(),
-	}
+local default_opts = {
+	on_attach = attach.attach,
+	capabilities = capabilities.create(),
+}
 
-	local server_opts = {
-		['denols'] = function()
-			return tbl_extend('keep', {
-				init_options = {
-					lint = true,
+local server_opts = {
+	['denols'] = function()
+		return tbl_extend('keep', {
+			init_options = {
+				lint = true,
+			},
+			root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
+		}, default_opts)
+	end,
+	['eslint'] = function()
+		return tbl_extend('keep', {
+			settings = {
+				codeActionOnSave = {
+					enable = true,
+					mode = 'all',
 				},
-				root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
-			}, default_opts)
-		end,
-		['eslint'] = function()
-			return tbl_extend('keep', {
-				settings = {
-					cmd = vim.list_extend({ 'yarn', 'node' }, default_opts.cmd),
-					codeActionOnSave = {
-						enable = true,
-						mode = 'all',
+				format = { enable = true },
+			},
+		}, default_opts)
+	end,
+	['gopls'] = function()
+		return tbl_extend('keep', {
+			cmd = { 'gopls', 'serve' },
+			root_dir = function(fname)
+				return util.root_pattern('go.mod', '.git')(fname) or util.path.dirname(fname)
+			end,
+			settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true,
 					},
-					format = { enable = true },
+					staticcheck = true,
 				},
-			}, default_opts)
-		end,
-		['jsonls'] = function()
-			return tbl_extend('keep', {
-				settings = {
-					json = {
-						schemas = {
-							{
-								fileMatch = { 'package.json' },
-								url = 'https://json.schemastore.org/package.json',
-							},
-							{
-								fileMatch = { 'tsconfig.json', 'tsconfig.*.json' },
-								url = 'https://json.schemastore.org/tsconfig',
-							},
-							{
-								fileMatch = { 'lerna.json' },
-								url = 'https://json.schemastore.org/lerna',
-							},
-							{
-								fileMatch = { '.eslintrc.json', '.eslintrc' },
-								url = 'https://json.schemastore.org/eslintrc',
-							},
-							{
-								fileMatch = {
-									'.prettierrc',
-									'.prettierrc.json',
-									'prettier.config.json',
-								},
-								url = 'https://json.schemastore.org/prettierrc',
-							},
-							{
-								fileMatch = { 'deno.json', 'deno.jsonc' },
-								url = 'https://cdn.deno.land/deno/versions/v1.16.4/raw/cli/schemas/config-file.v1.json',
-							},
-						},
-					},
+			},
+		}, default_opts)
+	end,
+	['jsonls'] = function()
+		return tbl_extend('keep', {
+			settings = {
+				json = {
+					schemas = require('schemastore').json.schemas(),
 				},
-			}, default_opts)
-		end,
-		['gopls'] = function()
-			return tbl_extend('keep', {
-				cmd = { 'gopls', 'serve' },
+			},
+		}, default_opts)
+	end,
+	['rust_analyzer'] = function()
+		return default_opts
+	end,
+	['sumneko_lua'] = function()
+		return luadev.setup({
+			lspconfig = tbl_extend('keep', {
 				root_dir = function(fname)
-					return util.root_pattern('go.mod', '.git')(fname) or util.path.dirname(fname)
+					return util.find_git_ancestor(fname) or util.path.dirname(fname)
 				end,
-				settings = {
-					gopls = {
-						analyses = {
-							unusedparams = true,
-						},
-						staticcheck = true,
-					},
-				},
-			}, default_opts)
-		end,
-		['sumneko_lua'] = function()
-			return luadev.setup({
-				lspconfig = tbl_extend('keep', {
-					root_dir = function(fname)
-						return util.find_git_ancestor(fname) or util.path.dirname(fname)
-					end,
-				}, default_opts),
-			})
-		end,
-		['tsserver'] = function()
-			return tbl_extend('keep', {
-				init_options = {
-					lint = true,
-				},
-				root_dir = util.root_pattern('tsconfig.json', 'package.json'),
-			}, default_opts)
-		end,
-	}
-
-	server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
-
-	vim.cmd([[ do User LspAttachBuffers ]])
-end
+			}, default_opts),
+		})
+	end,
+	['tsserver'] = function()
+		return tbl_extend('keep', {
+			init_options = {
+				lint = true,
+			},
+			root_dir = util.root_pattern('tsconfig.json', 'package.json'),
+		}, default_opts)
+	end,
+	['vimls'] = function()
+		return default_opts
+	end,
+	['yamlls'] = function()
+		return default_opts
+	end,
+}
 
 function M.setup()
 	-- Set LSP client's log level. Server's log level is not affected.
@@ -152,8 +125,9 @@ function M.setup()
 	vim.lsp.protocol.CompletionItemKind = constants.kind_labels
 
 	-- Configure `nvim-lsp-installer`
-	lsp_installer.settings({
+	lsp_installer.setup({
 		log_level = vim.log.levels.DEBUG,
+		automatic_installation = true,
 		ui = {
 			icons = {
 				server_installed = '',
@@ -163,43 +137,9 @@ function M.setup()
 		},
 	})
 
-	lsp_installer.on_server_ready(server_setup)
-
-	null_ls.setup({
-		sources = {
-			null_ls.builtins.formatting.stylua,
-			null_ls.builtins.formatting.prettierd.with({
-				runtime_condition = function()
-					local project_dir = util.find_git_ancestor()
-					local configFiles = {
-						'.prettierrc',
-						'.prettierrc.json',
-						'.prettierrc.json5',
-						'.prettierrc.yml',
-						'.prettierrc.yaml',
-						'.prettierrc.js',
-						'.prettierrc.cjs',
-						'.prettierrc.config.js',
-						'.prettierrc.config.cjs',
-						'.prettierrc.toml',
-					}
-
-					for _, configFile in ipairs(configFiles) do
-						local fullPath = util.path.join(project_dir, configFile)
-
-						if util.path.is_file(fullPath) then
-							return true
-						end
-					end
-
-					return false
-				end,
-			}),
-			null_ls.builtins.formatting.stylelint,
-			null_ls.builtins.diagnostics.vint,
-			null_ls.builtins.diagnostics.stylelint,
-		},
-	})
+	for server_name, server_config in pairs(server_opts) do
+		lspconfig[server_name].setup(server_config())
+	end
 end
 
 return M

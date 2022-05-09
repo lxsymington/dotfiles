@@ -16,8 +16,11 @@ function M.setup()
 	g.ultest_fail_text = '﮻'
 	g.ultest_running_text = ''
 
-	api.nvim_create_augroup('UltestRunner', { clear = true })
-	api.nvim_create_autocmd('BufWritePost', { pattern = '*', command = 'UltestNearest' })
+	local ultest_group = api.nvim_create_augroup('UltestRunner', { clear = true })
+	api.nvim_create_autocmd(
+		'BufWritePost',
+		{ pattern = '*', command = 'UltestNearest', group = ultest_group }
+	)
 
 	wk.register({
 		[']'] = {

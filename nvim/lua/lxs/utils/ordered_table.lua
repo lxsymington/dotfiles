@@ -6,8 +6,8 @@
 local OrderedTable = {}
 
 OrderedTable.prototype = {
-    __index_key = {},
-    __proxy_key = {},
+	__index_key = {},
+	__proxy_key = {},
 	---A convenience for assigning a new index
 	---@param self OrderedTable an ordered table to which the entry will be added
 	---@param key string|number|table the key of the entry to be created
@@ -53,7 +53,7 @@ OrderedTable.mt = {
 			return rawget(self, key)
 		end
 
-        local proxy = rawget(self, self.__proxy_key)
+		local proxy = rawget(self, self.__proxy_key)
 
 		if type(key) == 'number' then
 			local indices = rawget(self, self.__index_key)
