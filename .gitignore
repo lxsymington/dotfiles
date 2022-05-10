@@ -3,11 +3,8 @@ plugged
 .netrwhist
 fish/fishd.*
 fish/functions/*
-!fish/functions/nvm.fish
 !fish/functions/ls.fish
 fish/fish_variables
-fish/conf.d/*
-!fish/conf.d/fnm.fish
 fish/completions
 vim/.vim/autoload/plug.vim*
 vim/.vim/session

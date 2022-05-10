@@ -14,7 +14,7 @@ local colours = {
 	purple = hsl(260, 75, 45), -- original "#673a5b"
 	red = hsl(350, 60, 40), -- original "#a95062"
 	white = hsl(30, 60, 80), -- original "#ebd3b9"
-	yellow = hsl(40, 100, 60), -- original "#ffc346"
+	yellow = hsl(40, 100, 45), -- original "#ffc346"
 
 	lightBlack = hsl(275, 25, 15), -- original "#222035"
 	lightBlue = hsl(215, 75, 60), -- original "#356ea5"
@@ -25,7 +25,7 @@ local colours = {
 	lightPurple = hsl(260, 75, 75), -- original "#9f7195"
 	lightRed = hsl(0, 90, 80), -- original "#c5696e"
 	lightWhite = hsl(45, 70, 95), -- original "#fcf9f0"
-	lightYellow = hsl(40, 100, 75), -- original "#ffd782"
+	lightYellow = hsl(40, 100, 60), -- original "#ffd782"
 }
 
 return colours

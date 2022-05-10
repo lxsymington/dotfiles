@@ -4,32 +4,32 @@ local api = vim.api
 local M = {}
 
 function M.numberToggle()
-	opt.nu = true
+    opt.nu = true
 
-	if opt.rnu then
-		opt.rnu = false
-	else
-		opt.rnu = true
-	end
+    if opt.rnu then
+        opt.rnu = false
+    else
+        opt.rnu = true
+    end
 end
 
 function M.setup()
-	-- Toggle betwen normal and relative line numbers
-	api.nvim_command([[ command! NumberToggle lua require('lxs.utils').Commands.numberToggle() ]])
+    -- Toggle betwen normal and relative line numbers
+    api.nvim_create_user_command('NumberToggle', M.numberToggle, {})
 
-	-- Save and execute the current file
-	api.nvim_command([[ command! ReloadConfig lua ReloadConfig() ]])
+    -- Save and execute the current file
+    api.nvim_create_user_command('ReloadConfig', ReloadConfig, {})
 
-	-- Keymap to quickly save and execute
-	keymap('n', '<Leader>R', '<cmd>ReloadConfig<cr>', { silent = true, noremap = true })
+    -- Keymap to quickly save and execute
+    keymap('n', '<Leader>R', '<cmd>ReloadConfig<cr>', { silent = true, noremap = true })
 
-	-- Keymap to show information about the Highlight under the cursor
-	keymap(
-		'n',
-		'<Leader>H',
-		'<cmd>TSHighlightCapturesUnderCursor<cr>',
-		{ silent = true, noremap = true }
-	)
+    -- Keymap to show information about the Highlight under the cursor
+    keymap(
+        'n',
+        '<Leader>H',
+        '<cmd>TSHighlightCapturesUnderCursor<cr>',
+        { silent = true, noremap = true }
+    )
 end
 
 return M
