@@ -14,9 +14,18 @@ function M.setup(bufnr)
 				'<Cmd>:PeekDefinition<CR>',
 				'Peek definition',
 			},
-			ca = {
-				'<Cmd>:lua vim.lsp.buf.code_action()<CR>',
-				'LSP code action',
+			l = {
+				c = {
+					name = 'LSP code actions',
+					c = {
+						'<Cmd>:lua vim.lsp.buf.code_action()<CR>',
+						'LSP code action',
+					},
+					r = {
+						'<Cmd>:lua vim.lsp.buf.range_code_action()<CR>',
+						'LSP range code action',
+					},
+				},
 			},
 			g = {
 				d = {

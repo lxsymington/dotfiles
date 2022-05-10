@@ -23,7 +23,7 @@ local function initWorkspaces()
 		:new({
 			command = 'exa',
 			args = { '-D' },
-			cwd = os.getenv('HOME') .. '/Development/',
+			cwd = os.getenv('HOME') .. '/Development/Seccl/',
 			on_stderr = function(_, err)
 				vim.notify(string.format('Unable to create project workspaces: %s', err), 'error')
 			end,
@@ -34,7 +34,7 @@ local function initWorkspaces()
 		workspaces = tbl_extend(
 			'keep',
 			workspaces,
-			{ [project] = os.getenv('HOME') .. '/Development/' .. project }
+			{ [project] = os.getenv('HOME') .. '/Development/Seccl/' .. project }
 		)
 	end
 
@@ -130,17 +130,6 @@ function M.setup()
 			},
 			l = {
 				name = 'Telescope LSP',
-				c = {
-					name = 'Code action',
-					c = {
-						'<Cmd>:lua require("lxs.plugin_settings.telescope").lsp_code_actions()<CR>',
-						'Cursor',
-					},
-					r = {
-						'<Cmd>:lua require("lxs.plugin_settings.telescope").lsp_range_code_actions()<CR>',
-						'Range',
-					},
-				},
 				d = {
 					name = 'Diagnostics',
 					d = {
@@ -257,24 +246,12 @@ function M.git_status()
 	builtin.git_status(opts)
 end
 
-function M.lsp_code_actions()
-	local opts = themes.get_cursor({})
-
-	builtin.lsp_code_actions(opts)
-end
-
 function M.lsp_document_diagnostics()
 	local opts = themes.get_ivy({
 		bufnr = 0,
 	})
 
 	builtin.diagnostics(opts)
-end
-
-function M.lsp_range_code_actions()
-	local opts = themes.get_cursor({})
-
-	builtin.lsp_range_code_actions(opts)
 end
 
 function M.lsp_references()
