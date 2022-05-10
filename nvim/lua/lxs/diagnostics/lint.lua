@@ -37,8 +37,10 @@ function M.setup()
 	lint.linters_by_ft = {
 		javascript = { 'eslint' },
 		javascriptreact = { 'eslint' },
-		typescript = { 'eslint' },
-		typescriptreact = { 'eslint' },
+		['javascript.jsx'] = { 'eslint' },
+		typescript = { 'eslint', 'tslint' },
+		typescriptreact = { 'eslint', 'tslint' },
+		['typescript.tsx'] = { 'eslint', 'tslint' },
 		lua = { 'selene' },
 		vim = { 'vint' },
 	}
