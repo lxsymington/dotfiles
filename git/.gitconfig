@@ -71,12 +71,10 @@
 	required = true
 [delta]
 	features = side-by-side line-numbers decorations
-	syntax-theme = OneHalfDark
-	plus-style = syntax "#003800"
-	minus-style = syntax "#3f0001"
+	syntax-theme = Solarized (light)
 [delta "decorations"]
-	commit-decoration-style = bold yellow box ul
-	file-style = bold yellow ul
+	commit-decoration-style = bold purple box ul
+	file-style = bold purple ul
 	file-decoration-style = none
 	hunk-header-decoration-style = black box ul
 [delta "line-numbers"]

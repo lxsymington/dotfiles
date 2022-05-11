@@ -4,7 +4,13 @@ local aucmd = vim.api.nvim_create_autocmd
 local M = {}
 
 function M.tslint_parser(output, bufnr)
-	local tslint_results = vim.json.decode(output)
+	local json_results = string.match(output, '(.-)\n')
+	local tslint_results = vim.json.decode(json_results)
+    local severity_map = {
+        ['ERROR'] = vim.diagnostic.severity.ERROR,
+        ['WARNING'] = vim.diagnostic.severity.WARN,
+    }
+
 	local diagnostics = {}
 
 	for _, lint_result in ipairs(tslint_results) do
@@ -14,7 +20,7 @@ function M.tslint_parser(output, bufnr)
 			end_lnum = lint_result.endPosition.line,
 			col = lint_result.startPosition.character,
 			end_col = lint_result.endPosition.character,
-			severity = vim.diagnostic.severity.ERROR,
+			severity = severity_map[lint_result.ruleSeverity],
 			message = lint_result.failure,
 			source = 'tslint',
 			code = lint_result.ruleName,
@@ -25,14 +31,24 @@ function M.tslint_parser(output, bufnr)
 end
 
 function M.setup()
-	lint.linters.tslint = {
-		cmd = 'tslint',
-		stdin = false,
-		args = { '--format=json' },
-		stream = 'both',
-		ignore_exitcode = true,
-		parser = M.tslint_parser,
-	}
+	lint.linters.tslint = function ()
+	    local config = vim.fn.findfile('tsconfig.json', vim.loop.cwd())
+	    local args = config and {
+	        '--format',
+	        'json',
+	        '--project',
+	        config
+	    } or { '--format', 'json' }
+
+	    return {
+            cmd = 'tslint',
+            stdin = false,
+            args = args,
+            stream = 'both',
+            ignore_exitcode = true,
+            parser = M.tslint_parser,
+        }
+	end
 
 	lint.linters_by_ft = {
 		javascript = { 'eslint' },
