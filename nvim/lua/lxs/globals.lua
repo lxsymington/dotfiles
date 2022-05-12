@@ -11,7 +11,7 @@ function _G.ReloadConfig()
 		end
 	end
 
-	vim.api.nvim_clear_autocmds('*')
+	vim.api.nvim_clear_autocmds({ event = '*' })
 	local vimrc_ok, vimrc_ret = pcall(dofile, vim.env.MYVIMRC)
 	if not vimrc_ok then
 		vim.notify(vimrc_ret, 'error')

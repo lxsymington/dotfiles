@@ -118,7 +118,7 @@ function M.setup()
 					'TSHighlightCapturesUnderCursor',
 				},
 				keys = {
-                    {'n', '<leader>H'},
+					{ 'n', '<leader>H' },
 				},
 				config = function()
 					require('lxs.plugin_settings.treesitter_playground').setup()
