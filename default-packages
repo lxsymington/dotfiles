@@ -8,8 +8,6 @@ serverless
 typescript-language-server
 typescript
 vim-language-server
-vscode-css-languageserver-bin
-vscode-html-languageserver-bin
-vscode-json-languageserver-bin
+vscode-langservers-extracted
 yaml-language-server
 yaml2json

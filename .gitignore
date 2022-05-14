@@ -4,6 +4,16 @@ plugged
 fish/fishd.*
 fish/functions/*
 !fish/functions/ls.fish
+fish/conf.d/*
+!fish/conf.d/fisher.fish
+!fish/conf.d/keychain.fish
+!fish/conf.d/neovim.fish
+!fish/conf.d/nix.fish
+!fish/conf.d/seccl.fish
+!fish/conf.d/starship.fish
+!fish/conf.d/volta.fish
+!fish/conf.d/wasmtime.fish
+!fish/conf.d/zoxide.fish
 fish/fish_variables
 fish/completions
 vim/.vim/autoload/plug.vim*

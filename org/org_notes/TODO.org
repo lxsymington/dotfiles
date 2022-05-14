@@ -86,3 +86,8 @@
 
 * Git todolist
  + [ ] Investigate [[https://www.atlassian.com/git/tutorials/dotfiles][git bare repositories]]
+* Setup notes
+ + setting up npm toolchain packages with `volta`:
+   #+BEGIN_SRC shell
+   volta run --node 16 npm i -g (cat ~/.dotfiles/default-packages | sed '/@seccl\/auto-ops/d')
+   #+END_SRC
