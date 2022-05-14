@@ -8,7 +8,7 @@ local function select_config_file(config_files)
     for _, config_file in ipairs(config_files) do
         local fullPath = util.path.join(vim.loop.cwd, config_file)
 
-        if util.path.is_file(fullPath) then
+        if vim.fn.filereadable(config_file) then
             return fullPath
         end
     end
@@ -34,7 +34,7 @@ function M.prettier()
 
     local config = select_config_file(config_files)
 
-    if not (lsp_loaded or config) then
+    if not (lsp_loaded and config) then
         return nil
     end
 
@@ -44,6 +44,18 @@ function M.prettier()
         exe = 'prettierd',
         args = { vim.api.nvim_buf_get_name(0) },
         stdin = true,
+    }
+end
+
+function M.tslint()
+    if not vim.fn.filereadable("tslint.json") then
+        return nil
+    end
+
+    return {
+        exe = "tslint",
+        args = { "-c", "tslint.json", "--fix", "--force" },
+        try_node_modules = true,
     }
 end
 
