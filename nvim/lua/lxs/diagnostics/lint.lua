@@ -1,5 +1,5 @@
+local session_augroups = require('lxs.autocommands').session_augroups
 local lint = require('lint')
-local augrp = vim.api.nvim_create_augroup
 local aucmd = vim.api.nvim_create_autocmd
 local M = {}
 
@@ -67,7 +67,7 @@ function M.setup()
         vim = { 'vint' },
     }
 
-    local lint_group = augrp('Lint', { clear = true })
+    local lint_group = session_augroups('Lint')
     aucmd('BufWritePost', {
         callback = function()
             lint.try_lint()

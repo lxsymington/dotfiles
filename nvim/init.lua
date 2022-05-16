@@ -4,11 +4,8 @@ local cmd = vim.cmd
 cmd([[runtime ftplugin/man.vim]])
 cmd([[runtime macros/matchit.vim]])
 
--- Globals -----------------------------
-require('lxs.globals')
-
 -- Config ------------------------------
-require('lxs.utils').Commands()
+require('lxs.utils').Commands.setup()
 
 -- Config ------------------------------
 require('lxs.config').setup()

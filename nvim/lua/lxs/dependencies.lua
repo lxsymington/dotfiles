@@ -18,8 +18,8 @@ function M.setup()
             )
         )
 
-        P(out)
-        P('Downloading packer.nvim')
+        vim.pretty_print(out)
+        vim.pretty_print('Downloading packer.nvim')
 
         return
     end

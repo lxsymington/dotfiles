@@ -1,5 +1,6 @@
 local lsp_loaded, util = pcall(require, 'lspconfig.util')
 local formatter = require('formatter')
+local session_augroups = require('lxs.autocommands').session_augroups
 local augrp = vim.api.nvim_create_augroup
 local aucmd = vim.api.nvim_create_autocmd
 local M = {}
@@ -88,7 +89,7 @@ function M.setup()
         },
     })
 
-    local format_group = augrp('Format', { clear = true })
+    local format_group = session_augroups('Format')
     aucmd('BufWritePost', {
         pattern = { '*.js', '*.cjs', '*.mjs', '*.jsx', '*.ts', '*.tsx', '*.lua' },
         command = 'FormatWrite',
