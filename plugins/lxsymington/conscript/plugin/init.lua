@@ -18,20 +18,7 @@ function M.enroll()
         'DirChanged'
     },
         {
-        pattern = {
-            '*.ts',
-            '*.cts',
-            '*.mts',
-            '*.tsx',
-            '*.js',
-            '*.cjs',
-            '*.mjs',
-            '*.jsx',
-            '*.json',
-            '*.json5',
-            '*.yaml',
-            '*.yml'
-        },
+        pattern = '*',
         callback = conscript.scout,
         group = conscript_augroup
     })
