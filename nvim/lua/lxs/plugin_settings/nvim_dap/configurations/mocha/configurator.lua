@@ -1,3 +1,5 @@
+local base_config = require('lxs.plugin_settings.nvim_dap.configurations.base')
+
 local function mochaConfigurator(config)
 	local args = { '-u', 'bdd', '--timeout', '3000', '--colors' }
 
@@ -15,23 +17,11 @@ local function mochaConfigurator(config)
 
 	table.insert(args, config.glob and '${workspaceFolder}/' .. config.glob or '${file}')
 
-	return {
-		type = 'node',
-		request = 'launch',
+	return vim.tbl_extend('force', base_config, {
 		name = config.title,
-		protocol = 'auto',
 		program = '${workspaceFolder}/node_modules/mocha/bin/_mocha',
-		sourceMaps = true,
-		resolveSourceMapLocations = {
-			'${workspaceFolder}/**',
-			'${workspaceFolder}/node_modules/@seccl/**',
-		},
 		args = args,
-		skipFiles = { '<node_internals>/**', '**/node_modules/**' },
-		console = 'integratedTerminal',
-		internalConsoleOptions = 'openOnSessionStart',
-		cwd = '${workspaceFolder}/',
-	}
+	})
 end
 
 return mochaConfigurator
