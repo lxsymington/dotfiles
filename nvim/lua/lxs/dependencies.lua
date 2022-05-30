@@ -74,6 +74,7 @@ function M.setup()
             use({
                 'williamboman/nvim-lsp-installer',
                 requires = {
+                    'rcarriga/nvim-notify',
                     'neovim/nvim-lspconfig',
                     'nvim-lua/lsp_extensions.nvim',
                     'folke/lua-dev.nvim',
@@ -366,6 +367,7 @@ function M.setup()
             use({
                 'mfussenegger/nvim-dap',
                 requires = {
+                    'rcarriga/nvim-notify',
                     'theHamsta/nvim-dap-virtual-text',
                     {
                         'nvim-telescope/telescope-dap.nvim',

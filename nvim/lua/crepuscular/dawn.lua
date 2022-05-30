@@ -131,6 +131,17 @@ local theme = lush.merge({
 			GitSignsAddNr({ LineNr, fg = colours.lightGreen, gui = 'nocombine' }),
 			GitSignsChangeNr({ LineNr, fg = colours.lightBlue, gui = 'nocombine' }),
 			GitSignsDeleteNr({ LineNr, fg = colours.lightRed, gui = 'nocombine' }),
+			CmpItemAbbr({ fg = colours.lightBlack, gui = 'nocombine' }),
+			CmpItemAbbrDeprecated({ fg = colours.grey, gui = 'nocombine,strikethrough' }),
+			CmpItemAbbrMatch({ fg = colours.purple, gui = 'nocombine,bold' }),
+			CmpItemAbbrMatchFuzzy({ fg = colours.lightPurple, gui = 'nocombine,bold' }),
+			CmpItemKind({ fg = colours.lightBlue }),
+			CmpItemMenu({ Comment }),
+            NotifyDEBUGBody({ Normal }),
+            NotifyERRORBody({ Normal }),
+            NotifyINFOBody({ Normal }),
+            NotifyTRACEBody({ Normal }),
+            NotifyWARNBody({ Normal }),
 		}
 	end),
 })

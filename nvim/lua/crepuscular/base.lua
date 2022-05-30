@@ -184,6 +184,21 @@ local theme = lush(function()
 		LspReferenceRead({ fg = colours.lightGrey, gui = 'nocombine,italic' }),
 		LspReferenceText({ fg = colours.lightPurple, gui = 'nocombine,italic' }),
 		LspReferenceWrite({ fg = colours.purple, gui = 'nocombine,italic' }),
+        NotifyDEBUGBorder({ fg = colours.purple, gui = 'nocombine' }),
+        NotifyDEBUGIcon({ fg = colours.purple, gui = 'nocombine' }),
+        NotifyDEBUGTitle({ fg = colours.purple, gui = 'nocombine,bold' }),
+        NotifyERRORBorder({ fg = colours.red, gui = 'nocombine' }),
+        NotifyERRORIcon({ fg = colours.red, gui = 'nocombine' }),
+        NotifyERRORTitle({ fg = colours.red, gui = 'nocombine,bold' }),
+        NotifyINFOBorder({ fg = colours.blue, gui = 'nocombine' }),
+        NotifyINFOIcon({ fg = colours.blue, gui = 'nocombine' }),
+        NotifyINFOTitle({ fg = colours.blue, gui = 'nocombine,bold' }),
+        NotifyTRACEBorder({ fg = colours.green, gui = 'nocombine' }),
+        NotifyTRACEIcon({ fg = colours.green, gui = 'nocombine' }),
+        NotifyTRACETitle({ fg = colours.green, gui = 'nocombine,bold' }),
+        NotifyWARNBorder({ fg = colours.yellow, gui = 'nocombine' }),
+        NotifyWARNIcon({ fg = colours.yellow, gui = 'nocombine' }),
+        NotifyWARNTitle({ fg = colours.yellow, gui = 'nocombine,bold' }),
 	}
 end)
 
