@@ -1,7 +1,6 @@
 local lsp_installer = require('nvim-lsp-installer')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
-local lsp_status = require('lsp-status')
 local luadev = require('lua-dev')
 local constants = require('lxs.config.constants')
 local attach = require('lxs.lsp.attach')
@@ -96,21 +95,6 @@ function M.setup()
 
 	-- Convenience command to view lsp logs
 	vim.cmd([[ command! LspLog exe 'tabnew ' .. luaeval("vim.lsp.get_log_path()") ]])
-
-	-- Turn on status.
-	lsp_status.register_progress()
-
-	-- Configure Lsp status
-	lsp_status.config({
-		kind_labels = constants.kind_symbols,
-		indicator_errors = '',
-		indicator_warnings = '',
-		indicator_info = '',
-		indicator_hint = '',
-		indicator_ok = '✓',
-		component_separator = '‖',
-		indicator_separator = ' ',
-	})
 
 	-- Setup handlers
 	handlers.setup()

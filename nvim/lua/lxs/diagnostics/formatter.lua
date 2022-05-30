@@ -36,8 +36,18 @@ function M.prettier()
     local config = select_config_file(config_files)
 
     if not (lsp_loaded and config) then
+        vim.cmd('FormatDisable')
         return nil
     end
+
+    vim.cmd('FormatEnable')
+    vim.notify(
+        string.format(
+            'Formatting file with %s config',
+            vim.fn.expand(config, ':p:' .. vim.loop.cwd())
+        ),
+        vim.log.levels.INFO
+    )
 
     vim.loop.os_setenv('PRETTIERD_DEFAULT_CONFIG', config)
 

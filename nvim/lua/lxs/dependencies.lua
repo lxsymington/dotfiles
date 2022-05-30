@@ -75,7 +75,6 @@ function M.setup()
                 'williamboman/nvim-lsp-installer',
                 requires = {
                     'neovim/nvim-lspconfig',
-                    'nvim-lua/lsp-status.nvim',
                     'nvim-lua/lsp_extensions.nvim',
                     'folke/lua-dev.nvim',
                     'b0o/SchemaStore.nvim',
@@ -349,9 +348,6 @@ function M.setup()
                     'nvim-lspconfig',
                     'nvim-web-devicons',
                     'gitsigns.nvim',
-                },
-                requires = {
-                    'nvim-lua/lsp-status.nvim',
                 },
                 config = function()
                     require('lxs.plugin_settings.feline').setup()

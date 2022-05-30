@@ -1,5 +1,4 @@
 local session_augroups = require('lxs.autocommands').session_augroups
-local lsp_status = require('lsp-status')
 local lsp_format = require('lsp-format')
 local lsp_format_config = require('lxs.lsp.formatting')
 local lsp_keymaps = require('lxs.lsp.keymaps')
@@ -11,8 +10,6 @@ function M.attach(client, bufnr)
     api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     lsp_keymaps.setup(bufnr)
-
-    lsp_status.on_attach(client)
 
     lsp_format_config.setup()
 

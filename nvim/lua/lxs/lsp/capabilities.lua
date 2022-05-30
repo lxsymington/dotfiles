@@ -1,4 +1,3 @@
-local lsp_status = require('lsp-status')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local lsp = vim.lsp
 local tbl_extend = vim.tbl_extend
@@ -31,7 +30,7 @@ function M.create(opts)
 		}
 	)
 
-	return tbl_extend('keep', opts or {}, capabilities or {}, lsp_status.capabilities)
+	return tbl_extend('keep', opts or {}, capabilities or {})
 end
 
 return M

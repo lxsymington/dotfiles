@@ -1,7 +1,6 @@
 local feline = require('feline')
 local lsp = require('feline.providers.lsp')
 local devicons = require('nvim-web-devicons')
-local lsp_status = require('lsp-status')
 local Theme = require('lxs.utils').Theme
 local colours = require(vim.g.colors_name .. '.colours')
 local fn = vim.fn
@@ -311,16 +310,6 @@ function M.setup()
 				end,
 			},
 		},
-	})
-
-	table.insert(components.active[3], {
-		provider = function()
-			return lsp_status.status()
-		end,
-		enabled = function()
-			return #vim.lsp.buf_get_clients() > 0
-		end,
-		hl = { fg = theme.grey_alt, bg = theme.background },
 	})
 
 	table.insert(components.active[3], {
