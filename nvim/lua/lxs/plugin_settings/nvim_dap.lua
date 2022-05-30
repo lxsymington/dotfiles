@@ -20,38 +20,45 @@ function M.setup()
 		},
 	} --]]
 
-    dap.listeners.before['event_progressStart']['progress-notifications'] = function(session, body)
-        local notif_data = notify_utils.get_notif_data("dap", body.progressId)
+	dap.listeners.before['event_progressStart']['progress-notifications'] = function(session, body)
+		local notif_data = notify_utils.get_notif_data('dap', body.progressId)
 
-        local message = notify_utils.format_message(body.message, body.percentage)
-        notif_data.notification = vim.notify(message, "info", {
-            title = notify_utils.format_title(body.title, session.config.type),
-            icon = notify_utils.spinner_frames[1],
-            timeout = false,
-            hide_from_history = false,
-        })
+		local message = notify_utils.format_message(body.message, body.percentage)
+		notif_data.notification = vim.notify(message, 'info', {
+			title = notify_utils.format_title(body.title, session.config.type),
+			icon = notify_utils.spinner_frames[1],
+			timeout = false,
+			hide_from_history = false,
+		})
 
-        notif_data.notification.spinner = 1,
-        notify_utils.update_spinner("dap", body.progressId)
-    end
+		notif_data.notification.spinner = 1, notify_utils.update_spinner('dap', body.progressId)
+	end
 
-    dap.listeners.before['event_progressUpdate']['progress-notifications'] = function(session, body)
-        local notif_data = notify_utils.get_notif_data("dap", body.progressId)
-        notif_data.notification = vim.notify(notify_utils.format_message(body.message, body.percentage), "info", {
-            replace = notif_data.notification,
-            hide_from_history = false,
-        })
-    end
+	dap.listeners.before['event_progressUpdate']['progress-notifications'] = function(session, body)
+		local notif_data = notify_utils.get_notif_data('dap', body.progressId)
+		notif_data.notification = vim.notify(
+			notify_utils.format_message(body.message, body.percentage),
+			'info',
+			{
+				replace = notif_data.notification,
+				hide_from_history = false,
+			}
+		)
+	end
 
-    dap.listeners.before['event_progressEnd']['progress-notifications'] = function(session, body)
-        local notif_data = notify_utils.client_notifs["dap"][body.progressId]
-        notif_data.notification = vim.notify(body.message and notify_utils.format_message(body.message) or "Complete", "info", {
-            icon = "",
-            replace = notif_data.notification,
-            timeout = 3000
-        })
-        notif_data.spinner = nil
-    end
+	dap.listeners.before['event_progressEnd']['progress-notifications'] = function(session, body)
+		local notif_data = notify_utils.client_notifs['dap'][body.progressId]
+		notif_data.notification = vim.notify(
+			body.message and notify_utils.format_message(body.message) or 'Complete',
+			'info',
+			{
+				icon = '',
+				replace = notif_data.notification,
+				timeout = 3000,
+			}
+		)
+		notif_data.spinner = nil
+	end
 
 	dap.listeners.after['event_initialized']['me'] = function()
 		for _, buf in pairs(api.nvim_list_bufs()) do

@@ -8,7 +8,7 @@ function M.setup()
 
 	wk.register({
 		['<Leader>lt'] = {
-			'<cmd>LspTroubleToggle<cr>',
+			'<cmd>TroubleToggle<cr>',
 			'Toggle LSP Trouble',
 		},
 	}, {

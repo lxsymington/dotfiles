@@ -137,11 +137,11 @@ local theme = lush.merge({
 			CmpItemAbbrMatchFuzzy({ fg = colours.lightPurple, gui = 'nocombine,bold' }),
 			CmpItemKind({ fg = colours.lightBlue }),
 			CmpItemMenu({ Comment }),
-            NotifyDEBUGBody({ Normal }),
-            NotifyERRORBody({ Normal }),
-            NotifyINFOBody({ Normal }),
-            NotifyTRACEBody({ Normal }),
-            NotifyWARNBody({ Normal }),
+			NotifyDEBUGBody({ Normal }),
+			NotifyERRORBody({ Normal }),
+			NotifyINFOBody({ Normal }),
+			NotifyTRACEBody({ Normal }),
+			NotifyWARNBody({ Normal }),
 		}
 	end),
 })
