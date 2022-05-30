@@ -166,7 +166,7 @@ function M.setup()
                         opt = true,
                         ft = { 'org' },
                         config = function()
-                            require('org-bullets').setup()
+                            require('org-bullets').setup({})
                         end,
                     },
                 },
@@ -418,7 +418,7 @@ function M.setup()
             -- Testing
             use({
                 'rcarriga/vim-ultest',
-                requires = { 'vim-test/vim-test' },
+                requires = { 'vim-test/vim-test', 'mfussenegger/nvim-dap' },
                 run = ':UpdateRemotePlugins',
                 config = function()
                     require('lxs.plugin_settings.ultest').setup()
