@@ -104,6 +104,9 @@ function M.setup()
 		eob = '∅', -- '~' empty lines at the end of a buffer
 	}
 
+    -- Use a global status bar
+	opt.laststatus = 3
+
 	vim.diagnostic.config({
 		virtual_text = {
 			prefix = '●',

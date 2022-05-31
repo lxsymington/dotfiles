@@ -176,280 +176,300 @@ end
     vertical_bar_thin = '│',
 ]]
 
+local file_name_component = {
+    provider = file_namer,
+    enabled = buffer_not_empty,
+    hl = {
+        fg = theme.foreground_alt,
+        bg = theme.background_alt,
+        style = 'bold',
+    },
+    left_sep = { 'block' },
+}
+
+local file_size_component = {
+    provider = 'file_size',
+    enabled = buffer_not_empty,
+    hl = {
+        fg = theme.grey_alt,
+        bg = theme.background_alt,
+        style = 'italic',
+    },
+    left_sep = {
+        {
+            str = 'vertical_bar',
+            hl = { fg = theme.orange, bg = theme.background_alt },
+        },
+        { str = ' ', hl = { fg = 'NONE', bg = theme.background_alt } },
+    },
+    right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.background_alt } },
+}
+
+local git_branch_component = {
+    provider = 'git_branch',
+    hl = {
+        fg = theme.white_alt,
+        bg = theme.blue,
+        style = 'bold',
+    },
+    left_sep = { 'block' },
+    right_sep = function()
+        return {
+            str = 'right_rounded',
+            hl = {
+                fg = b.gitsigns_status_dict and theme.blue or theme.background_alt,
+                bg = theme.background,
+            },
+        }
+    end,
+}
+
+local git_additions_component = {
+    provider = 'git_diff_added',
+    hl = { fg = theme.green, bg = theme.background },
+}
+
+local git_changes_component = {
+    provider = 'git_diff_changed',
+    hl = { fg = theme.orange, bg = theme.background },
+}
+
+local git_deletions_component = {
+    provider = 'git_diff_removed',
+    hl = { fg = theme.red, bg = theme.background },
+}
+
+local buf_number_component = {
+    provider = '%n',
+    hl = { fg = theme.white_alt, bg = theme.magenta, style = 'bold' },
+    left_sep = {
+        { str = 'left_rounded_thin', hl = { fg = theme.magenta, bg = theme.background } },
+        { str = 'left_rounded', hl = { fg = theme.magenta, bg = theme.background } },
+    },
+    right_sep = { 'block' },
+}
+
+local vi_mode_component = {
+    provider = vi_mode,
+    hl = function()
+        local mode = fn.mode()
+
+        return {
+            name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
+            fg = mode_alias_map[mode].fg,
+            bg = mode_alias_map[mode].bg,
+            style = 'bold',
+        }
+    end,
+    right_sep = {
+        {
+            str = 'right_rounded',
+            hl = function()
+                local mode = fn.mode()
+
+                return {
+                    name = string.gsub(
+                        mode_alias_map[mode].name,
+                        '(%a+)',
+                        'FelineViModeHighlight%1'
+                    ),
+                    fg = mode_alias_map[mode].bg,
+                    bg = theme.background,
+                }
+            end,
+        },
+        {
+            str = 'right_rounded_thin',
+            hl = function()
+                local mode = fn.mode()
+
+                return {
+                    name = string.gsub(
+                        mode_alias_map[mode].name,
+                        '(%a+)',
+                        'FelineViModeHighlight%1'
+                    ),
+                    fg = mode_alias_map[mode].bg,
+                    bg = theme.background,
+                }
+            end,
+        },
+    },
+}
+
+local diagnostic_errors_component = {
+    provider = 'diagnostic_errors',
+    enabled = function()
+        return lsp.diagnostics_exist(vim.diagnostic.severity.Error)
+    end,
+    hl = { fg = theme.red, bg = theme.background },
+}
+
+local diagnostic_warnings_component = {
+    provider = 'diagnostic_warnings',
+    enabled = function()
+        return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
+    end,
+    hl = { fg = theme.yellow, bg = theme.background },
+}
+
+local diagnostic_hints_component = {
+    provider = 'diagnostic_hints',
+    enabled = function()
+        return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
+    end,
+    hl = { fg = theme.cyan, bg = theme.background },
+}
+
+local diagnostic_info_component = {
+    provider = 'diagnostic_info',
+    enabled = function()
+        return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
+    end,
+    hl = { fg = theme.blue_alt, bg = theme.background },
+}
+
+local document_position_component = {
+    provider = 'position',
+    left_sep = {
+        {
+            str = ' ',
+            hl = { fg = 'NONE', bg = theme.background },
+        },
+        {
+            str = 'left_rounded',
+            hl = { fg = theme.magenta_alt, bg = theme.background },
+        },
+        {
+            str = 'left_rounded_thin',
+            hl = { bg = theme.magenta_alt, fg = theme.background },
+        },
+        {
+            str = 'left_rounded',
+            hl = { bg = theme.magenta_alt, fg = theme.background },
+        },
+        {
+            str = '  ',
+            hl = { fg = theme.magenta, bg = theme.background },
+        },
+    },
+    right_sep = {
+        {
+            str = '  ',
+            hl = { fg = theme.magenta, bg = theme.background },
+        },
+        {
+            str = 'right_rounded',
+            hl = {
+                bg = theme.magenta_alt,
+                fg = theme.background,
+            },
+        },
+        {
+            str = 'right_rounded_thin',
+            hl = {
+                bg = theme.magenta_alt,
+                fg = theme.background,
+            },
+        },
+    },
+    hl = { fg = theme.grey_alt, bg = theme.background },
+}
+
+local line_percentage_component = {
+    provider = 'line_percentage',
+    hl = {
+        bg = theme.magenta_alt,
+        fg = theme.background,
+        style = 'bold',
+    },
+    left_sep = {
+        str = ' ',
+        hl = {
+            bg = theme.magenta_alt,
+            fg = 'NONE',
+        },
+    },
+    right_sep = {
+        str = ' ',
+        hl = {
+            bg = theme.magenta_alt,
+            fg = 'NONE',
+        },
+    },
+}
+
+local scroll_bar_component = {
+    provider = 'scroll_bar',
+    hl = {
+        bg = theme.magenta,
+        fg = theme.background,
+        style = 'bold',
+    },
+}
+
 -- FELINE ------------------------------
 function M.setup()
-	local components = {
+	local statusline_components = {
 		active = {
-			{},
-			{},
-			{},
-		},
-		inactive = {
-			{},
-			{},
-			{},
+			{
+			    git_branch_component,
+			    git_additions_component,
+			    git_changes_component,
+			    git_deletions_component,
+			},
+			{
+			    buf_number_component,
+			    vi_mode_component,
+			},
+			{
+			    diagnostic_errors_component,
+                diagnostic_warnings_component,
+                diagnostic_hints_component,
+                diagnostic_info_component,
+                document_position_component,
+                line_percentage_component,
+                scroll_bar_component,
+			},
 		},
 	}
-
-	table.insert(components.active[1], {
-		provider = file_namer,
-		enabled = buffer_not_empty,
-		hl = {
-			fg = theme.foreground_alt,
-			bg = theme.background_alt,
-			style = 'bold',
-		},
-		left_sep = { 'block' },
-	})
-
-	table.insert(components.active[1], {
-		provider = 'file_size',
-		enabled = buffer_not_empty,
-		hl = {
-			fg = theme.grey_alt,
-			bg = theme.background_alt,
-			style = 'italic',
-		},
-		left_sep = {
-			{
-				str = 'vertical_bar',
-				hl = { fg = theme.orange, bg = theme.background_alt },
-			},
-			{ str = ' ', hl = { fg = 'NONE', bg = theme.background_alt } },
-		},
-		right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.background_alt } },
-	})
-
-	table.insert(components.active[1], {
-		provider = 'git_branch',
-		hl = {
-			fg = theme.white_alt,
-			bg = theme.blue,
-			style = 'bold',
-		},
-		left_sep = { 'block' },
-		right_sep = function()
-			return {
-				str = 'right_rounded',
-				hl = {
-					fg = b.gitsigns_status_dict and theme.blue or theme.background_alt,
-					bg = theme.background,
-				},
-			}
-		end,
-	})
-
-	table.insert(components.active[1], {
-		provider = 'git_diff_added',
-		hl = { fg = theme.green, bg = theme.background },
-	})
-
-	table.insert(components.active[1], {
-		provider = 'git_diff_changed',
-		hl = { fg = theme.orange, bg = theme.background },
-	})
-
-	table.insert(components.active[1], {
-		provider = 'git_diff_removed',
-		hl = { fg = theme.red, bg = theme.background },
-	})
-
-	table.insert(components.active[2], {
-		provider = '%n',
-		hl = { fg = theme.white_alt, bg = theme.magenta, style = 'bold' },
-		left_sep = {
-			{ str = 'left_rounded_thin', hl = { fg = theme.magenta, bg = theme.background } },
-			{ str = 'left_rounded', hl = { fg = theme.magenta, bg = theme.background } },
-		},
-		right_sep = { 'block' },
-	})
-
-	table.insert(components.active[2], {
-		provider = vi_mode,
-		hl = function()
-			local mode = fn.mode()
-
-			return {
-				name = string.gsub(mode_alias_map[mode].name, '(%a+)', 'FelineViModeHighlight%1'),
-				fg = mode_alias_map[mode].fg,
-				bg = mode_alias_map[mode].bg,
-				style = 'bold',
-			}
-		end,
-		right_sep = {
-			{
-				str = 'right_rounded',
-				hl = function()
-					local mode = fn.mode()
-
-					return {
-						name = string.gsub(
-							mode_alias_map[mode].name,
-							'(%a+)',
-							'FelineViModeHighlight%1'
-						),
-						fg = mode_alias_map[mode].bg,
-						bg = theme.background,
-					}
-				end,
-			},
-			{
-				str = 'right_rounded_thin',
-				hl = function()
-					local mode = fn.mode()
-
-					return {
-						name = string.gsub(
-							mode_alias_map[mode].name,
-							'(%a+)',
-							'FelineViModeHighlight%1'
-						),
-						fg = mode_alias_map[mode].bg,
-						bg = theme.background,
-					}
-				end,
-			},
-		},
-	})
-
-	table.insert(components.active[3], {
-		provider = 'diagnostic_errors',
-		enabled = function()
-			return lsp.diagnostics_exist(vim.diagnostic.severity.Error)
-		end,
-		hl = { fg = theme.red, bg = theme.background },
-	})
-
-	table.insert(components.active[3], {
-		provider = 'diagnostic_warnings',
-		enabled = function()
-			return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
-		end,
-		hl = { fg = theme.yellow, bg = theme.background },
-	})
-
-	table.insert(components.active[3], {
-		provider = 'diagnostic_hints',
-		enabled = function()
-			return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
-		end,
-		hl = { fg = theme.cyan, bg = theme.background },
-	})
-
-	table.insert(components.active[3], {
-		provider = 'diagnostic_info',
-		enabled = function()
-			return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
-		end,
-		hl = { fg = theme.blue_alt, bg = theme.background },
-	})
-
-	table.insert(components.active[3], {
-		provider = 'position',
-		left_sep = {
-			{
-				str = ' ',
-				hl = { fg = 'NONE', bg = theme.background },
-			},
-			{
-				str = 'left_rounded',
-				hl = { fg = theme.magenta_alt, bg = theme.background },
-			},
-			{
-				str = 'left_rounded_thin',
-				hl = { bg = theme.magenta_alt, fg = theme.background },
-			},
-			{
-				str = 'left_rounded',
-				hl = { bg = theme.magenta_alt, fg = theme.background },
-			},
-			{
-				str = '  ',
-				hl = { fg = theme.magenta, bg = theme.background },
-			},
-		},
-		right_sep = {
-			{
-				str = '  ',
-				hl = { fg = theme.magenta, bg = theme.background },
-			},
-			{
-				str = 'right_rounded',
-				hl = {
-					bg = theme.magenta_alt,
-					fg = theme.background,
-				},
-			},
-			{
-				str = 'right_rounded_thin',
-				hl = {
-					bg = theme.magenta_alt,
-					fg = theme.background,
-				},
-			},
-		},
-		hl = { fg = theme.grey_alt, bg = theme.background },
-	})
-
-	table.insert(components.active[3], {
-		provider = 'line_percentage',
-		hl = {
-			bg = theme.magenta_alt,
-			fg = theme.background,
-			style = 'bold',
-		},
-		left_sep = {
-			str = ' ',
-			hl = {
-				bg = theme.magenta_alt,
-				fg = 'NONE',
-			},
-		},
-		right_sep = {
-			str = ' ',
-			hl = {
-				bg = theme.magenta_alt,
-				fg = 'NONE',
-			},
-		},
-	})
-
-	table.insert(components.active[3], {
-		provider = 'scroll_bar',
-		hl = {
-			bg = theme.magenta,
-			fg = theme.background,
-			style = 'bold',
-		},
-	})
-
-	table.insert(components.inactive[1], {
-		provider = file_namer,
-		enabled = buffer_not_empty,
-		hl = {
-			fg = theme.white,
-			bg = theme.background_alt,
-			style = 'bold',
-		},
-		left_sep = { 'block' },
-	})
-
-	table.insert(components.inactive[3], {
-		provider = 'file_type',
-		hl = { fg = theme.white, bg = theme.blue, style = 'bold' },
-		left_sep = {
-			{ str = 'left_rounded', hl = { fg = theme.blue, bg = theme.background_alt } },
-			{ str = ' ', hl = { fg = 'NONE', bg = theme.blue } },
-		},
-		right_sep = { str = ' ', hl = { fg = 'NONE', bg = theme.blue } },
-	})
 
 	feline.setup({
 		colors = {
 			bg = theme.background,
 			fg = theme.foreground,
 		},
-		components = components,
+		components = statusline_components,
+	})
+
+    local winbar_centre = {
+        vim.tbl_extend('keep', {
+            left_sep = {
+                str = 'slant_left',
+                hl = { fg = theme.background_alt, bg = theme.background },
+            }
+        }, file_name_component),
+        vim.tbl_extend('keep', {
+            right_sep = {
+                str = 'slant_right',
+                hl = { fg = theme.background_alt, bg = theme.background },
+            }
+        }, file_size_component),
+    }
+
+	feline.winbar.setup({
+		components = {
+            active = {
+                {},
+                winbar_centre,
+                {},
+            },
+		    inactive = {
+                {},
+                winbar_centre,
+                {},
+		    }
+		}
 	})
 end
 

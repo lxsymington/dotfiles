@@ -47,7 +47,13 @@ function M.setup()
 			use({
 				'folke/which-key.nvim',
 				config = function()
-					require('which-key').setup({ window = { winblend = 10 } })
+					require('which-key').setup({
+					    spelling = {
+					        enabled = true,
+					        suggestions = 20
+					    },
+					    window = { winblend = 10 }
+                    })
 				end,
 			})
 

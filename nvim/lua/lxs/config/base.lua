@@ -45,7 +45,7 @@ function M.setup()
 	-- Sets characters to display for invisible characters
 	opt.listchars = {
 		space = '⎯',
-		tab = '» ',
+		tab = '╾┈╼',
 		eol = '␤',
 		nbsp = '⎽',
 		extends = '↩',
@@ -62,7 +62,7 @@ function M.setup()
 	opt.mouse = 'a'
 
 	-- Set the chord timeout length to 100ms
-	opt.timeoutlen = 1000
+	opt.timeoutlen = 300
 	opt.ttimeoutlen = 100
 
 	-- Set wrapped lines to continue visual indentation
