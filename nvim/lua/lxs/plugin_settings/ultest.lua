@@ -7,13 +7,21 @@ local g = vim.g
 local M = {}
 
 local debug_config = function (cmd)
-    vim.pretty_print(cmd)
     local program = table.remove(cmd, 1)
+
+    local dap_program = ''
+    if string.match(program, '^/') then
+        dap_program = program
+    elseif string.match(program, '^%./') then
+        dap_program = string.gsub(program, '^%./', '${workspaceFolder}/')
+    else
+        dap_program = string.format('${workspaceFolder}/%s', program)
+    end
 
     return {
         dap = vim.tbl_extend('force', base_config, {
             name = 'Ultest debug',
-            program = program,
+            program = dap_program,
             args = cmd
         })
     }
