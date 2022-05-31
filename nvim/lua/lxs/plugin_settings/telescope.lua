@@ -1,6 +1,7 @@
 local Job = require('plenary.job')
 local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
+local actions = require('telescope.actions')
 local util = require('lspconfig.util')
 local wk = require('which-key')
 local tbl_extend = vim.tbl_extend
@@ -71,6 +72,11 @@ function M.setup()
 						end,
 					},
 				},
+			},
+			mappings = {
+			    n = {
+			        ['<Leader>q'] = actions.send_selected_to_qflist + actions.open_qflist
+			    }
 			},
 			prompt_prefix = '🔭 ➜ ',
 			scroll_strategy = 'cycle',
