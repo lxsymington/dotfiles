@@ -21,7 +21,7 @@ function M.setup()
 	opt.backspace = { 'indent', 'eol', 'start' }
 
 	-- Change the default leader ('\') character for custom mappings
-	g.mapleader = ','
+	g.mapleader = ' '
 
 	-- When a new horizontal split is opened it is opened below
 	opt.splitbelow = true
@@ -79,10 +79,14 @@ function M.setup()
 	opt.hidden = true
 
 	-- Enable auto-saving
+	opt.autowrite = true
 	opt.autowriteall = true
 
 	-- Enable auto-reading
 	opt.autoread = true
+
+    -- ask what to do about unsaved/read-only files
+    opt.confirm = true
 
 	-- Do not keep a backup file, use versions instead
 	opt.backup = false
@@ -122,6 +126,18 @@ function M.setup()
 
 	-- Insert tabs on the start of a line according to shiftwidth not tabstop
 	opt.smarttab = true
+
+    -- ignore case in search patterns
+    opt.ignorecase = true
+
+    -- adjust case of match for keyword completion
+    opt.infercase = true
+
+    -- pairs of characters that "%" can match
+    opt.matchpairs:append('<:>')
+
+    -- number formats recognized for CTRL-A command
+    opt.nrformats:append('unsigned')
 end
 
 return M
