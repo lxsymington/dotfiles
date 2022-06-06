@@ -1,7 +1,7 @@
 local ultest = require('ultest')
-local wk = require('which-key')
 local session_augroups = require('lxs.autocommands').session_augroups
 local base_config = require('lxs.plugin_settings.nvim_dap.configurations.base')
+local keymap = vim.keymap
 local api = vim.api
 local g = vim.g
 local M = {}
@@ -59,26 +59,14 @@ function M.setup()
 		{ pattern = '*', command = 'UltestNearest', group = ultest_group }
 	)
 
-	wk.register({
-		[']'] = {
-			name = 'Next',
-			t = {
-				'<Plug>(ultest-next-fail)',
-				'failing test',
-			},
-		},
-		['['] = {
-			name = 'Previous',
-			t = {
-				'<Plug>(ultest-prev-fail)',
-				'failing test',
-			},
-		},
-	}, {
-		mode = 'n',
-		noremap = true,
-		silent = true,
-	})
+    keymap.set('n', ']t', '<Plug>(ultest-next-fail)', {
+        desc = 'Next » Failing Test',
+        silent = true,
+    })
+    keymap.set('n', '[t', '<Plug>(ultest-prev-fail)', {
+        desc = 'Previous » Failing Test',
+        silent = true,
+    })
 end
 
 return M

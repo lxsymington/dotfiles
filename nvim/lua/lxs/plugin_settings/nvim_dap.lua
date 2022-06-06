@@ -1,6 +1,6 @@
 local dap = require('dap')
 local dap_virtual_text = require('nvim-dap-virtual-text')
-local wk = require('which-key')
+local keymap = vim.keymap
 local notify_utils = require('lxs.plugin_settings.notify').utilities
 local mochaConfigurator = require('lxs.plugin_settings.nvim_dap.configurations.mocha.configurator')
 local api = vim.api
@@ -61,36 +61,27 @@ function M.setup()
 	end
 
 	dap.listeners.after['event_initialized']['me'] = function()
-		for _, buf in pairs(api.nvim_list_bufs()) do
-			local keymaps = api.nvim_buf_get_keymap(buf, 'n')
+		for _, bufnr in pairs(api.nvim_list_bufs()) do
+			local keymaps = api.nvim_buf_get_keymap(bufnr, 'n')
 			for _, kmap in pairs(keymaps) do
 				if kmap.lhs == 'K' then
 					table.insert(keymap_restore, kmap)
-					api.nvim_buf_del_keymap(buf, 'n', 'K')
+					keymap.del('n', 'K', { buffer = bufnr })
 				end
 			end
 		end
 
-		wk.register({
-			K = {
-				'<Cmd>lua require("dap.ui.variables").hover()<CR>',
-				'DAP hover',
-			},
-		}, {
-			mode = 'n',
-			silent = true,
-		})
+        keymap.set('n', 'K', function ()
+            require("dap.ui.variables").hover()
+        end, { silent = true, desc = 'DAP » Hover' })
 	end
 
 	dap.listeners.after['event_terminated']['me'] = function()
 		for _, kmap in pairs(keymap_restore) do
-			api.nvim_buf_set_keymap(
-				kmap.buffer,
-				kmap.mode,
-				kmap.lhs,
-				kmap.rhs,
-				{ silent = kmap.silent == 1 }
-			)
+			keymap.set(kmap.mode, kmap.lhs, kmap.rhs, {
+			    buffer = kmap.buffer,
+			    silent = kmap.silent == 1,
+			})
 		end
 		keymap_restore = {}
 	end
@@ -165,52 +156,34 @@ function M.setup()
 	-- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json
 	vim.cmd([[command! DebugLoadLaunchJS lua require('dap.ext.vscode').load_launchjs()]])
 
+    keymap.set('n', '<Leader>D=', function ()
+        require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+    end, { desc = 'DAP » Toggle Log Point', silent = true })
+    keymap.set('n', '<Leader>D?', function ()
+        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+    end, { desc = 'DAP » Toggle Conditional Breakpoint', silent = true })
+    keymap.set('n', '<Leader>Db', function ()
+        require("dap").toggle_breakpoint()
+    end, { desc = 'DAP » Toggle Breakpoint', silent = true })
+    keymap.set('n', '<Leader>Dc', function ()
+        require("dap").continue()
+    end, { desc = 'DAP » Launch/Continue', silent = true })
+    keymap.set('n', '<Leader>Di', function ()
+        require("dap").step_into()
+    end, { desc = 'DAP » Step Into', silent = true })
+    keymap.set('n', '<Leader>Dl', function ()
+        require("dap").run_last()
+    end, { desc = 'DAP » Re-run Last Session', silent = true })
+    keymap.set('n', '<Leader>Do', function ()
+        require("dap").step_out()
+    end, { desc = 'DAP » Step Out', silent = true })
+    keymap.set('n', '<Leader>Dr', function ()
+        require("dap").repl.open()
+    end, { desc = 'DAP » Open REPL', silent = true })
+    keymap.set('n', '<Leader>Ds', function ()
+        require("dap").step_over({})
+    end, { desc = 'DAP » Step Over', silent = true })
 	-- Set up mappings for `nvim-dap`
-	wk.register({
-		['<Leader>D'] = {
-			name = 'DAP',
-			['='] = {
-				'<Cmd>:lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
-				'toggle log point',
-			},
-			['?'] = {
-				'<Cmd>:lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
-				'toggle conditional breakpoint',
-			},
-			b = {
-				'<Cmd>:lua require("dap").toggle_breakpoint()<CR>',
-				'toggle breakpoint',
-			},
-			c = {
-				'<Cmd>:lua require("dap").continue()<CR>',
-				'launch/continue',
-			},
-			i = {
-				'<Cmd>:lua require("dap").step_into()<CR>',
-				'step into',
-			},
-			l = {
-				'<Cmd>:lua require("dap").run_last()<CR>',
-				're-run last session',
-			},
-			o = {
-				'<Cmd>:lua require("dap").step_out()<CR>',
-				'step out',
-			},
-			r = {
-				'<Cmd>:lua require("dap").repl.open()<CR>',
-				'open REPL',
-			},
-			s = {
-				'<Cmd>:lua require("dap").step_over()<CR>',
-				'step over',
-			},
-		},
-	}, {
-		mode = 'n',
-		noremap = true,
-		silent = true,
-	})
 
 	-- Signs
 	vim.fn.sign_define('DapBreakpoint', { text = 'ﱏ', texthl = 'Normal' })

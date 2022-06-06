@@ -3,7 +3,7 @@ local themes = require('telescope.themes')
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local util = require('lspconfig.util')
-local wk = require('which-key')
+local keymap = vim.keymap
 local tbl_extend = vim.tbl_extend
 
 local M = {}
@@ -105,103 +105,69 @@ function M.setup()
 	pcall(require('telescope').load_extension, 'fzf')
 	pcall(require('telescope').load_extension, 'file_browser')
 
-	wk.register({
-		['<Leader>'] = {
-			b = {
-				name = 'Buffers',
-				f = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").buffers()<CR>',
-					'Find',
-				},
-				['/'] = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").curbuf()<CR>',
-				},
-			},
-			g = {
-				name = 'Telescope Git',
-				b = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").git_branches()<CR>',
-					'Branches',
-				},
-				f = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").git_files()<CR>',
-					'Files',
-				},
-				s = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").git_status()<CR>',
-					'Status',
-				},
-			},
-			hz = {
-				'<Cmd>:lua require("lxs.plugin_settings.telescope").frecency()<CR>',
-				'Telescope frecency',
-			},
-			l = {
-				name = 'Telescope LSP',
-				d = {
-					name = 'Diagnostics',
-					d = {
-						'<Cmd>:lua require("lxs.plugin_settings.telescope").lsp_document_diagnostics()<CR>',
-						'Document',
-					},
-					w = {
-						'<Cmd>:lua require("lxs.plugin_settings.telescope").lsp_workspace_diagnostics()<CR>',
-						'Workspace',
-					},
-				},
-				r = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").lsp_references()<CR>',
-					'References',
-				},
-				s = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").lsp_dynamic_workspace_symbols()<CR>',
-					'Symbols',
-				},
-			},
-			p = {
-				name = 'Telescope Project',
-				s = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").project_search()<CR>',
-					'Search',
-				},
-				f = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").fd()<CR>',
-					'`fd` find',
-				},
-			},
-			v = {
-				name = 'Telescope Vim',
-				h = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").help_tags()<CR>',
-					'Help tags',
-				},
-				m = {
-					'<Cmd>:lua require("lxs.plugin_settings.telescope").marks()<CR>',
-					'Marks',
-				},
-			},
-			['/'] = {
-				'<Cmd>:lua require("lxs.plugin_settings.telescope").live_grep()<CR>',
-				'Telescope live grep',
-			},
-			[';'] = {
-				'<Cmd>:lua require("lxs.plugin_settings.telescope").symbols()<CR>',
-				'Telescope font symbols',
-			},
-			['<Leader>'] = {
-				'<Cmd>:lua require("lxs.plugin_settings.telescope").local_file_browser()<CR>',
-				'Telescope local file browser',
-			},
-			['<Tab>'] = {
-				'<Cmd>:lua require("lxs.plugin_settings.telescope").file_browser()<CR>',
-				'Telescope file browser',
-			},
-		},
-	}, {
-		mode = 'n',
-		noremap = true,
-		silent = true,
-	})
+    keymap.set('n', '<Leader>bf', function ()
+        require("lxs.plugin_settings.telescope").buffers()
+    end, { silent = true, desc = 'Telescope Buffers » Find Buffer'})
+    keymap.set('n', '<Leader>b/', function ()
+        require("lxs.plugin_settings.telescope").curbuf()
+    end, { silent = true, desc = 'Telescope Buffers » Find in Current Buffer'})
+    keymap.set('n', '<Leader>gb', function ()
+        require("lxs.plugin_settings.telescope").git_branches()
+    end, { silent = true, desc = 'Telescope Git » Find Branch'})
+    keymap.set('n', '<Leader>gf', function ()
+        require("lxs.plugin_settings.telescope").git_files()
+    end, { silent = true, desc = 'Telescope Git » Find File'})
+    keymap.set('n', '<Leader>gs', function ()
+        require("lxs.plugin_settings.telescope").git_status()
+    end, { silent = true, desc = 'Telescope Git » Find Changed File'})
+    keymap.set('n', '<Leader>hz', function ()
+        require("lxs.plugin_settings.telescope").frecency()
+    end, { silent = true, desc = 'Telescope Frecency'})
+    keymap.set('n', '<Leader>ldd', function ()
+        require("lxs.plugin_settings.telescope").lsp_document_diagnostics()
+    end, { silent = true, desc = 'Telescope LSP » Diagnostics » Document'})
+    keymap.set('n', '<Leader>ldw', function ()
+        require("lxs.plugin_settings.telescope").lsp_workspace_diagnostics()
+    end, { silent = true, desc = 'Telescope LSP » Diagnostics » Workspace'})
+    keymap.set('n', '<Leader>lr', function ()
+        require("lxs.plugin_settings.telescope").lsp_references()
+    end, { silent = true, desc = 'Telescope LSP » References'})
+    keymap.set('n', '<Leader>lr', function ()
+        require("lxs.plugin_settings.telescope").lsp_references()
+    end, { silent = true, desc = 'Telescope LSP » References'})
+    keymap.set('n', '<Leader>lsd', function ()
+        require("lxs.plugin_settings.telescope").lsp_document_symbols()
+    end, { silent = true, desc = 'Telescope LSP » Symbols » Document'})
+    keymap.set('n', '<Leader>lsw', function ()
+        require("lxs.plugin_settings.telescope").lsp_dynamic_workspace_symbols()
+    end, { silent = true, desc = 'Telescope LSP » Symbols » Workspace'})
+    keymap.set('n', '<Leader>ps', function ()
+        require("lxs.plugin_settings.telescope").project_search()
+    end, { silent = true, desc = 'Telescope Project » Search'})
+    keymap.set('n', '<Leader>pf', function ()
+        require("lxs.plugin_settings.telescope").fd()
+    end, { silent = true, desc = 'Telescope Project » `fd` Find'})
+    keymap.set('n', '<Leader>vh', function ()
+        require("lxs.plugin_settings.telescope").help_tags()
+    end, { silent = true, desc = 'Telescope Vim » Find Help Tags'})
+    keymap.set('n', '<Leader>vm', function ()
+        require("lxs.plugin_settings.telescope").marks()
+    end, { silent = true, desc = 'Telescope Vim » Find Marks'})
+    keymap.set('n', '<Leader>pf', function ()
+        require("lxs.plugin_settings.telescope").fd()
+    end, { silent = true, desc = 'Telescope Project » `fd` Find'})
+    keymap.set('n', '<Leader>/', function ()
+        require("lxs.plugin_settings.telescope").live_grep()
+    end, { silent = true, desc = 'Telescope » Live Grep'})
+    keymap.set('n', '<Leader>;', function ()
+        require("lxs.plugin_settings.telescope").symbols()
+    end, { silent = true, desc = 'Telescope » Find Symbols'})
+    keymap.set('n', '<Leader><Leader>', function ()
+        require("lxs.plugin_settings.telescope").local_file_browser()
+    end, { silent = true, desc = 'Telescope » Relative File Browser'})
+    keymap.set('n', '<Leader><Tab>', function ()
+        require("lxs.plugin_settings.telescope").file_browser()
+    end, { silent = true, desc = 'Telescope » Workspace File Browser'})
 end
 
 function M.curbuf()

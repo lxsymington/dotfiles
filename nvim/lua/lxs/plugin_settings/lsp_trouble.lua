@@ -1,21 +1,15 @@
 local trouble = require('trouble')
-local wk = require('which-key')
+local keymap = vim.keymap
 local M = {}
 
 -- TROUBLE -----------------------------
 function M.setup()
 	trouble.setup({})
 
-	wk.register({
-		['<Leader>lt'] = {
-			'<cmd>TroubleToggle<cr>',
-			'Toggle LSP Trouble',
-		},
-	}, {
-		mode = 'n',
-		silent = true,
-		noremap = true,
-	})
+    keymap.set('n', '<Leader>lt', '<cmd>TroubleToggle<cr>', {
+        desc = 'Toggle LSP Trouble',
+        silent = true,
+    })
 end
 
 return M

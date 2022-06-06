@@ -1,4 +1,4 @@
-local wk = require('which-key')
+local keymap = vim.keymap
 local M = {}
 
 -- Notify ------------------------------
@@ -90,16 +90,9 @@ M.utilities = {
 function M.setup()
 	vim.notify = require('notify')
 
-	wk.register({
-		['<Leader>N'] = {
-			'<Cmd>lua require("lxs.plugin_settings.notify").notifications()<CR>',
-			'Notifications',
-		},
-	}, {
-		mode = 'n',
-		noremap = true,
-		silent = true,
-	})
+    keymap.set('n', '<Leader>N', function ()
+        require("lxs.plugin_settings.notify").notifications()
+    end, { desc = 'Notifications', silent = true })
 end
 
 return M

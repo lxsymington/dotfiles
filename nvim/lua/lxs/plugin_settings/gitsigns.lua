@@ -1,5 +1,5 @@
 local gitsigns = require('gitsigns')
-local wk = require('which-key')
+local keymap = vim.keymap
 local M = {}
 
 -- GITSIGNS ----------------------------
@@ -28,126 +28,81 @@ function M.setup()
 			border = 'rounded',
 		},
 		on_attach = function(bufnr)
-			wk.register({
-				[']'] = {
-					name = 'Next',
-					c = {
-						'&diff ? "]c" : "<Cmd>Gitsigns next_hunk<CR>"',
-						'Git hunk',
-						expr = true,
-					},
-				},
-				['['] = {
-					name = 'Previous',
-					c = {
-						'&diff ? "[c" : "<Cmd>Gitsigns prev_hunk<CR>"',
-						'Git hunk',
-						expr = true,
-					},
-				},
-				['<Leader>'] = {
-					h = {
-						name = 'GitSigns',
-						s = {
-							'<Cmd>Gitsigns stage_hunk<CR>',
-							'Stage hunk',
-						},
-						r = {
-							'<Cmd>Gitsigns reset_hunk<CR>',
-							'Reset hunk',
-						},
-						S = {
-							'<Cmd>Gitsigns stage_buffer<CR>',
-							'Stage buffer',
-						},
-						u = {
-							'<Cmd>Gitsigns undo_stage_buffer<CR>',
-							'Undo stage buffer',
-						},
-						R = {
-							'<Cmd>Gitsigns reset_buffer<CR>',
-							'Reset buffer',
-						},
-						p = {
-							'<Cmd>Gitsigns preview_hunk<CR>',
-							'Preview hunk',
-						},
-						b = {
-							'<Cmd>lua require("gitsigns").blame_line({full=true})<CR>',
-							'Show full line blame',
-						},
-						d = {
-							'<Cmd>Gitsigns diffthis<CR>',
-							'Diff file',
-						},
-						D = {
-							'<Cmd>lua require"gitsigns".diffthis("~")<CR>',
-							'Diff project',
-						},
-					},
-					t = {
-						b = {
-							'<Cmd>Gitsigns toggle_current_line_blame<CR>',
-							'Toggle line blame',
-						},
-						d = {
-							'<Cmd>Gitsigns toggle_deleted<CR>',
-							'Toggle deleted',
-						},
-					},
-				},
-			}, {
-				mode = 'n',
-				buffer = bufnr,
-				silent = true,
-				noremap = true,
-			})
-			wk.register({
-				['<Leader>'] = {
-					h = {
-						name = 'GitSigns',
-						s = {
-							'<Cmd>Gitsigns stage_hunk<CR>',
-							'Stage hunk',
-						},
-						r = {
-							'<Cmd>Gitsigns reset_hunk<CR>',
-							'Reset hunk',
-						},
-					},
-				},
-			}, {
-				mode = 'v',
-				buffer = bufnr,
-				silent = true,
-				noremap = true,
-			})
-			wk.register({
-				i = {
-					h = {
-						':<C-U>Gitsigns select_hunk<CR>',
-						'GitSigns hunk',
-					},
-				},
-			}, {
-				mode = 'o',
-				buffer = bufnr,
-				silent = true,
-				noremap = true,
-			})
-			wk.register({
-				i = {
-					h = {
-						':<C-U>Gitsigns select_hunk<CR>',
-						'GitSigns hunk',
-					},
-				},
-			}, {
-				mode = 'x',
-				buffer = bufnr,
-				silent = true,
-				noremap = true,
-			})
+		    keymap.set('n', ']c', '&diff ? "]c" : "<Cmd>Gitsigns next_hunk<CR>"', {
+		        buffer = bufnr,
+		        desc = 'Next » Git Hunk',
+		        expr = true,
+		        silent = true,
+		    })
+		    keymap.set('n', '[c', '&diff ? "[c" : "<Cmd>Gitsigns prev_hunk<CR>"', {
+		        buffer = bufnr,
+		        desc = 'Previous » Git Hunk',
+		        expr = true,
+		        silent = true,
+		    })
+		    keymap.set({'n', 'v'}, '<Leader>hs', '<Cmd>Gitsigns stage_hunk<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Stage Hunk',
+		        silent = true,
+		    })
+		    keymap.set('n', '<Leader>hu', '<Cmd>Gitsigns undo_stage_hunk<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Undo Stage Hunk',
+		        silent = true,
+		    })
+		    keymap.set({'n', 'v'}, '<Leader>hr', '<Cmd>Gitsigns reset_hunk<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Reset Hunk',
+		        silent = true,
+		    })
+		    keymap.set('n', '<Leader>hp', '<Cmd>Gitsigns preview_hunk<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Preview Hunk',
+		        silent = true,
+		    })
+            keymap.set('n', '<Leader>hb', function ()
+                require("gitsigns").blame_line({full=true})
+            end, {
+                buffer = bufnr,
+                desc = 'GitSigns » Show full line blame',
+            })
+            keymap.set('n', '<Leader>hd', '<Cmd>Gitsigns diffthis<CR>', {
+                buffer = bufnr,
+                desc = 'GitSigns » Diff File',
+            })
+		    keymap.set('n', '<Leader>hS', '<Cmd>Gitsigns stage_buffer<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Stage Buffer',
+		        silent = true,
+		    })
+		    keymap.set('n', '<Leader>hU', '<Cmd>Gitsigns undo_stage_buffer<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Undo Stage Buffer',
+		        silent = true,
+		    })
+		    keymap.set('n', '<Leader>hR', '<Cmd>Gitsigns reset_buffer<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Stage Buffer',
+		        silent = true,
+		    })
+		    keymap.set('n', '<Leader>hD', function ()
+                require"gitsigns".diffthis("~")
+		    end, { silent = true, desc = 'GitSigns » Diff Project' })
+		    keymap.set('n', '<Leader>tb', '<Cmd>Gitsigns toggle_current_line_blame<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Toggle Line Blame',
+		        silent = true,
+		    })
+		    keymap.set('n', '<Leader>td', '<Cmd>Gitsigns toggle_deleted<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » Toggle Deleted',
+		        silent = true,
+		    })
+		    keymap.set({'o', 'x'}, 'ih', '<Cmd><C-U>Gitsigns select_hunk<CR>', {
+		        buffer = bufnr,
+		        desc = 'GitSigns » GitSigns Hunk',
+		        silent = true,
+		    })
 		end,
 	})
 end

@@ -48,10 +48,12 @@ function M.setup()
 				'folke/which-key.nvim',
 				config = function()
 					require('which-key').setup({
-					    spelling = {
-					        enabled = true,
-					        suggestions = 20
-					    },
+                        plugins = {
+                            spelling = {
+                                enabled = true,
+                                suggestions = 20
+                            },
+                        },
 					    window = { winblend = 10 }
                     })
 				end,

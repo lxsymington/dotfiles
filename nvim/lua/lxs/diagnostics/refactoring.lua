@@ -1,85 +1,34 @@
 local refactoring = require('refactoring')
-local wk = require('which-key')
+local keymap = vim.keymap
 local M = {}
 
 function M.setup()
 	refactoring.setup({})
 
-	wk.register({
-		['<Leader>'] = {
-			a = {
-				name = 'Analysis',
-				r = {
-					name = 'Refactor',
-					e = {
-						name = 'Extract',
-						f = {
-							[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
-							'Function',
-						},
-						F = {
-							[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
-							'Function to file',
-						},
-						v = {
-							[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
-							'Variable',
-						},
-					},
-					i = {
-						name = 'Inline',
-						v = {
-							[[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-							'Variable',
-						},
-					},
-					s = {
-						[[ <Cmd>lua require('refactoring').select_refactor()<CR>]],
-						'Select',
-					},
-				},
-			},
-		},
-	}, {
-		mode = 'v',
-		noremap = true,
-		silent = true,
-		expr = false,
-	})
-
-	wk.register({
-		['<Leader>'] = {
-			a = {
-				name = 'Analysis',
-				r = {
-					name = 'Refactor',
-					e = {
-						name = 'Extract',
-						b = {
-							[[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]],
-							'Block',
-						},
-						B = {
-							[[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]],
-							'Block to file',
-						},
-					},
-					i = {
-						name = 'Inline',
-						v = {
-							[[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-							'Variable',
-						},
-					},
-				},
-			},
-		},
-	}, {
-		mode = 'n',
-		noremap = true,
-		silent = true,
-		expr = false,
-	})
+    keymap.set('v', '<Leader>aref', function ()
+        require('refactoring').refactor('Extract Function')
+    end, { desc = 'Analysis » Refactor » Extract » Function', silent = true })
+    keymap.set('v', '<Leader>areF', function ()
+        require('refactoring').refactor('Extract Function To File')
+    end, { desc = 'Analysis » Refactor » Extract » Function To File', silent = true })
+    keymap.set('v', '<Leader>arev', function ()
+        require('refactoring').refactor('Extract Variable')
+    end, { desc = 'Analysis » Refactor » Extract » Variable', silent = true })
+    keymap.set('v', '<Leader>ariv', function ()
+        require('refactoring').refactor('Inline Variable')
+    end, { desc = 'Analysis » Refactor » Inline » Variable', silent = true })
+    keymap.set('v', '<Leader>ars', function ()
+        require('refactoring').select_refactor()
+    end, { desc = 'Analysis » Refactor » Select', silent = true })
+    keymap.set('n', '<Leader>areb', function ()
+        require('refactoring').refactor('Extract Block')
+    end, { desc = 'Analysis » Refactor » Extract » Block', silent = true })
+    keymap.set('n', '<Leader>areB', function ()
+        require('refactoring').refactor('Extract Block To File')
+    end, { desc = 'Analysis » Refactor » Extract » Block To File', silent = true })
+    keymap.set('n', '<Leader>ariv', function ()
+        require('refactoring').refactor('Inline Variable')
+    end, { desc = 'Analysis » Refactor » Inline » Variable', silent = true })
 end
 
 return M

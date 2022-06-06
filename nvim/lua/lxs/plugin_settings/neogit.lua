@@ -1,5 +1,5 @@
 local neogit = require('neogit')
-local wk = require('which-key')
+local keymap = vim.keymap
 local M = {}
 
 -- NEOGIT ------------------------------
@@ -16,15 +16,9 @@ function M.setup()
 		},
 	})
 
-	wk.register({
-		['<Leader>ng'] = {
-			'<cmd>Neogit<cr>',
-			'Launch Neogit',
-		},
-	}, {
-		mode = 'n',
-		silent = true,
-		noremap = true,
+	keymap.set('n', '<Leader>ng', '<cmd>Neogit<cr>', {
+	    desc = 'Launch Neogit',
+	    silent = true,
 	})
 end
 

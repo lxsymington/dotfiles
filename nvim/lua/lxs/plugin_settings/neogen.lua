@@ -1,5 +1,5 @@
 local neogen = require('neogen')
-local wk = require('which-key')
+local keymap = vim.keymap
 local M = {}
 
 -- NEOGEN ------------------------------
@@ -10,33 +10,15 @@ function M.setup()
 		snippet_engine = 'luasnip',
 	})
 
-	wk.register({
-		['['] = {
-			a = {
-				'<Cmd>lua require("neogen").jump_prev()<CR>',
-				'Previous annotation',
-			},
-		},
-		[']'] = {
-			a = {
-				'<Cmd>lua require("neogen").jump_next()<CR>',
-				'Next annotation',
-			},
-		},
-		['<Leader>'] = {
-			a = {
-				name = 'Annotate',
-				d = {
-					'<cmd>lua require("neogen").generate()<CR>',
-					'Documentation',
-				},
-			},
-		},
-	}, {
-		mode = 'n',
-		silent = true,
-		noremap = true,
-	})
+    keymap.set('n', ']a', function ()
+        require("neogen").jump_next()
+    end, { desc = 'Next » Annotation', silent = true })
+    keymap.set('n', '[a', function ()
+        require("neogen").jump_prev()
+    end, { desc = 'Previous » Annotation', silent = true })
+    keymap.set('n', '<Leader>ad', function ()
+        require("neogen").generate({})
+    end, { desc = 'Annotate » Documentation' })
 end
 
 return M
