@@ -1,5 +1,6 @@
 local dap = require('dap')
 local dap_virtual_text = require('nvim-dap-virtual-text')
+local dapui = require('dapui')
 local keymap = vim.keymap
 local notify_utils = require('lxs.plugin_settings.notify').utilities
 local mochaConfigurator = require('lxs.plugin_settings.nvim_dap.configurations.mocha.configurator')
@@ -87,6 +88,18 @@ function M.setup()
 			})
 		end
 		keymap_restore = {}
+	end
+
+	dap.listeners.before['event_stopped']['dapui'] = function()
+		dapui.open()
+	end
+
+	dap.listeners.before['event_terminated']['dapui'] = function()
+		dapui.close()
+	end
+
+	dap.listeners.before['event_exited']['dapui'] = function()
+		dapui.close()
 	end
 
 	-- Node debugger

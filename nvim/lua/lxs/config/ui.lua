@@ -72,8 +72,8 @@ function M.setup()
 	opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
     -- stylua: ignore
-	-- Match the indent for the fold display
-	opt.foldtext = 'v:lua.require(\"lxs.utils\").foldtext()'
+    -- Match the indent for the fold display
+    opt.foldtext = 'v:lua.require(\"lxs.utils\").foldtext()'
 
 	-- Set maximum nesting of folds
 	opt.foldnestmax = 20

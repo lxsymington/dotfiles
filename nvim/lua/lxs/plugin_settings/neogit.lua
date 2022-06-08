@@ -5,6 +5,7 @@ local M = {}
 -- NEOGIT ------------------------------
 function M.setup()
 	neogit.setup({
+		disable_builtin_notifications = true,
 		signs = {
 			-- { CLOSED, OPENED }
 			section = { '▶', '▼' },

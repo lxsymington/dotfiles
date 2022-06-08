@@ -58,7 +58,10 @@
    + [X] Install [[https://github.com/kristijanhusak/orgmode.nvim/tree/tree-sitter][Orgmode.nvim]]
    + [X] Set up the [[https://github.com/milisims/tree-sitter-org][tree-sitter grammar]]
    + [X] Correctly configure it
+   + [X] conceal for links
+   + [ ] conceal for checkboxes
    + [ ] Figure out how to integrate sniprun with the codeblocks
+     - see [[https://github.com/nvim-orgmode/orgmode/discussions/73][this discussion]] for more
    + [ ] Consider setting up [[https://github.com/kristijanhusak/orgmode.nvim/blob/tree-sitter/DOCS.md#notifications-experimental][notifications]]
    + [ ] ~Possibly use Neorg instead~
 ** BLOCKED DenoLS :Plugins:
@@ -75,7 +78,6 @@
 ** TODO Look into [[https://github.com/NTBBloodbath/rest.nvim][rest.nvim]] :Plugins:
 ** TODO Trial [[https://github.com/jbyuki/venn.nvim][venn.nvim]] for documentation
 ** PLANNING Org formatter and linter? Possibly via `formatprg`
-** PLANNING Org conceal for links and checkboxes
 ** PLANNING Find out if [[https://github.com/mfussenegger/nvim-dap][nvim-dap]] supports pre-debug tasks
    + see [[https://github.com/mfussenegger/nvim-dap/issues/191#issuecomment-853751519][this comment]]
 ** PLANNING Sonarlint :Plugins: :Linting:
@@ -83,7 +85,7 @@
    + [ ] Check out the [[https://github.com/SonarSource/eslint-plugin-sonarjs][eslint rules]]
    + [ ] See what other people have attempted in [[https://community.sonarsource.com/t/running-sonarlint-language-server-from-shell/24440/2][this thread]]
 ** PLANNING Test-runner
-   + [ ] Lua version of vim-test using tree-sitter to identify test cases/suites 🤯
+   + [ ] Test out [[https://github.com/rcarriga/neotest][neotest]]
 
 * Tmux todolist
 ** DONE Simplify the Statusline

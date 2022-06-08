@@ -82,6 +82,7 @@ function M.setup()
 			use({
 				'williamboman/nvim-lsp-installer',
 				requires = {
+					'nvim-lua/plenary.nvim',
 					'rcarriga/nvim-notify',
 					'neovim/nvim-lspconfig',
 					'nvim-lua/lsp_extensions.nvim',
@@ -90,7 +91,6 @@ function M.setup()
 					'hrsh7th/cmp-nvim-lsp',
 					'lukas-reineke/lsp-format.nvim',
 				},
-				wants = { 'plenary.nvim', 'cmp-nvim-lsp' },
 				config = function()
 					require('lxs.lsp').setup()
 				end,
@@ -177,6 +177,7 @@ function M.setup()
 							require('org-bullets').setup({})
 						end,
 					},
+					'michaelb/sniprun',
 				},
 				config = function()
 					require('lxs.plugin_settings.orgmode').setup()
@@ -202,9 +203,6 @@ function M.setup()
 					'saadparwaiz1/cmp_luasnip',
 					'onsails/lspkind-nvim',
 				},
-				wants = {
-					'cmp-nvim-lsp',
-				},
 				config = function()
 					require('lxs.plugin_settings.cmp').setup()
 				end,
@@ -213,7 +211,7 @@ function M.setup()
 			-- LSP workspace diagnostics
 			use({
 				'folke/lsp-trouble.nvim',
-				wants = { 'nvim-web-devicons' },
+				requires = { 'kyazdani42/nvim-web-devicons' },
 				config = function()
 					require('lxs.plugin_settings.lsp_trouble').setup()
 				end,
@@ -265,12 +263,10 @@ function M.setup()
 			-- Search
 			use({
 				'nvim-telescope/telescope.nvim',
-				wants = {
-					'popup.nvim',
-					'plenary.nvim',
-					'nvim-lspconfig',
-				},
 				requires = {
+					'nvim-lua/popup.nvim',
+					'nvim-lua/plenary.nvim',
+					'neovim/nvim-lspconfig',
 					'tami5/sqlite.lua',
 					'nvim-telescope/telescope-symbols.nvim',
 					'nvim-telescope/telescope-frecency.nvim',
@@ -339,7 +335,7 @@ function M.setup()
 			})
 			use({
 				'lewis6991/gitsigns.nvim',
-				wants = { 'plenary.nvim' },
+				requires = { 'nvim-lua/plenary.nvim' },
 				config = function()
 					require('lxs.plugin_settings.gitsigns').setup()
 				end,
@@ -348,10 +344,10 @@ function M.setup()
 			-- Statusline
 			use({
 				'feline-nvim/feline.nvim',
-				wants = {
-					'nvim-lspconfig',
-					'nvim-web-devicons',
-					'gitsigns.nvim',
+				requires = {
+					'neovim/nvim-lspconfig',
+					'kyazdani42/nvim-web-devicons',
+					'lewis6991/gitsigns.nvim',
 				},
 				config = function()
 					require('lxs.plugin_settings.feline').setup()
@@ -375,7 +371,6 @@ function M.setup()
 					{
 						'nvim-telescope/telescope-dap.nvim',
 						requires = { 'nvim-telescope/telescope.nvim' },
-						wants = { 'telescope.nvim' },
 						config = function()
 							require('lxs.plugin_settings.nvim_dap.telescope_integration').setup()
 						end,
@@ -387,7 +382,6 @@ function M.setup()
 						end,
 					},
 				},
-				-- wants = { 'nvim-dap-virtual-text', 'telescope-dap.nvim', 'nvim-dap-ui' },
 				-- opt = true,
 				--[[ keys = {
 					{ 'n', '<Leader>D=' },
@@ -431,7 +425,7 @@ function M.setup()
 			-- Documenting
 			use({
 				'danymat/neogen',
-				wants = { 'nvim-treesitter' },
+				requires = { 'nvim-treesitter/nvim-treesitter' },
 				config = function()
 					require('lxs.plugin_settings.neogen').setup()
 				end,
@@ -464,7 +458,7 @@ function M.setup()
 			-- Github
 			use({
 				'pwntester/octo.nvim',
-				wants = { 'telescope.nvim' },
+				requires = { 'nvim-telescope/telescope.nvim' },
 				opt = true,
 				cmd = { 'Octo' },
 				config = function()
@@ -476,7 +470,7 @@ function M.setup()
 			use('stevearc/dressing.nvim')
 			use({
 				'folke/todo-comments.nvim',
-				wants = { 'plenary.nvim' },
+				requires = { 'nvim-lua/plenary.nvim' },
 				config = function()
 					require('todo-comments').setup()
 				end,

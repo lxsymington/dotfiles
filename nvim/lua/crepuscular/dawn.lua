@@ -105,6 +105,7 @@ local theme = lush.merge({
 			TSTypeBuiltin({ Typedef }),
 			TSText({ String }),
 			TSLiteral({ String }),
+
 			DiagnosticVirtualTextError({
 				bg = colours.lightRed.saturation(36).lightness(88),
 				fg = colours.lightRed.saturation(60).lightness(48),
@@ -125,23 +126,36 @@ local theme = lush.merge({
 				fg = colours.lightGreen.saturation(60).lightness(48),
 				gui = 'nocombine,italic',
 			}),
+
 			GitSignsAddSign({ SignColumn, fg = colours.lightGreen, gui = 'nocombine' }),
 			GitSignsChangeSign({ SignColumn, fg = colours.lightBlue, gui = 'nocombine' }),
 			GitSignsDeleteSign({ SignColumn, fg = colours.lightRed, gui = 'nocombine' }),
 			GitSignsAddNr({ LineNr, fg = colours.lightGreen, gui = 'nocombine' }),
 			GitSignsChangeNr({ LineNr, fg = colours.lightBlue, gui = 'nocombine' }),
 			GitSignsDeleteNr({ LineNr, fg = colours.lightRed, gui = 'nocombine' }),
+
 			CmpItemAbbr({ fg = colours.lightBlack, gui = 'nocombine' }),
 			CmpItemAbbrDeprecated({ fg = colours.grey, gui = 'nocombine,strikethrough' }),
 			CmpItemAbbrMatch({ fg = colours.purple, gui = 'nocombine,bold' }),
 			CmpItemAbbrMatchFuzzy({ fg = colours.lightPurple, gui = 'nocombine,bold' }),
 			CmpItemKind({ fg = colours.lightBlue }),
 			CmpItemMenu({ Comment }),
+
 			NotifyDEBUGBody({ Normal }),
 			NotifyERRORBody({ Normal }),
 			NotifyINFOBody({ Normal }),
 			NotifyTRACEBody({ Normal }),
 			NotifyWARNBody({ Normal }),
+
+			NeogitDiffAddHighlight({ DiffAdd }),
+			NeogitDiffDeleteHighlight({ DiffDelete }),
+			NeogitDiffContextHighlight({ DiffChange }),
+			NeogitHunkHeader({
+				fg = colours.lightPurple,
+				bg = colours.black.mix(colours.yellow, 25),
+				gui = 'nocombine',
+			}),
+			NeogitHunkHeaderHighlight({ NeogitHunkHeader, gui = 'nocombine,underline,bold' }),
 		}
 	end),
 })

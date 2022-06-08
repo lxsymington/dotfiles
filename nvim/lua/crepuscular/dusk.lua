@@ -140,11 +140,22 @@ local theme = lush.merge({
 			CmpItemAbbrMatchFuzzy({ fg = colours.lightOrange, gui = 'nocombine,bold' }),
 			CmpItemKind({ fg = colours.lightBlue }),
 			CmpItemMenu({ Comment }),
+
 			NotifyDEBUGBody({ Normal }),
 			NotifyERRORBody({ Normal }),
 			NotifyINFOBody({ Normal }),
 			NotifyTRACEBody({ Normal }),
 			NotifyWARNBody({ Normal }),
+
+			NeogitDiffAddHighlight({ DiffAdd }),
+			NeogitDiffDeleteHighlight({ DiffDelete }),
+			NeogitDiffContextHighlight({ DiffChange }),
+			NeogitHunkHeader({
+				fg = colours.lightPurple,
+				bg = colours.black.mix(colours.yellow, 25),
+				gui = 'nocombine',
+			}),
+			NeogitHunkHeaderHighlight({ NeogitHunkHeader, gui = 'nocombine,underline,bold' }),
 		}
 	end),
 })
