@@ -71,16 +71,19 @@ function M.setup()
 			end
 		end
 
-        keymap.set('n', 'K', function ()
-            require("dap.ui.variables").hover()
-        end, { silent = true, desc = 'DAP » Hover' })
+		keymap.set('n', 'K', function()
+			require('dap.ui.variables').hover()
+		end, {
+			silent = true,
+			desc = 'DAP » Hover',
+		})
 	end
 
 	dap.listeners.after['event_terminated']['me'] = function()
 		for _, kmap in pairs(keymap_restore) do
 			keymap.set(kmap.mode, kmap.lhs, kmap.rhs, {
-			    buffer = kmap.buffer,
-			    silent = kmap.silent == 1,
+				buffer = kmap.buffer,
+				silent = kmap.silent == 1,
 			})
 		end
 		keymap_restore = {}
@@ -156,33 +159,60 @@ function M.setup()
 	-- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json
 	vim.cmd([[command! DebugLoadLaunchJS lua require('dap.ext.vscode').load_launchjs()]])
 
-    keymap.set('n', '<Leader>D=', function ()
-        require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-    end, { desc = 'DAP » Toggle Log Point', silent = true })
-    keymap.set('n', '<Leader>D?', function ()
-        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-    end, { desc = 'DAP » Toggle Conditional Breakpoint', silent = true })
-    keymap.set('n', '<Leader>Db', function ()
-        require("dap").toggle_breakpoint()
-    end, { desc = 'DAP » Toggle Breakpoint', silent = true })
-    keymap.set('n', '<Leader>Dc', function ()
-        require("dap").continue()
-    end, { desc = 'DAP » Launch/Continue', silent = true })
-    keymap.set('n', '<Leader>Di', function ()
-        require("dap").step_into()
-    end, { desc = 'DAP » Step Into', silent = true })
-    keymap.set('n', '<Leader>Dl', function ()
-        require("dap").run_last()
-    end, { desc = 'DAP » Re-run Last Session', silent = true })
-    keymap.set('n', '<Leader>Do', function ()
-        require("dap").step_out()
-    end, { desc = 'DAP » Step Out', silent = true })
-    keymap.set('n', '<Leader>Dr', function ()
-        require("dap").repl.open()
-    end, { desc = 'DAP » Open REPL', silent = true })
-    keymap.set('n', '<Leader>Ds', function ()
-        require("dap").step_over({})
-    end, { desc = 'DAP » Step Over', silent = true })
+	keymap.set('n', '<Leader>D=', function()
+		require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+	end, {
+		desc = 'DAP » Toggle Log Point',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>D?', function()
+		require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+	end, {
+		desc = 'DAP » Toggle Conditional Breakpoint',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Db', function()
+		require('dap').toggle_breakpoint()
+	end, {
+		desc = 'DAP » Toggle Breakpoint',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Dc', function()
+		require('dap').continue()
+	end, {
+		desc = 'DAP » Launch/Continue',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Di', function()
+		require('dap').step_into()
+	end, {
+		desc = 'DAP » Step Into',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Dl', function()
+		require('dap').run_last()
+	end, {
+		desc = 'DAP » Re-run Last Session',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Do', function()
+		require('dap').step_out()
+	end, {
+		desc = 'DAP » Step Out',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Dr', function()
+		require('dap').repl.open()
+	end, {
+		desc = 'DAP » Open REPL',
+		silent = true,
+	})
+	keymap.set('n', '<Leader>Ds', function()
+		require('dap').step_over({})
+	end, {
+		desc = 'DAP » Step Over',
+		silent = true,
+	})
 	-- Set up mappings for `nvim-dap`
 
 	-- Signs

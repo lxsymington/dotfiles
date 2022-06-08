@@ -17,8 +17,8 @@ function M.setup()
 	})
 
 	keymap.set('n', '<Leader>ng', '<cmd>Neogit<cr>', {
-	    desc = 'Launch Neogit',
-	    silent = true,
+		desc = 'Launch Neogit',
+		silent = true,
 	})
 end
 

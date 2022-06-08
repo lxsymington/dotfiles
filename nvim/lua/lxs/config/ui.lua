@@ -84,8 +84,8 @@ function M.setup()
 	-- Enable pseudo-transparency for popup menus
 	opt.pumblend = 10
 
-    -- minimum width of the popup menu
-    opt.pumwidth = 30
+	-- minimum width of the popup menu
+	opt.pumwidth = 30
 
 	-- Enable pseudo-transparency for floating windows
 	opt.winblend = 10
@@ -107,14 +107,20 @@ function M.setup()
 		eob = '∅', -- '~' empty lines at the end of a buffer
 	}
 
-    -- Use a global status bar
+	-- Use a global status bar
 	opt.laststatus = 3
 
-    -- let Vim set the text of the window icon
+	-- let Vim set the text of the window icon
 	opt.icon = true
 
-    -- string to use for the Vim icon text
-    opt.iconstring = ''
+	-- string to use for the Vim icon text
+	opt.iconstring = ''
+
+	-- whether concealable text is shown or hidden
+	opt.conceallevel = 2
+
+	-- whether concealable text is hidden in cursor line
+	opt.concealcursor = 'nc'
 
 	vim.diagnostic.config({
 		virtual_text = {

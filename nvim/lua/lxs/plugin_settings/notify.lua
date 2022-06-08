@@ -90,9 +90,12 @@ M.utilities = {
 function M.setup()
 	vim.notify = require('notify')
 
-    keymap.set('n', '<Leader>N', function ()
-        require("lxs.plugin_settings.notify").notifications()
-    end, { desc = 'Notifications', silent = true })
+	keymap.set('n', '<Leader>N', function()
+		require('lxs.plugin_settings.notify').notifications()
+	end, {
+		desc = 'Notifications',
+		silent = true,
+	})
 end
 
 return M

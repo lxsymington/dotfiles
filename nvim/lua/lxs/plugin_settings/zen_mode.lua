@@ -12,10 +12,10 @@ function M.setup()
 		},
 	})
 
-    keymap.set('n', '<Leader>zm', '<cmd>ZenMode<cr>', {
-        desc = 'Zen Mode » Toggle',
-        silent = true
-    })
+	keymap.set('n', '<Leader>zm', '<cmd>ZenMode<cr>', {
+		desc = 'Zen Mode » Toggle',
+		silent = true,
+	})
 end
 
 return M

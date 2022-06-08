@@ -6,10 +6,10 @@ local M = {}
 function M.setup()
 	trouble.setup({})
 
-    keymap.set('n', '<Leader>lt', '<cmd>TroubleToggle<cr>', {
-        desc = 'Toggle LSP Trouble',
-        silent = true,
-    })
+	keymap.set('n', '<Leader>lt', '<cmd>TroubleToggle<cr>', {
+		desc = 'Toggle LSP Trouble',
+		silent = true,
+	})
 end
 
 return M

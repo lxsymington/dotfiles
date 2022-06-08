@@ -50,6 +50,7 @@ function M.setup()
 		nbsp = '⎽',
 		extends = '↩',
 		precedes = '↪',
+		conceal = '⎀',
 	}
 
 	-- Sets ambiguous width characters to be double width
@@ -85,8 +86,8 @@ function M.setup()
 	-- Enable auto-reading
 	opt.autoread = true
 
-    -- ask what to do about unsaved/read-only files
-    opt.confirm = true
+	-- ask what to do about unsaved/read-only files
+	opt.confirm = true
 
 	-- Do not keep a backup file, use versions instead
 	opt.backup = false
@@ -127,17 +128,17 @@ function M.setup()
 	-- Insert tabs on the start of a line according to shiftwidth not tabstop
 	opt.smarttab = true
 
-    -- ignore case in search patterns
-    opt.ignorecase = true
+	-- ignore case in search patterns
+	opt.ignorecase = true
 
-    -- adjust case of match for keyword completion
-    opt.infercase = true
+	-- adjust case of match for keyword completion
+	opt.infercase = true
 
-    -- pairs of characters that "%" can match
-    opt.matchpairs:append('<:>')
+	-- pairs of characters that "%" can match
+	opt.matchpairs:append('<:>')
 
-    -- number formats recognized for CTRL-A command
-    opt.nrformats:append('unsigned')
+	-- number formats recognized for CTRL-A command
+	opt.nrformats:append('unsigned')
 end
 
 return M

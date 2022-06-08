@@ -6,25 +6,25 @@ local api = vim.api
 local g = vim.g
 local M = {}
 
-local debug_config = function (cmd)
-    local program = table.remove(cmd, 1)
+local debug_config = function(cmd)
+	local program = table.remove(cmd, 1)
 
-    local dap_program = ''
-    if string.match(program, '^/') then
-        dap_program = program
-    elseif string.match(program, '^%./') then
-        dap_program = string.gsub(program, '^%./', '${workspaceFolder}/')
-    else
-        dap_program = string.format('${workspaceFolder}/%s', program)
-    end
+	local dap_program = ''
+	if string.match(program, '^/') then
+		dap_program = program
+	elseif string.match(program, '^%./') then
+		dap_program = string.gsub(program, '^%./', '${workspaceFolder}/')
+	else
+		dap_program = string.format('${workspaceFolder}/%s', program)
+	end
 
-    return {
-        dap = vim.tbl_extend('force', base_config, {
-            name = 'Ultest debug',
-            program = dap_program,
-            args = cmd
-        })
-    }
+	return {
+		dap = vim.tbl_extend('force', base_config, {
+			name = 'Ultest debug',
+			program = dap_program,
+			args = cmd,
+		}),
+	}
 end
 
 -- Ultest ------------------------------
@@ -59,14 +59,14 @@ function M.setup()
 		{ pattern = '*', command = 'UltestNearest', group = ultest_group }
 	)
 
-    keymap.set('n', ']t', '<Plug>(ultest-next-fail)', {
-        desc = 'Next » Failing Test',
-        silent = true,
-    })
-    keymap.set('n', '[t', '<Plug>(ultest-prev-fail)', {
-        desc = 'Previous » Failing Test',
-        silent = true,
-    })
+	keymap.set('n', ']t', '<Plug>(ultest-next-fail)', {
+		desc = 'Next » Failing Test',
+		silent = true,
+	})
+	keymap.set('n', '[t', '<Plug>(ultest-prev-fail)', {
+		desc = 'Previous » Failing Test',
+		silent = true,
+	})
 end
 
 return M

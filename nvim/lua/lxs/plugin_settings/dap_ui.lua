@@ -21,9 +21,12 @@ function M.setup()
 		},
 	})
 
-    keymap.set('n', '<Leader>D', function ()
-        require("dapui").toggle({})
-    end, { silent = true, desc = 'DAP » toggle UI'})
+	keymap.set('n', '<Leader>D', function()
+		require('dapui').toggle({})
+	end, {
+		silent = true,
+		desc = 'DAP » toggle UI',
+	})
 end
 
 return M
