@@ -18,8 +18,8 @@ function M.setup()
 		sm = 'block-blinkwait175-blinkoff150-blinkon175',
 	}
 
-	-- Sets the background to be dark
-	opt.background = 'dark'
+	-- Sets the background to be light
+	opt.background = 'light'
 
 	-- Sets the colorscheme to be Crepuscular
 	g.colors_name = 'crepuscular'

@@ -82,3 +82,5 @@
 	line-numbers-right-style = black
 	line-numbers-minus-style = 124
 	line-numbers-plus-style = 28
+[safe]
+	directory = /Users/lukexaviersymington/Tools/neovim

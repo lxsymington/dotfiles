@@ -462,7 +462,12 @@ function M.setup()
 				opt = true,
 				cmd = { 'Octo' },
 				config = function()
-					require('octo').setup()
+					require('octo').setup({
+					    ssh_aliases = {
+					        Seccl = 'github.com',
+					        Personal = 'github.com',
+					    }
+					})
 				end,
 			})
 
