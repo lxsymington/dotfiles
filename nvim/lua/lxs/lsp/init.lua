@@ -57,6 +57,7 @@ local server_opts = {
 			settings = {
 				json = {
 					schemas = require('schemastore').json.schemas(),
+					validate = { enable = true },
 				},
 			},
 		}, default_opts)
@@ -85,7 +86,13 @@ local server_opts = {
 		return default_opts
 	end,
 	['yamlls'] = function()
-		return default_opts
+		return tbl_extend('keep', {
+	        yaml = {
+	            schemaStore = {
+	                enable = true
+	            }
+	        }
+        }, default_opts)
 	end,
 }
 
