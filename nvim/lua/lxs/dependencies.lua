@@ -414,8 +414,22 @@ function M.setup()
 
 			-- Testing
 			use({
+			    "nvim-neotest/neotest",
+			    requires = {
+			        "nvim-lua/plenary.nvim",
+			        "nvim-treesitter/nvim-treesitter",
+			        "antoinemadec/FixCursorHold.nvim",
+			        'vim-test/vim-test',
+			        'mfussenegger/nvim-dap',
+			        'nvim-neotest/neotest-vim-test'
+			    },
+			    config = function ()
+			        require('lxs.plugin_settings.neotest').setup()
+			    end
+			})
+			use({
 				'rcarriga/vim-ultest',
-				requires = { 'vim-test/vim-test', 'mfussenegger/nvim-dap' },
+				requires = {},
 				run = ':UpdateRemotePlugins',
 				config = function()
 					require('lxs.plugin_settings.ultest').setup()

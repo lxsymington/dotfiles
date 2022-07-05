@@ -67,6 +67,10 @@ local server_opts = {
 	end,
 	['sumneko_lua'] = function()
 		return luadev.setup({
+		    library = {
+		        plugins = { "neotest" },
+		        types = true
+		    },
 			lspconfig = tbl_extend('keep', {
 				root_dir = function(fname)
 					return util.find_git_ancestor(fname) or util.path.dirname(fname)
