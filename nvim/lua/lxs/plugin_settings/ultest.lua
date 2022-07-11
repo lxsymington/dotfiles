@@ -39,6 +39,7 @@ function M.setup()
 	g.ultest_pass_text = ''
 	g.ultest_fail_text = '﮻'
 	g.ultest_running_text = ''
+	g.ultest_deprecation_notice = 0
 
 	ultest.setup({
 		builders = {
