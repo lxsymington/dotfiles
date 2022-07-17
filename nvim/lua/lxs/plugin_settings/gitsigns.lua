@@ -91,12 +91,12 @@ function M.setup()
 				silent = true,
 				desc = 'GitSigns » Diff Project',
 			})
-			keymap.set('n', '<Leader>tb', '<Cmd>Gitsigns toggle_current_line_blame<CR>', {
+			keymap.set('n', '<Leader>htb', '<Cmd>Gitsigns toggle_current_line_blame<CR>', {
 				buffer = bufnr,
 				desc = 'GitSigns » Toggle Line Blame',
 				silent = true,
 			})
-			keymap.set('n', '<Leader>td', '<Cmd>Gitsigns toggle_deleted<CR>', {
+			keymap.set('n', '<Leader>htd', '<Cmd>Gitsigns toggle_deleted<CR>', {
 				buffer = bufnr,
 				desc = 'GitSigns » Toggle Deleted',
 				silent = true,
