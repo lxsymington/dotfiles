@@ -20,6 +20,8 @@ local server_opts = {
 	['denols'] = function()
 		return tbl_extend('keep', {
 			init_options = {
+			    enable = vim.fn.filereadable('deno.json') == vim.v.TRUE
+			        or vim.fn.filereadable('deno.jsonc') == vim.v.TRUE,
 				lint = true,
 			},
 			root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
