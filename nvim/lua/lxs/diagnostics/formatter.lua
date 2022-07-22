@@ -6,9 +6,9 @@ local M = {}
 
 local function select_config_file(config_files)
 	for _, config_file in ipairs(config_files) do
-		local fullPath = util.path.join(vim.loop.cwd, config_file)
+		local fullPath = util.path.join(vim.loop.cwd(), config_file)
 
-		if vim.fn.filereadable(config_file) then
+		if vim.fn.filereadable(config_file) == 1 then
 			return fullPath
 		end
 	end
@@ -16,7 +16,7 @@ end
 
 function M.prettier()
 	if not vim.loop.os_getenv('PRETTIERD_LOCAL_PRETTIER_ONLY') then
-		vim.loop.os_setenv('PRETTIERD_LOCAL_PRETTIER_ONLY', true)
+		vim.loop.os_setenv('PRETTIERD_LOCAL_PRETTIER_ONLY', 'true')
 	end
 
 	local config_files = {
@@ -35,6 +35,7 @@ function M.prettier()
 	local config = select_config_file(config_files)
 
 	if not (lsp_loaded and config) then
+        vim.loop.os_unsetenv('PRETTIERD_DEFAULT_CONFIG')
 		vim.cmd('FormatDisable')
 		return nil
 	end
@@ -58,7 +59,7 @@ function M.prettier()
 end
 
 function M.tslint()
-	if not vim.fn.filereadable('tslint.json') then
+	if not vim.fn.filereadable('tslint.json') == 1 then
 		return nil
 	end
 
@@ -66,6 +67,7 @@ function M.tslint()
 		exe = 'tslint',
 		args = { '-c', 'tslint.json', '--fix', '--force' },
 		try_node_modules = true,
+		stdin = false,
 	}
 end
 
@@ -89,11 +91,22 @@ function M.setup()
 			javascript = {
 				M.prettier,
 			},
+			javascriptreact = {
+				M.prettier,
+			},
 			json = {
 				M.prettier,
 			},
 			lua = {
 				M.stylua,
+			},
+			typescript = {
+				M.prettier,
+				M.tslint
+			},
+			typescriptreact = {
+				M.prettier,
+				M.tslint
 			},
 		},
 	})
