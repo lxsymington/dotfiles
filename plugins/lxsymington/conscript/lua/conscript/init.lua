@@ -29,6 +29,13 @@ M.regiments = {
 --  TODO: make it so that this only stores one set of scripts and can be easily cleared
 M.cache = {}
 
+--[[
+ TODO:
+ - locate a package.json in the `pwd` or ancestors
+    - check if there is some better way of doing this via the LSP
+ - parse the package.json to find any `scripts`
+ - if there are scripts load the rest of the plugin
+]]
 function M.scout()
     local conscript_augroup = vim.api.nvim_create_augroup('ConscriptScout', { clear = true })
 
@@ -70,43 +77,61 @@ function M.scout()
     M.cache = vim.tbl_extend('force', M.cache, package_json.scripts)
 end
 
-function M.exercises()
+function M.exercises(cmd)
     local script_names = vim.tbl_keys(M.cache)
 
-    vim.ui.select(script_names, {
-        prompt = 'Select a script to run',
-        format_item = function(item)
-            return string.format('%s | %s', item, M.cache[item])
-        end,
-    }, M.drill)
+    if #cmd.args < 1 then
+        vim.ui.select(script_names, {
+            prompt = 'Select a script to run',
+            format_item = function(item)
+                return string.format('%s | %s', item, M.cache[item])
+            end,
+        }, M.drill)
+    elseif vim.tbl_contains(vim.tbl_keys(M.cache), cmd.args) then
+        M.drill(cmd.args)
+    else
+        vim.notify(
+            string.format('script: %s does not match any found in package.json', cmd.args),
+            vim.log.levels.ERROR
+        )
+    end
 end
 
-function M.patrol(...)
-    vim.pretty_print(...)
-    --[[ {
-        buf = 7,
-        event = "BufEnter",
-        file = "/home/lxs/Development/secclint/src/filter.ts",
-        group = 65,
-        id = 46,
-        match = "/home/lxs/Development/secclint/src/filter.ts"
-    } ]]
-
-    -- vim.api.nvim_buf_get_commands(buffer: number, opts: table<string, any>)
-    -- vim.api.nvim_buf_create_user_command('Make',)
+function M.patrol(event)
+    vim.api.nvim_buf_create_user_command(event.buf, 'Make', M.exercises, {
+        complete = function()
+            return vim.tbl_keys(M.cache)
+        end,
+        desc = 'Asynchronous make',
+        nargs = '*'
+    })
 end
 
 function M.drill(script, idx)
-    Job
-        :new({
-            command = 'npm',
-            args = { 'run', script },
-            cwd = vim.loop.cwd(),
-            on_exit = function(...)
-                vim.pretty_print(...)
-            end,
-        })
-        :start()
+    vim.notify(
+        string.format('Running npm script: %s', script),
+        vim.log.levels.INFO
+    )
+    local job = Job:new({
+        command = 'npm',
+        args = { 'run', script },
+        cwd = vim.loop.cwd(),
+    })
+
+    job:start()
+    job:after_failure(function(...)
+        vim.pretty_print('failure', ...)
+        local stderr = job:stderr_result()
+        local result = job:result()
+        vim.pretty_print("results", stderr, result)
+        job:shutdown()
+    end)
+    job:after_success(function(...)
+        vim.pretty_print('success', ...)
+        local results = job:result()
+        vim.pretty_print("results", results)
+        job:shutdown()
+    end)
 end
 
 return M

@@ -250,7 +250,7 @@ function M.setup()
                 keys = { 'n', '<Leader>lt' },
             })
 
-            -- LSP file outline
+            -- LSP visual enhancements
             use({
                 'simrat39/symbols-outline.nvim',
                 config = function()
@@ -263,6 +263,12 @@ function M.setup()
                     'SymbolsOutlineClose',
                 },
                 keys = { 'n', '<Leader>so' },
+            })
+            use({
+                "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+                config = function()
+                    require("lxs.plugin_settings.lsp_lines").setup()
+                end,
             })
 
             -- Highlight colours

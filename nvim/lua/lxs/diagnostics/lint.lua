@@ -66,7 +66,7 @@ function M.setup()
 	}
 
 	local lint_group = session_augroups('Lint')
-	aucmd('BufWritePost', {
+	aucmd('InsertLeave', {
 		callback = function()
 			lint.try_lint()
 		end,
