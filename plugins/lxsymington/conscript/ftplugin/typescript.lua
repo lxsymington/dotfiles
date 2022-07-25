@@ -8,8 +8,8 @@ local M = {}
  - See https://www.reddit.com/r/vim/comments/ibo5e1/sharing_some_errorformats/
 ]]
 
-local typescript_error = [[%E%f\ %#(%l\\,%c):\ %trror\ TS%n:\ %m]]
-local typescript_warning = [[\%W%f\ %#(%l\\,%c):\ %tarning\ TS%n:\ %m]]
+local typescript_error = [[%+E\ %#%f(%l\\,%c):\ %terror\ TS%n:\ %m]]
+local typescript_warning = [[%+W\ %#%f(%l\\,%c):\ %twarning\ TS%n:\ %m]]
 
 function M.setup()
     vim.opt_local.makeprg = 'npm run'

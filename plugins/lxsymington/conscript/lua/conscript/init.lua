@@ -48,7 +48,6 @@ function M.scout()
     end
 
     vim.notify('Node project detected, Enrolling conscript 💂', vim.log.levels.INFO)
-
     vim.api.nvim_create_autocmd('BufEnter', {
         pattern = M.regiments,
         callback = M.patrol,
@@ -56,7 +55,6 @@ function M.scout()
     })
 
     local package_json_path = vim.loop.cwd() .. '/package.json'
-
     local package_json_handle = io.open(package_json_path, 'r')
 
     if not package_json_handle then
@@ -85,7 +83,7 @@ function M.exercises(cmd)
             format_item = function(item)
                 return string.format('%s | %s', item, M.cache[item])
             end,
-        }, function(selection, item_index)
+        }, function(selection)
             M.drill(selection, bufnr)
         end)
     elseif vim.tbl_contains(vim.tbl_keys(M.cache), cmd.args) then
@@ -116,6 +114,8 @@ function M.drill(script, bufnr)
 
     local efm = vim.api.nvim_buf_get_option(bufnr, 'errorformat')
 
+    vim.pretty_print(efm)
+
     local job = Job:new({
         command = 'npm',
         args = { 'run', script },
@@ -129,16 +129,14 @@ function M.drill(script, bufnr)
     end)
     local result = job:result()
     local stderr = job:stderr_result()
-    if #stderr then
-        vim.fn.setqflist({}, ' ', {
-            title = string.format('npm run', script),
-            lines = stderr,
-            efm = efm
-        })
-        vim.api.nvim_exec_autocmds('QuickFixCmdPost', {
-            buffer = bufnr,
-        })
-    end
+    vim.fn.setqflist({}, ' ', {
+        title = string.format('npm run', script),
+        lines = #stderr and stderr or result,
+        efm = efm
+    })
+    vim.api.nvim_exec_autocmds('QuickFixCmdPost', {
+        buffer = bufnr,
+    })
     vim.pretty_print("stderr", stderr, "results", result)
 end
 

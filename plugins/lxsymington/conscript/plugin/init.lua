@@ -1,10 +1,12 @@
-local conscript = require('conscript')
-local M         = {}
+local conscript           = require('conscript')
+local nvim_create_augroup = vim.api.nvim_create_augroup
+local nvim_create_autocmd = vim.api.nvim_create_autocmd
+local M                   = {}
 
 function M.enroll()
-    local conscript_augroup = vim.api.nvim_create_augroup('ConscriptEnroll', { clear = true })
+    local conscript_augroup = nvim_create_augroup('ConscriptEnroll', { clear = true })
 
-    vim.api.nvim_create_autocmd({
+    nvim_create_autocmd({
         'VimEnter',
         'SessionLoadPost',
         'DirChanged'
