@@ -19,7 +19,7 @@ function M.setup()
 	}
 
 	-- Sets the background to be light
-	opt.background = 'dark'
+	opt.background = 'light'
 
 	-- Sets the colorscheme to be Crepuscular
 	g.colors_name = 'crepuscular'

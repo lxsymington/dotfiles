@@ -12,7 +12,8 @@ function M.enroll()
         {
             pattern = '*',
             callback = conscript.scout,
-            group = conscript_augroup
+            group = conscript_augroup,
+            once = true
         })
 end
 

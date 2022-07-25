@@ -53,7 +53,6 @@ function M.scout()
         pattern = M.regiments,
         callback = M.patrol,
         group = conscript_augroup,
-        once = true
     })
 
     local package_json_path = vim.loop.cwd() .. '/package.json'
@@ -73,12 +72,12 @@ function M.scout()
         return
     end
 
-    -- TODO: improve this
     M.cache = vim.tbl_extend('force', M.cache, package_json.scripts)
 end
 
 function M.exercises(cmd)
     local script_names = vim.tbl_keys(M.cache)
+    local bufnr = vim.api.nvim_get_current_buf()
 
     if #cmd.args < 1 then
         vim.ui.select(script_names, {
@@ -86,9 +85,11 @@ function M.exercises(cmd)
             format_item = function(item)
                 return string.format('%s | %s', item, M.cache[item])
             end,
-        }, M.drill)
+        }, function(selection, item_index)
+            M.drill(selection, bufnr)
+        end)
     elseif vim.tbl_contains(vim.tbl_keys(M.cache), cmd.args) then
-        M.drill(cmd.args)
+        M.drill(cmd.args, bufnr)
     else
         vim.notify(
             string.format('script: %s does not match any found in package.json', cmd.args),
@@ -107,11 +108,14 @@ function M.patrol(event)
     })
 end
 
-function M.drill(script, idx)
+function M.drill(script, bufnr)
     vim.notify(
         string.format('Running npm script: %s', script),
         vim.log.levels.INFO
     )
+
+    local efm = vim.api.nvim_buf_get_option(bufnr, 'errorformat')
+
     local job = Job:new({
         command = 'npm',
         args = { 'run', script },
@@ -119,19 +123,23 @@ function M.drill(script, idx)
     })
 
     job:start()
-    job:after_failure(function(...)
-        vim.pretty_print('failure', ...)
-        local stderr = job:stderr_result()
-        local result = job:result()
-        vim.pretty_print("results", stderr, result)
+    job:wait(300000, 500)
+    job:after(function()
         job:shutdown()
     end)
-    job:after_success(function(...)
-        vim.pretty_print('success', ...)
-        local results = job:result()
-        vim.pretty_print("results", results)
-        job:shutdown()
-    end)
+    local result = job:result()
+    local stderr = job:stderr_result()
+    if #stderr then
+        vim.fn.setqflist({}, ' ', {
+            title = string.format('npm run', script),
+            lines = stderr,
+            efm = efm
+        })
+        vim.api.nvim_exec_autocmds('QuickFixCmdPost', {
+            buffer = bufnr,
+        })
+    end
+    vim.pretty_print("stderr", stderr, "results", result)
 end
 
 return M
