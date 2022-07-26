@@ -3,9 +3,11 @@ local M = {}
 
 -- TERMINAL
 function M.setup()
-	api.nvim_command(
-		[[ command! TerminalStyle lua require('lxs.autocommands.terminal').terminalStyle()]]
-	)
+	api.nvim_create_user_command('TerminalStyle', function ()
+        require('lxs.autocommands.terminal').terminalStyle()
+	end, {
+	    desc = 'Apply terminal styles'
+	})
 end
 
 function M.terminalStyle()

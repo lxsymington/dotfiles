@@ -170,7 +170,11 @@ function M.setup()
 	}
 
 	-- Allow `nvim-dap` to attempt to load settings from VSCode's launch.json
-	vim.cmd([[command! DebugLoadLaunchJS lua require('dap.ext.vscode').load_launchjs()]])
+	vim.api.nvim_create_user_command('DebugLoadLaunchJS', function ()
+	   require('dap.ext.vscode').load_launchjs()
+	end, {
+	    desc = 'DAP » Load Launch JS',
+	})
 
 	keymap.set('n', '<Leader>D=', function()
 		require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))

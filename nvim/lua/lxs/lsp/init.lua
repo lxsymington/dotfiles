@@ -1,4 +1,5 @@
-local lsp_installer = require('nvim-lsp-installer')
+local mason = require('mason')
+local mason_lspconfig = require('mason-lspconfig')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local luadev = require('lua-dev')
@@ -107,7 +108,11 @@ function M.setup()
 	vim.lsp.set_log_level('info')
 
 	-- Convenience command to view lsp logs
-	vim.cmd([[ command! LspLog exe 'tabnew ' .. luaeval("vim.lsp.get_log_path()") ]])
+	vim.api.nvim_create_user_command('LspLog', function ()
+	   vim.cmd.tabnew(vim.lsp.get_log_path())
+	end, {
+	    desc = 'LSP » Open Logs In New Tab',
+	})
 
 	-- Setup handlers
 	handlers.setup()
@@ -121,17 +126,20 @@ function M.setup()
 	-- Pretty icons
 	vim.lsp.protocol.CompletionItemKind = constants.kind_labels
 
-	-- Configure `nvim-lsp-installer`
-	lsp_installer.setup({
+	-- Configure `mason`
+	mason.setup({
 		log_level = vim.log.levels.DEBUG,
-		automatic_installation = true,
 		ui = {
+		    border = 'rounded',
 			icons = {
 				server_installed = '',
 				server_pending = '',
 				server_uninstalled = '',
 			},
 		},
+	})
+	mason_lspconfig.setup({
+		automatic_installation = true,
 	})
 
 	for server_name, server_config in pairs(server_opts) do

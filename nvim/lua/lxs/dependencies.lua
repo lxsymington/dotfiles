@@ -33,13 +33,13 @@ function M.setup()
     require('packer').startup({
         function(use)
             local function local_use(author, package, opts)
-                if not isdirectory(expand('~/.dotfiles/plugins/', ':p:~')) then
+                if not isdirectory(expand('~/.dotfiles/plugins/', ':p:~', {})) then
                     print('Could not find a local plugins directory')
                     return
                 end
 
                 local plugin_name = author .. '/' .. package
-                local plugin_dir = expand('~/.dotfiles/plugins/' .. plugin_name, ':p:~')
+                local plugin_dir = expand('~/.dotfiles/plugins/' .. plugin_name, ':p:~', {})
 
                 if not isdirectory(plugin_dir) then
                     print('Could not find plugin (' .. plugin_name .. ') in local plugins directory')
@@ -105,8 +105,9 @@ function M.setup()
 
             -- LSP configurations
             use({
-                'williamboman/nvim-lsp-installer',
+                'williamboman/mason.nvim',
                 requires = {
+                    'williamboman/mason-lspconfig.nvim',
                     'nvim-lua/plenary.nvim',
                     'rcarriga/nvim-notify',
                     'neovim/nvim-lspconfig',
@@ -304,30 +305,6 @@ function M.setup()
                     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
                     'nvim-telescope/telescope-file-browser.nvim',
                 },
-                -- opt = true,
-                --[[ cmd = { 'Telescope', 'Octo' },
-				keys = {
-					{ 'n', '<Leader>pf' },
-					{ 'n', '<Leader>ps' },
-					{ 'n', '<Leader>lcc' },
-					{ 'n', '<Leader>lcr' },
-					{ 'n', '<Leader>lr' },
-					{ 'n', '<Leader>ldd' },
-					{ 'n', '<Leader>ldw' },
-					{ 'n', '<Leader>ls' },
-					{ 'n', '<Leader>gf' },
-					{ 'n', '<Leader>gs' },
-					{ 'n', '<Leader>gb' },
-					{ 'n', '<Leader>vh' },
-					{ 'n', '<Leader>vm' },
-					{ 'n', '<Leader>bf' },
-					{ 'n', '<Leader>b/' },
-					{ 'n', '<Leader><Tab>' },
-					{ 'n', '<Leader><Leader>' },
-					{ 'n', '<Leader>/' },
-					{ 'n', '<Leader>;' },
-					{ 'n', '<Leader>hz' },
-				}, ]]
                 config = function()
                     require('lxs.plugin_settings.telescope').setup()
                 end,
@@ -413,16 +390,17 @@ function M.setup()
                         end,
                     },
                 },
-                -- opt = true,
-                --[[ keys = {
-					{ 'n', '<Leader>D=' },
-					{ 'n', '<Leader>D?' },
-					{ 'n', '<Leader>Db' },
-					{ 'n', '<Leader>Dc' },
-				}, ]]
                 config = function()
                     require('lxs.plugin_settings.nvim_dap').setup()
                 end,
+            })
+
+            -- Task Runner
+            use({
+                'stevearc/overseer.nvim',
+                config = function ()
+                    require('lxs.plugin_settings.overseer').setup()
+                end
             })
 
             -- REPL / Runner
