@@ -123,10 +123,6 @@ function M.setup()
     opt.concealcursor = 'nc'
 
     vim.diagnostic.config({
-        virtual_text = {
-            prefix = '●',
-            source = 'always',
-        },
         float = {
             border = 'rounded',
             source = 'always',
