@@ -1,0 +1,19 @@
+---
+- name: Install CLI tools in macOS with Homebrew
+  loop:
+    - bat
+    # - delta
+    - exa
+    - fd
+    - git
+    # - go
+    - gojq
+    # - pandoc
+    - ripgrep
+    # - sqlite
+    # - tealdeer
+    - tmux
+    - zoxide
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present

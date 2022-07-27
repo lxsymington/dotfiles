@@ -1,0 +1,21 @@
+---
+- name: Install CLI tools in Ubuntu
+  become: true
+  apt:
+    name:
+      - bat
+      # - delta
+      - exa
+      - fd
+      - git
+      # - go
+      - gojq
+      - keychain
+      # - pandoc
+      - ripgrep
+      # - sqlite
+      # - tealdeer
+      - tmux
+      - zoxide
+    state: present
+  when: ansible_distribution == "Ubuntu"

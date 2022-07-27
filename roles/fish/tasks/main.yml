@@ -1,0 +1,20 @@
+- name: Add fish repository to apt
+  ansible.builtin.apt_repository:
+    repo: ppa:fish-shell/release-3
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install fish in Ubuntu
+  become: true
+  apt:
+    name:
+      - fish
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install fish in MacOS
+  community.general.homebrew:
+    name:
+      - fish
+    state: present
+  when: ansible_distribution == "MacOSX"

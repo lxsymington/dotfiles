@@ -1,0 +1,18 @@
+---
+- name: Bootstrap development environment
+  hosts: localhost
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+      when: ansible_distribution == "MacOSX"
+    - role: fish
+    - role: nodejs
+      vars:
+        npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
+        nodejs_npm_global_packages:
+          - diff-so-fancy
+          - npm-merge-driver
+    - role: nvim
+    - role: stow
+    - role: fzf
+    - role: fonts
+    - role: desktop
