@@ -1,0 +1,28 @@
+- name: Install nvim build dependencies in Ubuntu
+  become: true
+  apt:
+    name:
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+    state: present
+
+- name: Build nvim release version in Ubuntu
+  community.general.make:
+    chdir: deps/neovim
+    params:
+      CMAKE_BUILD_TYPE: Release
+
+- name: Install nvim release version in Ubuntu
+  become: true
+  community.general.make:
+    chdir: deps/neovim
+    target: install
