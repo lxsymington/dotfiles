@@ -11,7 +11,7 @@ function M.setup()
 	local compiler_augroup = vim.api.nvim_create_augroup('Compiler', {})
 	vim.api.nvim_create_autocmd('BufRead', {
 	    callback = function ()
-            pcall(vim.cmd.execute, string.format('compiler %s', vim.bo.filetype))
+            pcall(vim.cmd.compiler, vim.bo.filetype)
         end,
         desc = 'Configure compiler for filetype',
         group = compiler_augroup

@@ -1,0 +1,16 @@
+.DS_Store
+
+# Dotfile git repository files
+\.git
+\.gitignore
+
+# Ansible
+^/roles
+^/bootstrap.yml
+^/ansible.cfg
+
+^/README.md
+^/requirements.yml
+^/install
+
+^/\.stowrc
