@@ -17,5 +17,5 @@
       # - tealdeer
       - tmux
       - zoxide
-    state: present
+    state: latest
   when: ansible_distribution == "Ubuntu"

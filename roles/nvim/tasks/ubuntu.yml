@@ -13,7 +13,7 @@
       - pkg-config
       - unzip
       - curl
-    state: present
+    state: latest
 
 - name: Build nvim release version in Ubuntu
   community.general.make:

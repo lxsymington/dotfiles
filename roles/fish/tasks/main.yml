@@ -2,6 +2,8 @@
   ansible.builtin.apt_repository:
     repo: ppa:fish-shell/release-3
     state: present
+  become: true
+  become_method: sudo
   when: ansible_distribution == "Ubuntu"
 
 - name: Install fish in Ubuntu
@@ -9,12 +11,12 @@
   apt:
     name:
       - fish
-    state: present
+    state: latest
   when: ansible_distribution == "Ubuntu"
 
 - name: Install fish in MacOS
   community.general.homebrew:
     name:
       - fish
-    state: present
+    state: latest
   when: ansible_distribution == "MacOSX"

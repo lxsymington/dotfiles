@@ -16,4 +16,4 @@
     - zoxide
   community.general.homebrew:
     name: "{{ item }}"
-    state: present
+    state: latest
