@@ -4,13 +4,26 @@
 \.git
 \.gitignore
 
+# Logs
+\.nvimlog
+^/startuptime.txt
+^/selene.toml
+
 # Ansible
 ^/roles
 ^/bootstrap.yml
 ^/ansible.cfg
-
-^/README.md
 ^/requirements.yml
+
+# Setup
+^/README.md
 ^/install
 
+# Stow
 ^/\.stowrc
+
+# Miscellaneous
+^/venv
+^/plugind
+^/default-packages
+^/org

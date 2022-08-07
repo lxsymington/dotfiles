@@ -5,15 +5,15 @@
     name:
       - bat
       # - delta
-      - exa
+      # - exa
       - fd
       - git
       # - go
       - gojq
       - keychain
-      # - pandoc
+      - pandoc
       - ripgrep
-      # - sqlite
+      - sqlite
       # - tealdeer
       - tmux
       - zoxide

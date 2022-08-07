@@ -1,8 +1,9 @@
 #!/bin/bash
 
+# python3 -m venv venv
+# source venv/bin/activate
+
 set -e
 
-python3 -m venv venv
-source venv/bin/activate
 pip3 install ansible
 ansible-galaxy install -r requirements.yml

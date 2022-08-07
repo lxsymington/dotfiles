@@ -30,9 +30,6 @@ colors:
     focused_match:
       foreground: "CellBackground"
       background: "CellForeground"
-    bar:
-      foreground: "#1A141F"
-      background: "#EBCCAD"
   # Keyboard regex hints
   hints:
     # First character in the hint label Allowed values are
@@ -50,6 +47,9 @@ colors:
   line_indicator:
     foreground: "None"
     background: "#50494E"
+  footer_bar:
+    foreground: "#1A141F"
+    background: "#EBCCAD"
   # Normal colours
   normal:
     white: "#EBCCAD"

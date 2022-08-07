@@ -46,10 +46,6 @@ local function alacritty(theme)
 	search_focused_match:add('foreground', 'CellBackground')
 	search_focused_match:add('background', 'CellForeground')
 
-	local search_bar = YamlTable:new(config)
-	search_bar:add('foreground', theme.foreground_alt)
-	search_bar:add('background', theme.background_alt)
-
 	local search = YamlTable:new(config)
 	search:add('#> CellForeground', {
 		comment_chars = '#',
@@ -60,7 +56,6 @@ local function alacritty(theme)
 	})
 	search:add('matches', search_matches)
 	search:add('focused_match', search_focused_match)
-	search:add('bar', search_bar)
 
 	local hints_start = YamlTable:new(config)
 	hints_start:add('foreground', theme.foreground_alt)
@@ -95,6 +90,10 @@ local function alacritty(theme)
 	local line_indicator = YamlTable:new(config)
 	line_indicator:add('foreground', 'None')
 	line_indicator:add('background', theme.grey)
+
+	local footer_bar = YamlTable:new(config)
+	footer_bar:add('foreground', theme.foreground_alt)
+	footer_bar:add('background', theme.background_alt)
 
 	local normal = YamlTable:new(config)
 	normal:add('white', theme.white)
@@ -187,6 +186,7 @@ local function alacritty(theme)
         ]],
 	})
 	colors:add('line_indicator', line_indicator)
+	colors:add('footer_bar', footer_bar)
 	colors:add('#> Normal', { comment_chars = '#', copy = 'Normal colours' })
 	colors:add('normal', normal)
 	colors:add('#> Bright', { comment_chars = '#', copy = 'Bright colours' })

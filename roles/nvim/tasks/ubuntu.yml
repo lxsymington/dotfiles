@@ -1,4 +1,4 @@
-- name: Install nvim build dependencies in Ubuntu
+- name: Install neovim build dependencies in Ubuntu
   become: true
   apt:
     name:
@@ -15,14 +15,19 @@
       - curl
     state: latest
 
-- name: Build nvim release version in Ubuntu
+- name: Pull the latest version of neovim
+  ansible.builtin.git:
+    repo: git@github.com:neovim/neovim.git
+    dest: "{{ ansible_env.HOME }}/Tools/neovim"
+
+- name: Build neovim release version in Ubuntu
   community.general.make:
-    chdir: deps/neovim
+    chdir: "{{ ansible_env.HOME }}/Tools/neovim"
     params:
       CMAKE_BUILD_TYPE: Release
 
-- name: Install nvim release version in Ubuntu
+- name: Install neovim release version in Ubuntu
   become: true
   community.general.make:
-    chdir: deps/neovim
+    chdir: "{{ ansible_env.HOME }}/Tools/neovim"
     target: install
