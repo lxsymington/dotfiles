@@ -19,6 +19,13 @@ function M.setup()
         discovery = {
             enabled = true
         },
+        icons = {
+            failed = "✘",
+            passed = "✔",
+            running = "➜",
+            skipped = "⭕",
+            unknown = "❓"
+        },
         jump = {
             enabled = true
         },

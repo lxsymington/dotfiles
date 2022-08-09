@@ -437,14 +437,6 @@ function M.setup()
                     require('lxs.plugin_settings.neotest').setup()
                 end
             })
-            use({
-                'rcarriga/vim-ultest',
-                requires = {},
-                run = ':UpdateRemotePlugins',
-                config = function()
-                    require('lxs.plugin_settings.ultest').setup()
-                end,
-            })
 
             -- Documenting
             use({

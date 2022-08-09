@@ -14,12 +14,21 @@ local theme = lush.merge({
 			Comment({ fg = colours.white.abs_darken(20), gui = 'nocombine,italic' }),
 			CursorLine({ bg = colours.white.abs_lighten(10), gui = 'nocombine' }),
 			CursorLineNr({ bg = colours.yellow, fg = colours.purple, gui = 'nocombine,bold' }),
-			DiffAdd({ bg = colours.lightGreen, fg = colours.green, gui = 'nocombine,bold' }),
-			DiffChange({ bg = colours.lightBlue, fg = colours.blue, gui = 'nocombine,bold' }),
-			DiffDelete({ bg = colours.lightRed, fg = colours.red, gui = 'nocombine,bold' }),
+			DiffAdd({
+				bg = colours.lightGreen.saturation(36).lightness(88),
+				gui = 'nocombine,bold',
+			}),
+			DiffChange({
+				bg = colours.lightBlue.saturation(36).lightness(88),
+				gui = 'nocombine,bold',
+			}),
+			DiffDelete({
+				bg = colours.lightRed.saturation(36).lightness(88),
+				fg = colours.lightRed.saturation(60).lightness(48),
+				gui = 'nocombine,bold',
+			}),
 			DiffText({
-				bg = colours.lightCyan,
-				fg = colours.cyan,
+				bg = colours.lightYellow.saturation(36).lightness(88),
 				gui = 'nocombine,bold,undercurl',
 			}),
 			IncSearch({
@@ -58,7 +67,22 @@ local theme = lush.merge({
 				gui = 'nocombine',
 			}),
 			SignColumn({ bg = colours.lightWhite, gui = 'nocombine,italic' }),
-			SpellRare({ fg = colours.blue, gui = 'nocombine,undercurl' }),
+			SpellBad({
+				bg = colours.orange.saturation(36).lightness(88),
+				gui = 'nocombine,undercurl',
+			}),
+			SpellCap({
+				bg = colours.lightPurple.saturation(36).lightness(88),
+				gui = 'nocombine,undercurl',
+			}),
+			SpellLocal({
+				bg = colours.lightCyan.saturation(36).lightness(88),
+				gui = 'nocombine,undercurl',
+			}),
+			SpellRare({
+				bg = colours.lightOrange.saturation(36).lightness(88),
+				gui = 'nocombine,undercurl',
+			}),
 			StatusLine({ bg = colours.white.abs_lighten(10), gui = 'nocombine' }),
 			StatusLineNC({ bg = colours.white.abs_lighten(5), gui = 'nocombine' }),
 			Substitute({ bg = colours.lightCyan, fg = colours.blue, gui = 'nocombine' }),
@@ -156,6 +180,23 @@ local theme = lush.merge({
 				gui = 'nocombine',
 			}),
 			NeogitHunkHeaderHighlight({ NeogitHunkHeader, gui = 'nocombine,underline,bold' }),
+            NeotestAdapterName({ fg = colours.purple, gui = 'nocombine,bold' }),
+            NeotestBorder({ fg = colours.lightPurple, gui = 'nocombine' }),
+            NeotestDir({ fg = colours.yellow, gui = 'nocombine' }),
+            NeotestExpandMarker({ fg = colours.black, gui = 'nocombine' }),
+            NeotestFailed({ fg = colours.red, gui = 'nocombine,bold' }),
+            NeotestFile({ fg = colours.green, gui = 'nocombine,italic' }),
+            NeotestFocused({ bg = colours.lightWhite, gui = 'nocombine' }),
+            NeotestIndent({ fg = colours.black, gui = 'nocombine' }),
+            NeotestMarked({ fg = colours.orange, gui = 'nocombine,bold,underdotted' }),
+            NeotestNamespace({ fg = colours.lightPurple, gui = 'nocombine' }),
+            NeotestPassed({ fg = colours.lightGreen, gui = 'nocombine,bold' }),
+            NeotestRunning({ fg = colours.yellow, gui = 'nocombine,underdashed' }),
+            NeotestWinSelect({ fg = colours.lightBlack, gui = 'nocombine' }),
+            NeotestSkipped({ fg = colours.lightOrange, gui = 'nocombine,underdotted' }),
+            NeotestTarget({ fg = colours.cyan, gui = 'nocombine' }),
+            NeotestTest({ fg = colours.blue, gui = 'nocombine,bold' }),
+            NeotestUnknown({ fg = colours.grey, gui = 'nocombine,italic' })
 		}
 	end),
 })
