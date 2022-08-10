@@ -19,27 +19,27 @@ local default_opts = {
 }
 
 local function get_node_path()
-    local volta_job = Job:new({
-        command = 'volta',
-        args = {  'run', '--node 16', 'which', 'node' },
-        cwd = vim.loop.cwd()
-    })
+	local volta_job = Job:new({
+		command = 'volta',
+		args = { 'run', '--node 16', 'which', 'node' },
+		cwd = vim.loop.cwd(),
+	})
 
-    volta_job:start()
-    volta_job:wait(1000, 5)
-    volta_job:after(function ()
-        volta_job:shutdown()
-    end)
+	volta_job:start()
+	volta_job:wait(1000, 5)
+	volta_job:after(function()
+		volta_job:shutdown()
+	end)
 
-    return volta_job:result()
+	return volta_job:result()
 end
 
 local server_opts = {
 	['denols'] = function()
 		return tbl_extend('keep', {
 			init_options = {
-			    enable = vim.fn.filereadable('deno.json') == 1
-			        or vim.fn.filereadable('deno.jsonc') == 1,
+				enable = vim.fn.filereadable('deno.json') == 1
+					or vim.fn.filereadable('deno.jsonc') == 1,
 				lint = true,
 			},
 			root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
@@ -51,7 +51,7 @@ local server_opts = {
 				codeActionOnSave = {
 					enable = true,
 				},
-				nodePath = get_node_path()
+				nodePath = get_node_path(),
 			},
 		}, default_opts)
 	end,
@@ -86,10 +86,10 @@ local server_opts = {
 	end,
 	['sumneko_lua'] = function()
 		return luadev.setup({
-		    library = {
-		        plugins = { "neotest" },
-		        types = true
-		    },
+			library = {
+				plugins = { 'neotest' },
+				types = true,
+			},
 			lspconfig = tbl_extend('keep', {
 				root_dir = function(fname)
 					return util.find_git_ancestor(fname) or util.path.dirname(fname)
@@ -110,21 +110,21 @@ local server_opts = {
 	end,
 	['yamlls'] = function()
 		return tbl_extend('keep', {
-	        yaml = {
-	            schemaStore = {
-	                enable = true
-	            }
-	        }
-        }, default_opts)
+			yaml = {
+				schemaStore = {
+					enable = true,
+				},
+			},
+		}, default_opts)
 	end,
 }
 
 function M.setup()
 	-- Convenience command to view lsp logs
-	vim.api.nvim_create_user_command('LspLog', function ()
-	   vim.cmd.tabnew(vim.lsp.get_log_path())
+	vim.api.nvim_create_user_command('LspLog', function()
+		vim.cmd.tabnew(vim.lsp.get_log_path())
 	end, {
-	    desc = 'LSP » Open Logs In New Tab',
+		desc = 'LSP » Open Logs In New Tab',
 	})
 
 	-- Setup handlers
@@ -143,7 +143,7 @@ function M.setup()
 	mason.setup({
 		log_level = vim.log.levels.DEBUG,
 		ui = {
-		    border = 'rounded',
+			border = 'rounded',
 			icons = {
 				package_installed = '✔',
 				package_pending = '➜',

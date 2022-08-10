@@ -15,26 +15,21 @@ local function select_config_file(config_files)
 end
 
 function M.prettier()
-    if not lsp_loaded then
-        return nil
-    end
+	if not lsp_loaded then
+		return nil
+	end
 
-    local active_eslint_client = vim.lsp.get_active_clients({
-        name = 'eslintls'
-    })
+	local active_eslint_client = vim.lsp.get_active_clients({
+		name = 'eslintls',
+	})
 
-    if #active_eslint_client then
-        vim.notify(
-			'Active ESLint LS detected using `eslint --fix` instead',
-            vim.log.levels.INFO,
-            {
-                title = 'Formatter'
-            }
-        )
-        vim.cmd.EslintFixAll()
-        return nil
-    end
-
+	if #active_eslint_client then
+		vim.notify('Active ESLint LS detected using `eslint --fix` instead', vim.log.levels.INFO, {
+			title = 'Formatter',
+		})
+		vim.cmd.EslintFixAll()
+		return nil
+	end
 
 	if not vim.loop.os_getenv('PRETTIERD_LOCAL_PRETTIER_ONLY') then
 		vim.loop.os_setenv('PRETTIERD_LOCAL_PRETTIER_ONLY', 'true')
@@ -55,8 +50,8 @@ function M.prettier()
 
 	local config = select_config_file(config_files)
 
-	if not (config) then
-        vim.loop.os_unsetenv('PRETTIERD_DEFAULT_CONFIG')
+	if not config then
+		vim.loop.os_unsetenv('PRETTIERD_DEFAULT_CONFIG')
 		vim.cmd.FormatDisable()
 		return nil
 	end
@@ -64,14 +59,11 @@ function M.prettier()
 	vim.cmd.FormatEnable()
 
 	vim.notify(
-		string.format(
-			'Formatting file with %s config',
-			vim.fn.expand(config, ':p:.', {})
-		),
+		string.format('Formatting file with %s config', vim.fn.expand(config, ':p:.', {})),
 		vim.log.levels.INFO,
-        {
-            title = 'Formatter'
-        }
+		{
+			title = 'Formatter',
+		}
 	)
 
 	vim.loop.os_setenv('PRETTIERD_DEFAULT_CONFIG', config)
@@ -127,11 +119,11 @@ function M.setup()
 			},
 			typescript = {
 				M.prettier,
-				M.tslint
+				M.tslint,
 			},
 			typescriptreact = {
 				M.prettier,
-				M.tslint
+				M.tslint,
 			},
 		},
 	})

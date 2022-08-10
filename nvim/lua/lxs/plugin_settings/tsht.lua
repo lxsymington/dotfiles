@@ -8,13 +8,13 @@ function M.setup()
 	end, {
 		desc = 'Treesitter Hop',
 		silent = true,
-		remap = true
+		remap = true,
 	})
 	keymap.set('x', 'm', function()
 		require('tsht').nodes()
 	end, {
 		desc = 'Treesitter Hop',
-		silent = true
+		silent = true,
 	})
 end
 

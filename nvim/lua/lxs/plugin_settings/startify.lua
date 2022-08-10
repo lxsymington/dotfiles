@@ -32,7 +32,7 @@ function M.setup()
 	-- Close LuaTree
 	vim.g.startify_session_before_save = {
 		'echo "Cleaning up before saving.."',
-		'silent! NvimTreeClose',
+		'OverseerClose',
 	}
 end
 
