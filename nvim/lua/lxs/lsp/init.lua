@@ -3,6 +3,7 @@ local mason_lspconfig = require('mason-lspconfig')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local luadev = require('lua-dev')
+local Job = require('plenary.job')
 local constants = require('lxs.config.constants')
 local attach = require('lxs.lsp.attach')
 local capabilities = require('lxs.lsp.capabilities')
@@ -16,6 +17,22 @@ local default_opts = {
 	on_attach = attach.attach,
 	capabilities = capabilities.create(),
 }
+
+local function get_node_path()
+    local volta_job = Job:new({
+        command = 'volta',
+        args = {  'run', '--node 16', 'which', 'node' },
+        cwd = vim.loop.cwd()
+    })
+
+    volta_job:start()
+    volta_job:wait(1000, 5)
+    volta_job:after(function ()
+        volta_job:shutdown()
+    end)
+
+    return volta_job:result()
+end
 
 local server_opts = {
 	['denols'] = function()
@@ -33,9 +50,8 @@ local server_opts = {
 			settings = {
 				codeActionOnSave = {
 					enable = true,
-					mode = 'all',
 				},
-				format = { enable = true },
+				nodePath = get_node_path()
 			},
 		}, default_opts)
 	end,
@@ -104,9 +120,6 @@ local server_opts = {
 }
 
 function M.setup()
-	-- Set LSP client's log level. Server's log level is not affected.
-	vim.lsp.set_log_level('info')
-
 	-- Convenience command to view lsp logs
 	vim.api.nvim_create_user_command('LspLog', function ()
 	   vim.cmd.tabnew(vim.lsp.get_log_path())
