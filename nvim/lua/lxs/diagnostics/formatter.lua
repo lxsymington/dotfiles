@@ -19,23 +19,7 @@ function M.prettier()
 		return nil
 	end
 
-	local active_eslint_client = vim.lsp.get_active_clients({
-		name = 'eslintls',
-	})
-
-	if #active_eslint_client then
-		vim.notify('Active ESLint LS detected using `eslint --fix` instead', vim.log.levels.INFO, {
-			title = 'Formatter',
-		})
-		vim.cmd.EslintFixAll()
-		return nil
-	end
-
-	if not vim.loop.os_getenv('PRETTIERD_LOCAL_PRETTIER_ONLY') then
-		vim.loop.os_setenv('PRETTIERD_LOCAL_PRETTIER_ONLY', 'true')
-	end
-
-	local config_files = {
+	local prettier_config_files = {
 		'.prettierrc',
 		'.prettierrc.json',
 		'.prettierrc.json5',
@@ -48,10 +32,21 @@ function M.prettier()
 		'.prettierrc.toml',
 	}
 
-	local config = select_config_file(config_files)
+	local eslint_config_files = {
+	    '.eslintrc.js',
+	    '.eslintrc.cjs',
+	    '.eslintrc.yml',
+	    '.eslintrc.yaml',
+	    '.eslintrc.json'
+	}
 
-	if not config then
-		vim.loop.os_unsetenv('PRETTIERD_DEFAULT_CONFIG')
+	local prettier_config = select_config_file(prettier_config_files)
+	local eslint_config = select_config_file(eslint_config_files)
+
+	local relative_prettier_config = vim.fn.fnamemodify(prettier_config, ':.')
+	local relative_eslint_config = vim.fn.fnamemodify(eslint_config, ':.')
+
+	if not (relative_prettier_config or relative_eslint_config) then
 		vim.cmd.FormatDisable()
 		return nil
 	end
@@ -59,38 +54,55 @@ function M.prettier()
 	vim.cmd.FormatEnable()
 
 	vim.notify(
-		string.format('Formatting file with %s config', vim.fn.expand(config, ':p:.', {})),
+		string.format(
+		    'Formatting file:\n\tESLint config: %s\n\tPrettier config: %s',
+		    relative_eslint_config,
+		    relative_prettier_config
+		),
 		vim.log.levels.INFO,
 		{
 			title = 'Formatter',
 		}
 	)
 
-	vim.loop.os_setenv('PRETTIERD_DEFAULT_CONFIG', config)
-
 	return {
-		exe = 'prettierd',
-		args = { vim.api.nvim_buf_get_name(0) },
+		exe = 'prettier-eslint',
+		args = {
+		    string.format('--config %s', relative_prettier_config),
+		    string.format('--eslint-config-path', relative_eslint_config),
+		    '--stdin',
+		    string.format('--stdin-filepath %s', vim.api.nvim_buf_get_name(0)),
+		},
+		cwd = vim.loop.cwd(),
 		stdin = true,
+		try_node_modules = true,
 	}
 end
 
 function M.tslint()
-	if not vim.fn.filereadable('tslint.json') == 1 then
+	if vim.fn.filereadable('tslint.json') == 0 then
 		return nil
 	end
 
+	vim.notify('Formatting file with `tslint.json` config', vim.log.levels.INFO, {
+		title = 'Formatter',
+	})
+
 	return {
 		exe = 'tslint',
-		args = { '-c', 'tslint.json', '--fix', '--force' },
-		try_node_modules = true,
+		args = { '-c tslint.json', '--fix', '--force' },
 		stdin = false,
+		try_node_modules = true,
 	}
 end
 
 function M.stylua()
 	local config = vim.fn.findfile('stylua.toml', vim.loop.cwd() .. '/**')
 	local config_path = vim.fn.fnamemodify(config, ':p:.')
+
+	vim.notify(string.format('Formatting file with %s config', config_path), vim.log.levels.INFO, {
+		title = 'Formatter',
+	})
 
 	return {
 		exe = 'stylua',
@@ -130,7 +142,17 @@ function M.setup()
 
 	local format_group = session_augroups('Format')
 	aucmd('BufWritePost', {
-		pattern = { '*.js', '*.cjs', '*.mjs', '*.jsx', '*.ts', '*.tsx', '*.lua' },
+		pattern = {
+			'*.js',
+			'*.cjs',
+			'*.mjs',
+			'*.jsx',
+			'*.ts',
+			'*.tsx',
+			'*.json',
+			'*.jsonc',
+			'*.lua',
+		},
 		command = 'FormatWrite',
 		once = true,
 		group = format_group,
