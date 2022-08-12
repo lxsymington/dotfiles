@@ -153,7 +153,15 @@ function M.setup()
 		},
 	})
 	mason_lspconfig.setup({
-		automatic_installation = true,
+		automatic_installation = {
+	        exclude = {
+	            'tsserver',
+	            'cssls',
+	            'eslint',
+	            'html',
+	            'jsonls'
+	        }
+		},
 	})
 
 	for server_name, server_config in pairs(server_opts) do
