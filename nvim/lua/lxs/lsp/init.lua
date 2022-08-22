@@ -82,6 +82,9 @@ local server_opts = {
 			},
 		}, default_opts)
 	end,
+	['rnix'] = function ()
+	   return default_opts
+	end,
 	['rust_analyzer'] = function()
 		return default_opts
 	end,

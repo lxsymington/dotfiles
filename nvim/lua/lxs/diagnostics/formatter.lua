@@ -46,7 +46,7 @@ function M.prettier()
 	local relative_prettier_config = vim.fn.fnamemodify(prettier_config, ':.')
 	local relative_eslint_config = vim.fn.fnamemodify(eslint_config, ':.')
 
-	if not (relative_prettier_config or relative_eslint_config) then
+	if (relative_prettier_config == 'null') and (relative_eslint_config == 'null') then
 		vim.cmd.FormatDisable()
 		return nil
 	end

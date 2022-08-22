@@ -6,3 +6,7 @@ end
 if type -q replay && test -d /nix/var/nix/profiles/default/etc/profile.d
     replay source /nix/var/nix/profiles/default/etc/profile.d/nix{,-daemon}.sh
 end
+
+if test -d /etc/static/fish
+    source /etc/static/fish/nixos-env-preinit.fish
+end
