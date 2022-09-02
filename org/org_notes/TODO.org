@@ -97,3 +97,28 @@
    #+BEGIN_SRC shell
    volta run --node 16 npm i -g (cat ~/.dotfiles/default-packages | sed '/@seccl\/auto-ops/d')
    #+END_SRC
+ + Further volta information:
+   #+BEGIN_SRC shell
+   ⚡️ Currently active tools:
+
+    Node: v12.22.12 (default)
+    npm: v8.6.0 (default)
+    Yarn: v1.22.18 (default)
+    Tool binaries available:
+        auto-ops (default)
+        eslint (default)
+        neovim-node-host (default)
+        npm-check (default)
+        prettier-eslint (default)
+        serverless, slss, sls (default)
+        tslint (default)
+        tsc, tsserver (default)
+        typescript-language-server (default)
+        vscode-css-language-server, vscode-eslint-language-server, vscode-html-language-server,
+        vscode-json-language-server, vscode-markdown-language-server (default)
+        yaml2json, yamltojson, ymltojson, yml2json (default)
+
+See options for more detailed reports by running `volta list --help`.
+   #+END_SRC
+ + [[Setting up tmux terminfo on MacOS][https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/]]
+    + This was found intitially via the [[comments for Tmux 3.3a][https://github.com/tmux/tmux/issues/3218#issue-1265998468]]
